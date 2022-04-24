@@ -1,0 +1,46 @@
+{
+  "name": "mee-web",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "yarn build && vite preview --port 3000",
+    "lint": "eslint './{configs,src}/**/*.{js,jsx,ts,tsx}' --config ./.eslintrc.js --format stylish",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "clsx": "^1.1.1",
+    "daisyui": "^1.24.2",
+    "jotai": "^1.5.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^11.5.1",
+    "react-hook-form": "^7.25.1",
+    "react-router-dom": "6"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.9",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "@vitejs/plugin-react": "^1.0.7",
+    "add": "^2.0.6",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "postcss": "^8.4.5",
+    "rollup-plugin-visualizer": "^5.5.4",
+    "tailwindcss": "^3.0.15",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2",
+    "vite-plugin-checker": "^0.3.4",
+    "vite-plugin-svgr": "^1.0.1"
+  }
+}
