@@ -2,6 +2,8 @@
   "name": "mee-web",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "npm run build && cp CNAME build/CNAME",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "yarn build && vite preview --port 3000",
@@ -41,6 +43,7 @@
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
     "vite-plugin-checker": "^0.3.4",
-    "vite-plugin-svgr": "^1.0.1"
+    "vite-plugin-svgr": "^1.0.1",
+    "gh-pages": "^3.2.3"
   }
 }
