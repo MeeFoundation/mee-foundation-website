@@ -22,7 +22,7 @@ export const LandingPage: React.FC = () => (
     </div>
     <div className="sub-header bg-primary flex flex-col items-center">
       <div className="flex mt-4 mb-2 whitespace-pre-wrap text-2xl font-normal">
-        <h1 className="text-secondary">Hello.</h1>
+        <h1 className="text-secondary"><b>Hello.</b></h1>
         <h1>{' '}</h1>
         <h1 className="text-primary-content">
           It&apos;s
