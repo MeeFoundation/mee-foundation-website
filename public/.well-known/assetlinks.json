@@ -1,5 +1,0 @@
-[{
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target" : { "namespace": "android_app", "package_name": "com.swift.mee-android-client",
-                 "sha256_cert_fingerprints": ["B3:1F:BC:F3:7E:B4:39:D3:30:A3:8D:63:47:00:E4:DF:5D:21:AE:DA:36:83:3C:41:60:BA:B5:69:9D:7B:51:88"] }
-}]

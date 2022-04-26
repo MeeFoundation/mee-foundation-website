@@ -9,6 +9,10 @@ module.exports = {
       width: {
         150: '615px',
       },
+      height: {
+        5.5: "22px",
+        "200px": "200px"
+      },
       maxWidth: {
         40: "10rem",
       },
