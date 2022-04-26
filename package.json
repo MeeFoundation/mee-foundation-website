@@ -2,8 +2,8 @@
   "name": "mee-web",
   "version": "0.0.0",
   "scripts": {
-    "predeploy": "npm run build && cp CNAME build/CNAME",
-    "deploy": "gh-pages -d build",
+    "predeploy": "yarn build && cp CNAME dist/CNAME",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "yarn build && vite preview --port 3000",
