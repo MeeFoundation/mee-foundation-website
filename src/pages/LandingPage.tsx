@@ -5,13 +5,12 @@ import privacy from '../assets/privacy.svg';
 import power from '../assets/power.svg';
 import logo from '../assets/mee_logo.svg';
 import head from '../assets/head.svg';
-import branch from '../assets/branch.png';
 
 export const LandingPage: React.FC = () => (
   <div className="flex flex-col items-shrink">
     <div className="header flex flex-row justify-between">
       <img src={logo} alt="mee-logo" className="h-5.5 m-3.5" />
-      <div className="header-links flex flex-row items-center m-3.5 text-primary text-2xs">
+      <div className="hidden header-links flex flex-row items-center m-3.5 text-primary text-2xs">
         <span>Individuals</span>
         <span className="mx-2">|</span>
         <span>Developers</span>
@@ -25,7 +24,11 @@ export const LandingPage: React.FC = () => (
       <div className="flex mt-4 mb-2 whitespace-pre-wrap text-2xl font-normal">
         <h1 className="text-secondary">Hello.</h1>
         <h1>{' '}</h1>
-        <h1 className="text-primary-content">It&apos;s Mee</h1>
+        <h1 className="text-primary-content">
+          It&apos;s
+          {' '}
+          <i>Mee</i>
+        </h1>
       </div>
       <img src={illustration} alt="mee-illustration" className="w-150 max-w-full" />
       <div className="my-7 max-w-xl px-5 text-center text-sm leading-4">
@@ -40,7 +43,9 @@ export const LandingPage: React.FC = () => (
     <div className="content flex flex-col items-center">
       <div className="my-11 mx-4 max-w-md text-center text-sm leading-4">
         <p className="text-primary">
-          Mee is a software and legal framework to support
+          <i>Mee</i>
+          {' '}
+          is a software and legal framework to support
           human-centered apps that improve the quality of online life
           by giving people more control over their personal data.
         </p>
@@ -48,7 +53,7 @@ export const LandingPage: React.FC = () => (
       <div className="w-150 max-w-full flex flex-row flex-wrap text-sm leading-4">
         <div className="bg-alt-color-1 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
           <span className="text-primary">
-            More ownership.
+            <b>More ownership.</b>
             <br />
             Own your personal data.
           </span>
@@ -58,7 +63,7 @@ export const LandingPage: React.FC = () => (
         </div>
         <div className="bg-alt-color-2 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
           <span className="text-primary-content">
-            More privacy.
+            <b>More privacy.</b>
             <br />
             Control what others know
             about you.
@@ -69,7 +74,7 @@ export const LandingPage: React.FC = () => (
         </div>
         <div className="bg-alt-color-3 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
           <span className="text-primary">
-            More power.
+            <b>More power.</b>
             <br />
             The future is Mee-compatible
             apps.
@@ -80,17 +85,19 @@ export const LandingPage: React.FC = () => (
         </div>
       </div>
       <div>
-        <h2 className="text-primary text-lg text-center mt-8 mb-3 mx-2">Good for everyone.</h2>
+        <h2 className="text-primary text-lg text-center mt-8 mb-3 mx-2"><b>Good for everyone.</b></h2>
         <p className="text-primary max-w-sm text-center text-sm leading-4">
           We’re not-for-profit and open-source. Curious?
           <br />
-          Email us at hello@mee.foundation
+          Email us at
+          {' '}
+          <b>hello@mee.foundation</b>
         </p>
       </div>
     </div>
     <div className="footer mt-16 w-full flex flex-col items-shrink relative">
       <div className="w-full bg-primary flex flex-col items-center z-10">
-        <div className="w-150 max-w-full flex flex-row py-7 px-4 text-primary-content text-3xs leading-tight">
+        <div className="hidden w-150 max-w-full flex flex-row py-7 px-4 text-primary-content text-3xs leading-tight">
           <div className="flex-1">
             <div>
               <p>For Individuals</p>
@@ -121,7 +128,7 @@ export const LandingPage: React.FC = () => (
             </div>
           </div>
         </div>
-        <div className="w-150 max-w-full flex flex-row align-center px-4 pt-20">
+        <div className="w-150 max-w-full px-4 pt-20">
           <div className="flex basis-2/3 flex-col justify-start text-3xs leading-tight text-primary-content">
             <p>
               The Mee project is sponsored by the
@@ -129,11 +136,8 @@ export const LandingPage: React.FC = () => (
               Mee Foundation, a 501(c)(4) non-profit corporation
             </p>
             <p className="my-5">
-              2022 Mee Foundation, Inc.
+              © 2022 Mee Foundation, Inc.
             </p>
-          </div>
-          <div className="flex basis-1/3 items-center">
-            <img src={branch} alt="mee-illustration-3" className="" />
           </div>
         </div>
       </div>
