@@ -28,6 +28,7 @@ export const LandingPage: React.FC = () => (
           It&apos;s
           {' '}
           <i>Mee</i>
+          .
         </h1>
       </div>
       <img src={illustration} alt="mee-illustration" className="w-150 max-w-full" />
@@ -53,7 +54,7 @@ export const LandingPage: React.FC = () => (
       <div className="w-150 max-w-full flex flex-row flex-wrap text-sm leading-4">
         <div className="bg-alt-color-1 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
           <span className="text-primary">
-            <b>More ownership.</b>
+            <b>Data rights are human rights.</b>
             <br />
             Own your personal data.
           </span>
