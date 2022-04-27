@@ -130,7 +130,7 @@ export const LandingPage: React.FC = () => (
           </div>
         </div>
         <div className="w-150 max-w-full px-4 pt-20">
-          <div className="flex basis-2/3 flex-col justify-start text-3xs leading-tight text-primary-content">
+          <div className="flex basis-2/3 flex-col justify-start text-2xs leading-tight text-primary-content">
             <p>
               The Mee project is sponsored by the
               <br />
