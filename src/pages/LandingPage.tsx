@@ -54,9 +54,9 @@ export const LandingPage: React.FC = () => (
       <div className="w-150 max-w-full flex flex-row flex-wrap text-sm leading-4">
         <div className="bg-alt-color-1 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
           <span className="text-primary">
-            <b>Data rights are human rights.</b>
+            <b>More Ownership.</b>
             <br />
-            Own your personal data.
+            Data rights are human rights.
           </span>
           <div className="w-8 h-8 p-1.5 mb-5 rounded-full bg-white">
             <img src={ownership} alt="ownership" className="ml-0.5" />
@@ -66,8 +66,7 @@ export const LandingPage: React.FC = () => (
           <span className="text-primary-content">
             <b>More privacy.</b>
             <br />
-            Control what others know
-            about you.
+            Control what others know about you.
           </span>
           <div className="w-8 h-8 p-1 mb-5 rounded-full bg-white">
             <img src={privacy} alt="privacy" className="" />
