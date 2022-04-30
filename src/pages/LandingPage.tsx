@@ -34,8 +34,8 @@ export const LandingPage: React.FC = () => (
       <img src={illustration} alt="mee-illustration" className="w-150 max-w-full" />
       <div className="my-7 max-w-xl px-5 text-center text-sm leading-4">
         <p className="text-primary-content">
-          Today, our online selves-our preferences, interests, affiliations, social networks,
-          medical records, locations, and so on-are owned by others. Our data is harvested
+          Today, our online selves—our preferences, interests, affiliations, social networks,
+          medical records, locations, and so on—are owned by others. Our data is harvested
           by giant corporations that monetize it for their advantage, not ours.
         </p>
         <p className="text-secondary">Good for them. Bad for us.</p>
