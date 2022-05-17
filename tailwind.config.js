@@ -11,10 +11,12 @@ module.exports = {
       },
       height: {
         5.5: "22px",
+        34: "8.5rem",
         "200px": "200px"
       },
       maxWidth: {
         40: "10rem",
+        150: "615px",
       },
       spacing: {
         22: "5.5rem",
@@ -26,6 +28,12 @@ module.exports = {
         "alt-color-2": "#7F8A45",
         "alt-color-3": "#F1D77A",
       },
+      lineHeight: {
+        4.5: "18px"
+      },
+      screens: {
+        'ssm': '460px',
+      }
     },
   },
   plugins: [require("daisyui")],
@@ -36,6 +44,7 @@ module.exports = {
           primary: "#4E868E",
           "primary-content": "#FFFFFF",
           secondary: "#F1D77A",
+          "secondary-content": "#535D29",
           accent: "#EA5234",
           neutral: "#333C4D",
 

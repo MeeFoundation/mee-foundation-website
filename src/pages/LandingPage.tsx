@@ -7,9 +7,9 @@ import logo from '../assets/mee_logo.svg';
 import head from '../assets/head.svg';
 
 export const LandingPage: React.FC = () => (
-  <div className="flex flex-col items-shrink">
-    <div className="header flex flex-row justify-between">
-      <img src={logo} alt="mee-logo" className="h-5.5 m-3.5" />
+  <div className="flex flex-col items-center">
+    <div className="header w-150 max-w-full flex flex-row justify-start">
+      <img src={logo} alt="mee-logo" className="h-4 m-3.5" />
       <div className="hidden header-links flex flex-row items-center m-3.5 text-primary text-2xs">
         <span>Individuals</span>
         <span className="mx-2">|</span>
@@ -32,17 +32,17 @@ export const LandingPage: React.FC = () => (
         </h1>
       </div>
       <img src={illustration} alt="mee-illustration" className="w-150 max-w-full" />
-      <div className="my-7 max-w-xl px-5 text-center text-sm leading-4">
+      <div className="my-7 max-w-150 px-2 text-center text-base leading-4.5">
         <p className="text-primary-content">
-          Today, our online selves—our preferences, interests, affiliations, social networks,
-          medical records, locations, and so on—are owned by others. Our data is harvested
+          Today, our online selves — our preferences, interests, affiliations, social networks,
+          medical records, locations, and so on — are owned by others. Our data is harvested
           by giant corporations that monetize it for their advantage, not ours.
         </p>
         <p className="text-secondary">Good for them. Bad for us.</p>
       </div>
     </div>
-    <div className="content flex flex-col items-center">
-      <div className="my-11 mx-4 max-w-md text-center text-sm leading-4">
+    <div className="content max-w-full flex flex-col items-center">
+      <div className="my-9 mx-4 max-w-md text-center text-base leading-4.5">
         <p className="text-primary">
           <i>Mee</i>
           {' '}
@@ -51,42 +51,42 @@ export const LandingPage: React.FC = () => (
           by giving people more control over their personal data.
         </p>
       </div>
-      <div className="w-150 max-w-full flex flex-row flex-wrap text-sm leading-4">
-        <div className="bg-alt-color-1 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
-          <span className="text-primary">
+      <div className="w-150 max-w-full flex flex-row flex-wrap text-base leading-4.5">
+        <div className="bg-alt-color-1 h-34 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
+          <span className="text-secondary-content">
             <b>More Ownership.</b>
             <br />
             Data rights are human rights.
           </span>
-          <div className="w-8 h-8 p-1.5 mb-5 rounded-full bg-white">
+          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
             <img src={ownership} alt="ownership" className="ml-0.5" />
           </div>
         </div>
-        <div className="bg-alt-color-2 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
+        <div className="bg-alt-color-2 h-34 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
           <span className="text-primary-content">
             <b>More privacy.</b>
             <br />
             Control what others know about you.
           </span>
-          <div className="w-8 h-8 p-1 mb-5 rounded-full bg-white">
+          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
             <img src={privacy} alt="privacy" className="" />
           </div>
         </div>
-        <div className="bg-alt-color-3 h-32 min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4">
-          <span className="text-primary">
+        <div className="bg-alt-color-3 h-34 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
+          <span className="text-secondary-content">
             <b>More power.</b>
             <br />
             The future is Mee-compatible
             apps.
           </span>
-          <div className="w-8 h-8 p-1 mb-5 rounded-full bg-white">
+          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
             <img src={power} alt="power" className="" />
           </div>
         </div>
       </div>
       <div>
         <h2 className="text-primary text-lg text-center mt-8 mb-3 mx-2"><b>Good for everyone.</b></h2>
-        <p className="text-primary max-w-sm text-center text-sm leading-4">
+        <p className="text-primary max-w-sm text-center text-base leading-4.5">
           We’re not-for-profit and open-source. Curious?
           <br />
           Email us at
@@ -95,7 +95,7 @@ export const LandingPage: React.FC = () => (
         </p>
       </div>
     </div>
-    <div className="footer mt-16 w-full flex flex-col items-shrink relative">
+    <div className="footer mt-16 w-150 max-w-full flex flex-col items-shrink relative">
       <div className="w-full bg-primary flex flex-col items-center z-10">
         <div className="hidden w-150 max-w-full flex flex-row py-7 px-4 text-primary-content text-3xs leading-tight">
           <div className="flex-1">
@@ -128,14 +128,14 @@ export const LandingPage: React.FC = () => (
             </div>
           </div>
         </div>
-        <div className="w-150 max-w-full px-4 pt-20">
+        <div className="w-150 max-w-full px-4 py-4">
           <div className="flex basis-2/3 flex-col justify-start text-2xs leading-tight text-primary-content">
             <p>
               The Mee project is sponsored by the
               <br />
               Mee Foundation, a 501(c)(4) non-profit corporation
             </p>
-            <p className="my-5">
+            <p className="mt-5">
               © 2022 Mee Foundation, Inc.
             </p>
           </div>
