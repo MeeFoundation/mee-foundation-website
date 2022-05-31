@@ -1,10 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { LandingPage } from './pages/LandingPage';
+import { MaxW } from './components/MaxW';
+import { SignInUpPage } from './pages/SignInUpPage';
 
 export const App: React.FC = () => (
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-    </Routes>
+    <MaxW>
+      <Routes>
+        <Route path="/" element={<SignInUpPage />} />
+      </Routes>
+    </MaxW>
   </BrowserRouter>
 );

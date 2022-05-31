@@ -10,7 +10,7 @@ export const LandingPage: React.FC = () => (
   <div className="flex flex-col items-center">
     <div className="header w-150 max-w-full flex flex-row justify-start">
       <img src={logo} alt="mee-logo" className="h-4 m-3.5" />
-      <div className="hidden header-links flex flex-row items-center m-3.5 text-primary text-2xs">
+      {/* <div className="header-links flex flex-row items-center m-3.5 text-primary text-2xs">
         <span>Individuals</span>
         <span className="mx-2">|</span>
         <span>Developers</span>
@@ -18,7 +18,7 @@ export const LandingPage: React.FC = () => (
         <span>Blog</span>
         <span className="mx-2">|</span>
         <span>Contact</span>
-      </div>
+      </div> */}
     </div>
     <div className="sub-header bg-primary flex flex-col items-center">
       <div className="flex mt-4 mb-2 whitespace-pre-wrap text-2xl font-normal">
@@ -97,7 +97,7 @@ export const LandingPage: React.FC = () => (
     </div>
     <div className="footer mt-16 w-150 max-w-full flex flex-col items-shrink relative">
       <div className="w-full bg-primary flex flex-col items-center z-10">
-        <div className="hidden w-150 max-w-full flex flex-row py-7 px-4 text-primary-content text-3xs leading-tight">
+        {/* <div className="w-150 max-w-full flex flex-row py-7 px-4 text-primary-content text-3xs leading-tight">
           <div className="flex-1">
             <div>
               <p>For Individuals</p>
@@ -127,7 +127,7 @@ export const LandingPage: React.FC = () => (
               <p className="mt-3.5">Donate</p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="w-150 max-w-full px-4 py-4">
           <div className="flex basis-2/3 flex-col justify-start text-2xs leading-tight text-primary-content">
             <p>
