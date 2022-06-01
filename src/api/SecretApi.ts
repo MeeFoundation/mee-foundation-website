@@ -1,19 +1,17 @@
 import {
-  CollectionTO, CreateNewCollectionRequest, GetAllCollectionsResponse, UpdateCollectionRequest,
-} from './to/Collection';
-import {
-  GetSecretsByCollectionIdTO, NewSecretTO, SecretKey, SecretTO, UpdateSecretByIdTO,
-} from './to/Secret';
+  Collection, NewCollection, NewSecret, Secret,
+} from 'src/model/Secret';
+import { SecretKey } from './to/Secret';
 
 export interface SecretApi {
-  getAllCollections(): Promise<GetAllCollectionsResponse>;
-  createNewCollection(data: CreateNewCollectionRequest): Promise<void>;
-  updateCollection(data: UpdateCollectionRequest): Promise<void>;
-  getCollectionById(collectionId: string): Promise<CollectionTO>;
-  getSecretsByCollectionId(collectionId: string): Promise<GetSecretsByCollectionIdTO>;
+  getAllCollections(): Promise<Collection[]>;
+  createNewCollection(data: NewCollection): Promise<void>;
+  updateCollection(data: NewCollection): Promise<void>;
+  getCollectionById(collectionId: string): Promise<Collection>;
+  getSecretsByCollectionId(collectionId: string): Promise<Secret[]>;
   getSecretValueById(secretId: string): Promise<string>;
-  updateSecretById(data: UpdateSecretByIdTO): Promise<void>;
+  updateSecretById(id: string, data: SecretKey): Promise<void>;
   getSecretById(secretId: string): Promise<SecretKey>;
-  createNewSecret(data: NewSecretTO): Promise<SecretTO>;
-  updateSecret(data: NewSecretTO): Promise<SecretTO>;
+  createNewSecret(data: NewSecret): Promise<Secret>;
+  updateSecret(data: NewSecret): Promise<Secret>;
 }

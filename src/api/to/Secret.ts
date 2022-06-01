@@ -11,7 +11,7 @@ export interface SecretKey {
 export interface NewSecretTO {
   collection_id: string;
   name: string;
-  secret: SecretContentType;
+  secret: SecretKey;
   note: string;
   url: string;
   username: string;
@@ -21,11 +21,4 @@ export interface SecretTO extends NewSecretTO {
   id: string;
   created: string;
   modified: string;
-}
-
-export type GetSecretsByCollectionIdTO = SecretTO[];
-
-export interface UpdateSecretByIdTO {
-  id: string;
-  data: SecretKey;
 }

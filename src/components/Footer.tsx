@@ -5,7 +5,7 @@ export const Footer: React.FC = () => (
   <div className="footer mt-16 max-w-full flex flex-col items-shrink relative">
     <div className="w-full bg-primary flex flex-col items-center z-10">
       <div className="w-full px-4 py-4">
-        <div className="flex basis-2/3 flex-col justify-start text-2xs leading-3 text-primary-content">
+        <div className="flex basis-2/3 flex-col justify-start text-2xs md:text-sm leading-3 text-primary-content">
           <p>
             The Mee project is sponsored by the
             Mee Foundation, a 501(c)(4) non-profit corporation
