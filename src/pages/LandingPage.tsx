@@ -81,7 +81,7 @@ export const LandingPage: React.FC = () => (
           <br />
           Email us at
           {' '}
-          <b>hello@mee.foundation</b>
+          <b>hello@getmee.org</b>
         </p>
       </div>
     </div>
