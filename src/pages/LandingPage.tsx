@@ -48,7 +48,7 @@ export const LandingPage: React.FC = () => (
             <br />
             Data rights are human rights.
           </span>
-          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
+          <div className="w-10 h-10 p-2 mt-auto mb-6 sm:mb-5 rounded-full bg-white">
             <img src={ownership} alt="ownership" className="ml-0.5" />
           </div>
         </div>
@@ -58,7 +58,7 @@ export const LandingPage: React.FC = () => (
             <br />
             Control what others know about you.
           </span>
-          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
+          <div className="w-10 h-10 p-2 mt-auto mb-6 sm:mb-5 rounded-full bg-white">
             <img src={privacy} alt="privacy" className="" />
           </div>
         </div>
@@ -69,7 +69,7 @@ export const LandingPage: React.FC = () => (
             The future is Mee-compatible
             apps.
           </span>
-          <div className="w-10 h-10 p-2 my-auto rounded-full bg-white">
+          <div className="w-10 h-10 p-2 mt-auto mb-6 sm:mb-5 rounded-full bg-white">
             <img src={power} alt="power" className="" />
           </div>
         </div>
