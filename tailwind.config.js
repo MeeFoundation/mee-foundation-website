@@ -1,7 +1,17 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      'sm': '612px',
+      'md': '1024px',
+      'lg': '1280px',
+    },
     extend: {
+      fontFamily: {
+        'ps': ['public-sans', ...defaultTheme.fontFamily.sans],
+      },
       fontSize: {
         "3xs": "0.5rem",
         "2xs": "0.625rem",
@@ -17,9 +27,12 @@ module.exports = {
       maxWidth: {
         40: "10rem",
         150: "615px",
+        256: '64rem',
       },
       spacing: {
+        15: "3.75rem",
         22: "5.5rem",
+        42: "10.5rem",
         120: "30rem",
         125: "31.25rem",
       },

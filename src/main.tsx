@@ -5,7 +5,9 @@ import { App } from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="font-ps text-sm leading-4.5 md:text-xl md:leading-6">
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root'),
 );
