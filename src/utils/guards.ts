@@ -1,5 +1,6 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
+/* eslint-disable func-names */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */

@@ -1,8 +1,9 @@
-export interface AuthRequest {
-  code: string;
+export interface AuthResponse {
+  token: string,
+  exp: Date
 }
 
-export interface AuthResponse {
+export interface AuthResponseTO {
   token: string,
   exp: string
 }

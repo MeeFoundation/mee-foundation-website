@@ -5,7 +5,7 @@ interface MaxWProps {
 }
 
 export const MaxW: React.FC<MaxWProps> = ({ children }) => (
-  <div className="bg-background">
+  <div className="bg-primary-content">
     <div className="max-w-5xl mx-auto">
       {children}
     </div>

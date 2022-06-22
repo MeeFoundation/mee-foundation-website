@@ -1,5 +1,5 @@
-import { AuthRequest, AuthResponse } from './to/auth';
+import { AuthResponse } from './to/Auth';
 
-export interface AuthApi {
-  authWithGoogle(data: AuthRequest): Promise<AuthResponse>;
+export interface AuthApiInterface {
+  auth(): Promise<AuthResponse | null>;
 }

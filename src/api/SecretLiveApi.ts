@@ -5,7 +5,7 @@ import {
 } from 'src/model/Secret';
 import { fromISOStr } from 'src/utils/dateUtils';
 import { BaseRestClient } from './BaseRestClient';
-import { SecretApi } from './SecretApi';
+import { SecretApiInterface } from './SecretApi';
 import { CollectionTO } from './to/Collection';
 import { SecretKey, SecretTO } from './to/Secret';
 
@@ -22,7 +22,7 @@ const collections = '/collections';
 const secret = '/secret';
 const secrets = '/secrets';
 
-export class SecretLiveApi implements SecretApi {
+export class SecretLiveApi implements SecretApiInterface {
   async getAllCollections(): Promise<Collection[]> {
     const url = collections;
     const r = await client.apiGet<CollectionTO[]>(url);
@@ -65,9 +65,10 @@ export class SecretLiveApi implements SecretApi {
     return client.apiPost(url, data);
   }
 
-  getSecretById(secretId: string): Promise<SecretKey> {
+  async getSecretById(secretId: string): Promise<Secret> {
     const url = `${secret}/${secretId}`;
-    return client.apiGet<SecretKey>(url);
+    const to = await client.apiGet<SecretTO>(url);
+    return { ...to, created: fromISOStr(to.created), modified: fromISOStr(to.modified) };
   }
 
   async createNewSecret(data: NewSecret): Promise<Secret> {
