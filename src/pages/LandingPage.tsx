@@ -34,9 +34,7 @@ export const LandingPage: React.FC = () => (
     <div className="content max-w-full flex flex-col items-center">
       <div className="my-9 md:my-10 sm:px-28 md:px-60 px-4 w-full text-center">
         <p className="text-primary">
-          <i>Mee</i>
-          {' '}
-          is a software and legal framework to support
+          We’re developing a software and legal framework to support
           human-centered apps that improve the quality of online life
           by giving people more control over their personal data.
         </p>
