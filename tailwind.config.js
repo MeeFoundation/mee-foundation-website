@@ -4,6 +4,7 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
+      'xs': '392px',
       'sm': '612px',
       'md': '1024px',
       'lg': '1280px',
@@ -27,14 +28,17 @@ module.exports = {
       "200px": "200px"
     },
     maxWidth: {
+      20: '5rem',
       40: "10rem",
       67: '16.75rem',
+      83: '20.75rem',
       84: '21rem',
+      96: '24rem',
       150: "615px",
     },
     minWidth: {
       39: '9.75rem',
-      '145': '36.25rem',
+      145: '36.25rem',
     },
     spacing: {
       15: '3.75rem',
@@ -46,6 +50,8 @@ module.exports = {
       46: '11.5rem',
       47: '11.75rem',
       50: '12.5rem',
+      70: '17.5rem',
+      97: '24.25rem',
       120: "30rem",
       125: "31.25rem",
       '6/10': "60%",
@@ -66,7 +72,7 @@ module.exports = {
     boxShadow: {
       popup: "0px 10px 10px -5px #2022230A, 0px 20px 25px -5px #2022231A, 0px 0px 4px 1px #2022231A",
       sm: "0px 1px 2px 0px #0000000D",
-
+      lg: "0px 4px 6px -2px #0000000D, 0px 10px 15px -3px #0000001A"
     },
     lineHeight: {
       4.5: "18px"

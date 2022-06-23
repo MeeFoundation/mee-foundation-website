@@ -6,9 +6,9 @@ export interface NewCollection {
 }
 
 export interface Collection extends NewCollection {
-  id: string,
-  created: Date,
-  modified: Date,
+  id?: string,
+  created?: Date,
+  modified?: Date,
 }
 
 export interface NewSecret {

@@ -8,6 +8,7 @@ import { PublicRoute } from './components/PublicRoute';
 import { SecretsList } from './pages/SecretsList';
 import { CollectionsList } from './pages/CollectionsList';
 import { SignInUpPage } from './pages/SignInUpPage';
+import { CongratulationsScreen } from './pages/CongratulationsScreen';
 
 export const App: React.FC = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ export const App: React.FC = () => (
           <Route path="/" element={<PublicRoute><SignInUpPage /></PublicRoute>} />
           <Route path="/collections" element={<PrivateRoute><CollectionsList /></PrivateRoute>} />
           <Route path="/collection/:collectionId" element={<PrivateRoute><SecretsList /></PrivateRoute>} />
+          <Route path="/congratulations" element={<PrivateRoute><CongratulationsScreen /></PrivateRoute>} />
         </Routes>
       </Suspense>
     </MaxW>

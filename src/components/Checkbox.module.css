@@ -1,0 +1,32 @@
+.checkbox {
+  display: none;
+  pointer-events: none;
+}
+
+.svg {
+  fill: none;
+}
+
+.svgBlue {
+  fill: white;
+}
+
+.boxBlue {
+  fill: white;
+  stroke: #D1D2D1;
+}
+
+.boxCheckedBlue {
+  fill: #4E868E;
+}
+
+.check {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  fill: none;
+}
+
+.checked {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s linear;
+}

@@ -1,9 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Footer } from 'src/components/Footer';
-import { GoogleSignin } from 'src/components/ContinueWithGoogleButton';
+import { FakeGoogleButton } from 'src/components/ContinueWithGoogleButton';
 import { useAtom } from 'jotai';
 import { ContextState } from 'src/state/ContextState';
-import { Fallback } from 'src/components/Fallback';
 import illustration from '../assets/mee_illustration_1.jpg';
 
 export const SignInUpPage: React.FC = () => {
@@ -36,7 +35,8 @@ export const SignInUpPage: React.FC = () => {
             using your Google account
           </p>
           <div className="">
-            <Suspense fallback={<Fallback />}><GoogleSignin /></Suspense>
+            {/* <Suspense fallback={<Fallback />}><GoogleSignin /></Suspense> */}
+            <FakeGoogleButton />
           </div>
 
         </div>

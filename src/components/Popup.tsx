@@ -9,6 +9,7 @@ interface PopupProps {
   secondaryButtonAction?: () => void;
   secondaryButtonTitle?: string;
   children: JSX.Element;
+  onClose: () => void;
 }
 
 export const Popup: React.FC<PopupProps> = ({
@@ -18,6 +19,7 @@ export const Popup: React.FC<PopupProps> = ({
   primaryButtonTitle,
   secondaryButtonTitle,
   children,
+  onClose,
 }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -30,7 +32,9 @@ export const Popup: React.FC<PopupProps> = ({
       <div className="bg-primary-content w-full my-auto mx-2 pt-6 px-5 pb-5 rounded-lg shadow-popup md:max-w-md md:mx-auto">
         <div className="flex justify-between items-center pb-6">
           <h1 className="text-alt-color-4 text-lg font-bold">{title}</h1>
-          <img alt="close" src={CloseIcon} />
+          <button type="button" onClick={onClose}>
+            <img alt="close" src={CloseIcon} />
+          </button>
         </div>
 
         <div>

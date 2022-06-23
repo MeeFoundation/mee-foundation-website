@@ -6,25 +6,79 @@ import {
 import { SecretApiInterface } from './SecretApi';
 import { SecretContentType, SecretKey } from './to/Secret';
 
+export const mockCollectionsArray: Collection[] = [
+  {
+    id: '1', created: new Date(), modified: new Date(), name: 'mock collection 1', note: 'mock note 1',
+  },
+  {
+    id: '2', created: new Date(), modified: new Date(), name: 'mock collection 2', note: 'mock note 2',
+  },
+  {
+    id: '3', created: new Date(), modified: new Date(), name: 'mock collection 3', note: 'mock note 3',
+  },
+  {
+    id: '4', created: new Date(), modified: new Date(), name: 'mock collection 4', note: 'mock note 4',
+  },
+  {
+    id: '5', created: new Date(), modified: new Date(), name: 'mock collection 5', note: 'mock note 5',
+  },
+];
+
+export const mockAllSecretsArray: Secret[] = [{
+  id: '1', created: new Date(), modified: new Date(), collection_id: '1', name: 'mock secret 1', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 1', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '2', created: new Date(), modified: new Date(), collection_id: '1', name: 'mock secret 2', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 2', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '3', created: new Date(), modified: new Date(), collection_id: '2', name: 'mock secret 3', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 3', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '4', created: new Date(), modified: new Date(), collection_id: '2', name: 'mock secret 4', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 4', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '5', created: new Date(), modified: new Date(), collection_id: '2', name: 'mock secret 5', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 5', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '6', created: new Date(), modified: new Date(), collection_id: '3', name: 'mock secret 6', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 6', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '7', created: new Date(), modified: new Date(), collection_id: '4', name: 'mock secret 7', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 7', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '8', created: new Date(), modified: new Date(), collection_id: '4', name: 'mock secret 8', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 8', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '9', created: new Date(), modified: new Date(), collection_id: '4', name: 'mock secret 9', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 9', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '10', created: new Date(), modified: new Date(), collection_id: '4', name: 'mock secret 10', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 10', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '11', created: new Date(), modified: new Date(), collection_id: '4', name: 'mock secret 11', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 11', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '12', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 12', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 12', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '13', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 13', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 13', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '14', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 14', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 14', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '15', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 15', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 15', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '16', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 16', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 16', url: 'https://google.com', username: 'mock username',
+},
+{
+  id: '17', created: new Date(), modified: new Date(), collection_id: '5', name: 'mock secret 17', secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: 'mock note 17', url: 'https://google.com', username: 'mock username',
+},
+];
 export class SecretMockApi implements SecretApiInterface {
   async getAllCollections(): Promise<Collection[]> {
-    const collectionsMockList: Collection[] = [
-      {
-        id: '1', created: new Date(), modified: new Date(), name: 'mock collection 1', note: 'mock note 1',
-      },
-      {
-        id: '2', created: new Date(), modified: new Date(), name: 'mock collection 2', note: 'mock note 2',
-      },
-      {
-        id: '3', created: new Date(), modified: new Date(), name: 'mock collection 3', note: 'mock note 3',
-      },
-      {
-        id: '4', created: new Date(), modified: new Date(), name: 'mock collection 4', note: 'mock note 4',
-      },
-      {
-        id: '5', created: new Date(), modified: new Date(), name: 'mock collection 5', note: 'mock note 5',
-      },
-    ];
+    const collectionsMockList: Collection[] = mockCollectionsArray;
     console.log('getAllCollections');
     return new Promise((resolve) => {
       setTimeout(() => resolve(collectionsMockList), 500);
@@ -57,9 +111,7 @@ export class SecretMockApi implements SecretApiInterface {
 
   async getSecretsByCollectionId(collectionId: string): Promise<Secret[]> {
     console.log('getSecretsCollectionById: ', collectionId);
-    const secrets = ['1', '2', '3', '4', '5'].map((item) => ({
-      id: `${item}`, created: new Date(), modified: new Date(), collection_id: '1', name: `mock secret ${item}`, secret: { content_type: SecretContentType.PlainText, data: 'jkhkjhasdewuir' }, note: `mock note ${item}`, url: 'https://google.com', username: 'mock username',
-    } as Secret));
+    const secrets = mockAllSecretsArray;
 
     return new Promise((resolve) => {
       setTimeout(() => resolve(secrets), 500);

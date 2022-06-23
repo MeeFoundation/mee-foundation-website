@@ -1,5 +1,5 @@
-import { useAtomValue } from 'jotai';
-import React, { Suspense, useEffect } from 'react';
+import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import React, { Suspense, useEffect, useState } from 'react';
 import { ActionButton } from 'src/components/ActionButton';
 import { EditBox } from 'src/components/EditBox';
 import { Fallback } from 'src/components/Fallback';
@@ -9,9 +9,12 @@ import { SecretCollectionsPath } from 'src/components/SecretCollectionsPath';
 import { useModalState } from 'src/hooks/useModalState';
 import { CollectionByIdState, CollectionsListState } from 'src/state/CollectionsListState';
 import { dateTimeToView } from 'src/utils/dateUtils';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { InfoMessage } from 'src/components/InfoMessage';
+import { Collection } from 'src/model/Secret';
 import FolderIcon from '../assets/folder.svg';
 import ArrowDown from '../assets/arrowDown.svg';
+import MeeButtonIcon from '../assets/meeButton.svg';
 
 interface ListHeadProps {
   title: string;
@@ -34,46 +37,62 @@ const ListHead: React.FC<ListHeadProps> = ({ title, onSort }) => (
 
 interface CollectionDetailsEditProps {
   collectionId?: string;
+  values?: Collection;
+  onChange: (newValue: Collection) => void;
 }
 
-const CollectionDetailsEdit: React.FC<CollectionDetailsEditProps> = ({ collectionId }) => {
-  const collectionDetails = useAtomValue(CollectionByIdState(collectionId));
+const CollectionDetailsEdit: React.FC<CollectionDetailsEditProps> = ({ collectionId, onChange, values }) => {
   useEffect(() => {
     CollectionByIdState.remove(collectionId);
   }, [collectionId]);
+
+  const defaultValues = {
+    id: new Date().getTime().toString(), created: new Date(), modified: new Date(), name: '', note: '', ...values,
+  };
   return (
     <div>
-      <EditBox isRequired initialValue={collectionDetails?.name || ''} title="Collection Name" />
-      <EditBox initialValue={collectionDetails?.note || ''} title="Note" />
+      <EditBox onChange={(v) => onChange({ ...defaultValues, name: v })} isRequired value={values?.name || ''} title="Collection Name" />
+      <EditBox onChange={(v) => onChange({ ...defaultValues, note: v })} value={values?.note || ''} title="Note" />
     </div>
   );
 };
 
 interface CollectionListItemProps {
-  id: string;
+  id?: string;
   name: string;
-  modified: Date;
+  modified?: Date;
 }
 
 const CollectionListItem: React.FC<CollectionListItemProps> = ({
   id, name, modified,
 }) => {
   const popup = useModalState();
+  const popupMessage = useModalState();
+  const [collectionDetails, setCollectionDetails] = useAtom(CollectionByIdState(id));
+  const [newValues, setNewValues] = useState<Collection | undefined>(collectionDetails);
   return (
     <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 mx-5 last:border-b-0">
+      {popupMessage.isOpened && (
+        <InfoMessage
+          message="Successfully saved!"
+          onClose={() => {
+            popupMessage.close();
+          }}
+        />
+      )}
       {popup.isOpened && (
       <Popup
+        onClose={popup.close}
         title="Edit Collection"
         primaryButtonAction={() => {
-          // eslint-disable-next-line no-console
-          console.log('update');
-
+          if (newValues) setCollectionDetails(newValues);
+          popupMessage.open();
           popup.close();
         }}
         primaryButtonTitle="Save Collection"
       >
         <Suspense fallback={<Fallback />}>
-          <CollectionDetailsEdit collectionId={id} />
+          <CollectionDetailsEdit values={newValues} onChange={setNewValues} collectionId={id} />
         </Suspense>
       </Popup>
       )}
@@ -96,7 +115,7 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
 };
 
 const CollectionsListSuspended: React.FC = () => {
-  const collectionsList = useAtomValue(CollectionsListState(undefined));
+  const collectionsList = useAtomValue(CollectionsListState);
 
   return (
     <>
@@ -105,7 +124,7 @@ const CollectionsListSuspended: React.FC = () => {
           key={collectionItem.id}
           id={collectionItem.id}
           name={collectionItem.name}
-          modified={collectionItem.modified}
+          modified={collectionItem?.modified}
         />
       ))}
     </>
@@ -114,9 +133,13 @@ const CollectionsListSuspended: React.FC = () => {
 
 export const CollectionsList: React.FC = () => {
   const popup = useModalState();
+  const popupMessage = useModalState();
   const onChange = () => {
-    CollectionsListState.remove(undefined);
+    // CollectionsListState.remove(undefined);
   };
+  const setCollectionDetails = useSetAtom(CollectionByIdState(undefined));
+  const navigate = useNavigate();
+  const [newValues, setNewValues] = useState<Collection | undefined>(undefined);
   useEffect(() => {
     onChange();
   }, []);
@@ -128,17 +151,26 @@ export const CollectionsList: React.FC = () => {
           popup.open();
         }}
       />
+      {popupMessage.isOpened && (
+        <InfoMessage
+          message="Successfully saved!"
+          onClose={() => {
+            popupMessage.close();
+          }}
+        />
+      )}
       {popup.isOpened && (
       <Popup
+        onClose={popup.close}
         title="New Collection"
         primaryButtonAction={() => {
-          // eslint-disable-next-line no-console
-
+          if (newValues) setCollectionDetails(newValues);
+          popupMessage.open();
           popup.close();
         }}
         primaryButtonTitle="Save Collection"
       >
-        <CollectionDetailsEdit />
+        <CollectionDetailsEdit values={newValues} onChange={setNewValues} />
       </Popup>
       )}
       <ListHead title="Name" onSort={() => {}} />
@@ -148,7 +180,13 @@ export const CollectionsList: React.FC = () => {
         </Suspense>
       </div>
       <div className="flex justify-center pt-10 pb-47">
-        <ActionButton title="Back to App" onClick={() => {}} />
+        <ActionButton
+          icon={MeeButtonIcon}
+          title="Back to App"
+          onClick={() => {
+            navigate('/');
+          }}
+        />
       </div>
     </div>
   );
