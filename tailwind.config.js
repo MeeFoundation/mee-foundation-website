@@ -78,6 +78,7 @@ module.exports = {
     },
     lineHeight: {
       4.5: "18px"
+
     },
     screens: {
       'ssm': '460px',
