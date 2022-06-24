@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
 import illustration from '../assets/mee_illustration_1.jpg';
 import ownership from '../assets/ownership.svg';
@@ -8,7 +7,6 @@ import power from '../assets/power.svg';
 
 export const LandingPage: React.FC = () => (
   <div className="max-w-256 mx-auto">
-    <Header />
     <div className="sub-header bg-primary flex flex-col items-center">
       <div className="flex flex-wrap justify-center text-center font-ps my-4 whitespace-pre-wrap text-2xl lg:text-3xl leading-7">
         <h1 className="text-secondary"><b>Hello.</b></h1>
@@ -41,7 +39,7 @@ export const LandingPage: React.FC = () => (
       </div>
       <div className="w-full flex flex-row flex-wrap">
         <div className="bg-alt-color-1 h-34 md:h-42 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
-          <span className="text-secondary-content">
+          <span className="text-landing-secondary-text">
             <b>More Ownership.</b>
             <br />
             Data rights are human rights.
@@ -61,7 +59,7 @@ export const LandingPage: React.FC = () => (
           </div>
         </div>
         <div className="bg-alt-color-3 h-34 md:h-42 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
-          <span className="text-secondary-content">
+          <span className="text-landing-secondary-text">
             <b>More power.</b>
             <br />
             The future is Mee-compatible

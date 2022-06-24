@@ -22,10 +22,10 @@ module.exports = {
       react: { version: "detect" }
     },
     rules: {
-        "max-len": [
-            "error",
-            { "code": 120, "ignoreComments": true, "ignoreStrings": true }
-        ],
+      "max-len": [
+          "error",
+          { "code": 120, "ignoreComments": true, "ignoreStrings": true }
+      ],
         "react/prop-types": 0,
         "react/function-component-definition": [2, {
           "namedComponents": "arrow-function",
