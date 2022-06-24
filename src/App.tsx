@@ -9,6 +9,7 @@ import { SecretsList } from './pages/SecretsList';
 import { CollectionsList } from './pages/CollectionsList';
 import { SignInUpPage } from './pages/SignInUpPage';
 import { CongratulationsScreen } from './pages/CongratulationsScreen';
+import { LandingPage } from './pages/LandingPage';
 
 export const App: React.FC = () => (
   <BrowserRouter>
@@ -16,7 +17,8 @@ export const App: React.FC = () => (
       <Suspense fallback={<Fallback />}>
         <Header />
         <Routes>
-          <Route path="/" element={<PublicRoute><SignInUpPage /></PublicRoute>} />
+          <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
+          <Route path="/storage-demo" element={<PublicRoute><SignInUpPage /></PublicRoute>} />
           <Route path="/collections" element={<PrivateRoute><CollectionsList /></PrivateRoute>} />
           <Route path="/collection/:collectionId" element={<PrivateRoute><SecretsList /></PrivateRoute>} />
           <Route path="/congratulations" element={<PrivateRoute><CongratulationsScreen /></PrivateRoute>} />
