@@ -1,7 +1,9 @@
 import {
   atom, useAtom, useAtomValue, useSetAtom,
 } from 'jotai';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, {
+  Suspense, useEffect, useMemo, useState,
+} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ActionButton } from 'src/components/ActionButton';
 import { EditBox } from 'src/components/EditBox';
@@ -18,6 +20,7 @@ import { Checkbox } from 'src/components/Checkbox';
 import { SecretBox } from 'src/components/SecretBox';
 import { InfoMessage } from 'src/components/InfoMessage';
 import { SecretContentType } from 'src/api/to/Secret';
+import clsx from 'clsx';
 import ArrowDown from '../assets/arrowDown.svg';
 import KeyIcon from '../assets/key.svg';
 import MeeButtonIcon from '../assets/meeButton.svg';
@@ -187,13 +190,16 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
 
 interface SecretsListSuspendedProps {
   collectionId:string;
+  reverseOrder: boolean;
 }
 
-const SecretsListSuspended: React.FC<SecretsListSuspendedProps> = ({ collectionId }) => {
+const SecretsListSuspended: React.FC<SecretsListSuspendedProps> = ({ collectionId, reverseOrder }) => {
   const secretsList = useAtomValue(SecretsListState(collectionId));
+  const secretsListSorted: Secret[] | undefined = useMemo(() => secretsList?.sort((a, b) => (
+    a.name.localeCompare(b.name) * (reverseOrder ? -1 : 1))), [secretsList, reverseOrder]);
   return (
     <div>
-      {secretsList?.map((secret) => (
+      {secretsListSorted?.map((secret) => (
         <SecretListItem key={secret.id} secretItem={secret} />
       ))}
     </div>
@@ -202,9 +208,10 @@ const SecretsListSuspended: React.FC<SecretsListSuspendedProps> = ({ collectionI
 
 interface ListHeadProps {
   onSort: () => void;
+  reverseSortOrder: boolean;
 }
 
-const ListHead: React.FC<ListHeadProps> = ({ onSort }) => {
+const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
   const columnsState = useAtomValue(ColumnsState);
   const [showColumnsSelectPopup, setShowColumnsSelectPopup] = useState(false);
   return (
@@ -223,7 +230,7 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort }) => {
           Name
         </p>
         <button type="button" onClick={onSort}>
-          <img alt="sort direction" src={ArrowDown} />
+          <img className={clsx(reverseSortOrder && 'rotate-180')} alt="sort direction" src={ArrowDown} />
         </button>
       </div>
       {columnsState.get('Created') && <p className="text-alt-color-7 hidden md:block md:w-32">Created</p>}
@@ -242,9 +249,8 @@ export const SecretsList: React.FC = () => {
   const popupMessage = useModalState();
   const setSecretDetails = useSetAtom(SecretByIdState(undefined));
   const [newValues, setNewValues] = useState<Secret | undefined>(undefined);
-  // eslint-disable-next-line no-console
-  console.log(collectionDetails);
   const navigate = useNavigate();
+  const [reverseSortOrder, setReverseSortOrder] = useState(false);
   return (
     <>
       {popupMessage.isOpened && (
@@ -280,10 +286,15 @@ export const SecretsList: React.FC = () => {
           popup.open();
         }}
       />
-      <ListHead onSort={() => {}} />
+      <ListHead
+        reverseSortOrder={reverseSortOrder}
+        onSort={() => {
+          setReverseSortOrder((old) => !old);
+        }}
+      />
       <div className="border-alt-color-6 border mx-2">
         <Suspense fallback={<Fallback />}>
-          {typeof collectionId !== 'undefined' && <SecretsListSuspended collectionId={collectionId} />}
+          {typeof collectionId !== 'undefined' && <SecretsListSuspended reverseOrder={reverseSortOrder} collectionId={collectionId} />}
         </Suspense>
       </div>
       <div className="flex justify-center pt-10 pb-47">

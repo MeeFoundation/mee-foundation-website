@@ -1,5 +1,7 @@
 import { useAtomValue, useAtom, useSetAtom } from 'jotai';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, {
+  Suspense, useEffect, useMemo, useState,
+} from 'react';
 import { ActionButton } from 'src/components/ActionButton';
 import { EditBox } from 'src/components/EditBox';
 import { Fallback } from 'src/components/Fallback';
@@ -12,6 +14,7 @@ import { dateTimeToView } from 'src/utils/dateUtils';
 import { Link, useNavigate } from 'react-router-dom';
 import { InfoMessage } from 'src/components/InfoMessage';
 import { Collection } from 'src/model/Secret';
+import clsx from 'clsx';
 import FolderIcon from '../assets/folder.svg';
 import ArrowDown from '../assets/arrowDown.svg';
 import MeeButtonIcon from '../assets/meeButton.svg';
@@ -19,16 +22,17 @@ import MeeButtonIcon from '../assets/meeButton.svg';
 interface ListHeadProps {
   title: string;
   onSort: () => void;
+  reverseSortOrder: boolean;
 }
 
-const ListHead: React.FC<ListHeadProps> = ({ title, onSort }) => (
+const ListHead: React.FC<ListHeadProps> = ({ title, onSort, reverseSortOrder }) => (
   <div className="text-alt-color-4 text-base bg-secondary-content py-6 px-5 mx-2 items-center flex">
     <div className="flex gap-4 items-center md:min-w-145">
       <p>
         {title}
       </p>
       <button type="button" onClick={onSort}>
-        <img alt="sort direction" src={ArrowDown} />
+        <img className={clsx(reverseSortOrder && 'rotate-180')} alt="sort direction" src={ArrowDown} />
       </button>
     </div>
     <p className="text-alt-color-7 hidden md:block w-50 mr-56">Modified</p>
@@ -70,6 +74,7 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
   const popupMessage = useModalState();
   const [collectionDetails, setCollectionDetails] = useAtom(CollectionByIdState(id));
   const [newValues, setNewValues] = useState<Collection | undefined>(collectionDetails);
+
   return (
     <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 mx-5 last:border-b-0">
       {popupMessage.isOpened && (
@@ -114,12 +119,18 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
   );
 };
 
-const CollectionsListSuspended: React.FC = () => {
+interface CollectionsListSuspendedProps {
+  reverseOrder: boolean;
+}
+
+const CollectionsListSuspended: React.FC<CollectionsListSuspendedProps> = ({ reverseOrder }) => {
   const collectionsList = useAtomValue(CollectionsListState);
+  const collectionListSorted: Collection[] = useMemo(() => collectionsList.sort((a, b) => (
+    a.name.localeCompare(b.name) * (reverseOrder ? -1 : 1))), [collectionsList, reverseOrder]);
 
   return (
     <>
-      {collectionsList.map((collectionItem) => (
+      {collectionListSorted.map((collectionItem) => (
         <CollectionListItem
           key={collectionItem.id}
           id={collectionItem.id}
@@ -140,6 +151,7 @@ export const CollectionsList: React.FC = () => {
   const setCollectionDetails = useSetAtom(CollectionByIdState(undefined));
   const navigate = useNavigate();
   const [newValues, setNewValues] = useState<Collection | undefined>(undefined);
+  const [reverseSortOrder, setReverseSortOrder] = useState(false);
   useEffect(() => {
     onChange();
   }, []);
@@ -173,10 +185,16 @@ export const CollectionsList: React.FC = () => {
         <CollectionDetailsEdit values={newValues} onChange={setNewValues} />
       </Popup>
       )}
-      <ListHead title="Name" onSort={() => {}} />
+      <ListHead
+        title="Name"
+        reverseSortOrder={reverseSortOrder}
+        onSort={() => {
+          setReverseSortOrder((old) => !old);
+        }}
+      />
       <div className="border-alt-color-6 border mx-2">
         <Suspense fallback={<Fallback />}>
-          <CollectionsListSuspended />
+          <CollectionsListSuspended reverseOrder={reverseSortOrder} />
         </Suspense>
       </div>
       <div className="flex justify-center pt-10 pb-47">
