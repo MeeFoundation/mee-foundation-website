@@ -16,7 +16,7 @@ export const SecretBox: React.FC<SecretBoxProps> = ({
   onChange, value, title, isRequired = false, isReadOnly = false, isHiddenByDefault = false,
 }) => {
   const [isValueHidden, setValueHidden] = useState(isHiddenByDefault);
-  const passwordPlaceholder = '*****************************************';
+
   return (
     <div className="flex flex-col pb-5">
       <label className="text-alt-color-4 text-sm font-bold pb-1" htmlFor={title}>
@@ -31,10 +31,9 @@ export const SecretBox: React.FC<SecretBoxProps> = ({
           )}
           readOnly={isReadOnly}
           id={title}
-          type="text"
-          value={isValueHidden ? passwordPlaceholder : value}
+          type={isValueHidden ? 'password' : 'text'}
+          value={value}
           onChange={(e) => {
-            setValueHidden(false);
             onChange(e.currentTarget.value);
           }}
         />
