@@ -173,10 +173,14 @@ export const CollectionsList: React.FC = () => {
       )}
       {popup.isOpened && (
       <Popup
-        onClose={popup.close}
+        onClose={() => {
+          setNewValues(undefined);
+          popup.close();
+        }}
         title="New Collection"
         primaryButtonAction={() => {
           if (newValues) setCollectionDetails(newValues);
+          setNewValues(undefined);
           popupMessage.open();
           popup.close();
         }}

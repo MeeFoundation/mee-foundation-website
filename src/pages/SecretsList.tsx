@@ -124,7 +124,9 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
       )}
       {popup.isOpened && (
       <Popup
-        onClose={popup.close}
+        onClose={() => {
+          popup.close();
+        }}
         title="Edit Secret"
         primaryButtonAction={() => {
           if (newValues) setSecretDetails(newValues);
@@ -263,11 +265,14 @@ export const SecretsList: React.FC = () => {
       )}
       {popup.isOpened && (
       <Popup
-        onClose={popup.close}
+        onClose={() => {
+          setNewValues(undefined);
+          popup.close();
+        }}
         title="New Secret"
         primaryButtonAction={() => {
           if (newValues) setSecretDetails(newValues);
-          // popupMessage.open();
+          setNewValues(undefined);
           popup.close();
           navigate('/congratulations');
         }}
