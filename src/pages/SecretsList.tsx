@@ -113,7 +113,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
   const [secretDetails, setSecretDetails] = useAtom(SecretByIdState(id));
   const [newValues, setNewValues] = useState<Secret | undefined>(secretDetails);
   return (
-    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 mx-5 last:border-b-0">
+    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block">
       {popupMessage.isOpened && (
         <InfoMessage
           message="Successfully saved!"
@@ -147,8 +147,8 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
       )}
       <div className="flex justify-start items-start md:items-center">
         <img className="h-[18px] mr-3 pt-1 md:hidden" src={KeyIcon} alt="key" />
-        <div className="flex flex-col justify-between items-start md:items-center mr-auto md:flex-row">
-          <div className="flex gap-3 md:gap-0 items-center md:pr-20 flex-1">
+        <div className="flex flex-col justify-between items-start md:items-center mr-auto md:flex-row md:gap-5">
+          <div className="flex gap-3 md:gap-0 items-center flex-1 md:w-62">
             <img className="h-[18px] mr-3 mt-1 hidden md:block" src={KeyIcon} alt="key" />
             <div>
               <p className="text-sm md:text-base leading-4 md:w-39 font-bold">{name}</p>
@@ -166,7 +166,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
             {dateTimeToView(modified)}
           </p>
           )}
-          <p className="pt-1 font-medium leading-4 md:w-16">
+          <p className="pt-1 font-medium leading-4 md:w-45">
             <span className="text-alt-color-5 text-xs md:hidden">Value: </span>
             <span className="text-4xs">●●●●●●●●</span>
           </p>
@@ -184,7 +184,9 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
           )}
 
         </div>
-        <LinkButton onClick={() => popup.open()} title="Edit" />
+        <div className="">
+          <LinkButton onClick={() => popup.open()} title="Edit" />
+        </div>
       </div>
     </div>
   );
@@ -217,29 +219,34 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
   const columnsState = useAtomValue(ColumnsState);
   const [showColumnsSelectPopup, setShowColumnsSelectPopup] = useState(false);
   return (
-    <div className="text-alt-color-4 text-base bg-secondary-content py-6 px-5 mx-2 items-center flex">
-      <div className="flex gap-4 items-center md:w-46 md:mr-21">
-        <button
-          type="button"
-          onClick={() => {
-            setShowColumnsSelectPopup((old) => !old);
-          }}
-        >
-          <img className="bg-primary-content" alt="columns select" src={FilterExpandIcon} />
-          {showColumnsSelectPopup && <ColumnsSelectPopup />}
-        </button>
-        <p>
-          Name
-        </p>
-        <button type="button" onClick={onSort}>
-          <img className={clsx(reverseSortOrder && 'rotate-180')} alt="sort direction" src={ArrowDown} />
-        </button>
+    <div className="md:inline-block">
+      <div className="text-alt-color-4 text-base bg-secondary-content py-6 pl-5 pr-12 items-center flex md:gap-5">
+        <div className="flex gap-4 items-center md:min-w-62">
+          <button
+            type="button"
+            onClick={() => {
+              setShowColumnsSelectPopup((old) => !old);
+            }}
+          >
+            <img className="bg-primary-content" alt="columns select" src={FilterExpandIcon} />
+            {showColumnsSelectPopup && <ColumnsSelectPopup />}
+          </button>
+          <p>
+            Name
+          </p>
+          <button type="button" onClick={onSort}>
+            <img className={clsx(reverseSortOrder && 'rotate-180')} alt="sort direction" src={ArrowDown} />
+          </button>
+
+        </div>
+        <div className="flex gap-5">
+          {columnsState.get('Created') && <p className="text-alt-color-7 hidden md:block md:w-32">Created</p>}
+          {columnsState.get('Modified') && <p className="text-alt-color-7 hidden md:block md:w-32">Modified</p>}
+          <p className="text-alt-color-7 hidden md:block md:w-45">Value</p>
+          {columnsState.get('Username') && <p className="text-alt-color-7 hidden md:block md:w-32">Username</p>}
+          {columnsState.get('URL') && <p className="text-alt-color-7 hidden md:block md:w-45">URL</p>}
+        </div>
       </div>
-      {columnsState.get('Created') && <p className="text-alt-color-7 hidden md:block md:w-32">Created</p>}
-      {columnsState.get('Modified') && <p className="text-alt-color-7 hidden md:block md:w-32">Modified</p>}
-      <p className="text-alt-color-7 hidden md:block md:w-16">Value</p>
-      {columnsState.get('Username') && <p className="text-alt-color-7 hidden md:block md:w-32">Username</p>}
-      {columnsState.get('URL') && <p className="text-alt-color-7 hidden md:block md:w-45">URL</p>}
     </div>
   );
 };
@@ -291,17 +298,18 @@ export const SecretsList: React.FC = () => {
           popup.open();
         }}
       />
-      <ListHead
-        reverseSortOrder={reverseSortOrder}
-        onSort={() => {
-          setReverseSortOrder((old) => !old);
-        }}
-      />
-      <div className="border-alt-color-6 border mx-2">
+      <div className="border-alt-color-6 border mx-2 overflow-x-auto scroll-m-2">
+        <ListHead
+          reverseSortOrder={reverseSortOrder}
+          onSort={() => {
+            setReverseSortOrder((old) => !old);
+          }}
+        />
         <Suspense fallback={<Fallback />}>
           {typeof collectionId !== 'undefined' && <SecretsListSuspended reverseOrder={reverseSortOrder} collectionId={collectionId} />}
         </Suspense>
       </div>
+
       <div className="flex justify-center pt-10 pb-47">
         <ActionButton
           icon={MeeButtonIcon}
