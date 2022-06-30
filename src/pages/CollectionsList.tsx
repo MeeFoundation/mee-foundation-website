@@ -13,8 +13,9 @@ import { CollectionByIdState, CollectionsListState } from 'src/state/Collections
 import { dateTimeToView } from 'src/utils/dateUtils';
 import { Link, useNavigate } from 'react-router-dom';
 import { InfoMessage } from 'src/components/InfoMessage';
-import { Collection } from 'src/model/Secret';
+import { Collection, NewCollection } from 'src/model/Secret';
 import clsx from 'clsx';
+import { FieldError, useForm, UseFormRegister } from 'react-hook-form';
 import FolderIcon from '../assets/folder.svg';
 import ArrowDown from '../assets/arrowDown.svg';
 import MeeButtonIcon from '../assets/meeButton.svg';
@@ -41,22 +42,20 @@ const ListHead: React.FC<ListHeadProps> = ({ title, onSort, reverseSortOrder }) 
 
 interface CollectionDetailsEditProps {
   collectionId?: string;
-  values?: Collection;
-  onChange: (newValue: Collection) => void;
+  register: UseFormRegister<Collection>;
+  errors: { name?: FieldError | undefined, note?: FieldError | undefined };
 }
 
-const CollectionDetailsEdit: React.FC<CollectionDetailsEditProps> = ({ collectionId, onChange, values }) => {
+const CollectionDetailsEdit: React.FC<CollectionDetailsEditProps> = ({
+  collectionId, register, errors,
+}) => {
   useEffect(() => {
     CollectionByIdState.remove(collectionId);
   }, [collectionId]);
-
-  const defaultValues = {
-    id: new Date().getTime().toString(), created: new Date(), modified: new Date(), name: '', note: '', ...values,
-  };
   return (
     <div>
-      <EditBox onChange={(v) => onChange({ ...defaultValues, name: v })} isRequired value={values?.name || ''} title="Collection Name" />
-      <EditBox onChange={(v) => onChange({ ...defaultValues, note: v })} value={values?.note || ''} title="Note" />
+      <EditBox error={errors.name?.message} title="Collection Name" register={register('name', { required: 'Collection Name is required' })} isRequired />
+      <EditBox error={errors.note?.message} title="Note" register={register('note')} />
     </div>
   );
 };
@@ -73,7 +72,17 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
   const popup = useModalState();
   const popupMessage = useModalState();
   const [collectionDetails, setCollectionDetails] = useAtom(CollectionByIdState(id));
-  const [newValues, setNewValues] = useState<Collection | undefined>(collectionDetails);
+
+  const defaultValues = {
+    id: new Date().getTime().toString(), created: new Date(), modified: new Date(), name: '', note: '',
+  };
+  const {
+    register, getValues, trigger, formState,
+  } = useForm<NewCollection>({
+    defaultValues: collectionDetails || defaultValues,
+    reValidateMode: 'onChange',
+  });
+  const { errors } = formState;
 
   return (
     <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 mx-5 last:border-b-0">
@@ -89,15 +98,22 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
       <Popup
         onClose={popup.close}
         title="Edit Collection"
-        primaryButtonAction={() => {
-          if (newValues) setCollectionDetails(newValues);
-          popupMessage.open();
-          popup.close();
+        primaryButtonAction={async () => {
+          const isOk = await trigger();
+          if (isOk) {
+            setCollectionDetails(getValues());
+            popupMessage.open();
+            popup.close();
+          }
         }}
         primaryButtonTitle="Save Collection"
       >
         <Suspense fallback={<Fallback />}>
-          <CollectionDetailsEdit values={newValues} onChange={setNewValues} collectionId={id} />
+          <CollectionDetailsEdit
+            errors={errors}
+            register={register}
+            collectionId={id}
+          />
         </Suspense>
       </Popup>
       )}
@@ -145,16 +161,19 @@ const CollectionsListSuspended: React.FC<CollectionsListSuspendedProps> = ({ rev
 export const CollectionsList: React.FC = () => {
   const popup = useModalState();
   const popupMessage = useModalState();
-  const onChange = () => {
-    // CollectionsListState.remove(undefined);
-  };
+
   const setCollectionDetails = useSetAtom(CollectionByIdState(undefined));
   const navigate = useNavigate();
-  const [newValues, setNewValues] = useState<Collection | undefined>(undefined);
   const [reverseSortOrder, setReverseSortOrder] = useState(false);
-  useEffect(() => {
-    onChange();
-  }, []);
+  const defaultValues = {
+    id: new Date().getTime().toString(), created: new Date(), modified: new Date(), name: '', note: '',
+  };
+  const {
+    register, getValues, reset, trigger, formState,
+  } = useForm<NewCollection>({ defaultValues, reValidateMode: 'onChange', mode: 'onChange' });
+
+  const { errors } = formState;
+
   return (
     <div className="bg-primary-content">
       <SecretCollectionsPath
@@ -174,19 +193,22 @@ export const CollectionsList: React.FC = () => {
       {popup.isOpened && (
       <Popup
         onClose={() => {
-          setNewValues(undefined);
+          reset();
           popup.close();
         }}
         title="New Collection"
-        primaryButtonAction={() => {
-          if (newValues) setCollectionDetails(newValues);
-          setNewValues(undefined);
-          popupMessage.open();
-          popup.close();
+        primaryButtonAction={async () => {
+          const isOk = await trigger();
+          if (isOk) {
+            setCollectionDetails(getValues());
+            reset();
+            popupMessage.open();
+            popup.close();
+          }
         }}
         primaryButtonTitle="Save Collection"
       >
-        <CollectionDetailsEdit values={newValues} onChange={setNewValues} />
+        <CollectionDetailsEdit errors={errors} register={register} />
       </Popup>
       )}
       <ListHead

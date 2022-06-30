@@ -22,6 +22,7 @@ import { InfoMessage } from 'src/components/InfoMessage';
 import { SecretContentType } from 'src/api/to/Secret';
 import clsx from 'clsx';
 import { useClickOutside } from 'src/hooks/useClickOutside';
+import { FieldError, useForm, UseFormRegister } from 'react-hook-form';
 import ArrowDown from '../assets/arrowDown.svg';
 import KeyIcon from '../assets/key.svg';
 import MeeButtonIcon from '../assets/meeButton.svg';
@@ -56,40 +57,32 @@ const ColumnsSelectPopup: React.FC = () => {
   );
 };
 interface SecretDetailsEditProps {
-  collectionId: string;
   secretId?: string;
   isNew?: boolean;
-  values?: Secret;
-  onChange: (newValue: Secret) => void;
+  register: UseFormRegister<Secret>;
+  errors: {
+    name?: FieldError | undefined,
+    note?: FieldError | undefined,
+    url?: FieldError | undefined,
+    secret?: { type?: FieldError | undefined, data?:FieldError | undefined }
+  };
 }
 
 const SecretDetailsEdit: React.FC<SecretDetailsEditProps> = ({
-  secretId, isNew, values, onChange, collectionId,
+  secretId, isNew, register, errors,
 }) => {
-  const defaultValues = {
-    id: new Date().getTime().toString(),
-    created: new Date(),
-    modified: new Date(),
-    name: '',
-    note: '',
-    url: '',
-    collection_id: collectionId,
-    username: '',
-    secret: { data: '', content_type: SecretContentType.PlainText },
-    ...values,
-  };
   useEffect(() => {
     SecretByIdState.remove(secretId);
   }, [secretId]);
   return (
     <div>
-      <EditBox onChange={(v) => onChange({ ...defaultValues, name: v })} isRequired value={values?.name || ''} title="Secret Name" />
-      <EditBox onChange={(v) => onChange({ ...defaultValues, note: v })} value={values?.note || ''} title="Note" />
-      <EditBox onChange={(v) => onChange({ ...defaultValues, url: v })} value={values?.url || ''} title="URL" />
+      <EditBox error={errors.name?.message} register={register('name', { required: 'Secret Name is required' })} isRequired title="Secret Name" />
+      <EditBox error={errors.note?.message} register={register('note')} title="Note" />
+      <EditBox error={errors.url?.message} register={register('url')} title="URL" />
       <SecretBox
-        onChange={(v) => onChange({ ...defaultValues, secret: { ...defaultValues.secret, data: v } })}
+        error={errors.secret?.data?.message}
+        register={register('secret.data')}
         isHiddenByDefault={!isNew}
-        value={values?.secret.data || ''}
         title={`Value${isNew ? '' : ' (read-only)'}`}
         isReadOnly={!isNew}
       />
@@ -111,7 +104,25 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
   const columnsState = useAtomValue(ColumnsState);
   const popupMessage = useModalState();
   const [secretDetails, setSecretDetails] = useAtom(SecretByIdState(id));
-  const [newValues, setNewValues] = useState<Secret | undefined>(secretDetails);
+
+  const defaultValues = {
+    id: new Date().getTime().toString(),
+    created: new Date(),
+    modified: new Date(),
+    name: '',
+    note: '',
+    url: '',
+    collection_id: collectionId,
+    username: '',
+    secret: { data: '', content_type: SecretContentType.PlainText },
+  };
+  const {
+    register, getValues, trigger, formState,
+  } = useForm<Secret>({
+    defaultValues: secretDetails || defaultValues,
+    reValidateMode: 'onChange',
+  });
+  const { errors } = formState;
   return (
     <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block md:min-w-243">
       {popupMessage.isOpened && (
@@ -128,10 +139,13 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
           popup.close();
         }}
         title="Edit Secret"
-        primaryButtonAction={() => {
-          if (newValues) setSecretDetails(newValues);
-          popupMessage.open();
-          popup.close();
+        primaryButtonAction={async () => {
+          const isOk = await trigger();
+          if (isOk) {
+            setSecretDetails(getValues());
+            popupMessage.open();
+            popup.close();
+          }
         }}
         primaryButtonTitle="Save Secret"
         secondaryButtonAction={() => {
@@ -141,7 +155,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
       >
 
         <Suspense fallback={<Fallback />}>
-          <SecretDetailsEdit values={newValues} onChange={setNewValues} collectionId={collectionId} secretId={id} />
+          <SecretDetailsEdit errors={errors} register={register} secretId={id} />
         </Suspense>
       </Popup>
       )}
@@ -261,9 +275,26 @@ export const SecretsList: React.FC = () => {
   const popup = useModalState();
   const popupMessage = useModalState();
   const setSecretDetails = useSetAtom(SecretByIdState(undefined));
-  const [newValues, setNewValues] = useState<Secret | undefined>(undefined);
   const navigate = useNavigate();
   const [reverseSortOrder, setReverseSortOrder] = useState(false);
+  const defaultValues = {
+    id: new Date().getTime().toString(),
+    created: new Date(),
+    modified: new Date(),
+    name: '',
+    note: '',
+    url: '',
+    collection_id: collectionId,
+    username: '',
+    secret: { data: '', content_type: SecretContentType.PlainText },
+  };
+  const {
+    register, getValues, trigger, formState, reset,
+  } = useForm<Secret>({
+    defaultValues,
+    reValidateMode: 'onChange',
+  });
+  const { errors } = formState;
   return (
     <>
       {popupMessage.isOpened && (
@@ -277,21 +308,24 @@ export const SecretsList: React.FC = () => {
       {popup.isOpened && (
       <Popup
         onClose={() => {
-          setNewValues(undefined);
+          reset();
           popup.close();
         }}
         title="New Secret"
-        primaryButtonAction={() => {
-          if (newValues) setSecretDetails(newValues);
-          setNewValues(undefined);
-          popup.close();
-          navigate('/congratulations');
+        primaryButtonAction={async () => {
+          const isOk = await trigger();
+          if (isOk) {
+            setSecretDetails(getValues());
+            reset();
+            popup.close();
+            navigate('/congratulations');
+          }
         }}
         primaryButtonTitle="Save Secret"
       >
 
         <Suspense fallback={<Fallback />}>
-          <SecretDetailsEdit values={newValues} collectionId={collectionId as string} onChange={setNewValues} isNew />
+          <SecretDetailsEdit isNew register={register} errors={errors} />
         </Suspense>
       </Popup>
       )}
