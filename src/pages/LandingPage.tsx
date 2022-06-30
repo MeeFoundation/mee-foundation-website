@@ -24,7 +24,7 @@ export const LandingPage: React.FC = () => (
         <p className="text-primary-content ">
           Today, our online selves — our preferences, interests, affiliations, social networks,
           medical records, locations, and so on — are owned by others. Our data is harvested
-          by giant corporations that monetize it for their advantage, not ours.
+          by corporations that monetize it for their advantage, not ours.
         </p>
         <p className="text-secondary">Good for them. Bad for us.</p>
       </div>
@@ -32,9 +32,10 @@ export const LandingPage: React.FC = () => (
     <div className="content max-w-full flex flex-col items-center">
       <div className="my-9 md:my-10 sm:px-28 md:px-60 px-4 w-full text-center">
         <p className="text-primary">
-          We’re developing a software and legal framework to support
-          human-centered apps that improve the quality of online life
-          by giving people more control over their personal data.
+          Our mission is to enable human-centered, high-trust, private relationships
+          between internet users and service providers (e.g., apps, websites, etc.).
+          The Mee Project is developing the governance and decentralized, human-centered
+          software technology necessary to support these relationships.
         </p>
       </div>
       <div className="w-full flex flex-row flex-wrap">

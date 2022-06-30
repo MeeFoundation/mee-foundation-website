@@ -2,7 +2,7 @@ import {
   atom, useAtom, useAtomValue, useSetAtom,
 } from 'jotai';
 import React, {
-  Suspense, useEffect, useMemo, useState,
+  Suspense, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ActionButton } from 'src/components/ActionButton';
@@ -21,6 +21,7 @@ import { SecretBox } from 'src/components/SecretBox';
 import { InfoMessage } from 'src/components/InfoMessage';
 import { SecretContentType } from 'src/api/to/Secret';
 import clsx from 'clsx';
+import { useClickOutside } from 'src/hooks/useClickOutside';
 import ArrowDown from '../assets/arrowDown.svg';
 import KeyIcon from '../assets/key.svg';
 import MeeButtonIcon from '../assets/meeButton.svg';
@@ -32,8 +33,7 @@ const ColumnsState = atom(new Map([
 
 const ColumnsSelectPopup: React.FC = () => {
   const [columnsState, setColumnsState] = useAtom(ColumnsState);
-  // eslint-disable-next-line no-console
-  console.log(columnsState);
+
   return (
     <div className="absolute p-3 bg-primary-content pr-20 shadow-lg">
       <p className="text-sm font-bold text-alt-color-4 pb-2 text-left">Show:</p>
@@ -113,7 +113,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
   const [secretDetails, setSecretDetails] = useAtom(SecretByIdState(id));
   const [newValues, setNewValues] = useState<Secret | undefined>(secretDetails);
   return (
-    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block">
+    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block md:min-w-243">
       {popupMessage.isOpened && (
         <InfoMessage
           message="Successfully saved!"
@@ -145,14 +145,14 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
         </Suspense>
       </Popup>
       )}
-      <div className="flex justify-start items-start md:items-center">
+      <div className="flex justify-between items-start md:items-center">
         <img className="h-[18px] mr-3 pt-1 md:hidden" src={KeyIcon} alt="key" />
-        <div className="flex flex-col justify-between items-start md:items-center mr-auto md:flex-row md:gap-5">
-          <div className="flex gap-3 md:gap-0 items-center flex-1 md:w-62">
+        <div className="flex flex-col justify-between items-start md:items-center md:flex-row flex-1 md:gap-5">
+          <div className="flex gap-3 md:gap-0 items-center flex-1 mr-auto md:min-w-62">
             <img className="h-[18px] mr-3 mt-1 hidden md:block" src={KeyIcon} alt="key" />
-            <div>
-              <p className="text-sm md:text-base leading-4 md:w-39 font-bold">{name}</p>
-              <p className="text-xs md:text-sm leading-4 md:w-39 pt-1">{note}</p>
+            <div className="md:w-full">
+              <p className="text-sm md:text-base leading-4 md:min-w-39 font-bold">{name}</p>
+              <p className="text-xs md:text-sm leading-4 md:min-w-39 pt-1">{note}</p>
             </div>
           </div>
           {columnsState.get('Created') && (
@@ -166,7 +166,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
             {dateTimeToView(modified)}
           </p>
           )}
-          <p className="pt-1 font-medium leading-4 md:w-45">
+          <p className="pt-1 font-medium leading-4 md:w-25">
             <span className="text-alt-color-5 text-xs md:hidden">Value: </span>
             <span className="text-4xs">●●●●●●●●</span>
           </p>
@@ -202,7 +202,7 @@ const SecretsListSuspended: React.FC<SecretsListSuspendedProps> = ({ collectionI
   const secretsListSorted: Secret[] | undefined = useMemo(() => secretsList?.sort((a, b) => (
     a.name.localeCompare(b.name) * (reverseOrder ? -1 : 1))), [secretsList, reverseOrder]);
   return (
-    <div>
+    <div className="">
       {secretsListSorted?.map((secret) => (
         <SecretListItem key={secret.id} secretItem={secret} />
       ))}
@@ -218,10 +218,14 @@ interface ListHeadProps {
 const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
   const columnsState = useAtomValue(ColumnsState);
   const [showColumnsSelectPopup, setShowColumnsSelectPopup] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => {
+    setShowColumnsSelectPopup(false);
+  });
   return (
-    <div className="md:inline-block">
+    <div ref={ref} className="md:inline-block md:min-w-full">
       <div className="text-alt-color-4 text-base bg-secondary-content py-6 pl-5 pr-12 items-center flex md:gap-5">
-        <div className="flex gap-4 items-center md:min-w-62">
+        <div className="flex gap-4 items-center md:min-w-62 md:flex-1">
           <button
             type="button"
             onClick={() => {
@@ -242,7 +246,7 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
         <div className="flex gap-5">
           {columnsState.get('Created') && <p className="text-alt-color-7 hidden md:block md:w-32">Created</p>}
           {columnsState.get('Modified') && <p className="text-alt-color-7 hidden md:block md:w-32">Modified</p>}
-          <p className="text-alt-color-7 hidden md:block md:w-45">Value</p>
+          <p className="text-alt-color-7 hidden md:block md:w-25">Value</p>
           {columnsState.get('Username') && <p className="text-alt-color-7 hidden md:block md:w-32">Username</p>}
           {columnsState.get('URL') && <p className="text-alt-color-7 hidden md:block md:w-45">URL</p>}
         </div>
