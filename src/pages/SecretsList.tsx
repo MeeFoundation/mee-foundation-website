@@ -166,7 +166,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
             <img className="h-[18px] mr-3 mt-1 hidden md:block" src={KeyIcon} alt="key" />
             <div className="md:w-full">
               <p className="text-sm md:text-base leading-4 md:min-w-39 font-bold">{name}</p>
-              <p className="text-xs md:text-sm leading-4 md:min-w-39 pt-1">{note}</p>
+              <p className={clsx('text-xs md:text-sm leading-4 md:min-w-39 pt-1', note === '' && 'hidden')}>{note}</p>
             </div>
           </div>
           {columnsState.get('Created') && (
