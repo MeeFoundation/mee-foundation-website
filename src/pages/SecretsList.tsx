@@ -171,13 +171,13 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
             <span className="text-4xs">●●●●●●●●</span>
           </p>
           {columnsState.get('Username') && (
-          <p className="pt-1 text-xs font-medium md:w-32">
+          <p className="pt-1 text-xs font-medium md:w-32 overflow-hidden overflow-ellipsis">
             <span className="text-alt-color-5 md:hidden">Username: </span>
             {username}
           </p>
           )}
           {columnsState.get('URL') && (
-          <p className="pt-1 text-xs font-medium md:w-45">
+          <p className="pt-1 text-xs font-medium md:w-45 overflow-hidden overflow-ellipsis">
             <span className="text-alt-color-5 md:hidden">URL: </span>
             {url}
           </p>
