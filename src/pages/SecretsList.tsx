@@ -83,8 +83,8 @@ const SecretDetailsEdit: React.FC<SecretDetailsEditProps> = ({
         error={errors.secret?.data?.message}
         register={register('secret.data')}
         isHiddenByDefault={!isNew}
-        title={`Value${isNew ? '' : ' (read-only)'}`}
-        isReadOnly={!isNew}
+        title="Value" // {`Value${isNew ? '' : ' (read-only)'}`}
+        isReadOnly={false} // {!isNew}
       />
     </div>
   );
