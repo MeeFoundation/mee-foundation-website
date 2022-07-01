@@ -51,7 +51,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       tabIndex={0}
       className={clsx(
         styles.inner,
-        'outline-none focus-visible:outline-black select-none cursor-pointer',
+        'outline-none focus-visible:outline-black select-none cursor-pointer flex-row flex gap-2',
         disabled && 'pointer-events-none opacity-50',
       )}
       onKeyDown={(e) => {
@@ -79,7 +79,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           onChange(e.target.checked);
         }}
       />
+      <label className="text-sm font-bold text-alt-color-4" htmlFor={title}>{title}</label>
     </div>
-    <label className="text-sm font-bold text-alt-color-4" htmlFor={title}>{title}</label>
+
   </div>
 );

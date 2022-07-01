@@ -36,7 +36,7 @@ const ColumnsSelectPopup: React.FC = () => {
   const [columnsState, setColumnsState] = useAtom(ColumnsState);
 
   return (
-    <div className="absolute p-3 bg-primary-content pr-20 shadow-lg">
+    <div className="absolute top-6 p-3 bg-primary-content pr-20 shadow-lg">
       <p className="text-sm font-bold text-alt-color-4 pb-2 text-left">Show:</p>
       {Array.from(columnsState.keys()).map((item) => (
         <div className="pt-4" key={item}>
@@ -117,7 +117,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
     secret: { data: '', content_type: SecretContentType.PlainText },
   };
   const {
-    register, getValues, trigger, formState,
+    register, getValues, trigger, formState, reset,
   } = useForm<Secret>({
     defaultValues: secretDetails || defaultValues,
     reValidateMode: 'onChange',
@@ -136,6 +136,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
       {popup.isOpened && (
       <Popup
         onClose={() => {
+          reset();
           popup.close();
         }}
         title="Edit Secret"
@@ -237,18 +238,22 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
     setShowColumnsSelectPopup(false);
   });
   return (
-    <div ref={ref} className="md:inline-block md:min-w-full">
+    <div className="md:inline-block md:min-w-full">
       <div className="text-alt-color-4 text-base bg-secondary-content py-6 pl-5 pr-12 items-center flex md:gap-5">
         <div className="flex gap-4 items-center md:min-w-62 md:flex-1">
-          <button
-            type="button"
-            onClick={() => {
-              setShowColumnsSelectPopup((old) => !old);
-            }}
-          >
-            <img className="bg-primary-content" alt="columns select" src={FilterExpandIcon} />
+          <div ref={ref} className="h-6 relative">
+            <button
+              type="button"
+              onClick={() => {
+                setShowColumnsSelectPopup((old) => !old);
+              }}
+              className=""
+            >
+              <img className="bg-primary-content" alt="columns select" src={FilterExpandIcon} />
+            </button>
             {showColumnsSelectPopup && <ColumnsSelectPopup />}
-          </button>
+          </div>
+
           <p>
             Name
           </p>

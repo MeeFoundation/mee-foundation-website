@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
-import { HashRouter as BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  HashRouter as BrowserRouter, Navigate, Route, Routes,
+} from 'react-router-dom';
 import { Fallback } from './components/Fallback';
 import { Header } from './components/Header';
 import { MaxW } from './components/MaxW';
@@ -22,6 +24,7 @@ export const App: React.FC = () => (
           <Route path="/collections" element={<PrivateRoute><CollectionsList /></PrivateRoute>} />
           <Route path="/collection/:collectionId" element={<PrivateRoute><SecretsList /></PrivateRoute>} />
           <Route path="/congratulations" element={<PrivateRoute><CongratulationsScreen /></PrivateRoute>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </MaxW>

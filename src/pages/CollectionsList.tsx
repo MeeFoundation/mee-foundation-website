@@ -77,7 +77,7 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
     id: new Date().getTime().toString(), created: new Date(), modified: new Date(), name: '', note: '',
   };
   const {
-    register, getValues, trigger, formState,
+    register, getValues, trigger, formState, reset,
   } = useForm<NewCollection>({
     defaultValues: collectionDetails || defaultValues,
     reValidateMode: 'onChange',
@@ -96,7 +96,10 @@ const CollectionListItem: React.FC<CollectionListItemProps> = ({
       )}
       {popup.isOpened && (
       <Popup
-        onClose={popup.close}
+        onClose={() => {
+          reset();
+          popup.close();
+        }}
         title="Edit Collection"
         primaryButtonAction={async () => {
           const isOk = await trigger();
