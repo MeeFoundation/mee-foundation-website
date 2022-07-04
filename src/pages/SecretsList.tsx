@@ -29,7 +29,7 @@ import MeeButtonIcon from '../assets/meeButton.svg';
 import FilterExpandIcon from '../assets/filterExpander.svg';
 
 const ColumnsState = atom(new Map([
-  ['Created', true], ['Modified', false], ['Username', true], ['URL', true],
+  ['Created', true], ['Modified', false], ['Username', false], ['URL', false], ['Value', false],
 ]));
 
 const ColumnsSelectPopup: React.FC = () => {
@@ -124,7 +124,7 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
   });
   const { errors } = formState;
   return (
-    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block md:min-w-243">
+    <div className="text-primary border-b border-alt-color-6 pb-5 mt-6 last:border-b-0 mx-5 overflow-visible md:inline-block md:min-w-241">
       {popupMessage.isOpened && (
         <InfoMessage
           message="Successfully saved!"
@@ -181,10 +181,12 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
             {dateTimeToView(modified)}
           </p>
           )}
+          {columnsState.get('Value') && (
           <p className="pt-1 font-medium leading-4 md:w-25">
             <span className="text-alt-color-5 text-xs md:hidden">Value: </span>
             <span className="text-4xs">●●●●●●●●</span>
           </p>
+          )}
           {columnsState.get('Username') && (
           <p className="pt-1 text-xs font-medium md:w-32 overflow-hidden overflow-ellipsis">
             <span className="text-alt-color-5 md:hidden">Username: </span>
@@ -265,7 +267,7 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
         <div className="flex gap-5">
           {columnsState.get('Created') && <p className="text-alt-color-7 hidden md:block md:w-32">Created</p>}
           {columnsState.get('Modified') && <p className="text-alt-color-7 hidden md:block md:w-32">Modified</p>}
-          <p className="text-alt-color-7 hidden md:block md:w-25">Value</p>
+          {columnsState.get('Value') && <p className="text-alt-color-7 hidden md:block md:w-25">Value</p>}
           {columnsState.get('Username') && <p className="text-alt-color-7 hidden md:block md:w-32">Username</p>}
           {columnsState.get('URL') && <p className="text-alt-color-7 hidden md:block md:w-45">URL</p>}
         </div>
