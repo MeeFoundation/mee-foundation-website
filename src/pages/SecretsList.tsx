@@ -162,8 +162,8 @@ const SecretListItem: React.FC<SecretListItemProps> = ({
       )}
       <div className="flex justify-between items-start md:items-center">
         <img className="h-[18px] mr-3 pt-1 md:hidden" src={KeyIcon} alt="key" />
-        <div className="flex flex-col justify-between items-start md:items-center md:flex-row flex-1 md:gap-5">
-          <div className="flex gap-3 md:gap-0 items-center flex-1 mr-auto md:min-w-62">
+        <div className="flex flex-col justify-between md:justify-start items-start md:items-center md:flex-row flex-1 md:gap-5">
+          <div className="flex gap-3 md:gap-0 items-center flex-1 md:min-w-62 md:max-w-145">
             <img className="h-[18px] mr-3 mt-1 hidden md:block" src={KeyIcon} alt="key" />
             <div className="md:w-full">
               <p className="text-sm md:text-base leading-4 md:min-w-39 font-bold">{name}</p>
@@ -242,7 +242,7 @@ const ListHead: React.FC<ListHeadProps> = ({ onSort, reverseSortOrder }) => {
   return (
     <div className="md:inline-block md:min-w-full">
       <div className="text-alt-color-4 text-base bg-secondary-content py-6 pl-5 pr-12 items-center flex md:gap-5">
-        <div className="flex gap-4 items-center md:min-w-62 md:flex-1">
+        <div className="flex gap-4 items-center md:min-w-62  md:max-w-145 md:flex-1">
           <div ref={ref} className="h-6 relative">
             <button
               type="button"
