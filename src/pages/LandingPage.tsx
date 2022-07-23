@@ -17,7 +17,7 @@ export const LandingPage: React.FC = () => (
           <h1 className="text-primary-content">
             It&apos;s
             {' '}
-            <i>Mee DEV</i>
+            <i>Mee</i>
             .
           </h1>
 
