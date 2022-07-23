@@ -3,7 +3,7 @@ pipeline {
     options { disableConcurrentBuilds() }
     environment {
         TAG = 'dev'
-        NAME = 'secret-storage-svc'
+        NAME = 'www-getmee-org'
     }
 
     stages {
