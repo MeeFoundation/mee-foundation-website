@@ -1,20 +1,12 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import {
   HashRouter as BrowserRouter, Navigate, Route, Routes,
 } from 'react-router-dom';
 import { Fallback } from './components/Fallback';
 import { MaxW } from './components/MaxW';
-import { AppRedirect } from './pages/AppRedirect';
+import { DownloadPage } from './pages/DownloadPage';
 import { LandingPage } from './pages/LandingPage';
 import { MeeCertifiedPage } from './pages/MeeCertified';
-
-const Reload: React.FC = () => {
-  const reload = () => window.location.reload();
-  useEffect(() => {
-    reload();
-  }, []);
-  return <div />;
-};
 
 export const App: React.FC = () => (
   <BrowserRouter>
@@ -34,10 +26,7 @@ export const App: React.FC = () => (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/mee-certified" element={<MeeCertifiedPage />} />
-          <Route path="/app-redirect/:partnerId" element={<AppRedirect />} />
-          <Route path="/app-redirect" element={<AppRedirect />} />
-
-          <Route path="/apple-app-site-association" element={<Reload />} />
+          <Route path="/consent/:partnerId" element={<DownloadPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
