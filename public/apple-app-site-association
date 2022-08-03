@@ -5,7 +5,8 @@
       {
         "appID": "4UGU9PNWK8.com.swift.mee-ios-client",
         "paths": [
-          "/consent/*"
+          "/consent/*",
+          "/#/consent/*"
         ]
       }
     ]
