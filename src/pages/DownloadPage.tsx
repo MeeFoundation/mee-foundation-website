@@ -6,6 +6,15 @@ export const APP_STORE_LINK = 'https://www.apple.com/ru/app-store/';
 
 export const DownloadPage: React.FC = () => (
   <div className="h-screen flex flex-row items-center justify-center">
-    <a href={APP_STORE_LINK} className=""><img alt="App Store" src={appStoreImg} /></a>
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard.writeText(window.location.href);
+        window.location.href = APP_STORE_LINK;
+      }}
+      className=""
+    >
+      <img alt="App Store" src={appStoreImg} />
+    </button>
   </div>
 );
