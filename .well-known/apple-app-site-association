@@ -5,13 +5,8 @@
       {
         "appID": "59TG46326T.org.getmee.ios-client",
         "paths": [
-          "*/consent/*"
-        ]
-      },
-      {
-        "appID": "59TG46326T.org.getmee.ios-client",
-        "paths": [
-          "*/app"
+          "*",
+          "NOT /#/installed"
         ]
       }
     ]
