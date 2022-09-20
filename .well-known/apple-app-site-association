@@ -6,7 +6,9 @@
         "appID": "59TG46326T.org.getmee.ios-client",
         "paths": [
           "/#/consent/*",
-          "/#/app"
+          "/#/app",
+          "/*/consent/*",
+          "/*/app,
         ]
       }
     ]
