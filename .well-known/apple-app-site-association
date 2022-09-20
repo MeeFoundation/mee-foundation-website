@@ -1,22 +1,13 @@
 {
   "applinks:getmee.org?mode=developer": {
-      "details": [
-           {
-             "appIDs": [ "59TG46326T.org.getmee.ios-client" ],
-             "components": [
-               {
-                  "/": "/#/consent/*",
-                  "comment": "Matches any URL with a path that starts with /#/consent/."
-               },
-               {
-                  "/": "/#/app",
-                  "comment": "Matches /#/app URL"
-               },
-               {
-                  "/": "*/consent/*",
-               }
-             ]
-           }
-       ]
-   },
+    "apps": [],
+    "details": [
+      {
+        "appID": "59TG46326T.org.getmee.ios-client",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  }
 }
