@@ -23,7 +23,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
   const partnerDataUnparsed: {
     partnerName: string,
     partnerUrl: string,
-    partnerDisplayUrl: string } = useMemo(() => {
+    partnerDisplayedUrl: string } = useMemo(() => {
     try {
       return JSON.parse(atob(partnerData));
     } catch {
@@ -41,7 +41,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
       <p className="text-3xl text-alt-color-8 font-bold">{partnerDataUnparsed.partnerName}</p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
-        <p className="text-3xl font-bold">{partnerDataUnparsed.partnerDisplayUrl}</p>
+        <p className="text-3xl font-bold">{partnerDataUnparsed.partnerDisplayedUrl}</p>
       </div>
 
       <button
