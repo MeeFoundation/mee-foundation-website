@@ -25,7 +25,7 @@ export const App: React.FC = () => (
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/mee-certified" element={<MeeCertifiedPage />} />
-        <Route path="/consent/:partnerId" element={<DownloadPage />} />
+        <Route path="/consent/:partnerData" element={<DownloadPage />} />
         <Route path="/installed" element={<InstallationSucceed />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

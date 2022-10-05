@@ -13,7 +13,9 @@ module.exports = {
     fontFamily: {
       'ps': ['public-sans', ...defaultTheme.fontFamily.sans],
     },
-         
+    borderWidth: {
+      '3': '3px',
+    },
     fontSize: {
       "4xs": "0.375rem",
       "3xs": "0.5rem",
@@ -22,6 +24,7 @@ module.exports = {
     width: {
       150: '615px',
     },
+    
     height: {
       5.5: "22px",
       34: "8.5rem",
@@ -62,6 +65,8 @@ module.exports = {
       97: '24.25rem',
       120: "30rem",
       125: "31.25rem",
+      150: '37.5rem',
+      193: '48.25rem',
       '6/10': "60%",
     },
     colors: {
@@ -72,6 +77,7 @@ module.exports = {
       "alt-color-5": "#A1A4A3",
       "alt-color-6": "#D1D2D1",
       "alt-color-7": "#747776",
+      "alt-color-8": "#111827",
       "landing-secondary-text": '#535d29',
       'image-background': '#FEE080',
       'google-font-color': '#202223',
