@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Fallback } from 'src/components/Fallback';
 import { PARTNER_DATA } from './DownloadPage';
 import { Landing } from './LandingPage';
@@ -20,7 +20,17 @@ interface ContextExistsProps {
 }
 
 const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
-  const partnerDataUnparsed: { partnerName: string, partnerUrl: string } = JSON.parse(atob(partnerData));
+  const partnerDataUnparsed: {
+    partnerName: string,
+    partnerUrl: string,
+    partnerDisplayUrl: string } = useMemo(() => {
+    try {
+      return JSON.parse(atob(partnerData));
+    } catch {
+      window.location.href = '/';
+      return { partnerName: '', partnerUrl: '', partnerDisplayedUrl: '' };
+    }
+  }, [partnerData]);
 
   return (
     <div className="h-screen w-screen bg-white flex flex-col justify-start pt-32 text-primary items-center px-5 text-center">
@@ -31,7 +41,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
       <p className="text-3xl text-alt-color-8 font-bold">{partnerDataUnparsed.partnerName}</p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
-        <p className="text-3xl font-bold">{partnerDataUnparsed.partnerUrl}</p>
+        <p className="text-3xl font-bold">{partnerDataUnparsed.partnerDisplayUrl}</p>
       </div>
 
       <button
