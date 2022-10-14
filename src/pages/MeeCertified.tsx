@@ -1,5 +1,5 @@
 import { MaxW } from 'src/components/MaxW';
-import MeeCertifiedMarkIcon from '../assets/MeeCertifiedMark.svg';
+import MeeCertifiedMarkIcon from '../assets/meeCertifiedMark.svg';
 
 export const MeeCertifiedPage: React.FC = () => (
   <MaxW>
