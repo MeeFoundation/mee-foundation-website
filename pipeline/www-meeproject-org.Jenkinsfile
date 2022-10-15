@@ -3,7 +3,7 @@ pipeline {
     options { disableConcurrentBuilds() }
     environment {
         TAG = 'dev'
-        NAME = 'www-getmee-org'
+        NAME = 'www-meeproject-org'
     }
 
     stages {
@@ -35,7 +35,7 @@ pipeline {
                 echo 'Restart service'
                 sh 'oci ce cluster create-kubeconfig --cluster-id $OKE_DEV --region us-ashburn-1 --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT'
                 sh '''
-                   kubectl -n dev patch deployment www-getmee-org -p "{\\\"spec\\\": {\\\"template\\\": {\\\"metadata\\\": { \\\"labels\\\": { \\\"redeploy\\\": \\\"$(date +%s)\\\"}}}}}"
+                   kubectl -n dev patch deployment www-meeproject-org -p "{\\\"spec\\\": {\\\"template\\\": {\\\"metadata\\\": { \\\"labels\\\": { \\\"redeploy\\\": \\\"$(date +%s)\\\"}}}}}"
                 '''
             }
         }
