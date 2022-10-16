@@ -111,7 +111,7 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
                 <br />
                 Email us at
                 {' '}
-                <b>hello@getmee.org</b>
+                <b>hello@meeproject.org</b>
               </p>
             </div>
           </div>

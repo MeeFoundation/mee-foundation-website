@@ -54,7 +54,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
         type="button"
         className="py-2 px-4 bg-primary text-sm font-bold text-white"
         onClick={() => {
-          window.location.href = `https://www.getmee.org/#/consent/${partnerData}`;
+          window.location.href = `https://www.meeproject.org//#/consent/${partnerData}`;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         // (window as any).MeeWebSDK.buttonAction(partnerId);
         }}
@@ -69,7 +69,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
 const partnerList: PartnerItem[] = [
   {
     partnerName: 'New York Times',
-    partnerUrl: 'https://demo-dev.getmee.org',
+    partnerUrl: 'https://demo-dev.meeproject.org/',
     partnerDisplayedUrl: 'nytimes.com',
     partnerImageUrl: 'https://nytimes.com/favicon.ico',
     isCertified: true,
