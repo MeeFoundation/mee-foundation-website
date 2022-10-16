@@ -179,7 +179,7 @@ export const InstallationSucceed: React.FC = () => {
   const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://sdk-dev.getmee.org/mee-sdk.js';
+    script.src = 'https://sdk-dev.meeproject.org/mee-sdk.js';
     script.async = true;
     document.body.appendChild(script);
     script.addEventListener('load', () => {
