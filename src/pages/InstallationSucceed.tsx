@@ -43,7 +43,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
       <h1 className="pb-10 text-2xl font-bold">
         Congratulations! You’ve successfully installed Mee!
       </h1>
-      <p className="text-lg font-medium">You are going to be redirected to</p>
+      <p className="text-lg font-medium">Click Next to connect to </p>
       <p className="text-3xl text-alt-color-8 font-bold">{partnerDataUnparsed.partnerName}</p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
@@ -59,7 +59,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
         // (window as any).MeeWebSDK.buttonAction(partnerId);
         }}
       >
-        Go Now
+        Next
       </button>
 
     </div>
@@ -186,7 +186,7 @@ export const InstallationSucceed: React.FC = () => {
       try {
         const localStoragePartnerId = localStorage.getItem(PARTNER_DATA);
         setPartnerData(localStoragePartnerId);
-        // localStorage.removeItem(PARTNER_ID);
+        localStorage.removeItem(PARTNER_DATA);
       } catch (e) {
         setPartnerData(null);
       }
