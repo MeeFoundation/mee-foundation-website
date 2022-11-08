@@ -107,11 +107,7 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
             <div>
               <h2 className="text-primary text-xl md:text-2xl text-center mt-8 mb-3 mx-2"><b>Good for everyone.</b></h2>
               <p className="text-primary text-center text-base md:text-xl">
-                We’re not-for-profit and open-source. Curious?
-                <br />
-                Email us at
-                {' '}
-                <b>hello@meeproject.org</b>
+                We’re not-for-profit and open-source.
               </p>
             </div>
           </div>
