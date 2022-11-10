@@ -7,6 +7,7 @@ import { DownloadPage } from './pages/DownloadPage';
 import { InstallationSucceed } from './pages/InstallationSucceed';
 import { LandingPage } from './pages/LandingPage';
 import { MeeCertifiedPage } from './pages/MeeCertified';
+import { MeeCompatiblePage } from './pages/MeeCompatible';
 
 export const App: React.FC = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ export const App: React.FC = () => (
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/mee-certified" element={<MeeCertifiedPage />} />
+        <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
         <Route path="/consent/:partnerData" element={<DownloadPage />} />
         <Route path="/installed" element={<InstallationSucceed />} />
         <Route path="*" element={<Navigate to="/" replace />} />
