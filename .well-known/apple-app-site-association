@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "59TG46326T.org.getmee.ios-client",
+        "paths": [
+          "*",
+          "NOT /#/installed"
+        ]
+      }
+    ]
+  }
+}
