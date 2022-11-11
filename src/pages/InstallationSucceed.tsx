@@ -149,7 +149,14 @@ const ContextDoesNotExist: React.FC = () => (
         <div className="text-alt-color-8 px-4">
           <div className="pt-4 pb-2 flex flex-row justify-between">
             <h2 className="text-primary text-xl font-medium">Certified Apps</h2>
-            <img src={informationIcon} alt="mee-information" className="" />
+            <button
+              type="button"
+              onClick={() => {
+                window.open('/#/mee-certified', '_blank');
+              }}
+            >
+              <img src={informationIcon} alt="mee-information" className="" />
+            </button>
           </div>
           {
           partnerList.filter((partner) => partner.isCertified).map((partner) => (
@@ -159,7 +166,14 @@ const ContextDoesNotExist: React.FC = () => (
         }
           <div className="pt-19 pb-2 flex flex-row justify-between">
             <h2 className="text-primary text-xl font-medium">Compatible Apps</h2>
-            <img src={informationIcon} alt="mee-information" className="" />
+            <button
+              type="button"
+              onClick={() => {
+                window.open('/#/mee-compatible', '_blank');
+              }}
+            >
+              <img src={informationIcon} alt="mee-information" className="" />
+            </button>
           </div>
 
           {
