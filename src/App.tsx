@@ -3,10 +3,13 @@ import {
   HashRouter as BrowserRouter, Navigate, Route, Routes,
 } from 'react-router-dom';
 import { Fallback } from './components/Fallback';
-import { MaxW } from './components/MaxW';
-import { DownloadPage } from './pages/DownloadPage';
+import { AboutMeePage } from './pages/AboutMee';
+import { AppStoreRedirect } from './pages/AppStoreRedirect';
+import { InstallationSucceed } from './pages/InstallationSucceed';
 import { LandingPage } from './pages/LandingPage';
 import { MeeCertifiedPage } from './pages/MeeCertified';
+import { MeeCompatiblePage } from './pages/MeeCompatible';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicy';
 
 export const App: React.FC = () => (
   <BrowserRouter>
@@ -21,15 +24,17 @@ export const App: React.FC = () => (
          </Routes>
 
     </MaxW> */}
-    <MaxW>
-      <Suspense fallback={<Fallback />}>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/mee-certified" element={<MeeCertifiedPage />} />
-          <Route path="/consent/:partnerId" element={<DownloadPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
-    </MaxW>
+    <Suspense fallback={<Fallback />}>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/mee-certified" element={<MeeCertifiedPage />} />
+        <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
+        <Route path="/consent/:partnerData" element={<AboutMeePage />} />
+        <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
+        <Route path="/installed" element={<InstallationSucceed />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   </BrowserRouter>
 );

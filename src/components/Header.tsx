@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
   const logoutVisible = authState !== null;
   const navigate = useNavigate();
   return (
-    <div className={clsx(logoutVisible ? 'justify-between' : 'justify-start', 'header bg-primary-content max-w-full flex flex-row items-center border-b border-primary px-3.5 md:px-0')}>
+    <div className={clsx(logoutVisible ? 'justify-between' : 'justify-start', 'header bg-primary-content max-w-full flex flex-row items-center border-b border-primary px-3.5 lg:px-0')}>
       <button
         type="button"
         onClick={() => {
