@@ -3,8 +3,8 @@ import { NytHeader } from 'src/components/NytHeader';
 import { useParams } from 'react-router-dom';
 import NytSmallLogo from '../assets/nytSmallLogo.svg';
 import MeeLogoBranded from '../assets/mee_logo.svg';
-import { APP_STORE_LINK, PARTNER_DATA } from './DownloadPage';
 import appStoreImg from '../assets/appStore.svg';
+import { LOCAL_STORAGE_WRITE_PAGE } from './DownloadPage';
 
 export const AboutMeePage: React.FC = () => {
   const { partnerData } = useParams();
@@ -20,12 +20,7 @@ export const AboutMeePage: React.FC = () => {
         <button
           type="button"
           onClick={() => {
-          // navigator.clipboard.writeText(window.location.href);
-            try {
-              if (typeof partnerData !== 'undefined') localStorage.setItem(PARTNER_DATA, partnerData);
-            } finally {
-              window.location.href = APP_STORE_LINK;
-            }
+            window.location.href = `${LOCAL_STORAGE_WRITE_PAGE}${partnerData}`;
           }}
           className="pt-38"
         >

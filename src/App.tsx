@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { Fallback } from './components/Fallback';
 import { AboutMeePage } from './pages/AboutMee';
+import { AppStoreRedirect } from './pages/AppStoreRedirect';
 import { InstallationSucceed } from './pages/InstallationSucceed';
 import { LandingPage } from './pages/LandingPage';
 import { MeeCertifiedPage } from './pages/MeeCertified';
@@ -29,6 +30,7 @@ export const App: React.FC = () => (
         <Route path="/mee-certified" element={<MeeCertifiedPage />} />
         <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
         <Route path="/consent/:partnerData" element={<AboutMeePage />} />
+        <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
         <Route path="/installed" element={<InstallationSucceed />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

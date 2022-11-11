@@ -5,6 +5,7 @@ import appStoreImg from '../assets/appStore.svg';
 
 export const PARTNER_DATA = 'partnerData';
 export const APP_STORE_LINK = 'itms-beta://';
+export const LOCAL_STORAGE_WRITE_PAGE = 'https://www-dev.meeproject.org/#/redirect/';
 
 export const DownloadPage: React.FC = () => {
   const { partnerData } = useParams();
