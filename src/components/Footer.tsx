@@ -8,11 +8,11 @@ export const Footer: React.FC = () => (
       <div className="w-full px-4 py-5">
         <div className="flex flex-row justify-between items-center text-2xs md:text-sm leading-3 text-primary-content">
           <p className="leading-4">
-            <a href="/#/privacy-policy" target="_blank">Privacy Policy</a>
+            <a href="/#/privacy-policy">Privacy Policy</a>
             {' '}
             |
             {' '}
-            <a href="https://docs-dev.meeproject.org/" target="_blank" rel="noreferrer">Docs</a>
+            <a href="https://docs-dev.meeproject.org/">Docs</a>
           </p>
           <p className="leading-4">
             © 2022 The Mee Project, Inc.
