@@ -48,18 +48,18 @@ export const PrivacyPolicyPage: React.FC = () => (
         <p className="pt-10">
           The privacy notice for Mee Project Inc (“we”, ”us”, or “our”) website
           (
-          <MeeUrl text="https://meeproject.org" />
+          <MeeUrl text="https://mee.foundation" />
           ) describes how and why we collect, store, use,
           and/or share (“process”) your information when you visit our website
           at
           {' '}
-          <MeeUrl text="https://meeproject.org" />
+          <MeeUrl text="https://mee.foundation" />
           .
         </p>
         {[{
           title: 'In short:',
           answer: <span>
-            <MeeUrl text="https://meeproject.org" />
+            <MeeUrl text="https://mee.foundation" />
             {' '}
             doesn’t collect, store, or use any of your personal data.
           </span>,
@@ -72,7 +72,7 @@ export const PrivacyPolicyPage: React.FC = () => (
             please do not use our Services. If you still have any questions or concerns, please
             contact us at
             {' '}
-            <MeeUrl text="contact@meeproject.org" url="mailto:contact@meeproject.org" />
+            <MeeUrl text="contact@mee.foundation" url="mailto:contact@mee.foundation" />
             .
           </span>,
         }].map((item) => <Section key={item.title} title={item.title} answer={item.answer} />)}
@@ -86,7 +86,7 @@ export const PrivacyPolicyPage: React.FC = () => (
               We do not process any of your personal information. We don’t collect any
               of your personal information via the website
               {' '}
-              <MeeUrl text="https://meeproject.org" />
+              <MeeUrl text="https://mee.foundation" />
             </span>,
           },
           {
@@ -118,7 +118,7 @@ export const PrivacyPolicyPage: React.FC = () => (
             answer: <span>
               We do not use cookies and trackers on our website. The website
               {' '}
-              <MeeUrl text="https://meeproject.org" />
+              <MeeUrl text="https://mee.foundation" />
               {' '}
               does not have any interactive elements and doesn&#39;t require any sort
               of login or account information from the users.
@@ -143,7 +143,7 @@ export const PrivacyPolicyPage: React.FC = () => (
             answer: <span>
               If you have questions or comments about this notice, you may email us at
               {' '}
-              <MeeUrl text="contact@meeproject.org" url="mailto:contact@meeproject.org" />
+              <MeeUrl text="contact@mee.foundation" url="mailto:contact@mee.foundation" />
               {' '}
               or by post to:
               {' '}

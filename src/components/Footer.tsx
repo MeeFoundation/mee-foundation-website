@@ -12,7 +12,7 @@ export const Footer: React.FC = () => (
             {' '}
             |
             {' '}
-            <a href="https://docs-dev.meeproject.org/">Docs</a>
+            <a href="https://docs-dev.mee.foundation/">Docs</a>
           </p>
           <p className="leading-4">
             © 2022 The Mee Project, Inc.

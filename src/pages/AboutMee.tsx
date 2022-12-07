@@ -26,7 +26,7 @@ export const AboutMeePage: React.FC = () => {
         >
           <img alt="App Store" src={appStoreImg} />
         </button>
-        <a href="https://meeproject.org/">
+        <a href="https://mee.foundation/">
           <img className="pt-8" alt="Mee" src={MeeLogoBranded} />
         </a>
 
