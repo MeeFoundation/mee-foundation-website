@@ -3,7 +3,7 @@ pipeline {
     options { disableConcurrentBuilds() }
     environment {
         TAG = 'dev'
-        NAME = 'www.mee-foundation'
+        NAME = 'mee-foundation-website'
     }
 
     stages {
