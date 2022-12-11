@@ -14,7 +14,7 @@ export const AboutMeePage: React.FC = () => {
       <div className=" pt-38 px-4 flex flex-col justify-start items-center ">
         <img className="w-12" alt="The New York Times" src={NytSmallLogo} />
         <p className="max-w-86 pt-2 text-sm text-center text-[#5A5A5A]">
-          The New York Times is a sponsor of The Mee Project. Mee provides a new, password-less,
+          The New York Times is a sponsor of The Mee Foundation. Mee provides a new, password-less,
           surveillance-free way to login to our site. It is free and easy to download and install.
         </p>
         <button

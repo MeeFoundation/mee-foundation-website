@@ -15,7 +15,7 @@ export const Footer: React.FC = () => (
             <a href="https://docs-dev.mee.foundation/">Docs</a>
           </p>
           <p className="leading-4">
-            © 2022 The Mee Project, Inc.
+            © 2022 The Mee Foundation, Inc.
           </p>
           <div className="w-32 hidden md:block" />
           {/* <img alt="App Store" src={appStoreImage} /> */}
