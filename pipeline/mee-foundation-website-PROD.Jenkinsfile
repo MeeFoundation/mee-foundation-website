@@ -5,15 +5,15 @@ pipeline {
     stages {
         stage('Publish to GH-Pages') {
             steps {
-                dir('web') {
-                    echo 'Installing dependencies...'
-                    sh 'yarn install --frozen-lockfile'
-                    echo 'Building ...'
-                    sh 'yarn build'
-                    echo 'Publish gh-pages'
-                    sshagent (credentials: ['mee-ci']) {
+                echo 'Installing dependencies...'
+                sh 'yarn install --frozen-lockfile'
+                echo 'Building ...'
+                sh 'yarn build'
+                echo 'Publish gh-pages'
+
+                sshagent (credentials: ['mee-ci']) {
                     sh """
-                    	git config --global user.email "devops@mee.foundation"
+                        git config --global user.email "devops@mee.foundation"
                         git config --global user.name "Devops"
 
                         git worktree add ../pages gh-pages
