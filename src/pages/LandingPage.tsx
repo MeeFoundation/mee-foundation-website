@@ -65,10 +65,10 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
           <div className="content max-w-full flex flex-col items-center">
             <div className="my-9 md:my-10 sm:px-28 md:px-60 px-4 w-full text-center">
               <p className="text-primary">
-                We are developing an identity agent app that increases the user’s
-                control over their own personal data. In combination with new legal
-                mechanisms this app increases the user’s privacy, convenience, and
-                autonomy as they interact with internet service providers’ websites and apps.
+                We are a nonprofit developing an identity agent app that gives
+                the user more control over their own personal data. In combination
+                with new legal mechanisms it increases the user’s privacy, convenience,
+                and autonomy as they interact with internet service providers’ websites and apps.
               </p>
             </div>
             <div className="w-full flex flex-row flex-wrap">
