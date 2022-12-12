@@ -46,7 +46,7 @@ export const PrivacyPolicyPage: React.FC = () => (
       <div className="max-w-256 mx-auto text-base pt-10 px-5 md:px-0 pb-20 text-[#111827]">
         <h1 className="text-4xl font-medium text-primary">Privacy Policy</h1>
         <p className="pt-10">
-          The privacy notice for Mee Project Inc (“we”, ”us”, or “our”) website
+          The privacy notice for Mee Foundation Inc (“we”, ”us”, or “our”) website
           (
           <MeeUrl text="https://mee.foundation" />
           ) describes how and why we collect, store, use,
@@ -147,7 +147,7 @@ export const PrivacyPolicyPage: React.FC = () => (
               {' '}
               or by post to:
               {' '}
-              <span className="font-medium">Mee Project Inc, 25 Craftsland Road, Chestnut Hill, MA 02467, United States</span>
+              <span className="font-medium">Mee Foundation Inc, 25 Craftsland Road, Chestnut Hill, MA 02467, United States</span>
             </span>,
           },
         ].map((item) => (
