@@ -22,12 +22,12 @@ export const AboutMeePage: React.FC = () => {
           onClick={() => {
             window.location.href = `${LOCAL_STORAGE_WRITE_PAGE}${partnerData}`;
           }}
-          className="pt-38"
+          className="mt-38"
         >
           <img alt="App Store" src={appStoreImg} />
         </button>
-        <a href="https://mee.foundation/">
-          <img className="pt-8" alt="Mee" src={MeeLogoBranded} />
+        <a className="mt-8" href="https://mee.foundation/">
+          <img alt="Mee" src={MeeLogoBranded} />
         </a>
 
       </div>
