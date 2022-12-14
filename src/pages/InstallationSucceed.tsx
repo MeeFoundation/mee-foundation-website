@@ -5,6 +5,7 @@ import { MaxW } from 'src/components/MaxW';
 import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
 import { PartnerItem } from 'src/model/partnerItem';
+import { useParams } from 'react-router-dom';
 import { PARTNER_DATA } from './DownloadPage';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
@@ -191,25 +192,22 @@ const ContextDoesNotExist: React.FC = () => (
 
 export const InstallationSucceed: React.FC = () => {
   const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
+  const params = useParams<{ partnerData: string }>();
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://sdk-dev.mee.foundation/mee-sdk.js';
-    script.async = true;
-    document.body.appendChild(script);
-    script.addEventListener('load', () => {
+    if (window.location.hostname === 'auth-dev.mee.foundation') {
       try {
-        const localStoragePartnerId = localStorage.getItem(PARTNER_DATA);
-        setPartnerData(localStoragePartnerId);
+        const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
+        window.location.href = `https://www-dev.mee.foundation/#/installed/${localStoragePartnerData}`;
       } catch (e) {
-        setPartnerData(null);
+        window.location.href = 'https://www-dev.mee.foundation/#/installed';
       }
-    });
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    } else if (typeof params.partnerData !== 'undefined') {
+      setPartnerData(params.partnerData);
+    } else {
+      setPartnerData(null);
+    }
+  }, [params]);
 
   return (
     <div>

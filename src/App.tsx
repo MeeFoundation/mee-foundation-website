@@ -32,6 +32,7 @@ export const App: React.FC = () => (
         <Route path="/consent/:partnerData" element={<AboutMeePage />} />
         <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
         <Route path="/installed" element={<InstallationSucceed />} />
+        <Route path="/installed/:partnerData" element={<InstallationSucceed />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
