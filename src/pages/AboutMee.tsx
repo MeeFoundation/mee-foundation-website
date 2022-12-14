@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import NytSmallLogo from '../assets/nytSmallLogo.svg';
 import MeeLogoBranded from '../assets/mee_logo.svg';
 import appStoreImg from '../assets/appStore.svg';
-import { LOCAL_STORAGE_WRITE_PAGE } from './DownloadPage';
+import { APP_STORE_LINK, PARTNER_DATA } from './DownloadPage';
 
 export const AboutMeePage: React.FC = () => {
   const { partnerData } = useParams();
+
   return (
     <div className="min-h-screen">
       <NytHeader />
@@ -20,7 +21,11 @@ export const AboutMeePage: React.FC = () => {
         <button
           type="button"
           onClick={() => {
-            window.location.href = `${LOCAL_STORAGE_WRITE_PAGE}${partnerData}`;
+            try {
+              if (partnerData) localStorage.setItem(PARTNER_DATA, partnerData);
+            } finally {
+              window.location.href = APP_STORE_LINK;
+            }
           }}
           className="mt-38"
         >

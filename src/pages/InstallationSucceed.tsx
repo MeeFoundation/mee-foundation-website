@@ -198,9 +198,13 @@ export const InstallationSucceed: React.FC = () => {
       try {
         const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
-        window.location.href = `https://www-dev.mee.foundation/#/installed/${localStoragePartnerData}`;
-      } catch (e) {
-        window.location.href = 'https://www-dev.mee.foundation/#/installed';
+        if (localStoragePartnerData !== null) {
+          window.location.href = `https://www-dev.mee.foundation/#/installed/${localStoragePartnerData}`;
+        } else {
+          window.location.href = 'https://www-dev.mee.foundation/#/installed';
+        }
+      } catch {
+        //
       }
     } else if (typeof params.partnerData !== 'undefined') {
       setPartnerData(params.partnerData);
