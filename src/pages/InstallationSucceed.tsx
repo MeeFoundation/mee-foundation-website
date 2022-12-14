@@ -54,7 +54,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
         type="button"
         className="py-2 px-4 bg-primary text-sm font-bold text-white"
         onClick={() => {
-          window.location.href = `https://auth-dev.mee.foundation//#/consent/${partnerData}`;
+          window.location.href = `https://auth-dev.mee.foundation/#/consent/${partnerData}`;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         // (window as any).MeeWebSDK.buttonAction(partnerId);
         }}
