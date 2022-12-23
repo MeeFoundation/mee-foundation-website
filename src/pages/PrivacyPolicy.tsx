@@ -130,7 +130,7 @@ export const PrivacyPolicyPage: React.FC = () => (
               <span>
                 Yes, we will update this notice as necessary to stay compliant with relevant laws.
               </span>
-              <span className="pt-3">
+              <span className="pt-3 inline-block">
                 We may update this privacy notice from time to time. The updated
                 version will be indicated by an updated “Revised” date of the updated version will be
                 effective as soon as it is accessible. We encourage you to review this privacy notice
