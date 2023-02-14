@@ -1927,6 +1927,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
+jose@^4.11.2:
+  version "4.11.4"
+  resolved "http://localhost:4873/jose/-/jose-4.11.4.tgz#e04d4a393ac017d0450fa0a38e2f2382cd73f71e"
+  integrity sha512-94FdcR8felat4vaTJyL/WVdtlWLlsnLMZP8v+A0Vru18K3bQ22vn7TtpVh3JlgBFNIlYOUlGqwp/MjRPOnIyCQ==
+
 jotai@^1.5.3:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.7.2.tgz#80587cf10f51a614c2028688e12d2abc6ac0b00c"
@@ -2078,6 +2083,13 @@ make-dir@^3.0.2:
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   dependencies:
     semver "^6.0.0"
+
+mee-js-sdk@^0.0.17:
+  version "0.0.17"
+  resolved "http://localhost:4873/mee-js-sdk/-/mee-js-sdk-0.0.17.tgz#408379983427a608f454dda47d3a407ad4923e8f"
+  integrity sha512-88v52uw7jINyEoiJyRrlk+Xt2iO5H2WfTI0Cxycr9ruHguLWKQU7phjAqqSncA0sVC4pAPYr1Veak3D06JWZIw==
+  dependencies:
+    jose "^4.11.2"
 
 merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"

@@ -17,6 +17,6 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
     onClick={onClick}
   >
     {icon && <img className="w-6 h-6 pl-1" alt="button icon" src={icon} />}
-    <p className={clsx(isSecondary ? 'text-primary' : 'text-primary-content')}>{title}</p>
+    <p className={clsx(isSecondary ? 'text-primary' : 'text-primary-content', 'text-center w-full')}>{title}</p>
   </button>
 );

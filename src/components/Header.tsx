@@ -1,16 +1,16 @@
 import clsx from 'clsx';
-import { useAtom, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthState } from 'src/state/AuthState';
+import { MeeAuthState } from 'src/state/MeeAuthState';
 import logo from '../assets/mee_logo.svg';
 
 const LogoutButton: React.FC = () => {
-  const setAuthState = useSetAtom(AuthState);
+  const setAuthState = useSetAtom(MeeAuthState);
   return (
     <button
       type="button"
-      className="text-primary text-base leading-3"
+      className="text-primary text-base leading-3 py-2"
       onClick={() => {
         setAuthState(null);
       }}
@@ -21,7 +21,7 @@ const LogoutButton: React.FC = () => {
 };
 
 export const Header: React.FC = () => {
-  const [authState] = useAtom(AuthState);
+  const [authState] = [null];// useAtom(MeeAuthState);
   const logoutVisible = authState !== null;
   const navigate = useNavigate();
   return (

@@ -3,6 +3,11 @@ import { Footer } from 'src/components/Footer';
 import { Header } from 'src/components/Header';
 import { MaxW } from 'src/components/MaxW';
 import clsx from 'clsx';
+import { initButton } from 'mee-js-sdk';
+import { useAtomValue } from 'jotai';
+import { MeeAuthState } from 'src/state/MeeAuthState';
+import { ActionButton } from 'src/components/ActionButton';
+import { useNavigate } from 'react-router-dom';
 import illustration from '../assets/mee_illustration_1.jpg';
 import ownership from '../assets/ownership.svg';
 import privacy from '../assets/privacy.svg';
@@ -14,6 +19,8 @@ interface LandingProps {
 
 export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const navigate = useNavigate();
+  const authState = useAtomValue(MeeAuthState);
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
@@ -21,6 +28,7 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
+    initButton();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -71,6 +79,19 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
                 and autonomy as they interact with internet service providers’ websites and apps.
               </p>
             </div>
+            <div className={clsx(authState !== null && 'hidden', 'py-4')} id="mee-button-container" />
+            <div className={clsx(authState === null && 'hidden', 'py-4')}>
+              <ActionButton
+                title="Subscribe"
+                onClick={() => {
+                  navigate('/profile');
+                }}
+              />
+
+            </div>
+            <p className="text-black">
+              {JSON.stringify(authState?.error?.error_description)}
+            </p>
             <div className="w-full flex flex-row flex-wrap">
               <div className="bg-alt-color-1 h-34 md:h-42 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
                 <span className="text-landing-secondary-text">
