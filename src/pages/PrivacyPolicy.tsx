@@ -46,36 +46,38 @@ export const PrivacyPolicyPage: React.FC = () => (
       <div className="max-w-256 mx-auto text-base pt-10 px-5 md:px-0 pb-20 text-[#111827]">
         <h1 className="text-4xl font-medium text-primary">Privacy Policy</h1>
         <p className="pt-10">
-          The privacy notice for Mee Foundation Inc (“we”, ”us”, or “our”) website
-          (
-          <MeeUrl text="https://mee.foundation" />
-          ) describes how and why we collect, store, use,
-          and/or share (“process”) your information when you visit our website
-          at
+          We (The Mee Foundation, Inc, a nonprofit registered in Massachusetts, USA)
+          are dedicated to giving you control over your personal information and respecting
+          your right to privacy. This privacy policy will help you understand what happens
+          to your data when you use our services, either by visiting our website
           {' '}
           <MeeUrl text="https://mee.foundation" />
-          .
+          {' '}
+          or using our app (Mee Identity Agent).
         </p>
-        {[{
-          title: 'In short:',
-          answer: <span>
-            <MeeUrl text="https://mee.foundation" />
-            {' '}
-            doesn’t collect, store, or use any of your personal data.
-          </span>,
-        },
-        {
-          title: 'Questions or concerns?',
-          answer: <span>
-            Reading this privacy notice will help you understand your
-            privacy rights and choices. If you do not agree with our policies and practices,
-            please do not use our Services. If you still have any questions or concerns, please
-            contact us at
-            {' '}
-            <MeeUrl text="contact@mee.foundation" url="mailto:contact@mee.foundation" />
-            .
-          </span>,
-        }].map((item) => <Section key={item.title} title={item.title} answer={item.answer} />)}
+        <p className="pt-10">
+          <span className="font-bold">When using our app.</span>
+          {' '}
+          We do not collect, transmit, store, sell, or share any
+          of your personal information with third-parties. Your personal information
+          remains securely stored on your smartphone and is not accessible to
+          anyone – not our employees or affiliates, not our service providers,
+          not any third-parties. You have complete control over your data and
+          can choose to share it (or not to share it) with others.
+        </p>
+        {[
+          {
+            title: 'Questions or concerns?',
+            answer: <span>
+              Reading this privacy notice will help you understand your privacy rights
+              and choices. If you do not agree with our policies and practices, please
+              do not use our services. If you still have any questions or concerns,
+              please contact us at
+              {' '}
+              <MeeUrl text="contact@mee.foundation" url="mailto:contact@mee.foundation" />
+              .
+            </span>,
+          }].map((item) => <Section key={item.title} title={item.title} answer={item.answer} />)}
         <h2 className="font-bold text-primary pt-10">
           KEY POINTS
         </h2>
@@ -83,10 +85,18 @@ export const PrivacyPolicyPage: React.FC = () => (
           {
             title: 'What personal information do we process?',
             answer: <span>
-              We do not process any of your personal information. We don’t collect any
-              of your personal information via the website
-              {' '}
-              <MeeUrl text="https://mee.foundation" />
+              <span className="font-bold">When using our website. </span>
+              With your consent, if you visit our website and
+              click “Connect with Mee” we collect and use your contact details (your
+              first name and your email address) for the purpose of sending you our
+              newsletter and other updates related to The Mee Foundation activities.
+              We do not share or sell this information with third-parties.
+              <span className="pt-3 block">
+                <span className="font-bold">When using our app.  </span>
+                We do not have access to any personal information stored on your device
+                by our app. It is therefore impossible for us to share it with either
+                anyone affiliated with The Mee Foundation or with any third-party.
+              </span>
             </span>,
           },
           {
@@ -99,7 +109,11 @@ export const PrivacyPolicyPage: React.FC = () => (
           },
           {
             title: 'How do we process your information?',
-            answer: 'We do not process any of your personal information.',
+            answer: <span>
+              <span className="font-bold">When using our website. </span>
+              We display your first name on our website when you have created a
+              connection. We send our newsletter to your email address.
+            </span>,
           },
           {
             title: 'In what situations and with which parties do we share personal information?',
@@ -111,32 +125,19 @@ export const PrivacyPolicyPage: React.FC = () => (
           },
           {
             title: 'How long do we keep your information?',
-            answer: 'We do not keep any of your personal information.',
-          },
-          {
-            title: 'Controls for do-not-track features?',
             answer: <span>
-              We do not use cookies and trackers on our website. The website
-              {' '}
-              <MeeUrl text="https://mee.foundation" />
-              {' '}
-              does not have any interactive elements and doesn&#39;t require any sort
-              of login or account information from the users.
+              <span className="font-bold">When using our website. </span>
+              We keep your contact details until the moment you unsubscribe from our newsletter.
+              After that, we will delete all of your personal information.
             </span>,
           },
           {
+            title: 'Controls for do-not-track features?',
+            answer: 'We do not use cookies or trackers on our website. Your visit to our website or use of our app does not generate logs of any personally identifiable information. ',
+          },
+          {
             title: 'Do we make updates to this notice?',
-            answer: <>
-              <span>
-                Yes, we will update this notice as necessary to stay compliant with relevant laws.
-              </span>
-              <span className="pt-3 inline-block">
-                We may update this privacy notice from time to time. The updated
-                version will be indicated by an updated “Revised” date of the updated version will be
-                effective as soon as it is accessible. We encourage you to review this privacy notice
-                frequently to be informed of how we are protecting your information.
-              </span>
-            </>,
+            answer: 'Yes, we will update this notice as necessary to stay compliant with the relevant laws. We may update this privacy notice from time to time. The updated version will be indicated by an updated “Revised” date of the updated version will be effective as soon as it is accessible. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.',
           },
           {
             title: 'How can you contact us about this notice?',
@@ -145,7 +146,7 @@ export const PrivacyPolicyPage: React.FC = () => (
               {' '}
               <MeeUrl text="contact@mee.foundation" url="mailto:contact@mee.foundation" />
               {' '}
-              or by post to:
+              or by mail to:
               {' '}
               <span className="font-medium">Mee Foundation Inc, 25 Craftsland Road, Chestnut Hill, MA 02467, United States</span>
             </span>,
@@ -154,7 +155,7 @@ export const PrivacyPolicyPage: React.FC = () => (
           <Section key={item.title} title={item.title} answer={item.answer} />
         ))}
         <p className="pt-10">
-          Last updated November 09, 2022
+          Last updated February 13, 2023
         </p>
       </div>
       <Footer />

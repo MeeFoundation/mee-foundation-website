@@ -5,7 +5,7 @@ import { MaxW } from 'src/components/MaxW';
 import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
 import { PartnerItem } from 'src/model/partnerItem';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PARTNER_DATA } from './DownloadPage';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
@@ -69,120 +69,92 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
 
 const partnerList: PartnerItem[] = [
   {
-    partnerName: 'New York Times',
-    partnerUrl: 'https://demo-dev.mee.foundation/',
-    partnerDisplayedUrl: 'nytimes.com',
-    partnerImageUrl: 'https://nytimes.com/favicon.ico',
+    partnerName: 'Mee Foundation',
+    partnerUrl: 'https://mee.foundation',
+    partnerDisplayedUrl: 'mee.foundation',
+    partnerImageUrl: 'https://mee.foundation/assets/mee_fav_icon.23140c64.svg',
     isCertified: true,
   },
-  {
-    partnerName: 'The Washington Post',
-    partnerUrl: 'https://washingtonpost.com',
-    partnerDisplayedUrl: 'washingtonpost.com',
-    partnerImageUrl: 'https://washingtonpost.com/favicon.ico',
-    isCertified: true,
-  },
-  {
-    partnerName: 'The Guardian',
-    partnerUrl: 'https://theguardian.com',
-    partnerDisplayedUrl: 'theguardian.com',
-    partnerImageUrl: 'https://theguardian.com/favicon.ico',
-    isCertified: true,
-  },
-  {
-    partnerName: 'The Wall Street Journal',
-    partnerUrl: 'https://wsj.com',
-    partnerDisplayedUrl: 'wsj.com',
-    partnerImageUrl: 'https://wsj.com/favicon.ico',
-    isCertified: false,
-  },
-  {
-    partnerName: 'The Chronicle',
-    partnerUrl: 'https://www.chronicle.com',
-    partnerDisplayedUrl: 'www.chronicle.com',
-    partnerImageUrl: 'https://www.chronicle.com/favicon-32x32.png',
-    isCertified: false,
-  },
+
 ];
 
 interface PartnerListItemProps {
   partner: PartnerItem;
 }
 
-const PartnerListItem: React.FC<PartnerListItemProps> = ({ partner }) => (
-  <div className="py-3 border-t border-alt-color-6">
-    <div className="flex flex-row gap-2">
-      <img className="w-12 h-12 rounded-full" src={partner.partnerImageUrl} alt={partner.partnerName} />
-      <div className="flex flex-col text-alt-color-8">
-        <div className="flex flex-row gap-1">
-          <p className="text-base">{partner.partnerName}</p>
-          <img
-            className="w-5"
-            src={partner.isCertified
-              ? MeeCertifiedIcon
-              : MeeCompatibleIcon}
-            alt={partner.isCertified
-              ? 'Mee certified'
-              : 'Mee compatible'}
-          />
-        </div>
+const PartnerListItem: React.FC<PartnerListItemProps> = ({ partner }) => {
+  const navigate = useNavigate();
+  return (
+    <div
+      className="py-3 border-t border-alt-color-6"
+      tabIndex={-1}
+      role="link"
+      onClick={() => {
+        navigate(partner.partnerUrl);
+      }}
+      onKeyPress={(e) => {
+        if (e.key === 'enter') {
+          navigate(partner.partnerUrl);
+        }
+      }}
+    >
+      <div className="flex flex-row gap-2">
+        <img className="w-12 h-12 rounded-full" src={partner.partnerImageUrl} alt={partner.partnerName} />
+        <div className="flex flex-col text-alt-color-8">
+          <div className="flex flex-row gap-1">
+            <p className="text-base">{partner.partnerName}</p>
+            <img
+              className="w-5"
+              src={partner.isCertified
+                ? MeeCertifiedIcon
+                : MeeCompatibleIcon}
+              alt={partner.isCertified
+                ? 'Mee certified'
+                : 'Mee compatible'}
+            />
+          </div>
 
-        <p className="text-xs">{partner.partnerDisplayedUrl}</p>
+          <p className="text-xs">{partner.partnerDisplayedUrl}</p>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ContextDoesNotExist: React.FC = () => (
   <MaxW>
     <div className="">
       <Header />
       <div className="max-w-256 mx-auto">
-        <div className="sub-header bg-primary flex flex-col items-center">
-          <img src={illustrationEmpty} alt="mee-illustration" className="w-full" />
-          <div className="my-3 w-full px-5 text-center">
-            <h1 className="text-secondary text-2xl font-bold">Onwards and upwards!</h1>
-            <p className="text-primary-content text-sm pt-2">
-              You and I are at the beginning of our journey. I look forward to taking more steps together.
-            </p>
+        <div className="min-h-screen">
+          <div className="sub-header bg-primary flex flex-col items-center">
+            <img src={illustrationEmpty} alt="mee-illustration" className="w-full" />
+            <div className="my-3 w-full px-5 text-center">
+              <h1 className="text-secondary text-2xl font-bold">Onwards and upwards!</h1>
+              <p className="text-primary-content text-sm pt-2">
+                You and I are at the beginning of our journey. I look forward to taking more steps together.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="text-alt-color-8 px-4">
-          <div className="pt-4 pb-2 flex flex-row justify-between">
-            <h2 className="text-primary text-xl font-medium">Certified Apps</h2>
-            <button
-              type="button"
-              onClick={() => {
-                window.open('/#/mee-certified', '_blank');
-              }}
-            >
-              <img src={informationIcon} alt="mee-information" className="" />
-            </button>
-          </div>
-          {
+          <div className="text-alt-color-8 px-4">
+            <div className="pt-4 pb-2 flex flex-row justify-between">
+              <h2 className="text-primary text-xl font-medium">Certified Apps</h2>
+              <button
+                type="button"
+                onClick={() => {
+                  window.open('/#/mee-certified', '_blank');
+                }}
+              >
+                <img src={informationIcon} alt="mee-information" className="" />
+              </button>
+            </div>
+            {
           partnerList.filter((partner) => partner.isCertified).map((partner) => (
             <PartnerListItem partner={partner} />
           ))
 
         }
-          <div className="pt-19 pb-2 flex flex-row justify-between">
-            <h2 className="text-primary text-xl font-medium">Compatible Apps</h2>
-            <button
-              type="button"
-              onClick={() => {
-                window.open('/#/mee-compatible', '_blank');
-              }}
-            >
-              <img src={informationIcon} alt="mee-information" className="" />
-            </button>
           </div>
-
-          {
-          partnerList.filter((partner) => !partner.isCertified).map((partner) => (
-            <PartnerListItem partner={partner} />
-          ))
-
-        }
         </div>
         <Footer />
       </div>
@@ -194,14 +166,14 @@ export const InstallationSucceed: React.FC = () => {
   const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
   const params = useParams<{ partnerData: string }>();
   useEffect(() => {
-    if (window.location.hostname === 'auth-dev.mee.foundation') {
+    if (window.location.hostname === 'auth.mee.foundation') {
       try {
         const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
         if (localStoragePartnerData !== null) {
-          window.location.href = `https://www-dev.mee.foundation/#/installed/${localStoragePartnerData}`;
+          window.location.href = `https://www.mee.foundation/#/installed/${localStoragePartnerData}`;
         } else {
-          window.location.href = 'https://www-dev.mee.foundation/#/installed';
+          window.location.href = 'https://www.mee.foundation/#/installed';
         }
       } catch {
         //

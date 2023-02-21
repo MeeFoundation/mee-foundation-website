@@ -3,11 +3,12 @@ import { Footer } from 'src/components/Footer';
 import { Header } from 'src/components/Header';
 import { MaxW } from 'src/components/MaxW';
 import clsx from 'clsx';
-import { initButton } from 'mee-js-sdk';
+import { authorize } from 'mee-js-sdk';
 import { useAtomValue } from 'jotai';
 import { MeeAuthState } from 'src/state/MeeAuthState';
 import { ActionButton } from 'src/components/ActionButton';
 import { useNavigate } from 'react-router-dom';
+import { createCustomMeeButton } from 'src/helpers/createCustomMeeButton';
 import illustration from '../assets/mee_illustration_1.jpg';
 import ownership from '../assets/ownership.svg';
 import privacy from '../assets/privacy.svg';
@@ -21,14 +22,21 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
   const authState = useAtomValue(MeeAuthState);
+  // eslint-disable-next-line no-console
+  console.log(authState);
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
 
+  const userDataIsValid = authState !== null && (typeof authState?.data !== 'undefined'
+  && typeof authState?.error === 'undefined');
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    initButton();
+    createCustomMeeButton('mee-custom-button-container', () => {
+      authorize();
+    });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -79,16 +87,7 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
                 and autonomy as they interact with internet service providers’ websites and apps.
               </p>
             </div>
-            <div className={clsx(authState !== null && 'hidden', 'py-4')} id="mee-button-container" />
-            <div className={clsx(authState === null && 'hidden', 'py-4')}>
-              <ActionButton
-                title="Subscribe"
-                onClick={() => {
-                  navigate('/profile');
-                }}
-              />
 
-            </div>
             <p className="text-black">
               {JSON.stringify(authState?.error?.error_description)}
             </p>
@@ -130,6 +129,16 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
               <p className="text-primary text-center text-base md:text-xl">
                 We’re not-for-profit and open-source.
               </p>
+            </div>
+            <div className={clsx(userDataIsValid && 'hidden', 'py-4')} id="mee-custom-button-container" />
+            <div className={clsx(!userDataIsValid && 'hidden', 'py-4')}>
+              <ActionButton
+                title="Subscribe"
+                onClick={() => {
+                  navigate('/subscribe');
+                }}
+              />
+
             </div>
           </div>
           <Footer />

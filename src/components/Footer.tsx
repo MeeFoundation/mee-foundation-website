@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import head from '../assets/head.svg';
 // import appStoreImage from '../assets/appStoreButton.svg';
 
@@ -13,6 +14,10 @@ export const Footer: React.FC = () => (
             |
             {' '}
             <a href="https://docs-dev.mee.foundation/">Docs</a>
+            {' '}
+            |
+            {' '}
+            <Link to="/support">Support</Link>
           </p>
           <p className="leading-4">
             © 2022 The Mee Foundation, Inc.

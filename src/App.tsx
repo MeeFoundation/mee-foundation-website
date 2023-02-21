@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import {
   Navigate, Route, Routes, useNavigate,
 } from 'react-router-dom';
@@ -12,12 +12,15 @@ import { LandingPage } from './pages/LandingPage';
 import { MeeCertifiedPage } from './pages/MeeCertified';
 import { MeeCompatiblePage } from './pages/MeeCompatible';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicy';
-import { ProfilePage } from './pages/ProfilePage';
+import { SubscribePage } from './pages/SubscribePage';
+import { SupportPage } from './pages/SupportPage';
 import { MeeAuthState } from './state/MeeAuthState';
 
 export const App: React.FC = () => {
   const navigate = useNavigate();
   const setUserData = useSetAtom(MeeAuthState);
+  const [showToast, setShowToast] = useState(false);
+
   useEffect(() => {
     init({
       client_metadata: {
@@ -27,12 +30,11 @@ export const App: React.FC = () => {
         contacts: [],
       },
       redirect_uri: 'http://localhost:3000/',
-      container_id: 'mee-button-container',
       claims: {
         id_token: {
           name: {
             attribute_type: 'https://schema.org/name',
-            name: 'Name',
+            name: 'First Name',
             typ: 'string',
             essential: true,
             retention_duration: MeeConsentDuration.ephemeral,
@@ -51,28 +53,43 @@ export const App: React.FC = () => {
         },
       },
     }, (data) => {
-      // eslint-disable-next-line no-console
-      console.log('data: ', data);
       setUserData(data);
-      navigate('/profile');
+      if (data !== null
+        && typeof data?.data !== 'undefined'
+        && typeof data?.data.name !== 'undefined'
+      ) {
+        navigate('/subscribe');
+      } else {
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 2000);
+      }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-
-    <Suspense fallback={<Fallback />}>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/mee-certified" element={<MeeCertifiedPage />} />
-        <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
-        <Route path="/consent/:partnerData" element={<AboutMeePage />} />
-        <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
-        <Route path="/installed" element={<InstallationSucceed />} />
-        <Route path="/installed/:partnerData" element={<InstallationSucceed />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Suspense>
+    <>
+      {showToast && (
+      <div className="toast toast-top toast-center">
+        <div className="alert alert-error"><span>Connection attempt was unsuccessful</span></div>
+      </div>
+      )}
+      <Suspense fallback={<Fallback />}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/mee-certified" element={<MeeCertifiedPage />} />
+          <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
+          <Route path="/consent/:partnerData" element={<AboutMeePage />} />
+          <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
+          <Route path="/installed" element={<InstallationSucceed />} />
+          <Route path="/installed/:partnerData" element={<InstallationSucceed />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/subscribe" element={<SubscribePage />} />
+          <Route path="/support" element={<SupportPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
