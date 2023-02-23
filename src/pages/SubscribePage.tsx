@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useAtom, useAtomValue } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +7,8 @@ import { Footer } from 'src/components/Footer';
 import { Header } from 'src/components/Header';
 import { MaxW } from 'src/components/MaxW';
 import { MeeAuthState, SubscribedState } from 'src/state/MeeAuthState';
+
+const emailValidationRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,10}$/g;
 
 export const SubscribePage: React.FC = () => {
   const meeData = useAtomValue(MeeAuthState);
@@ -24,6 +27,7 @@ export const SubscribePage: React.FC = () => {
   const name = meeData?.data?.name;
 
   const [email, setEmail] = useState<string | undefined>(meeData?.data?.email);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <MaxW>
@@ -43,12 +47,21 @@ export const SubscribePage: React.FC = () => {
           </p>
           {isSubscribed
           || (
-          <input
-            placeholder="Email"
-            className="border-alt-color-6 border px-2 py-2 w-full"
-            value={email}
-            onChange={((e) => setEmail(e.currentTarget.value))}
-          />
+            <div>
+              <input
+                placeholder="Email"
+                className={clsx(
+                  'border-alt-color-6 border px-2 py-2 w-full outline-none focus:border-primary',
+                  error && 'border-red-500 focus:border-red-500',
+                )}
+                value={email}
+                onChange={((e) => {
+                  setError(null);
+                  setEmail(e.currentTarget.value);
+                })}
+              />
+              <p className="text-sm text-red-500">{error}</p>
+            </div>
           )}
           <div className="mx-auto w-32 flex flex-col gap-4 pt-8">
 
@@ -56,6 +69,10 @@ export const SubscribePage: React.FC = () => {
             <ActionButton
               title="Subscribe"
               onClick={() => {
+                if (typeof email === 'undefined' || !email.trim().match(emailValidationRegex)) {
+                  setError('Incorrect Email');
+                  return;
+                }
                 // eslint-disable-next-line no-console
                 console.log('email: ', email);
                 setSubscribed(true);

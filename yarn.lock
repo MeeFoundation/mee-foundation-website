@@ -2161,10 +2161,10 @@ make-dir@^3.0.2:
   dependencies:
     semver "^6.0.0"
 
-mee-js-sdk@^0.0.25:
-  version "0.0.25"
-  resolved "http://localhost:4873/mee-js-sdk/-/mee-js-sdk-0.0.25.tgz#2b5e02de7f77bee5ec6a71bdcecc03b780e63d86"
-  integrity sha512-ZcPW43+s7ReG4c8kKmppvsoMjb3GnMxt1zx0kjhyR4taZxUGXkbPrr3zh6XfecudYv7/vjLyuWe3qWTN04lBxQ==
+mee-js-sdk@^0.1.0:
+  version "0.1.0"
+  resolved "http://localhost:4873/mee-js-sdk/-/mee-js-sdk-0.1.0.tgz#40ae552f64b2dff4ec517c54c4b21c49334ea33e"
+  integrity sha512-eeMz1BNU9Qy+miV20UFMSjItL1R4PQYJofqGbauRD+FU9gkUe+PZQb/OLNjk8CSkmM5q3NW2PFPlpzGkuTcdxA==
   dependencies:
     big-integer "^1.6.51"
     jose "^4.11.2"

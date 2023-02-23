@@ -6,6 +6,7 @@ import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
 import { PartnerItem } from 'src/model/partnerItem';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Environment, getEnvironment } from 'src/helpers/getEnvironment';
 import { PARTNER_DATA } from './DownloadPage';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
@@ -165,15 +166,17 @@ const ContextDoesNotExist: React.FC = () => (
 export const InstallationSucceed: React.FC = () => {
   const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
   const params = useParams<{ partnerData: string }>();
+  const environment = getEnvironment();
   useEffect(() => {
-    if (window.location.hostname === 'auth.mee.foundation') {
+    if (environment === Environment.prodApp || environment === Environment.devApp) {
+      const isDevEnv = environment === Environment.devApp;
       try {
         const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
         if (localStoragePartnerData !== null) {
-          window.location.href = `https://www.mee.foundation/#/installed/${localStoragePartnerData}`;
+          window.location.href = `https://www${isDevEnv ? '-dev' : ''}.mee.foundation/#/installed/${localStoragePartnerData}`;
         } else {
-          window.location.href = 'https://www.mee.foundation/#/installed';
+          window.location.href = `https://www${isDevEnv ? '-dev' : ''}.mee.foundation/#/installed`;
         }
       } catch {
         //
@@ -183,7 +186,7 @@ export const InstallationSucceed: React.FC = () => {
     } else {
       setPartnerData(null);
     }
-  }, [params]);
+  }, [environment, params]);
 
   return (
     <div>

@@ -22,7 +22,7 @@ export const Footer: React.FC = () => (
           <p className="leading-4">
             © 2022 The Mee Foundation, Inc.
           </p>
-          <div className="w-32 hidden md:block" />
+          <div className="w-50 hidden md:block" />
           {/* <img alt="App Store" src={appStoreImage} /> */}
         </div>
       </div>
