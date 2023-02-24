@@ -25,11 +25,11 @@ export const App: React.FC = () => {
     init({
       client_metadata: {
         client_name: 'Mee Foundation',
-        logo_uri: 'http://localhost:3000/favicon.png',
+        logo_uri: 'https://mee.foundation/favicon.png',
         display_url: 'nytimes.com',
         contacts: [],
       },
-      redirect_uri: 'http://localhost:3000/',
+      redirect_uri: 'https://mee.foundation/',
       claims: {
         id_token: {
           name: {
@@ -80,7 +80,8 @@ export const App: React.FC = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/mee-certified" element={<MeeCertifiedPage />} />
           <Route path="/mee-compatible" element={<MeeCompatiblePage />} />
-          <Route path="/consent/:partnerData" element={<AboutMeePage />} />
+          <Route path="/consent/:partnerData" element={<AboutMeePage showQrCode />} />
+          <Route path="/cdconsent/:partnerData" element={<AboutMeePage />} />
           <Route path="/redirect/:partnerData" element={<AppStoreRedirect />} />
           <Route path="/installed" element={<InstallationSucceed />} />
           <Route path="/installed/:partnerData" element={<InstallationSucceed />} />
