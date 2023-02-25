@@ -174,9 +174,9 @@ export const InstallationSucceed: React.FC = () => {
         const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
         if (localStoragePartnerData !== null) {
-          window.location.href = `https://www${isDevEnv ? '-dev' : ''}.mee.foundation/#/installed/${localStoragePartnerData}`;
+          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}mee.foundation/#/installed/${localStoragePartnerData}`;
         } else {
-          window.location.href = `https://www${isDevEnv ? '-dev' : ''}.mee.foundation/#/installed`;
+          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}.mee.foundation/#/installed`;
         }
       } catch {
         //
