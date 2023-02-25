@@ -26,7 +26,7 @@ export const App: React.FC = () => {
       client_metadata: {
         client_name: 'Mee Foundation',
         logo_uri: 'https://mee.foundation/favicon.png',
-        display_url: 'nytimes.com',
+        display_url: 'mee.foundation',
         contacts: [],
       },
       redirect_uri: 'https://mee.foundation/',
