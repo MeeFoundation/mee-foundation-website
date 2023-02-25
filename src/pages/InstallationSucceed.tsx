@@ -51,10 +51,14 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
         Congratulations! You’ve successfully installed Mee!
       </h1>
       <p className="text-lg font-medium">Click Next to connect to </p>
-      <p className="text-3xl text-alt-color-8 font-bold">{partnerDataUnparsed.partnerName}</p>
+      <p className="text-3xl text-alt-color-8 font-bold">
+        {partnerDataUnparsed.partnerName || partnerDataUnparsed.client_metadata?.client_name }
+      </p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
-        <p className="text-3xl font-bold">{partnerDataUnparsed.partnerDisplayedUrl}</p>
+        <p className="text-3xl font-bold">
+          {partnerDataUnparsed.partnerDisplayedUrl || partnerDataUnparsed.client_metadata?.display_url}
+        </p>
       </div>
 
       <button
