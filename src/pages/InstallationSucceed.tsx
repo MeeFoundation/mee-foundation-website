@@ -7,6 +7,7 @@ import { Footer } from 'src/components/Footer';
 import { PartnerItem } from 'src/model/partnerItem';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Environment, getEnvironment } from 'src/helpers/getEnvironment';
+import { decodeJwt } from 'jose';
 import { PARTNER_DATA } from './DownloadPage';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
@@ -31,10 +32,14 @@ interface ContextExistsProps {
 const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
   const partnerDataUnparsed: PartnerItem = useMemo(() => {
     try {
-      return JSON.parse(atob(partnerData));
+      return decodeJwt(partnerData);
     } catch {
-      window.location.href = '/';
-      return { partnerName: '', partnerUrl: '', partnerDisplayedUrl: '' };
+      try {
+        return JSON.parse(window.atob(partnerData));
+      } catch {
+        window.location.href = '/';
+        return { partnerName: '', partnerUrl: '', partnerDisplayedUrl: '' };
+      }
     }
   }, [partnerData]);
 
@@ -176,7 +181,7 @@ export const InstallationSucceed: React.FC = () => {
         if (localStoragePartnerData !== null) {
           window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}mee.foundation/#/installed/${localStoragePartnerData}`;
         } else {
-          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}.mee.foundation/#/installed`;
+          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}mee.foundation/#/installed`;
         }
       } catch {
         //
