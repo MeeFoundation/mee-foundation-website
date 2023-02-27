@@ -15,6 +15,7 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicy';
 import { SubscribePage } from './pages/SubscribePage';
 import { SupportPage } from './pages/SupportPage';
 import { MeeAuthState } from './state/MeeAuthState';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export const App: React.FC = () => {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ export const App: React.FC = () => {
       </div>
       )}
       <Suspense fallback={<Fallback />}>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/mee-certified" element={<MeeCertifiedPage />} />
