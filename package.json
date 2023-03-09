@@ -1,54 +1,17 @@
 {
-  "name": "mee-web",
-  "version": "0.0.0",
-  "scripts": {
-    "predeploy": "yarn build && cp CNAME dist/CNAME",
-    "deploy": "gh-pages -d dist",
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "yarn build && vite preview --port 3000",
-    "lint": "eslint './{configs,src}/**/*.{js,jsx,ts,tsx}' --config ./.eslintrc.js --format stylish",
-    "lint:fix": "yarn lint --fix"
-  },
-  "dependencies": {
-    "@heroicons/react": "^1.0.5",
-    "axios": "^0.27.2",
-    "clsx": "^1.1.1",
-    "daisyui": "^2.50.1",
-    "date-fns": "^2.28.0",
-    "jose": "^4.12.0",
-    "jotai": "^1.5.3",
-    "mee-js-sdk": "^0.1.0",
-    "qrcode.react": "^3.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-dropzone": "^11.5.1",
-    "react-hook-form": "^7.25.1",
-    "react-router-dom": "6"
-  },
-  "devDependencies": {
-    "@types/node": "^18.14.1",
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "@vitejs/plugin-react": "^1.0.7",
-    "add": "^2.0.6",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^8.7.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^16.1.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "gh-pages": "^3.2.3",
-    "postcss": "^8.4.5",
-    "rollup-plugin-visualizer": "^5.5.4",
-    "tailwindcss": "^3.2.6",
-    "typescript": "^4.4.4",
-    "vite": "^2.7.2",
-    "vite-plugin-checker": "^0.3.4",
-    "vite-plugin-svgr": "^1.0.1"
-  }
+	"name": "mee-foundation-website-new",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/tailwind": "^3.0.1",
+		"astro": "^2.0.4",
+		"tailwindcss": "^3.0.24"
+	}
 }

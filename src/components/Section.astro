@@ -1,0 +1,16 @@
+---
+export interface Props {
+	name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class={`section ${name}`}>
+</div>
+<style>
+	.section {
+		height: 100vh;
+	}
+
+</style>

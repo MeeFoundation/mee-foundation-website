@@ -1,0 +1,90 @@
+---
+import Background from './Background.astro';
+
+export interface Props {
+}
+
+const {  } = Astro.props;
+const subtitles = ["there is an online power imbalance.","data brokers and marketers are buying and selling information about you without your knowledge.","service providers can sell or share your data under any terms they insert into their privacy policies.","you can’t control who has your data or how they’ll use it.","many users navigate this world with mistrust and fear."]
+---
+
+<article class="flex flex-col items-center">
+  <Background />
+	<img id="linesImage" class="lines animate-fadeIn" src="/assets/lines.svg" />
+	<div class="shadow"/>
+  <section class="relative flex flex-col items-center z-50 text-center w-full md:w-[692px]">
+    <div id="title" class="overflow-hidden fixed top-[40vh]">
+      <h2 class="text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
+    </div>
+		{subtitles.map(subtitle => (<div class="section flex flex-col items-center  section-0 overflow-hidden min-h-screen">
+			<div class="subtitle overflow-hidden fixed top-[43vh] w-full md:w-[692px] hidden opacity-0">
+				<h2 class="text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+			</div>
+		</div>))}
+  </section>
+
+</article>
+
+<style>
+  
+  .shadow {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(#0F080E 20%, transparent 120%);
+		z-index: 11;
+	}
+  .lines {
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		object-fit: cover;
+	}
+	.subtitle {
+		transition: opacity 300ms;
+	}
+</style>
+
+<script>
+  const sections = document.querySelectorAll('.section')
+	const linesImage = document.getElementById("linesImage");
+
+		const options: IntersectionObserverInit = {
+			root: null,
+			threshold: 0.1,
+			rootMargin: "-50%"
+		};
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
+					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
+				} else {
+					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),300);
+					entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
+				}
+			})
+		}, options);
+
+
+		sections.forEach((section) => {
+			observer.observe(section)
+		});
+
+		const storeScroll = () => {
+			const scrollPosition = window.scrollY / 1000;
+			const diffVal = 0.144;
+			const scaleFactor = scrollPosition - (diffVal * Math.floor(scrollPosition / diffVal));
+
+			if (linesImage) {
+				// linesImage.style.transition = "all 1000ms linear";
+				linesImage.style.transform = `scale(${1 + scaleFactor})`
+				// linesImage.style.transition = "none";
+			}
+
+			console.log(scrollPosition,window.scrollY, 0.02 * Math.floor(scrollPosition / 0.02), scaleFactor)
+			// document.documentElement.dataset.scroll = window.scrollY.toString();
+		};
+
+		document.addEventListener('scroll', storeScroll) //needs debounce
+</script>
