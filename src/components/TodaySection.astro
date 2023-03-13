@@ -1,5 +1,6 @@
 ---
 import Background from './Background.astro';
+import Grid from './Grid.astro';
 
 export interface Props {
 }
@@ -10,30 +11,39 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 
 <article class="flex flex-col items-center">
   <Background />
-	<img id="linesImage" class="lines animate-fadeIn" src="/assets/lines.svg" />
+	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/assets/lines.svg" /> -->
+	
 	<div class="shadow"/>
-  <section class="relative flex flex-col items-center z-50 text-center w-full md:w-[692px]">
-    <div id="title" class="overflow-hidden fixed top-[40vh]">
-      <h2 class="text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
+	
+  <section class="relative flex flex-col items-center text-center w-full md:w-[692px]">
+		<Grid />
+    <div id="title" class="overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
+      <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
-		{subtitles.map(subtitle => (<div class="section flex flex-col items-center  section-0 overflow-hidden min-h-screen">
-			<div class="subtitle overflow-hidden fixed top-[43vh] w-full md:w-[692px] hidden opacity-0">
-				<h2 class="text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+		{subtitles.map(subtitle => (
+			<div class="section flex flex-col items-center section-0 overflow-hidden min-h-screen">
+				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full md:w-[692px] hidden opacity-0">
+					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+				</div>
 			</div>
-		</div>))}
+		))}
   </section>
 
 </article>
 
 <style>
-  
+	.text {
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;  
+	}
   .shadow {
 		position: fixed;
-		width: 100%;
-		height: 100%;
-		background: radial-gradient(#0F080E 20%, transparent 120%);
+		width: 100vw;
+		height: 100vh;
+		background: radial-gradient(#0F080E 20%, transparent 100%);
 		z-index: 11;
 	}
+
   .lines {
 		width: 100vw;
 		height: 100vh;
@@ -43,6 +53,7 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 	.subtitle {
 		transition: opacity 300ms;
 	}
+
 </style>
 
 <script>
@@ -86,5 +97,5 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 			// document.documentElement.dataset.scroll = window.scrollY.toString();
 		};
 
-		document.addEventListener('scroll', storeScroll) //needs debounce
+		// document.addEventListener('scroll', storeScroll) //needs debounce
 </script>
