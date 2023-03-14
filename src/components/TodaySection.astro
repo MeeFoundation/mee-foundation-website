@@ -1,5 +1,6 @@
 ---
 import Background from './Background.astro';
+import FloatingFigures from './FloatingFigures.astro';
 import Grid from './Grid.astro';
 
 export interface Props {
@@ -12,21 +13,23 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 <article class="flex flex-col items-center">
   <Background />
 	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/assets/lines.svg" /> -->
-	
-	<div class="shadow"/>
-	
-  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
+  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[732px]">
 		<Grid />
-    <div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen pb-7">
+		<div class="shadow"/>
+		<FloatingFigures />
+    <div id="title" class="overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden min-h-screen">
-				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full md:w-[692px] hidden opacity-0">
+				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
 					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
 			</div>
 		))}
+		<div class="fixed flex items-center justify-center h-screen pt-52 z-20">
+			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+		</div>
   </section>
 
 </article>
@@ -40,9 +43,9 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 		position: fixed;
 		width: 100vw;
 		height: 100vh;
-		background: radial-gradient(farthest-side,#0F080E 20%, transparent 120%) center no-repeat;;
+		background: radial-gradient(#0F080E 20%, transparent 60%) center no-repeat;
 		z-index: 10;
-		animation: pulse 5s infinite alternate;
+		/* animation: pulse 5s infinite alternate; */
 		backface-visibility: hidden;
 	}
 
@@ -54,7 +57,7 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
   100% {
     transform: perspective(300px) translateZ(150px);
   }
-}
+	}
 
   .lines {
 		width: 100vw;
@@ -66,11 +69,43 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 		transition: opacity 300ms;
 	}
 
+	.scrollIcon {
+		display: flex;
+		position: relative;
+    border: 2px solid white;
+    border-radius: 12px;
+	}
+  .scrollIcon::after {
+    position: relative;
+    left:calc(50% - 1px);
+    width: 2px;
+    height: 45%;
+    background: rgba(255,255,255,1);
+    border-radius: 1px;
+    content:"";
+		align-self: flex-start;
+    animation-name: scroll;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+  }
+
+@keyframes scroll {
+  20% { opacity: 1; height: 45%;}
+  20% { opacity: 1; height: 45%;}
+  30% { height: 100%; align-self: flex-start;}
+  40% { opacity: 1; align-self: flex-end;}
+  80% {  opacity: 0; height: 0%; align-self: flex-end;}
+  81% {  opacity: 0; height: 45%; align-self: flex-start;}
+  100% { opacity: 1; height: 45%;}
+}
+
 </style>
 
 <script>
   const sections = document.querySelectorAll('.section')
 	const linesImage = document.getElementById("linesImage");
+	const scrollIcon = document.querySelector(".scrollIcon");
 
 		const options: IntersectionObserverInit = {
 			root: null,
@@ -83,7 +118,7 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 				} else {
-					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),300);
+					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),100);
 					entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
 				}
 			})
@@ -94,10 +129,21 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 			observer.observe(section)
 		});
 
+		document.addEventListener('scroll', () => {
+			if(window.scrollY > 400) {
+				scrollIcon?.classList.add("opacity-0");
+				setTimeout(()=>{
+					scrollIcon?.classList.add("hidden");
+				},400)
+			}
+		})
+
 		const storeScroll = () => {
 			const scrollPosition = window.scrollY / 1000;
 			const diffVal = 0.144;
 			const scaleFactor = scrollPosition - (diffVal * Math.floor(scrollPosition / diffVal));
+
+			
 
 			if (linesImage) {
 				// linesImage.style.transition = "all 1000ms linear";
@@ -105,7 +151,7 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 				// linesImage.style.transition = "none";
 			}
 
-			console.log(scrollPosition,window.scrollY, 0.02 * Math.floor(scrollPosition / 0.02), scaleFactor)
+			console.log(scrollPosition, 0.02 * Math.floor(scrollPosition / 0.02), scaleFactor)
 			// document.documentElement.dataset.scroll = window.scrollY.toString();
 		};
 

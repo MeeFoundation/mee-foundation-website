@@ -6,13 +6,31 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '25xl': '6rem'
+        "25xl": "6rem",
       },
       fontFamily: {
         sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         button: "1px 1px 5px rgba(0, 0, 0, 0.12)",
+      },
+      spacing: {
+        6.5: "1.625rem",
+        7.5: "1.875rem",
+        10.5: "2.625rem",
+        12.5: "3.125rem",
+        13.5: "3.375rem",
+        14.5: "3.625rem",
+        16.5: "4.125rem",
+        17.5: "4.375rem",
+        21: "5.25rem",
+        22.5: "5.625rem",
+        23.5: "5.875rem",
+        24.5: "6.125rem",
+        25: "6.25rem",
+        25: "6.25rem",
+        34.5: "8.625rem",
+        44.5: "11.125rem",
       },
       zIndex: {
         100: "100",
