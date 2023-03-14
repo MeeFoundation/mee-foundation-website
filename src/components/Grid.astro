@@ -7,7 +7,7 @@ const {  } = Astro.props;
 ---
 <div class="body">
   <div class="tunnel">
-    {[...Array(20).keys()].map((item) => {
+    {[...Array(9).keys()].map((item) => {
         return <div class="frame" style={`--i:${item + 1}`}></div>
       })
     }
@@ -47,7 +47,7 @@ const {  } = Astro.props;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
+  z-index: 1;
   overflow-anchor: none;
   position: fixed;
 }
@@ -56,7 +56,7 @@ const {  } = Astro.props;
   width: 101vw;
   height: 101vh;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .frame {
@@ -66,14 +66,14 @@ const {  } = Astro.props;
   border-style: solid;
   border-color: #F9B6890F;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   transform-style: preserve-3d;
   
   animation-name: move;
-  animation-duration: 20s;
+  animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-delay: calc(2s * var(--i) - 20s);
+  animation-delay: calc(2s * var(--i) - 5s);
 }
 
 .gridWrapper {
@@ -83,7 +83,7 @@ const {  } = Astro.props;
   width:100%;
   height:100%;
   perspective: 300px;
-  z-index: 0;
+  z-index: 1;
   
   transform-style: preserve-3d;
 }
@@ -93,7 +93,7 @@ const {  } = Astro.props;
   border-style: solid;
   border-color: #F9B6890F;
   transform-style: preserve-3d;
-  z-index: 0;
+  z-index: 1;
   position: absolute;
 }
 
@@ -126,8 +126,8 @@ const {  } = Astro.props;
 }
 
 .plane {
-  
-  position:absolute;
+  z-index: 1;
+  position: absolute;
   width:100%;
   height:100%;
   transform-style: preserve-3d;
@@ -155,7 +155,7 @@ const {  } = Astro.props;
 
 @keyframes move {
   0% {
-    transform: perspective(300px) translateZ(-1000px);
+    transform: perspective(300px) translateZ(-700px);
   }
 
   100% {

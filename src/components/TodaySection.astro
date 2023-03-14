@@ -15,9 +15,9 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 	
 	<div class="shadow"/>
 	
-  <section class="relative flex flex-col items-center text-center w-full md:w-[692px]">
+  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Grid />
-    <div id="title" class="overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
+    <div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen pb-7">
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
@@ -40,9 +40,21 @@ const subtitles = ["there is an online power imbalance.","data brokers and marke
 		position: fixed;
 		width: 100vw;
 		height: 100vh;
-		background: radial-gradient(#0F080E 20%, transparent 100%);
-		z-index: 11;
+		background: radial-gradient(farthest-side,#0F080E 20%, transparent 120%) center no-repeat;;
+		z-index: 10;
+		animation: pulse 5s infinite alternate;
+		backface-visibility: hidden;
 	}
+
+	@keyframes pulse {
+  0% {
+    transform: perspective(300px) translateZ(50px);
+  }
+
+  100% {
+    transform: perspective(300px) translateZ(150px);
+  }
+}
 
   .lines {
 		width: 100vw;
