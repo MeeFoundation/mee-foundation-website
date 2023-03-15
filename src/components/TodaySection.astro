@@ -21,7 +21,7 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden min-h-screen">
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
 				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
 					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
@@ -103,8 +103,9 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 </style>
 
 <script>
-  const sections = document.querySelectorAll('.section')
-	const linesImage = document.getElementById("linesImage");
+import { debounce } from "lodash-es";
+
+  const sections = document.querySelectorAll('.section');
 	const scrollIcon = document.querySelector(".scrollIcon");
 
 		const options: IntersectionObserverInit = {
@@ -130,6 +131,7 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 		});
 
 		document.addEventListener('scroll', () => {
+			storeScroll();
 			if(window.scrollY > 400) {
 				scrollIcon?.classList.add("opacity-0");
 				setTimeout(()=>{
@@ -138,22 +140,9 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 			}
 		})
 
-		const storeScroll = () => {
-			const scrollPosition = window.scrollY / 1000;
-			const diffVal = 0.144;
-			const scaleFactor = scrollPosition - (diffVal * Math.floor(scrollPosition / diffVal));
-
-			
-
-			if (linesImage) {
-				// linesImage.style.transition = "all 1000ms linear";
-				linesImage.style.transform = `scale(${1 + scaleFactor})`
-				// linesImage.style.transition = "none";
-			}
-
-			console.log(scrollPosition, 0.02 * Math.floor(scrollPosition / 0.02), scaleFactor)
-			// document.documentElement.dataset.scroll = window.scrollY.toString();
-		};
-
-		// document.addEventListener('scroll', storeScroll) //needs debounce
+	const storeScroll = () => {
+		document.documentElement.style.setProperty('--scroll',
+		(window.scrollY /
+		(document.body.offsetHeight - window.innerHeight)).toString())
+	}
 </script>

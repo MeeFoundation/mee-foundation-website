@@ -71,7 +71,9 @@ const {  } = Astro.props;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-delay: calc(2s * var(--i) - 5s);
+  animation-delay: calc(1s * (var(--i) - var(--scroll) * 10) - 5s);
+  animation-play-state: paused;
+  animation-fill-mode: both;
 }
 
 .gridWrapper {
