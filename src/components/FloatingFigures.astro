@@ -58,11 +58,11 @@ const {  } = Astro.props;
     height: 100%;
     transform-style: preserve-3d;
     animation-name: moveToCenter;  
-    animation-duration: 5s;
+    animation-duration: 60s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    animation-play-state: paused;
-    animation-delay: calc(((var(--scroll) * 15) + var(--i)) * -1s);
+    /* animation-play-state: paused; */
+    animation-delay: calc(((var(--scroll) * 5) + var(--i)) * -10s);
     animation-fill-mode: both;
     backface-visibility: hidden; 
   }
