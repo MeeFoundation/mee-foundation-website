@@ -50,6 +50,9 @@ const links = [{name: "How MEE works", link:"#"},{name: "About Us", link:"#"},{n
     min-width: 78px;
     text-align: center;
     transition: transform 0.44s ease, background-color 0.5s ease-in, opacity 0.1s ease 0.44s;
+    backface-visibility: hidden;
+    -webkit-transform:translate3d(0,0,0);
+    -webkit-transform-style: preserve-3d;
   }
   li.menu__item:hover {
     transform: translateY(-4px);
@@ -62,10 +65,12 @@ const links = [{name: "How MEE works", link:"#"},{name: "About Us", link:"#"},{n
   .menu__item a {
     text-shadow: 0 14px 0 rgba(0, 0, 0, 0.8);
   }
-  .menu__item span {
+  .nav .menu__item span {
     display: block;
     backface-visibility: hidden;
     white-space: pre;
+    -webkit-transform:translate3d(0,0,0);
+    -webkit-transform-style: preserve-3d;
     transition: transform 0.44s ease, opacity 0.25s ease-in;
   }
   .menu__item--active span {
