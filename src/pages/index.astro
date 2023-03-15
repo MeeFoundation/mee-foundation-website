@@ -20,7 +20,9 @@ import TodaySection from '../components/TodaySection.astro';
 			<Section name="section10" /> -->
 	</main>
 	<script>
-		
+		window.onbeforeunload = function () {
+			window.scrollTo(0, 0);
+		}
 	</script>
 </Layout>
 
