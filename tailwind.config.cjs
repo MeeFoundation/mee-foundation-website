@@ -42,14 +42,24 @@ module.exports = {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
+        fadeOut: {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
         riseIn: {
           "0%": { transform: "translateY(100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        collapse: {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(0)" },
+        },
       },
       animation: {
-        fadeIn: "fadeIn 1s",
-        riseIn: "riseIn 0.5s",
+        fadeIn: "fadeIn 1 forwards",
+        fadeOut: "fadeOut 1.5s forwards",
+        riseIn: "riseIn 0.5s forwards",
+        collapse: "collapse 1.5s forwards",
       },
     },
     colors: {

@@ -1,4 +1,5 @@
 ---
+import Logo from './Logo.astro';
 import Menu from './Menu.astro';
 
 export interface Props {}
@@ -7,8 +8,20 @@ const {} = Astro.props;
 ---
 
 <header class="fixed z-200 flex w-full top-0 px-5 pt-[22px] md:px-[60px] md:pt-10 justify-between">
-  <div class="w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0">
-    <img src="../../assets/mee-logo.svg" width="97" height="28" alt="Mee Foundation logo"/>
+  <div id="mainLogo" class="logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0">
+    <Logo />
   </div>
   <Menu />
 </header>
+
+<style is:global>
+  .logo > svg {
+    transition: all;
+    transition-delay: 2.9s;
+    transition-duration: 200ms;
+    transition-timing-function: linear;
+  }
+  .logo--contrast > svg{
+    fill: #447F88;
+  }
+</style>

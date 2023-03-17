@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import TodaySection from '../components/TodaySection.astro';
+import EnvisionSection from '../components/EnvisionSection.astro';
 ---
 
 <Layout title="Mee Foundation">
 	<Header />
 	<main class="px-5 md:px-[60px]">
 		<TodaySection />
+		<EnvisionSection />
 			<!-- <Section name="section1" />
 			<Section name="section2" />
 			<Section name="section3" />
@@ -19,12 +21,13 @@ import TodaySection from '../components/TodaySection.astro';
 			<Section name="section9" />
 			<Section name="section10" /> -->
 	</main>
-	<script>
-		window.onbeforeunload = function () {
-			window.scrollTo(0, 0);
-		}
-	</script>
 </Layout>
+
+<script>
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+</script>
 
 <style>
 

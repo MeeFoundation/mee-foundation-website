@@ -1,0 +1,124 @@
+---
+import Logo from './Logo.astro';
+
+
+export interface Props {
+}
+
+const {  } = Astro.props;
+const subtitles = ["You decide how and when your data is shared, stored, and used.","You can easily share information online with sites and apps you trust without endless form filling.","You know which providers you can trust to act in your best interest."]
+---
+
+<article id="envision" class="envision relative hidden flex flex-col justify-center items-center w-screen overflow-x-hidden">
+	<section class="flex section items-center justify-center w-screen h-screen">
+		<div class="fixed transition-opacity duration-200 flex flex-col items-center justify-center gap-4 md:gap-5">
+			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
+				<Logo />
+			</div>
+			<div class="overflow-hidden">
+				<h2 class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance </h2>
+			</div>
+		</div>
+	</section>
+	<!-- <section class="1 flex items-center justify-center section  w-screen h-screen">
+		<div class="subtitle hidden">
+			<div id="title" class="title overflow-hidden fixed top-0 z-100 h-screen pb-7">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-black">mee envisions a world where…</h2>
+			</div>
+			{subtitles.map(subtitle => (
+				<div class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
+					<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
+						<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+					</div>
+				</div>
+			))}
+		</div>	
+	</section>
+	<section class="2 section flex w-screen h-screen"></section>
+	<section class="3 section flex w-screen h-screen"></section> -->
+</article>
+
+<style>
+	.envision {
+		background: #fff;
+	}
+	
+	.bg-1 {
+		width: 110vw;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		/* background: linear-gradient(180deg, rgba(249, 182, 137, 0.4) 0%, rgba(249, 223, 137, 0.4) 181.75%); */
+		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
+		/* filter: blur(100px); */
+		transform: translateY(250px);
+		animation: riseBg 1s linear forwards;
+	}
+
+	.bg-2 {
+		width: 200vw;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		background: #fff;
+		transform: translateY(-120px);
+	}
+	
+	.bg-3 {
+		width: 200vw;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		background:  linear-gradient(218.91deg, #559FAA 16.17%, #335F66 56.32%) left bottom no-repeat;
+		/* transform: translateY(-120px); */
+		/* background: radial-gradient(ellipse at 50% 100%, #559FAA 16.17%, #335F66 56%, white 56%) left bottom no-repeat; */
+	}
+
+	.text {
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;  
+	}
+
+	.logo {
+		animation-duration: 800ms;
+	}
+
+	.subtitle h2{
+		transform: translateY(100%);
+		animation-delay: 800ms ;
+		animation-duration: 400ms;
+	}
+
+	@keyframes riseBg {
+		0% { transform: translateY(150px);}
+		100% { transform: translateY(-150px);}
+	}
+
+</style>
+
+<script>
+	// const envision = document.getElementById("envision");
+	// const welcomeSection = document.getElementById("welcomeSection");
+	// const sections = document.querySelectorAll('.section');
+
+	// const options: IntersectionObserverInit = {
+	// 		root: null,
+	// 		threshold: 0.5,
+	// 		rootMargin: "0px"
+	// 	};
+	// 	const observer = new IntersectionObserver((entries, _) => {
+	// 		entries.forEach((entry) => {
+	// 			console.log(entry);
+	// 			if (entry.isIntersecting) {
+	// 				entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
+	// 				entry.target.querySelector(".subtitle")?.classList.remove("hidden");
+	// 			} else {
+	// 				setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
+	// 				entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
+	// 			}
+	// 		})
+	// 	}, options);
+
+
+		// sections.forEach((section) => {
+		// 	observer.observe(section)
+		// });
+	
+</script>

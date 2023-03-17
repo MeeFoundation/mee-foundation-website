@@ -10,14 +10,14 @@ const {  } = Astro.props;
 const subtitles = ["there is an online power imbalance.","you can’t control who has your data or how they’ll use it","data brokers and marketers are buying and selling information about you without your knowledge","businesses treat your data as their property","many users navigate this world with mistrust and fear"]
 ---
 
-<article class="flex flex-col items-center">
+<article id="today" class="flex flex-col items-center">
   <Background />
 	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/assets/lines.svg" /> -->
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[732px]">
 		<Grid />
 		<div class="shadow"/>
 		<FloatingFigures />
-    <div id="title" class="overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
+    <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
@@ -27,6 +27,8 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 				</div>
 			</div>
 		))}
+		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
+		</div>
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20">
 			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
@@ -41,22 +43,39 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 	}
   .shadow {
 		position: fixed;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		width: 100vw;
 		height: 100vh;
 		background: radial-gradient(#0F080E 20%, transparent 60%) center no-repeat;
 		z-index: 10;
-		/* animation: pulse 5s infinite alternate; */
 		backface-visibility: hidden;
+		transition: all 2s linear;
+	}
+	.bg-1 {
+		/* background: radial-gradient( #0D070C 0%, #200E1D 100%) center no-repeat; */
+		z-index: 300;
+	}
+	.bg-1::after {
+		content: '';
+		display: flex;
+		aspect-ratio: 1;
+		width: 96px;
+		filter: blur(40px);
+		border-radius: 50%;
+		background-color: #fff;
+		animation: bleach 2.9s linear forwards;
 	}
 
 	@keyframes pulse {
-  0% {
-    transform: perspective(300px) translateZ(50px);
-  }
+		0% {
+			transform: perspective(300px) translateZ(50px);
+		}
 
-  100% {
-    transform: perspective(300px) translateZ(150px);
-  }
+		100% {
+			transform: perspective(300px) translateZ(150px);
+		}
 	}
 
   .lines {
@@ -64,6 +83,9 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 		height: 100vh;
 		position: fixed;
 		object-fit: cover;
+	}
+	.title {
+		animation-duration: 300ms;
 	}
 	.subtitle {
 		transition: opacity 300ms;
@@ -90,32 +112,65 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
     animation-delay: 2s;
   }
 
-@keyframes scroll {
-  20% { opacity: 1; height: 45%;}
-  20% { opacity: 1; height: 45%;}
-  30% { height: 100%; align-self: flex-start;}
-  40% { opacity: 1; align-self: flex-end;}
-  80% {  opacity: 0; height: 0%; align-self: flex-end;}
-  81% {  opacity: 0; height: 45%; align-self: flex-start;}
-  100% { opacity: 1; height: 45%;}
-}
+	@keyframes scroll {
+		0% { opacity: 1; height: 45%;}
+		20% { opacity: 1; height: 45%;}
+		30% { height: 100%; align-self: flex-start;}
+		40% { opacity: 1; align-self: flex-end;}
+		80% {  opacity: 0; height: 0%; align-self: flex-end;}
+		81% {  opacity: 0; height: 45%; align-self: flex-start;}
+		100% { opacity: 1; height: 45%;}
+	}
+
+	@keyframes bleach {
+		0% {opacity: 0;}
+		30% {opacity: 1}
+		52% {width: 20px; filter: blur(5px);}
+		87% {width: 20px; filter: blur(5px);}
+		98% {width: 100%; border-radius: 50%; filter: blur(0);}
+		100% {width: 100%;border-radius: 0; filter: blur(0);}
+	}
 
 </style>
 
 <script>
-import { debounce } from "lodash-es";
+	import { debounce } from "lodash-es";
 
   const sections = document.querySelectorAll('.section');
 	const scrollIcon = document.querySelector(".scrollIcon");
+	const shadow = document.querySelector(".shadow");
+	const title = document.getElementById("title");
+	const floatingFigures = document.querySelector('.floatingFigures');
+	const grid = document.querySelector('.grid');
+	const gradients = document.querySelectorAll('.floatGradient');
+	const mainLogo = document.getElementById("mainLogo");
+	const todaySection = document.getElementById("today");
+	const envisionSection = document.getElementById("envision");
+
 
 		const options: IntersectionObserverInit = {
-			root: null,
+			// root: document.body,
 			threshold: 0.1,
 			rootMargin: "-50%"
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
+					if(entry.target.id === "animationTrigger") {
+						title?.classList.add("animate-fadeOut");
+						floatingFigures?.classList.add("animate-collapse");
+						shadow?.classList.add("bg-1");
+						mainLogo?.classList.add("logo--contrast");
+						grid?.classList.add("animate-fadeOut");
+						gradients.forEach(gradient => gradient.classList.add("animate-fadeOut"))
+						setTimeout(() => {
+							todaySection?.classList.toggle("hidden");
+							envisionSection?.classList.add("flex");
+							window.scrollTo(0, 0);
+							envisionSection?.classList.remove("hidden");
+						},2900);
+					}
+
 					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 				} else {
