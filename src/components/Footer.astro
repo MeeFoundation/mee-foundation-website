@@ -1,0 +1,71 @@
+---
+import { links } from './Menu.astro';
+
+export interface Props {
+  type: "fill" | "white";
+}
+
+const {type} = Astro.props;
+
+---
+
+<footer class:list={["footer section flex flex-col items-center justify-center pt-33 text-white", {"footer--fill text-white": type === "fill", "text-blue": type === "white"}]}>
+  <ul class="list-none flex flex-col gap-9  w-full pb-20 md:max-w-[414px]">
+    {links.map(link => <li class=""><a href={link.link} class="link relative block text-xl leading-normal font-medium pb-3 border-b border-solid border-white">{link.footerName || link.name}</a></li>)}
+  </ul>
+  <div class="flex flex-col gap-7 pb-12.5">
+    <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
+    <a class="flex items-center text-xl text-left leading-normal font-medium text-black/[.8] bg-white w-[277px] px-3 py-3 rounded-full"><img class="mr-5" src="../../assets/mee-simple-icon.svg" alt="Mee foundation logo" >Connect with Mee</a>
+  </div>
+  <div class="flex flex-col gap-5 mb-25 w-full md:max-w-[560px]">
+    <h6 class="text-2xl leading-normal font-bold text-center">Download our free identity agent app and let it start protecting your interests online</h6>
+    <div class="flex justify-center items-center gap-10">
+      <a href="https://apps.apple.com/app/mee-identity-agent/id1673110845" target="_blank"><img src="../../assets/download-apple-btn.png" alt="Link to Mee application"></a>
+      <a href="#"  target="_blank"><img src="../../assets/download-android-btn.png" alt="Link to Mee application"></a>
+    </div>
+  </div>
+  <div class="flex justify-between gap-5 w-screen px-15 pb-10 text-sm font-medium leading-none tracking-wider">
+    <p>© {new Date().getFullYear()} The Mee Foundation, Inc.</p>
+    <ul class="flex gap-10">
+      {links.map(link => <li class=""><a href={link.link} class="">{link.name}</a></li>)}
+    </ul>
+    <a href="#" target="_blank">Privacy Policy</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+		width: 200vw;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+    background-color: white;
+		/* transform: translateY(120px); */
+	}
+  .footer--fill {
+    background:  linear-gradient(218.91deg, #559FAA 16.17%, #335F66 56.32%) left bottom no-repeat;
+  }
+  .link::after {
+    content: url('../../assets/arrow-right.svg');
+    display: block;
+    position: absolute;
+    width: 21px;
+    height: 12px;
+    top: 0;
+    right: 0;
+  }
+  .link:hover::after {
+    animation: animate-arrow 700ms;
+  }
+
+  @keyframes animate-arrow {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(6px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>

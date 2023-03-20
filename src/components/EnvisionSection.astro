@@ -1,4 +1,5 @@
 ---
+import Footer from './Footer.astro';
 import Logo from './Logo.astro';
 import TrustIcon from './TrustIcon.astro';
 
@@ -63,7 +64,7 @@ const subtitles = [
 			</div>
 		</div>
 	</section>
-	<section class="bg-3 section flex top-0 w-screen h-screen"></section>
+	<Footer type="fill"/>
 </article>
 
 <style>
@@ -128,13 +129,7 @@ const subtitles = [
 		z-index: 1;
 	}
 	
-	.bg-3 {
-		width: 200vw;
-		border-top-left-radius: 50%;
-		border-top-right-radius: 50%;
-		background:  linear-gradient(218.91deg, #559FAA 16.17%, #335F66 56.32%) left bottom no-repeat;
-		/* transform: translateY(120px); */
-	}
+	
 
 	.text {
 		-webkit-font-smoothing: antialiased;
