@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
+        "3xl": ["1.75rem", "1.5"],
         "25xl": "6rem",
       },
       fontFamily: {
@@ -31,6 +32,9 @@ module.exports = {
         25: "6.25rem",
         34.5: "8.625rem",
         44.5: "11.125rem",
+      },
+      gap: {
+        18.5: "4.625rem",
       },
       zIndex: {
         100: "100",

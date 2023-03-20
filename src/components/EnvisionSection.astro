@@ -1,57 +1,122 @@
 ---
 import Logo from './Logo.astro';
+import TrustIcon from './TrustIcon.astro';
 
 
 export interface Props {
 }
 
 const {  } = Astro.props;
-const subtitles = ["You decide how and when your data is shared, stored, and used.","You can easily share information online with sites and apps you trust without endless form filling.","You know which providers you can trust to act in your best interest."]
+const subtitles = [
+	"Your privacy is respected by blocking tracking and sale of your data.",
+	"You decide how and when your data is shared, stored, and used.",
+	"You can easily share information on Mee-certified sites without passwords and endless form filling.",
+	"You can trust that certified apps and sites  will act in your best interest."
+	]
 ---
 
-<article id="envision" class="envision relative hidden flex flex-col justify-center items-center w-screen overflow-x-hidden">
-	<section class="flex section items-center justify-center w-screen h-screen">
-		<div class="fixed transition-opacity duration-200 flex flex-col items-center justify-center gap-4 md:gap-5">
+<article id="envision" class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden">
+	<section class="flex top-0 section items-center justify-center w-screen h-screen">
+		<div class="transition-opacity duration-200 flex flex-col items-center justify-center gap-4 md:gap-5"> 
+			<!-- fixed to top -->
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
 			</div>
 			<div class="overflow-hidden">
-				<h2 class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance </h2>
+				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
 		</div>
 	</section>
-	<!-- <section class="1 flex items-center justify-center section  w-screen h-screen">
-		<div class="subtitle hidden">
-			<div id="title" class="title overflow-hidden fixed top-0 z-100 h-screen pb-7">
-				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-black">mee envisions a world where…</h2>
+	<section class="bg-1 relative section flex flex-col items-center justify-center w-screen min-h-screen">
+		<div class="flex  flex-col items-center justify-center min-h-screen">
+			<div id="title" class="title overflow-hidden z-100 w-full md:w-[732px] pb-7">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
 			</div>
 			{subtitles.map(subtitle => (
-				<div class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
-					<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
-						<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+				<div class="flex flex-col items-center section-0 overflow-hidden w-screen h-1/4">
+					<div class="subtitle overflow-hidden z-100 top-1/2 w-full px-5 md:w-[732px]">
+						<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
 					</div>
 				</div>
 			))}
 		</div>	
 	</section>
-	<section class="2 section flex w-screen h-screen"></section>
-	<section class="3 section flex w-screen h-screen"></section> -->
+	<section class="bg-2 section flex flex-col justify-center items-center top-0 w-screen h-screen">
+		<div class="overflow-hidden z-100 w-full px-5 md:w-[732px] md:pb-32">
+			<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">Mee gives you the confidence to share with trusted apps, creating a digital world driven by… </h2>
+		</div>
+		<div class="flex flex-row gap-18.5">
+			<div class="feature trust rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+				<i class="absolute -top-7.5"><TrustIcon fill="#F9B689"/></i>
+				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Trust</h6>
+				<p class="text-base font-medium text-center text-black/[.8]">You know how Mee-certified providers will use your data.</p>
+			</div>
+			<div class="feature autonomy rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+				<i class="absolute -top-7.5"><TrustIcon fill="#C5C05C"/></i>
+				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Autonomy</h6>
+				<p class="text-base font-medium text-center text-black/[.8]">You your identity and data on your own devices.</p>
+			</div>
+			<div class="feature convenience rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+				<i class="absolute -top-7.5"><TrustIcon fill="#447F88"/></i>
+				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Convenience</h6>
+				<p class="text-base font-medium text-center text-black/[.8]">You don’t ever have to repeat yourself.</p>
+			</div>
+		</div>
+	</section>
+	<section class="bg-3 section flex top-0 w-screen h-screen"></section>
 </article>
 
 <style>
+
+.feature {
+		opacity: 0;
+		transform: translateX(-50%);
+		animation: moveFeature 500ms linear forwards;
+
+		
+		border-radius: 12px;
+		border: 1px solid transparent;
+	}
 	.envision {
 		background: #fff;
 	}
+	/* Hack for border-radius + border-gradient need use background-clip. */
+	.trust {
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(131.91deg, #F9B689 0%, #FFDF80 100%) border-box;
+	}
+	.autonomy {
+		animation-delay: 200ms;
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(48.09deg, #FFDF80 0%, #C5C05C 100%) border-box;
+	}
+	.convenience {
+		animation-delay: 400ms;
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(48.09deg, #C5C05C 0%, #4F868E 100%) border-box;
+	}
+
+	
+
+	@keyframes moveFeature {
+		100% {opacity: 1; transform: translateX(0);}
+	}
 	
 	.bg-1 {
-		width: 110vw;
+		height: 100vh;
+		z-index: 1;
+	}
+	.bg-1::before {
+		content: '';
+		position: absolute;
+		width: 120vw;
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		/* background: linear-gradient(180deg, rgba(249, 182, 137, 0.4) 0%, rgba(249, 223, 137, 0.4) 181.75%); */
+		top: 0;
+		height: 100%;
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
-		/* filter: blur(100px); */
-		transform: translateY(250px);
-		animation: riseBg 1s linear forwards;
+		filter: blur(100px);
+		z-index: -1;
 	}
 
 	.bg-2 {
@@ -59,7 +124,8 @@ const subtitles = ["You decide how and when your data is shared, stored, and use
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 		background: #fff;
-		transform: translateY(-120px);
+		transform: translateY(-150px);
+		z-index: 1;
 	}
 	
 	.bg-3 {
@@ -67,8 +133,7 @@ const subtitles = ["You decide how and when your data is shared, stored, and use
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 		background:  linear-gradient(218.91deg, #559FAA 16.17%, #335F66 56.32%) left bottom no-repeat;
-		/* transform: translateY(-120px); */
-		/* background: radial-gradient(ellipse at 50% 100%, #559FAA 16.17%, #335F66 56%, white 56%) left bottom no-repeat; */
+		/* transform: translateY(120px); */
 	}
 
 	.text {
@@ -80,7 +145,7 @@ const subtitles = ["You decide how and when your data is shared, stored, and use
 		animation-duration: 800ms;
 	}
 
-	.subtitle h2{
+	.subtitle p{
 		transform: translateY(100%);
 		animation-delay: 800ms ;
 		animation-duration: 400ms;
@@ -94,31 +159,31 @@ const subtitles = ["You decide how and when your data is shared, stored, and use
 </style>
 
 <script>
-	// const envision = document.getElementById("envision");
-	// const welcomeSection = document.getElementById("welcomeSection");
-	// const sections = document.querySelectorAll('.section');
+	const envision = document.getElementById("envision");
+	const welcomeSection = document.getElementById("welcomeSection");
+	const sections = document.querySelectorAll('.section');
 
-	// const options: IntersectionObserverInit = {
-	// 		root: null,
-	// 		threshold: 0.5,
-	// 		rootMargin: "0px"
-	// 	};
-	// 	const observer = new IntersectionObserver((entries, _) => {
-	// 		entries.forEach((entry) => {
-	// 			console.log(entry);
-	// 			if (entry.isIntersecting) {
-	// 				entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
-	// 				entry.target.querySelector(".subtitle")?.classList.remove("hidden");
-	// 			} else {
-	// 				setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
-	// 				entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
-	// 			}
-	// 		})
-	// 	}, options);
+	const options: IntersectionObserverInit = {
+			root: null,
+			threshold: 0.1,
+			rootMargin: "-30%"
+		};
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				console.log(entry);
+				if (entry.isIntersecting) {
+					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
+					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
+				} else {
+					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
+					entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
+				}
+			})
+		}, options);
 
 
-		// sections.forEach((section) => {
-		// 	observer.observe(section)
-		// });
+		sections.forEach((section) => {
+			// observer.observe(section)
+		});
 	
 </script>
