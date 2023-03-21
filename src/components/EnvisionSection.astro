@@ -17,11 +17,12 @@ const subtitles = [
 ---
 
 <article id="envision" class="envision hidden relative  flex-col justify-center items-center w-screen overflow-x-hidden">
-
 	<section class="w-screen min-h-screen">
 		<div class="min-h-screen">
-			<div id="title" class=" title overflow-hidden fixed z-20 flex items-center justify-center h-screen w-screen pb-7">
-				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
+			<div id="title" class="title overflow-hidden fixed z-20 flex items-center justify-center h-screen w-screen pb-7">
+				<div class="overflow-hidden">
+					<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
+				</div>
 			</div>
 			<div class="relative">
 				<div class="bg-1 top-0 mt-[100vh]" />
@@ -66,8 +67,6 @@ const subtitles = [
 		opacity: 0;
 		transform: translateX(-50%);
 		animation: moveFeature 500ms linear forwards;
-
-		
 		border-radius: 12px;
 		border: 1px solid transparent;
 	}
@@ -89,9 +88,6 @@ const subtitles = [
 		background: linear-gradient(white, white) padding-box,
 								linear-gradient(48.09deg, #C5C05C 0%, #4F868E 100%) border-box;
 	}
-
-	
-
 	@keyframes moveFeature {
 		100% {opacity: 1; transform: translateX(0);}
 	}
@@ -110,19 +106,14 @@ const subtitles = [
 		z-index: 1;
 	}
 
-
-	
-
 	.bg-2 {
 		width: 200vw;
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 		background: #fff;
-		transform: translateY(-150px);
+		transform: translateY(150px);
 		z-index: 50;
 	}
-	
-	
 
 	.text {
 		-webkit-font-smoothing: antialiased;

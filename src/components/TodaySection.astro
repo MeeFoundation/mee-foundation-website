@@ -39,8 +39,8 @@ const subtitles = [
 			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
   </section>
-	<section id="restoringBalance" class="hidden fixed section items-center justify-center w-screen h-screen z-999">
-		<div class="transition-opacity h-screen duration-200 flex flex-col items-center justify-center gap-4 md:gap-5"> 
+	<section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section items-center justify-center w-screen h-screen z-999">
+		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
 			</div>
@@ -81,6 +81,11 @@ const subtitles = [
 		border-radius: 50%;
 		background-color: #fff;
 		animation: bleach 2.9s linear forwards;
+	}
+
+	.logo {
+		animation-duration: 800ms;
+		opacity: 0;
 	}
 
 	@keyframes pulse {
@@ -184,9 +189,12 @@ const subtitles = [
 						},3900);
 						setTimeout(() => {
 							restoringBalanceText?.classList.toggle("hidden");
-						},4900);
+						},4700);
 						setTimeout(() => {
-							todaySection?.classList.toggle("hidden");
+							restoringBalance?.classList.toggle("opacity-0");
+							setTimeout(() => {
+								todaySection?.classList.toggle("hidden");
+							},200)
 							envisionSection?.classList.add("flex");
 							window.scrollTo(0, 0);
 							envisionSection?.classList.remove("hidden");
