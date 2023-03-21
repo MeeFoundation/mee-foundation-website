@@ -8,7 +8,12 @@ export interface Props {
 }
 
 const {  } = Astro.props;
-const subtitles = ["there is an online power imbalance.","you can’t control who has your data or how they’ll use it","data brokers and marketers are buying and selling information about you without your knowledge","businesses treat your data as their property","many users navigate this world with mistrust and fear"]
+const subtitles = [
+	"there is an online power imbalance.",
+	"you can’t control who has your data or how they’ll use it",
+	"data brokers and marketers are buying and selling information about you without your knowledge",
+	"businesses treat your data as their property",
+	"many users navigate this world with mistrust and fear"]
 ---
 
 <article id="today" class="flex flex-col items-center">
@@ -22,7 +27,7 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[300vh]">
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
 				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
 					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
@@ -36,7 +41,6 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
   </section>
 	<section id="restoringBalance" class="hidden fixed section items-center justify-center w-screen h-screen z-999">
 		<div class="transition-opacity h-screen duration-200 flex flex-col items-center justify-center gap-4 md:gap-5"> 
-			<!-- fixed to top -->
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
 			</div>
