@@ -16,18 +16,18 @@ const subtitles = [
 	]
 ---
 
-<article id="envision" class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden">
+<article id="envision" class="envision hidden relative  flex-col justify-center items-center w-screen overflow-x-hidden">
 
 	<section class="w-screen min-h-screen">
 		<div class="min-h-screen">
-			<div id="title" class=" title overflow-hidden fixed z-100 flex items-center justify-center h-screen w-screen pb-7">
+			<div id="title" class=" title overflow-hidden fixed z-20 flex items-center justify-center h-screen w-screen pb-7">
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
 			</div>
-			<div class="relative pb-[50vh]">
-				<div class="bg-1 top-0" />
+			<div class="relative">
+				<div class="bg-1 top-0 mt-[100vh]" />
 			{subtitles.map(subtitle => (
 				<div class="section flex flex-col items-center section-0 overflow-hidden w-screen h-[100vh]">
-					<div class="subtitle opacity-0 hidden fixed overflow-hidden z-100 top-1/2 w-full px-5 md:w-[732px]">
+					<div class="subtitle opacity-0 hidden fixed overflow-hidden z-20 top-1/2 w-full px-5 md:w-[732px]">
 						<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
 					</div>
 				</div>
@@ -35,7 +35,7 @@ const subtitles = [
 			</div>
 		</div>	
 	</section>
-	<section class="bg-2 section flex flex-col justify-center items-center top-0 w-screen h-screen">
+	<section class="bg-2 section flex flex-col justify-center items-center pt-60 w-screen h-screen">
 		<div class="overflow-hidden z-100 w-full px-5 md:w-[732px] md:pb-32">
 			<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">Mee gives you the confidence to share with trusted apps, creating a digital world driven by… </h2>
 		</div>
@@ -104,7 +104,7 @@ const subtitles = [
 		height: 100%;
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		transform: translate(-10vw, 50%);
+		transform: translate(-10vw, 0);
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
 		filter: blur(100px);
 		z-index: 1;
@@ -119,7 +119,7 @@ const subtitles = [
 		border-top-right-radius: 50%;
 		background: #fff;
 		transform: translateY(-150px);
-		z-index: 1;
+		z-index: 50;
 	}
 	
 	
