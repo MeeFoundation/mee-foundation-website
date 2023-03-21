@@ -4,7 +4,7 @@ import { MaxW } from 'src/components/MaxW';
 import appStoreImg from '../assets/appStore.svg';
 
 export const PARTNER_DATA = 'partnerData';
-export const APP_STORE_LINK = 'itms-beta://';
+export const APP_STORE_LINK = 'https://apps.apple.com/app/mee-identity-agent/id1673110845';
 
 export const DownloadPage: React.FC = () => {
   const { partnerData } = useParams();

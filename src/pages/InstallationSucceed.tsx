@@ -96,7 +96,7 @@ const PartnerListItem: React.FC<PartnerListItemProps> = ({ partner }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="py-3 border-t border-alt-color-6"
+      className="py-3 border-t border-alt-color-6 cursor-pointer"
       tabIndex={-1}
       role="link"
       onClick={() => {
