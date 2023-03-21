@@ -16,20 +16,23 @@ const subtitles = [
 	]
 ---
 
-<article id="envision" class="hidden envision relative flex-col justify-center items-center w-screen overflow-x-hidden">
-	
-	<section class="bg-1 relative section flex flex-col items-center justify-center w-screen min-h-screen">
-		<div class="flex  flex-col items-center justify-center min-h-screen">
-			<div id="title" class="title overflow-hidden z-100 w-full md:w-[732px] pb-7">
+<article id="envision" class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden">
+
+	<section class="w-screen min-h-screen">
+		<div class="min-h-screen">
+			<div id="title" class=" title overflow-hidden fixed z-100 flex items-center justify-center h-screen w-screen pb-7">
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
 			</div>
+			<div class="relative">
+				<div class="bg-1 top-0" />
 			{subtitles.map(subtitle => (
-				<div class="flex flex-col items-center section-0 overflow-hidden w-screen h-1/4">
-					<div class="subtitle overflow-hidden z-100 top-1/2 w-full px-5 md:w-[732px]">
+				<div class="section flex flex-col items-center section-0 overflow-hidden w-screen h-[100vh]">
+					<div class="subtitle opacity-0 hidden fixed overflow-hidden z-100 top-1/2 w-full px-5 md:w-[732px]">
 						<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
 					</div>
 				</div>
 			))}
+			</div>
 		</div>	
 	</section>
 	<section class="bg-2 section flex flex-col justify-center items-center top-0 w-screen h-screen">
@@ -94,21 +97,22 @@ const subtitles = [
 	}
 	
 	.bg-1 {
-		height: 100vh;
-		z-index: 1;
-	}
-	.bg-1::before {
 		content: '';
 		position: absolute;
 		width: 120vw;
+		min-height: 100vh;
+		height: 100%;
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
-		top: 0;
-		height: 100%;
+		/* padding-top: 100vh; */
+		transform: translate(-10vw, 50%);
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
 		filter: blur(100px);
-		z-index: -1;
+		z-index: 1;
 	}
+
+
+	
 
 	.bg-2 {
 		width: 200vw;
@@ -149,17 +153,19 @@ const subtitles = [
 	const sections = document.querySelectorAll('.section');
 
 	const options: IntersectionObserverInit = {
-			root: null,
-			threshold: 0.1,
-			rootMargin: "-30%"
+			// root: null,
+			threshold: 0.5,
+			// rootMargin: "-10%"
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
-				console.log(entry);
+				
 				if (entry.isIntersecting) {
+					console.log('intersecting', entry.target);
 					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 				} else {
+					console.log('removed', entry.target);
 					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
 					entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
 				}
@@ -168,7 +174,7 @@ const subtitles = [
 
 
 		sections.forEach((section) => {
-			// observer.observe(section)
+			observer.observe(section)
 		});
 	
 </script>
