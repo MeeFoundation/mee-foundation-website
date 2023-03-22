@@ -2,12 +2,18 @@
 import Background from './Background.astro';
 import FloatingFigures from './FloatingFigures.astro';
 import Grid from './Grid.astro';
+import Logo from './Logo.astro';
 
 export interface Props {
 }
 
 const {  } = Astro.props;
-const subtitles = ["there is an online power imbalance.","you can’t control who has your data or how they’ll use it","data brokers and marketers are buying and selling information about you without your knowledge","businesses treat your data as their property","many users navigate this world with mistrust and fear"]
+const subtitles = [
+	"there is an online power imbalance.",
+	"you can’t control who has your data or how they’ll use it",
+	"data brokers and marketers are buying and selling information about you without your knowledge",
+	"businesses treat your data as their property",
+	"many users navigate this world with mistrust and fear"]
 ---
 
 <article id="today" class="flex flex-col items-center">
@@ -21,19 +27,27 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
 				<div class="subtitle overflow-hidden fixed z-100 top-1/2 w-full px-5 md:w-[732px] hidden opacity-0">
 					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
 			</div>
 		))}
-		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[600vh]">
-		</div>
+		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]"/>
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20">
 			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
   </section>
-
+	<section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section items-center justify-center w-screen h-screen z-999">
+		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
+			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
+				<Logo />
+			</div>
+			<div class="overflow-hidden h-16">
+				<p id="restoringBalanceText" class="text hidden text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
+			</div>
+		</div>
+	</section>
 </article>
 
 <style>
@@ -53,6 +67,10 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 		backface-visibility: hidden;
 		transition: all 2s linear;
 	}
+	.logo {
+		animation-duration: 800ms;
+		opacity: 0;
+	}
 	.bg-1 {
 		/* background: radial-gradient( #0D070C 0%, #200E1D 100%) center no-repeat; */
 		z-index: 300;
@@ -61,14 +79,14 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 		content: '';
 		display: flex;
 		aspect-ratio: 1;
-		width: 96px;
+		height: 96px;
 		filter: blur(40px);
 		border-radius: 50%;
 		background-color: #fff;
 		animation: bleach 2.9s linear forwards;
 	}
 
-	@keyframes pulse {
+	/* @keyframes pulse {
 		0% {
 			transform: perspective(300px) translateZ(50px);
 		}
@@ -76,7 +94,7 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 		100% {
 			transform: perspective(300px) translateZ(150px);
 		}
-	}
+	} */
 
   .lines {
 		width: 100vw;
@@ -125,17 +143,15 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 	@keyframes bleach {
 		0% {opacity: 0;}
 		30% {opacity: 1}
-		52% {width: 20px; filter: blur(5px);}
-		87% {width: 20px; filter: blur(5px);}
-		98% {width: 100%; border-radius: 50%; filter: blur(0);}
-		100% {width: 100%;border-radius: 0; filter: blur(0);}
+		52% {height: 20px; filter: blur(5px);}
+		87% {height: 20px; filter: blur(5px);}
+		98% {height: 100%; border-radius: 50%; filter: blur(0);}
+		100% {height: 300%;border-radius: 0; filter: blur(0);}
 	}
 
 </style>
 
 <script>
-	import { debounce } from "lodash-es";
-
   const sections = document.querySelectorAll('.section');
 	const scrollIcon = document.querySelector(".scrollIcon");
 	const shadow = document.querySelector(".shadow");
@@ -146,6 +162,8 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 	const mainLogo = document.getElementById("mainLogo");
 	const todaySection = document.getElementById("today");
 	const envisionSection = document.getElementById("envision");
+	const restoringBalance = document.getElementById("restoringBalance");
+	const restoringBalanceText = document.getElementById("restoringBalanceText");
 
 
 		const options: IntersectionObserverInit = {
@@ -164,11 +182,20 @@ const subtitles = ["there is an online power imbalance.","you can’t control wh
 						grid?.classList.add("animate-fadeOut");
 						gradients.forEach(gradient => gradient.classList.add("animate-fadeOut"))
 						setTimeout(() => {
-							todaySection?.classList.toggle("hidden");
+							restoringBalance?.classList.toggle("hidden");
+						},3900);
+						setTimeout(() => {
+							restoringBalanceText?.classList.toggle("hidden");
+						},4700);
+						setTimeout(() => {
+							restoringBalance?.classList.toggle("opacity-0");
+							setTimeout(() => {
+								todaySection?.classList.toggle("hidden");
+							},200)
 							envisionSection?.classList.add("flex");
 							window.scrollTo(0, 0);
 							envisionSection?.classList.remove("hidden");
-						},2900);
+						},6900);
 					}
 
 					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");

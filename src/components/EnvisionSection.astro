@@ -12,14 +12,12 @@ const subtitles = [
 	"Your privacy is respected by blocking tracking and sale of your data.",
 	"You decide how and when your data is shared, stored, and used.",
 	"You can easily share information on Mee-certified sites without passwords and endless form filling.",
-	"You can trust that certified apps and sites  will act in your best interest."
-	]
+	"You can trust that certified apps and sites  will act in your best interest."]
 ---
 
-<article id="envision" class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden">
-	<section class="flex top-0 section items-center justify-center w-screen h-screen">
+<article id="envision" class="envision hidden relative flex-col justify-center items-center w-screen overflow-x-hidden">
+	<!-- <section class="flex top-0 section items-center justify-center w-screen h-screen">
 		<div class="transition-opacity duration-200 flex flex-col items-center justify-center gap-4 md:gap-5"> 
-			<!-- fixed to top -->
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
 			</div>
@@ -27,22 +25,27 @@ const subtitles = [
 				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
 		</div>
-	</section>
-	<section class="bg-1 relative section flex flex-col items-center justify-center w-screen min-h-screen">
-		<div class="flex  flex-col items-center justify-center min-h-screen">
-			<div id="title" class="title overflow-hidden z-100 w-full md:w-[732px] pb-7">
-				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
-			</div>
-			{subtitles.map(subtitle => (
-				<div class="flex flex-col items-center section-0 overflow-hidden w-screen h-1/4">
-					<div class="subtitle overflow-hidden z-100 top-1/2 w-full px-5 md:w-[732px]">
-						<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
-					</div>
+	</section> -->
+	<section class="relative section flex flex-col items-center justify-center w-screen min-h-screen">
+		<div class="w-screen min-h-screen">
+			<div id="title" class="title overflow-hidden fixed z-20 flex items-center justify-center h-screen w-screen pb-7">
+				<div class="overflow-hidden px-5">
+					<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
 				</div>
-			))}
+			</div>
+			<div class="relative flex flex-col justify-center">
+				<div class="bg-1 top-0 mt-[100vh] w-[120vw]" />
+				{subtitles.map(subtitle => (
+					<div class="section flex flex-col items-center overflow-hidden w-screen h-screen">
+						<div class="subtitle hidden opacity-0 fixed overflow-hidden z-20 top-1/2 w-full px-5 md:w-[732px]">
+							<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
+						</div>
+					</div>
+				))}
+			</div>
 		</div>	
 	</section>
-	<section class="bg-2 section flex flex-col justify-center items-center top-0 pt-25 md:h-screen">
+	<section class="bg-2 section flex flex-col justify-center items-center top-0 py-25 md:min-h-screen translate-y-5 md:translate-y-20">
 		<div class="overflow-hidden z-100 w-screen px-5 md:w-[732px] mb-17.5 md:mb-32">
 			<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">Mee gives you the confidence to share with trusted apps, creating a digital world driven by… </h2>
 		</div>
@@ -73,8 +76,6 @@ const subtitles = [
 		opacity: 0;
 		transform: translateX(-50%);
 		animation: moveFeature 500ms linear forwards;
-
-		
 		border-radius: 12px;
 		border: 1px solid transparent;
 	}
@@ -96,14 +97,10 @@ const subtitles = [
 		background: linear-gradient(white, white) padding-box,
 								linear-gradient(48.09deg, #C5C05C 0%, #4F868E 100%) border-box;
 	}
-
-	
-
 	@keyframes moveFeature {
 		100% {opacity: 1; transform: translateX(0);}
 	}
-	
-	.bg-1 {
+	/* .bg-1 {
 		height: 100vh;
 		z-index: 1;
 	}
@@ -118,6 +115,19 @@ const subtitles = [
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
 		filter: blur(100px);
 		z-index: -1;
+	} */
+
+	.bg-1 {
+		position: absolute;
+		/* width: 120vw; */
+		min-height: 100vh;
+		height: 100%;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		transform: translate(-10vw, 0);
+		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
+		filter: blur(100px);
+		z-index: 1;
 	}
 
 	.bg-2 {
@@ -125,8 +135,7 @@ const subtitles = [
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 		background: #fff;
-		transform: translateY(-150px);
-		z-index: 1;
+		z-index: 50;
 	}
 	
 	
@@ -156,20 +165,21 @@ const subtitles = [
 <script>
 	const envision = document.getElementById("envision");
 	const welcomeSection = document.getElementById("welcomeSection");
-	const sections = document.querySelectorAll('.section');
+	const sections = document.querySelectorAll('.envision .section');
 
 	const options: IntersectionObserverInit = {
-			root: null,
-			threshold: 0.1,
-			rootMargin: "-30%"
+			// root: null,
+			threshold: 0.5,
+			// rootMargin: "-30%"
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
-				console.log(entry);
 				if (entry.isIntersecting) {
+					// console.log('intersecting', entry.target);
 					entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 				} else {
+					// console.log('removed', entry.target);
 					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
 					entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
 				}
@@ -178,7 +188,7 @@ const subtitles = [
 
 
 		sections.forEach((section) => {
-			// observer.observe(section)
+			observer.observe(section)
 		});
 	
 </script>
