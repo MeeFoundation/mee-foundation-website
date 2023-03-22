@@ -1,4 +1,6 @@
 ---
+import AppButtons from './AppButtons.astro';
+import Features from './Features.astro';
 import Footer from './Footer.astro';
 import Logo from './Logo.astro';
 import TrustIcon from './TrustIcon.astro';
@@ -16,7 +18,7 @@ const subtitles = [
 ---
 
 <article id="envision" class="envision hidden relative flex-col justify-center items-center w-screen overflow-x-hidden">
-	<!-- <section class="flex top-0 section items-center justify-center w-screen h-screen">
+	{/* <section class="flex top-0 section items-center justify-center w-screen h-screen">
 		<div class="transition-opacity duration-200 flex flex-col items-center justify-center gap-4 md:gap-5"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
@@ -25,49 +27,26 @@ const subtitles = [
 				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
 		</div>
-	</section> -->
+	</section> */}
 	<section class="relative section flex flex-col items-center justify-center w-screen min-h-screen">
-		<div class="w-screen min-h-screen">
-			<div id="title" class="title overflow-hidden fixed z-20 flex items-center justify-center h-screen w-screen pb-7">
-				<div class="overflow-hidden px-5">
-					<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
+		<div class="bg-1 top-0 mt-[100vh] w-[120vw]" />
+		<div id="title" class="title overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-70 pb-7">
+			<div class="overflow-hidden px-5">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
+			</div>
+		</div>
+		{subtitles.map(subtitle => (
+			<div class="section flex flex-col items-center overflow-hidden w-screen h-screen">
+				<div class="subtitle hidden opacity-0 fixed overflow-hidden z-70 top-1/2 w-full px-5 md:w-[732px]">
+					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
 				</div>
 			</div>
-			<div class="relative flex flex-col justify-center">
-				<div class="bg-1 top-0 mt-[100vh] w-[120vw]" />
-				{subtitles.map(subtitle => (
-					<div class="section flex flex-col items-center overflow-hidden w-screen h-screen">
-						<div class="subtitle hidden opacity-0 fixed overflow-hidden z-20 top-1/2 w-full px-5 md:w-[732px]">
-							<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
-						</div>
-					</div>
-				))}
-			</div>
-		</div>	
+		))}
 	</section>
-	<section class="bg-2 section flex flex-col justify-center items-center top-0 py-25 md:min-h-screen translate-y-5 md:translate-y-20">
-		<div class="overflow-hidden z-100 w-screen px-5 md:w-[732px] mb-17.5 md:mb-32">
-			<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">Mee gives you the confidence to share with trusted apps, creating a digital world driven by… </h2>
-		</div>
-		<div class="flex flex-col lg:flex-row gap-18.5">
-			<div class="feature trust rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
-				<i class="absolute -top-7.5"><TrustIcon fill="#F9B689"/></i>
-				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Trust</h6>
-				<p class="text-base font-medium text-center text-black/[.8]">You know how Mee-certified providers will use your data.</p>
-			</div>
-			<div class="feature autonomy rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
-				<i class="absolute -top-7.5"><TrustIcon fill="#C5C05C"/></i>
-				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Autonomy</h6>
-				<p class="text-base font-medium text-center text-black/[.8]">You your identity and data on your own devices.</p>
-			</div>
-			<div class="feature convenience rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
-				<i class="absolute -top-7.5"><TrustIcon fill="#447F88"/></i>
-				<h6 class="text-xl text-black/[.8] font-extrabold uppercase">Convenience</h6>
-				<p class="text-base font-medium text-center text-black/[.8]">You don’t ever have to repeat yourself.</p>
-			</div>
-		</div>
+	<section class="bg-2 section flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[65vh] translate-y-5 md:translate-y-20">
+		<AppButtons btnSize="big"/>
 	</section>
-	<Footer type="fill"/>
+	<Footer mode="dark" withAppButtons={false}/>
 </article>
 
 <style>
@@ -135,7 +114,7 @@ const subtitles = [
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 		background: #fff;
-		z-index: 50;
+		z-index: 100;
 	}
 	
 	

@@ -1,0 +1,56 @@
+---
+import TrustIcon from './TrustIcon.astro';
+
+---
+
+<section class="flex flex-col justify-center items-center">
+  <div class="overflow-hidden z-100 w-screen px-5 md:w-[732px] mb-17.5 md:mb-32">
+    <h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">Mee gives you the confidence to share with trusted apps, creating a digital world driven by… </h2>
+  </div>
+  <div class="flex flex-col lg:flex-row gap-18.5">
+    <div class="feature trust rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+      <i class="absolute -top-7.5"><TrustIcon fill="#F9B689"/></i>
+      <h6 class="text-xl text-black/[.8] font-extrabold uppercase">Trust</h6>
+      <p class="text-base font-medium text-center text-black/[.8]">You know how Mee-certified providers will use your data.</p>
+    </div>
+    <div class="feature autonomy rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+      <i class="absolute -top-7.5"><TrustIcon fill="#C5C05C"/></i>
+      <h6 class="text-xl text-black/[.8] font-extrabold uppercase">Autonomy</h6>
+      <p class="text-base font-medium text-center text-black/[.8]">You your identity and data on your own devices.</p>
+    </div>
+    <div class="feature convenience rounded-xl relative flex flex-col justify-center items-center px-5 pt-14 pb-8 bg-white max-w-[266px]">
+      <i class="absolute -top-7.5"><TrustIcon fill="#447F88"/></i>
+      <h6 class="text-xl text-black/[.8] font-extrabold uppercase">Convenience</h6>
+      <p class="text-base font-medium text-center text-black/[.8]">You don’t ever have to repeat yourself.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature {
+		opacity: 0;
+		transform: translateX(-50%);
+		animation: moveFeature 500ms linear forwards;
+		border-radius: 12px;
+		border: 1px solid transparent;
+	}
+
+	/* Hack for border-radius + border-gradient need use background-clip. */
+  .trust {
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(131.91deg, #F9B689 0%, #FFDF80 100%) border-box;
+	}
+	.autonomy {
+		animation-delay: 200ms;
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(48.09deg, #FFDF80 0%, #C5C05C 100%) border-box;
+	}
+	.convenience {
+		animation-delay: 400ms;
+		background: linear-gradient(white, white) padding-box,
+								linear-gradient(48.09deg, #C5C05C 0%, #4F868E 100%) border-box;
+	}
+	@keyframes moveFeature {
+		100% {opacity: 1; transform: translateX(0);}
+	}
+</style>
