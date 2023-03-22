@@ -6,14 +6,14 @@ export interface Props {
 
 const {class: className,btnSize = "normal"} = Astro.props;
 ---
-<section class:list={["flex flex-col gap-5 w-screen px-5 md:max-w-[560px]", className]}>
+<section class:list={["flex flex-col w-screen px-5 md:max-w-[560px]", className, , {"gap-16": btnSize === "big"}, {"gap-5 md:gap-10": btnSize === "normal"}]}>
   <h6 class="text-2xl leading-normal font-bold text-center">Download our free identity agent app and let it start protecting your interests online</h6>
-  <div class="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-10">
+  <div class:list={["flex flex-col md:flex-row justify-center items-center", {"gap-16": btnSize === "big"}, {"gap-5 md:gap-10": btnSize === "normal"}]}>
     <a href="https://apps.apple.com/us/app/mee-identity-agent/id1673110845?itsct=apps_box_badge&amp;itscg=30200" target="_blank" rel="nofollow">
-      <img src="../../assets/download-apple-btn.svg" class:list={[{"h-21": btnSize === "big"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on AppStore">
+      <img src="../../assets/download-apple-btn.svg" class:list={["max-w-[250px]", {"h-21": btnSize === "big"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on AppStore">
     </a>
     <a href="#"  target="_blank" rel="nofollow">
-      <img src="../../assets/download-android-btn.svg" class:list={[{"h-21": btnSize === "big"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on Google Play">
+      <img src="../../assets/download-android-btn.svg" class:list={["max-w-[250px]", {"h-21": btnSize === "big"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on Google Play">
     </a>
   </div>
 </section>  
