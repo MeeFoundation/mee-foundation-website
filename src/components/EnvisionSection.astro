@@ -30,14 +30,14 @@ const subtitles = [
 	</section> */}
 	<section class="relative section flex flex-col items-center justify-center w-screen min-h-screen">
 		<div class="bg-1 top-0 mt-[100vh] w-[120vw]" />
-		<div id="title" class="title overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-70 pb-20 md:pb-7">
+		<div id="title" class="title overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 			<div class="overflow-hidden px-5">
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
 			</div>
 		</div>
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center overflow-hidden w-screen h-screen">
-				<div class="subtitle hidden opacity-0 fixed overflow-hidden z-70 top-1/2 w-full px-5 md:w-[732px]">
+				<div class="subtitle hidden opacity-0 fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-gray text-center">{subtitle}</h2>
 				</div>
 			</div>
@@ -106,7 +106,7 @@ const subtitles = [
 		/* transform: translate(-10vw, 0); */
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
 		filter: blur(100px);
-		z-index: 50;
+		z-index: 70;
 	}
 
 	.bg-2 {

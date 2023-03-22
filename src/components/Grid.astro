@@ -7,7 +7,7 @@ const {  } = Astro.props;
 ---
 <div class="body grid">
   <div class="tunnel">
-    {[...Array(9).keys()].map((item) => {
+    {[...Array(5).keys()].map((item) => {
         return <div class="frame" style={`--i:${item + 1}`}></div>
       })
     }
