@@ -4,10 +4,10 @@ export interface Props {}
 const {} = Astro.props;
 
 export const links = [
-  {name: "How MEE works", link:"#"},
+  {name: "How MEE works", link:"/"},
   {name: "About Us", footerName:"Learn more about the Mee Foundation", link:"/about"},
-  {name: "For Developers", link:"#"},
-  {name: "For Providers",footerName: "Become a Mee service provider", link:"#"}]
+  {name: "For Developers", link:"/"},
+  {name: "For Providers",footerName: "Become a Mee service provider", link:"/for-providers"}]
 ---
 
 <section class="flex font-extrabold gap-5 flex-col lg:flex-row-reverse items-end">
@@ -120,5 +120,18 @@ export const links = [
 
   links.forEach(
     link => link.innerHTML = splitTextToLetters(link.textContent || "")
+  );
+
+  const toggleLink = (button: any) => {
+    const link = button && button.target ? button.target.querySelector("a"): null;
+    const href = link && link.href ? link.href : null;
+    if (href) {
+      window.location.href = href;
+    }
+  }
+
+  const buttons = document.querySelectorAll("li.menu__item");
+  buttons.forEach(
+    button => button.addEventListener("click", toggleLink)
   );
 </script>

@@ -9,6 +9,9 @@ module.exports = {
         "3xl": ["1.75rem", "1.5"],
         "25xl": "6rem",
       },
+      lineHeight: {
+        '13.5': '3.375rem',
+      },
       fontFamily: {
         sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
       },
@@ -36,6 +39,9 @@ module.exports = {
         34.5: "8.625rem",
         44.5: "11.125rem",
         45: "11.25rem",
+      },
+      width: {
+        160: '40rem',
       },
       gap: {
         18.5: "4.625rem",
@@ -99,6 +105,7 @@ module.exports = {
         dark: "#C5C05C",
       },
       orange: {
+        lighter: "#FCDCBB",
         light: "#F9B689",
         dark: "#8E764F",
       },
