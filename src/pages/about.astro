@@ -1,0 +1,22 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+
+const text = [
+  "We are a nonprofit committed to empowering people by putting them in control of their online identity.",
+  "We are pushing back against the power of big tech and surveillance-based advertising by giving people tools to represent them and protect their interests online. These tools increase personal privacy, autonomy, and convenience."
+
+];
+---
+
+<Layout title="Mee Foundation - About Us">
+  <main class="flex flex-col justify-center items-center w-screen px-5 pt-32">
+    <Header logoColor="blue" />
+    <h1 class="text-xl font-bold leading-normal text-black/[.8] mb-8">The Mee Foundation</h1>
+    <article class="flex flex-col items-center">
+
+    </article>
+		<Footer mode="dark" withAppButtons={true} />
+	</main>
+</Layout>

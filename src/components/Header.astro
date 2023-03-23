@@ -2,13 +2,15 @@
 import Logo from './Logo.astro';
 import Menu from './Menu.astro';
 
-export interface Props {}
+export interface Props {
+  logoColor?: "blue" | "white";
+}
 
-const {} = Astro.props;
+const {logoColor = "white"} = Astro.props;
 ---
 
 <header class="fixed z-200 flex w-full top-0 px-5 pt-[22px] md:px-[60px] md:pt-10 justify-between">
-  <div id="mainLogo" class="logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0">
+  <div id="mainLogo" class:list={["logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0", {"logo--contrast": logoColor === "blue"}]}>
     <Logo />
   </div>
   <Menu />
