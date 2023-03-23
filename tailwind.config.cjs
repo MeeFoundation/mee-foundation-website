@@ -9,9 +9,6 @@ module.exports = {
         "3xl": ["1.75rem", "1.5"],
         "25xl": "6rem",
       },
-      lineHeight: {
-        '13.5': '3.375rem',
-      },
       fontFamily: {
         sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
       },
