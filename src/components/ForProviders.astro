@@ -24,7 +24,9 @@ const gives_you = [
   id="envision"
   class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden"
 >
-  <section class="flex top-0 section items-center justify-center w-screen mt-32 md:mt-48">
+  <section
+    class="flex top-0 section items-center justify-center w-screen mt-32 md:mt-48"
+  >
     <div
       class="transition-opacity duration-500 flex flex-col items-center justify-center mb-8 px-6 md:p-0"
     >
@@ -32,9 +34,8 @@ const gives_you = [
         <h2
           class="text text-[28px] leading-9 md:text-4xl md:leading-13.5 font-bold text-center animate-riseIn text-black"
         >
-          Why <span class="underline-animation-container"
-            >your<span class="underline-animation"></span></span
-          > organization should join the community of Mee providers.
+          Why <span class="underline-animation">your</span> organization should join
+          the community of Mee providers.
         </h2>
       </div>
     </div>
@@ -43,7 +44,10 @@ const gives_you = [
     class="providers-bg relative section flex flex-col items-center justify-center w-screen pb-20"
   >
     <div class="flex flex-col items-center justify-center">
-      <div id="title" class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0">
+      <div
+        id="title"
+        class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0"
+      >
         <h2
           class="text text-base md:text-xl md:leading-8 font-medium tracking-wider text-center animate-riseIn text-black mb-6"
         >
@@ -52,7 +56,10 @@ const gives_you = [
           interactions and agreed to abide by the Mee HIL.
         </h2>
       </div>
-      <div id="title" class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0">
+      <div
+        id="title"
+        class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0"
+      >
         <h2
           class="text text-base md:text-xl font-extrabold tracking-wider text-center animate-riseIn text-black pb-16"
         >
@@ -61,7 +68,7 @@ const gives_you = [
       </div>
       {
         gives_you.map((items) => (
-          <div class="flex flex-col items-center section-0 mb-2 md:mb-4 w-full md:w-160 px-6 md:p-0 overflow-hidden" >
+          <div class="flex flex-col items-center section-0 mb-2 md:mb-4 w-full md:w-160 px-6 md:p-0 overflow-hidden">
             <div class=" bg-orange-lighter pt-2 pb-4 flex animate-riseIn rounded-lg px-2">
               <div class="mr-4">
                 <div class="h-6 w-6 md:h-8 md:w-8 border-[1.5px] border-white m-2 relative rounded">
@@ -73,7 +80,7 @@ const gives_you = [
                 </div>
               </div>
 
-              <h2 class="text text-base ms:text-xl text-black mt-2">
+              <h2 class="text text-base ms:text-xl text-black mt-2 pr-2">
                 <span class="font-extrabold">{items[0]}</span>
                 <span>{items[1]}</span>
               </h2>
@@ -113,12 +120,12 @@ const gives_you = [
     font-smoothing: antialiased;
   }
 
-  .underline-animation-container {
+  .underline-animation {
     display: inline-block;
     position: relative;
   }
 
-  .underline-animation {
+  .underline-animation::after {
     content: "";
     position: absolute;
     width: 100%;
