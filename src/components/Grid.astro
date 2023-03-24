@@ -8,30 +8,30 @@ const {  } = Astro.props;
 <div class="body grid">
   <div class="tunnel">
     {[...Array(5).keys()].map((item) => {
-        return <div class="frame" style={`--i:${item + 1}`}></div>
+        return <div class="frame transform-gpu" style={`--i:${item + 1}`}></div>
       })
     }
     
   </div>
   <div class="gridWrapper">
-    <div class="plane planeB">
+    <div class="plane planeB transform-gpu">
       {[...Array(5).keys()].map((item) => {
-        return <div class="line lineB" style={`--i:${item}`}></div>
+        return <div class="line lineB transform-gpu" style={`--i:${item}`}></div>
       })}
     </div>
-    <div class="plane planeT">
+    <div class="plane planeT transform-gpu">
       {[...Array(5).keys()].map((item) => {
-        return <div class="line lineT" style={`--i:${item}`}></div>
+        return <div class="line lineT transform-gpu" style={`--i:${item}`}></div>
       })}
     </div>
-    <div class="plane planeL">
+    <div class="plane planeL transform-gpu">
       {[...Array(5).keys()].map((item) => {
-        return <div class="line lineL" style={`--i:${item}`}></div>
+        return <div class="line lineL transform-gpu" style={`--i:${item}`}></div>
       })}
     </div>
-    <div class="plane planeR">
+    <div class="plane planeR transform-gpu">
       {[...Array(5).keys()].map((item) => {
-        return <div class="line lineR" style={`--i:${item}`}></div>
+        return <div class="line lineR transform-gpu" style={`--i:${item}`}></div>
       })}
     </div>
   </div>
@@ -69,10 +69,10 @@ const {  } = Astro.props;
   transform-style: preserve-3d;
   
   animation-name: move;
-  animation-duration: 5s;
+  animation-duration: 15s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-delay: calc(1s * (var(--i)) - 5s);
+  animation-delay: calc(3s * (var(--i)) - 15s);
   /* animation-play-state: paused; */
   animation-fill-mode: both;
 }
