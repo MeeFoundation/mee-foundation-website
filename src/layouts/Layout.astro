@@ -36,10 +36,42 @@ const { title } = Astro.props;
 	}
 	html::-webkit-scrollbar { 
     display: none;
-}
+	}
 
+	strong {
+		font-weight: 800;
+	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
+	.marker > mark {
+    position: relative;
+    background: none;
+    color: inherit;
+  }
+  .marker > mark::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 0%;
+    height: 8px;
+    border-radius: 2px;
+    background-color: #F9DF89;
+    z-index: -1;
+		animation: drawUnderline 200ms forwards;
+  }
+	.pause {
+     animation-play-state: paused;
+   }
+
+	 .play {
+		animation-play-state: running;
+	 }
+
+	@keyframes drawUnderline {
+  	0% { width: 0% }
+    100% { width: 100% }
+  }
 </style>
