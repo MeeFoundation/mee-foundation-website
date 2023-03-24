@@ -30,25 +30,25 @@ const textArray = [
     <section class="platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw]">
       <h2 class="text-3xl leading-thick md:text-4xl md:leading-normal font-bold mb-15 md:mb-25">The Mee Platform:</h2>
       <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 mb-23 px-5 lg:mb-35.5 w-screen">
-        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2">
           <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
           <h6 class="text-xl leading-thick font-bold text-black/[.8]">Identity Agent</h6>
           <p class="text-base font-medium text-black/[.8] leading-[1.6]">Free, open-source app that  represents you, protects your interests, and enables trusted, private data sharing with certified provider’s apps/sites</p>
         </div>
-        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2">
           <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
           <h6 class="text-xl leading-thick font-bold text-black/[.8]">Human Information License (HIL)</h6>
           <p class="text-base font-medium text-black/[.8] leading-[1.6]">A contract between The Mee Foundation, acting on behalf of the user, and the digital service provider. Required to join the Mee provider community, the HIL defines what providers can do with users’ data.</p>
           <a class="text-base font-extrabold text-black/[.8] leading-[1.6]" href="#" rel="nofollow" target="_blank">Human Information License (HIL)</a>
         </div>
-        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2">
           <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
           <h6 class="text-xl leading-thick font-bold text-black/[.8]">The Mee Foundation, Inc.</h6>
           <p class="text-base font-medium text-black/[.8] leading-[1.6]">A nonprofit organization which develops the Mee identity agent, certifies providers and enforces providers’ compliance with the HIL on behalf of Mee users.</p>
         </div>
       </div>
       <div class="overflow-hidden">
-        <p class="platform__subtitle marker text-xl leading-normal font-bold md:text-3xl md:leading-relaxed w-screen max-w-[866px] text-center translate-y-full animate-riseIn">Our global team of developers works to give people control over their online identity by developing identity agent technology and fostering the development of a <mark>community</mark> of compatible apps and sites.</p>
+        <p class="platform__subtitle text-xl leading-normal font-bold md:text-3xl md:leading-relaxed w-screen max-w-[866px] text-center translate-y-full">Our global team of developers works to give people control over their online identity by developing identity agent technology and fostering the development of a <mark>community</mark> of compatible apps and sites.</p>
       </div>
     </section>
     <section class="flex flex-col items-center py-25 md:pt-40 md:pb-52 bg-white w-[400vw] lg:w-[200vw] rounded-t-1/2 -translate-y-12">
@@ -98,22 +98,35 @@ const textArray = [
 
 <script>
   const aboutTexts = document.querySelectorAll(".aboutText");
+  const platform = document.querySelector(".platform");
+  const platformItems = document.querySelectorAll(".platform__item");
+  const platformSubtitle = document.querySelector(".platform__subtitle");
 
   const options: IntersectionObserverInit = {
 			// root: null,
 			threshold: 0,
 		};
-		const observer = new IntersectionObserver((entries, _) => {
-			entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-					entry.target.classList.add("animate-riseIn");
-				} 
-			})
-		}, options);
+	const observerAboutText = new IntersectionObserver((entries, _) => {
+		entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+				{entry.target.classList.add("animate-riseIn");}
+			} 
+		})
+	}, options);
 
+  const observerPlatform = new IntersectionObserver((entries, _) => {
+		entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+				platformItems.forEach(item => item.classList.add("animate-moveCard"));
+        platformSubtitle?.classList.add("animate-riseIn", "marker");
+			} 
+		})
+	}, {threshold: 0.2});
 
 		aboutTexts.forEach((text) => {
-			observer.observe(text)
+			observerAboutText.observe(text)
 		});
+
+    if (platform) observerPlatform.observe(platform);
 
 </script>
