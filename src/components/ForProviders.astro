@@ -32,9 +32,9 @@ const gives_you = [
     >
       <div id="title" class="title w-full md:w-160 mb-7 overflow-hidden">
         <h2
-          class="text text-[28px] leading-snug md:text-4xl md:leading-normal font-bold text-center animate-riseIn text-black"
+          class="text marker text-[28px] leading-snug md:text-4xl md:leading-normal font-bold text-center animate-riseIn text-black"
         >
-          Why <span class="underline-animation">your</span> organization should join
+          Why <mark>your</mark> organization should join
           the community of Mee providers.
         </h2>
       </div>
@@ -114,40 +114,13 @@ const gives_you = [
     filter: blur(100px);
     z-index: -1;
   }
-
+  
   .text {
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
   }
 
-  .underline-animation {
-    display: inline-block;
-    position: relative;
-  }
-
-  .underline-animation::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 9px;
-    bottom: 2px;
-    left: 0;
-    border-radius: 3px;
-    background-color: #f9df89;
-    z-index: -1;
-    transform-origin: bottom right;
-    transition: transform 3s ease-out;
-    transform-origin: bottom left;
-    transform: scaleX(0);
-    animation: moveUnderline 700ms linear forwards;
-  }
-
-  @keyframes moveUnderline {
-    75% {
-      transform: scaleX(0);
-    }
-    100% {
-      transform: scaleX(1);
-    }
+  .marker > mark::after {
+    animation-delay: 500ms;
   }
 </style>
