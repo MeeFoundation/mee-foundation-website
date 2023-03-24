@@ -20,7 +20,7 @@ const subtitles = [
   <Background />
 	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> -->
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[732px]">
-		<Grid />
+		<!-- <Grid /> -->
 		<div class="shadow"/>
 		<FloatingFigures />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
@@ -178,9 +178,11 @@ const subtitles = [
 						title?.classList.add("animate-fadeOut");
 						floatingFigures?.classList.add("animate-collapse");
 						shadow?.classList.add("bg-1");
-						mainLogo?.classList.add("logo--contrast");
 						grid?.classList.add("animate-fadeOut");
 						gradients.forEach(gradient => gradient.classList.add("animate-fadeOut"))
+						setTimeout(() => {
+							mainLogo?.classList.add("logo--contrast");
+						},2900);
 						setTimeout(() => {
 							restoringBalance?.classList.toggle("hidden");
 						},3900);
