@@ -1,22 +1,119 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import TrustIcon from "../components/TrustIcon.astro";
 import Layout from "../layouts/Layout.astro";
 
-const text = [
+const textArray = [
   "We are a nonprofit committed to empowering people by putting them in control of their online identity.",
-  "We are pushing back against the power of big tech and surveillance-based advertising by giving people tools to represent them and protect their interests online. These tools increase personal privacy, autonomy, and convenience."
-
+  "We are pushing back against the power of big tech and surveillance-based advertising by giving people tools to represent them and protect their interests online. These tools increase personal <strong>privacy, autonomy, and convenience.</strong>",
+  "As part of our charitable, scientific and educational goals we develop and freely publish in open source our research and software development efforts related to identity agents. We also act as a fiduciary, acting on the user’s behalf to execute and enforce Human Information Licenses that respect the privacy rights and autonomy of users as they interact with digital service providers.",
+  "We invite online service providers across all industries to join us in committing to <strong>fair and responsible data practices</strong> that will build trust with users who deserve autonomy and respect for their privacy online."
 ];
+
+// TODO ADD arrow HIL link
+// TODO Add link to HIL link
 ---
 
 <Layout title="Mee Foundation - About Us">
-  <main class="flex flex-col justify-center items-center w-screen px-5 pt-32">
+  <main class="flex flex-col justify-center items-center w-screen pt-32 md:pt-30 bg-white">
     <Header logoColor="blue" />
-    <h1 class="text-xl font-bold leading-normal text-black/[.8] mb-8">The Mee Foundation</h1>
-    <article class="flex flex-col items-center">
-
-    </article>
+    <div class="overflow-hidden">
+      <h1 class="text-xl font-bold leading-normal text-black/[.8] mb-8 animate-riseIn">The Mee Foundation</h1>
+    </div>
+    <section class="relative flex flex-col items-center gap-15 md:gap-25 lg:gap-32 xl:gap-50.5 px-5 pb-25 lg:pb-80 w-full max-w-[1094px]">
+      {textArray.map(text => (<div class="overflow-hidden"><p class="aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center" set:html={text} /></div>))}
+      <div class="absolute -bottom-7.5 lg:bottom-45 z-10">
+        <TrustIcon fill="#447F88"/>
+      </div>
+    </section>
+    <section class="platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw]">
+      <h2 class="text-3xl leading-thick md:text-4xl md:leading-normal font-bold mb-15 md:mb-25">The Mee Platform:</h2>
+      <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 mb-23 px-5 lg:mb-35.5 w-screen">
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+          <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
+          <h6 class="text-xl leading-thick font-bold text-black/[.8]">Identity Agent</h6>
+          <p class="text-base font-medium text-black/[.8] leading-[1.6]">Free, open-source app that  represents you, protects your interests, and enables trusted, private data sharing with certified provider’s apps/sites</p>
+        </div>
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+          <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
+          <h6 class="text-xl leading-thick font-bold text-black/[.8]">Human Information License (HIL)</h6>
+          <p class="text-base font-medium text-black/[.8] leading-[1.6]">A contract between The Mee Foundation, acting on behalf of the user, and the digital service provider. Required to join the Mee provider community, the HIL defines what providers can do with users’ data.</p>
+          <a class="text-base font-extrabold text-black/[.8] leading-[1.6]" href="#" rel="nofollow" target="_blank">Human Information License (HIL)</a>
+        </div>
+        <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] opacity-0 -translate-x-1/2 animate-moveCard">
+          <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white">Icon</span>
+          <h6 class="text-xl leading-thick font-bold text-black/[.8]">The Mee Foundation, Inc.</h6>
+          <p class="text-base font-medium text-black/[.8] leading-[1.6]">A nonprofit organization which develops the Mee identity agent, certifies providers and enforces providers’ compliance with the HIL on behalf of Mee users.</p>
+        </div>
+      </div>
+      <div class="overflow-hidden">
+        <p class="platform__subtitle marker text-xl leading-normal font-bold md:text-3xl md:leading-relaxed w-screen max-w-[866px] text-center translate-y-full animate-riseIn">Our global team of developers works to give people control over their online identity by developing identity agent technology and fostering the development of a <mark>community</mark> of compatible apps and sites.</p>
+      </div>
+    </section>
+    <section class="flex flex-col items-center py-25 md:pt-40 md:pb-52 bg-white w-[400vw] lg:w-[200vw] rounded-t-1/2 -translate-y-12">
+      <h2 class="text-xl md:text-3xl leading-normal font-bold text-blue mb-12 md:mb-21">Mee Affiliates</h2>
+      <div class="flex flex-col justify-evenly items-center md:flex-row gap-6 w-screen">
+        <img src="/images/linux-foundation-logo.svg" width="179" height="60" class="w-[94px] md:w-[179px]" alt="Linux foundation logo" />
+        <img src="/images/openid-logo.svg" width="249" height="99" class="w-[130px] md:w-[249px]" alt="OpenID logo" />
+        <img src="/images/open-wallet-logo.svg" width="262" height="99" class="w-[138px] md:w-[262px]" alt="OpenWallet foundation logo" />
+      </div>
+    </section>
 		<Footer mode="dark" withAppButtons={true} />
 	</main>
 </Layout>
+
+<style>
+  .aboutText {
+    background: linear-gradient(253.14deg, #559FAA 0%, #335F66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  .platform {
+    background: linear-gradient(260.15deg, rgba(197, 192, 92, 0.4) 0%, rgba(79, 134, 142, 0.4) 100%);
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+  }
+  .icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1.5px solid white;
+  }
+  .platform__item:nth-child(2) {
+    animation-delay: 200ms;
+  }
+  .platform__item:nth-child(3) {
+    animation-delay: 400ms;
+  }
+  .platform__subtitle {
+    animation-delay: 900ms;
+  }
+  .platform__subtitle > mark::after {
+    animation-delay: 1400ms;
+  }
+</style>
+
+<script>
+  const aboutTexts = document.querySelectorAll(".aboutText");
+
+  const options: IntersectionObserverInit = {
+			// root: null,
+			threshold: 0,
+		};
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+					entry.target.classList.add("animate-riseIn");
+				} 
+			})
+		}, options);
+
+
+		aboutTexts.forEach((text) => {
+			observer.observe(text)
+		});
+
+</script>

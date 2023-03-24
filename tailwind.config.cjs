@@ -7,7 +7,11 @@ module.exports = {
     extend: {
       fontSize: {
         "3xl": ["1.75rem", "1.5"],
+        "7xl": ["4rem", "1.3"],
         "25xl": "6rem",
+      },
+      lineHeight: {
+        thick: "1.3",
       },
       fontFamily: {
         sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
@@ -28,17 +32,21 @@ module.exports = {
         17.5: "4.375rem",
         21: "5.25rem",
         22.5: "5.625rem",
+        23: "5.75rem",
         23.5: "5.875rem",
         24.5: "6.125rem",
         25: "6.25rem",
         25: "6.25rem",
+        30: "7.5rem",
         33: "8.25rem",
         34.5: "8.625rem",
+        35.5: "8.875rem",
         44.5: "11.125rem",
         45: "11.25rem",
       },
       gap: {
         18.5: "4.625rem",
+        50.5: "12.625rem",
       },
       zIndex: {
         70: "70",
@@ -46,6 +54,9 @@ module.exports = {
         200: "200",
         300: "300",
         999: "999",
+      },
+      borderRadius: {
+        "1/2": "50%",
       },
       keyframes: {
         fadeIn: {
@@ -64,12 +75,21 @@ module.exports = {
           "0%": { transform: "scale(1)" },
           "100%": { transform: "scale(0)" },
         },
+        moveCard: {
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+        drawUnderline: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
       },
       animation: {
         fadeIn: "fadeIn 1 forwards",
         fadeOut: "fadeOut 1.5s forwards",
         riseIn: "riseIn 0.5s forwards",
         collapse: "collapse 1.5s forwards",
+        moveCard: "moveCard 500ms forwards",
+        drawUnderline: "drawUnderline 500ms forwards",
       },
     },
     colors: {
