@@ -37,6 +37,9 @@ module.exports = {
         44.5: "11.125rem",
         45: "11.25rem",
       },
+      width: {
+        160: '40rem',
+      },
       gap: {
         18.5: "4.625rem",
       },
@@ -99,6 +102,7 @@ module.exports = {
         dark: "#C5C05C",
       },
       orange: {
+        lighter: "#FCDCBB",
         light: "#F9B689",
         dark: "#8E764F",
       },
