@@ -1,4 +1,7 @@
 ---
+import FloatingFigures from './FloatingFigures.astro';
+import Grid from './Grid.astro';
+
 export interface Props {
 
 }
@@ -6,15 +9,44 @@ export interface Props {
 const { } = Astro.props;
 ---
 
-<div class="background">
+<div class="sticky top-0 h-screen w-screen background">
+  <Grid />
+	<FloatingFigures />
+	<div class="shadow"/>
 </div>
 <style>
 	.background {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
 		background: radial-gradient(#0D070C, #200E1D);
-    z-index: 0;
+	}
+  .shadow {
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+		background: radial-gradient(#0F080E 20%, transparent 60%) center no-repeat;
+		backface-visibility: hidden;
+		transition: all 2s linear;
+	}
+
+	.bg-1 {
+		/* background: radial-gradient( #0D070C 0%, #200E1D 100%) center no-repeat; */
+		z-index: 300;
+		overflow: hidden;
+	}
+	.bg-1::after {
+		content: '';
+		/* position: absolute;
+		top:0; */
+		display: flex;
+		aspect-ratio: 1;
+		height: 96px;
+		filter: blur(40px);
+		border-radius: 50%;
+		background: #fff;
+		animation: bleach 2.9s linear forwards;
 	}
 
 </style>

@@ -4,19 +4,15 @@ import Header from '../components/Header.astro';
 import TodaySection from '../components/TodaySection.astro';
 import EnvisionSection from '../components/EnvisionSection.astro';
 
-// TODO Publish to netlify
 // FIXME Fix mobile bg-1 background
-// FIXME Fix mobile bg height bounce
 // FIXME Lagging with grid by css
 // TODO Make howto page
-// TODO make about page
-// TODO make providers page - for Roman
 ---
 
 
 <Layout title="Mee Foundation">
 	<Header />
-	<main>
+	<main class="overflow-x-visible">
 		<TodaySection />
 		<EnvisionSection />
 	</main>

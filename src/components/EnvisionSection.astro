@@ -11,9 +11,9 @@ export interface Props {
 
 const {  } = Astro.props;
 const subtitles = [
-	"Your privacy is respected by blocking tracking and sale of your data.",
+	"Your privacy is respected by blocking tracking the sale of your data.",
 	"You decide how and when your data is shared, stored, and used.",
-	"You can easily share information on Mee-certified sites without passwords and endless form filling.",
+	"You can easily share information with Mee-certified sites without passwords and endless form filling.",
 	"You can trust that certified apps and sites  will act in your best interest."]
 ---
 
@@ -32,7 +32,7 @@ const subtitles = [
 		<div class="bg-1 top-0 mt-[100vh] w-[120vw]" />
 		<div id="title" class="title overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 			<div class="overflow-hidden px-5">
-				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee is an app that puts you in control of your online identity</h2>
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
 			</div>
 		</div>
 		{subtitles.map(subtitle => (
@@ -79,22 +79,6 @@ const subtitles = [
 	@keyframes moveFeature {
 		100% {opacity: 1; transform: translateX(0);}
 	}
-	/* .bg-1 {
-		height: 100vh;
-		z-index: 1;
-	}
-	.bg-1::before {
-		content: '';
-		position: absolute;
-		width: 120vw;
-		border-top-left-radius: 50%;
-		border-top-right-radius: 50%;
-		top: 0;
-		height: 100%;
-		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 50%, rgba(249, 182, 137, 0.4) 100%);
-		filter: blur(100px);
-		z-index: -1;
-	} */
 
 	.bg-1 {
 		position: absolute;

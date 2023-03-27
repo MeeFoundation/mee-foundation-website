@@ -17,28 +17,25 @@ const subtitles = [
 ---
 
 <article id="today" class="flex flex-col items-center">
-  <Background />
 	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> -->
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[732px]">
-		<Grid />
-		<div class="shadow"/>
-		<FloatingFigures />
+		<Background />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
 				<div class="subtitle overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[732px] hidden opacity-0">
 					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
 			</div>
 		))}
-		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]"/>
+		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]"/>
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20">
 			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
   </section>
-	<section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section items-center justify-center w-screen h-screen z-999">
+	<section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section overflow-hidden items-center justify-center w-screen h-screen z-999">
 		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
 				<Logo />
@@ -55,35 +52,9 @@ const subtitles = [
 		-webkit-font-smoothing: antialiased;
 		font-smoothing: antialiased;  
 	}
-  .shadow {
-		position: fixed;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100vw;
-		height: 100vh;
-		background: radial-gradient(#0F080E 20%, transparent 60%) center no-repeat;
-		z-index: 10;
-		backface-visibility: hidden;
-		transition: all 2s linear;
-	}
 	.logo {
 		animation-duration: 800ms;
 		opacity: 0;
-	}
-	.bg-1 {
-		/* background: radial-gradient( #0D070C 0%, #200E1D 100%) center no-repeat; */
-		z-index: 300;
-	}
-	.bg-1::after {
-		content: '';
-		display: flex;
-		aspect-ratio: 1;
-		height: 96px;
-		filter: blur(40px);
-		border-radius: 50%;
-		background-color: #fff;
-		animation: bleach 2.9s linear forwards;
 	}
 
 	/* @keyframes pulse {
@@ -155,6 +126,7 @@ const subtitles = [
   const sections = document.querySelectorAll('.section');
 	const scrollIcon = document.querySelector(".scrollIcon");
 	const shadow = document.querySelector(".shadow");
+	const background = document.querySelector(".background");
 	const title = document.getElementById("title");
 	const floatingFigures = document.querySelector('.floatingFigures');
 	const grid = document.querySelector('.grid');
@@ -169,7 +141,7 @@ const subtitles = [
 		const options: IntersectionObserverInit = {
 			// root: document.body,
 			threshold: 0.1,
-			rootMargin: "-50%"
+			rootMargin: "-99% 0% 0%"
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
