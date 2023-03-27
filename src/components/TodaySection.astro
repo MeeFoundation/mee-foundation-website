@@ -18,15 +18,15 @@ const subtitles = [
 
 <article id="today" class="flex flex-col items-center">
 	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> -->
-  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[732px]">
+  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
       <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
     </div>
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
-				<div class="subtitle overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[732px] hidden opacity-0">
-					<h2 class="text text-xl md:text-[20px] font-bold uppercase animate-riseIn text-white/[.85]">{subtitle}</h2>
+				<div class="subtitle overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] hidden opacity-0">
+					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-white/[.85]">{subtitle}</h2>
 				</div>
 			</div>
 		))}
