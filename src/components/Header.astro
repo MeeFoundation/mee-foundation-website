@@ -7,11 +7,9 @@ export interface Props {
 }
 
 const {logoColor = "white"} = Astro.props;
-
-// TODO Add blur or opacity to header background
 ---
 
-<header class="fixed z-200 flex w-full top-0 px-5 pt-[22px] md:px-[60px] md:pt-10 justify-between">
+<header class="header fixed z-200 flex w-full top-0 px-5 py-4 md:px-[60px] md:py-6 justify-between">
   <a href="/" id="mainLogo" class:list={["block logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0", {"logo--contrast": logoColor === "blue"}]}>
     <Logo />
   </a>
@@ -19,6 +17,19 @@ const {logoColor = "white"} = Astro.props;
 </header>
 
 <style is:global>
+  .header {
+    mask: linear-gradient(to top, transparent, black 35%);
+    backdrop-filter: blur(8px);
+  }
+  .header::before {
+    /* content: ''; */
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    -webkit-mask: linear-gradient(to top, transparent, black 35%);
+    mask: linear-gradient(to top, transparent, black 35%);
+    backdrop-filter: blur(2px);
+  }
   .logo > svg {
     fill: white;
     transition: all;
