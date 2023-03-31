@@ -11,7 +11,7 @@ const {mode,withAppButtons = true} = Astro.props;
 
 ---
 
-<footer class:list={["footer section flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
+<footer class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
   <ul class="list-none flex flex-col gap-9 w-screen px-5 mb-20 max-w-[414px]">
     {links.map(link => <li class=""><a href={link.link} class:list={["link relative flex justify-between items-center text-base md:text-xl leading-normal font-medium pb-3 border-b border-solid",{"border-white after:bg-white": mode === "dark", "border-blue after:bg-blue": mode === "light"}]}>{link.footerName || link.name}</a></li>)}
   </ul>
