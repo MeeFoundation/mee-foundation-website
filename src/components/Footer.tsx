@@ -20,7 +20,7 @@ export const Footer: React.FC = () => (
             <Link to="/support">Support</Link>
           </p>
           <p className="leading-4">
-            © 2022 The Mee Foundation, Inc.
+            © 2023 The Mee Foundation, Inc.
           </p>
           <div className="w-50 hidden md:block" />
           {/* <img alt="App Store" src={appStoreImage} /> */}
