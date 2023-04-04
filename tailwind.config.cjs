@@ -99,8 +99,8 @@ module.exports = {
       animation: {
         'riseIn-short': 'riseIn 400ms ease-out both',
         riseIn: 'riseIn 800ms ease-out both',
-        fadeIn: 'fadeIn 400ms ease-out both',
-        'fadeIn-long': 'fadeIn 800ms ease-out both',
+        fadeIn: 'fadeIn 400ms ease-in both',
+        'fadeIn-long': 'fadeIn 800ms ease-in both',
         fadeOut: 'fadeOut 400ms ease-out both',
         drawUnderline: 'drawUnderline 400ms linear both',
         'moveCard-short': 'moveCard 400ms ease-out both',

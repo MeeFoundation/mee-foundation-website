@@ -17,19 +17,24 @@ const subtitles = [
 ---
 
 <article id="today" class="flex today flex-col items-center">
-	<!-- <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> -->
+	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
-      <h2 class="text text-base leading-5 font-bold tracking-wider uppercase animate-riseIn text-purple">In today’s digital world...</h2>
+			<div class="overflow-hidden">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-800">In today’s digital world...</h2>
+			</div>
     </div>
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
-				<div class="subtitle overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn text-white/[.85]">{subtitle}</h2>
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold animate-riseIn text-white/[.85] animation-delay-1800 hidden">{subtitle}</h2>
 				</div>
 			</div>
 		))}
+		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1800">
+			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+		</div>
 
 		<!-- Test riseIn -->
 		<!-- {subtitles.map(subtitle => (
@@ -58,9 +63,6 @@ const subtitles = [
 		<!-- End test riseIn -->
 
 		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]"/>
-		<div class="fixed flex items-center justify-center h-screen pt-52 z-20">
-			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
-		</div>
   </section>
 	<!-- <section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section overflow-hidden items-center justify-center w-screen h-screen z-999">
 		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
@@ -83,25 +85,6 @@ const subtitles = [
 		animation-duration: 800ms;
 		opacity: 0;
 	}
-	.linear {
-		animation-timing-function: linear;
-	}
-	.easeInOut {
-		animation-timing-function: ease-in-out;
-	}
-	.easeOut {
-		animation-timing-function: ease-out;
-	}
-
-	/* @keyframes pulse {
-		0% {
-			transform: perspective(300px) translateZ(50px);
-		}
-
-		100% {
-			transform: perspective(300px) translateZ(150px);
-		}
-	} */
 
   .lines {
 		width: 100vw;
@@ -210,19 +193,11 @@ const subtitles = [
 						// 	envisionSection?.classList.remove("hidden");
 						// },6900);
 					}
-					// entry.target.querySelector(".subtitle")?.classList.remove("opacity-0");
-					// entry.target.querySelector(".subtitle")?.classList.remove("hidden");
-					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('opacity-0','hidden')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
 				} else {
-					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),100);
-					// entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
-
-					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {
-						setTimeout(()=> subtitle.classList.add("hidden"),100);
-						subtitle.classList.add('opacity-0');
-					});
-					setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),100);
-					// entry.target.querySelector(".subtitle")?.classList.add("opacity-0")
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-riseIn','animation-delay-1800')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-fadeOut')});
 				}
 			})
 		}, options);

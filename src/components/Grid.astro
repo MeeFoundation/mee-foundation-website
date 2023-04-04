@@ -5,7 +5,7 @@ export interface Props {
 
 const {  } = Astro.props;
 ---
-<div class="body grid">
+<div class="body grid animate-fadeIn-long">
   <div class="tunnel">
     {[...Array(5).keys()].map((item) => {
         return <div class="frame transform-gpu" style={`--i:${item + 1}`}></div>
