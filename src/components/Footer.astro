@@ -7,13 +7,17 @@ export interface Props {
   withAppButtons?: boolean;
 }
 
+const pathname = new URL(Astro.request.url).pathname;
+
 const {mode,withAppButtons = true} = Astro.props;
+
+// TODO Add bg animation on connect with mee button
 
 ---
 
 <footer class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
   <ul class="list-none flex flex-col gap-9 w-screen px-5 mb-20 max-w-[414px]">
-    {links.map(link => <li><a href={link.link} class:list={["link relative flex justify-between items-center text-base md:text-xl leading-normal font-medium pb-3 border-b border-solid",{"border-white after:bg-white": mode === "dark", "border-blue after:bg-blue": mode === "light"}]}>{link.footerName || link.name}</a></li>)}
+    {links.filter(link => link.link !== pathname).map(link => <li><a href={link.link} class:list={["link relative flex justify-between items-center text-base md:text-xl leading-normal font-medium pb-3 border-b border-solid hover:after:animate-pulseArrow",{"border-white after:bg-white": mode === "dark", "border-blue after:bg-blue": mode === "light"}]}>{link.footerName || link.name}</a></li>)}
   </ul>
   <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
@@ -51,9 +55,6 @@ const {mode,withAppButtons = true} = Astro.props;
     width: 21px;
     height: 12px;
   }
-  .link:hover::after {
-    animation: animate-arrow 700ms;
-  }
 
   .connectBtn::before {
     content: "";
@@ -61,17 +62,5 @@ const {mode,withAppButtons = true} = Astro.props;
     display: block;
     width: 44px;
     height: 44px;
-  }
-
-  @keyframes animate-arrow {
-    0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(6px);
-    }
-    to {
-      transform: translateX(0);
-    }
   }
 </style>

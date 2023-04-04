@@ -61,6 +61,10 @@ module.exports = {
       borderRadius: {
         '1/2': '50%',
       },
+      transitionDuration: {
+        400: '400ms',
+        800: '800ms',
+      },
       keyframes: {
         fadeIn: {
           '0%': {opacity: 0},
@@ -86,6 +90,11 @@ module.exports = {
           '0%': {width: '0%'},
           '100%': {width: '100%'},
         },
+        pulseArrow: {
+          '0%': {transform: 'translateX(0)'},
+          '50%': {transform: 'translateX(6px)'},
+          '100%': {transform: 'translateX(0)'},
+        },
       },
       animation: {
         'riseIn-short': 'riseIn 400ms ease-out both',
@@ -96,6 +105,7 @@ module.exports = {
         drawUnderline: 'drawUnderline 400ms linear both',
         'moveCard-short': 'moveCard 400ms ease-out both',
         moveCard: 'moveCard 800ms ease-out both',
+        pulseArrow: 'pulseArrow 800ms ease-out',
 
         'fadeIn-short': 'fadeIn 250ms ease-in-out forwards',
         'fadeOut-short': 'fadeOut 200ms ease-in-out forwards',
