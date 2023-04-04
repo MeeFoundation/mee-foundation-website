@@ -33,7 +33,7 @@ const subtitles = [
 			</div>
 		))}
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1800">
-			<i class="scrollIcon block w-4 h-6 md:w-6 md:h-10 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
 
 		<!-- Test riseIn -->
@@ -100,17 +100,15 @@ const subtitles = [
 	}
 
 	.scrollIcon {
-		display: flex;
-		position: relative;
-    border: 2px solid white;
+    border: 2px solid rgba(255,255,255,0.7);
     border-radius: 12px;
 	}
   .scrollIcon::after {
     position: relative;
     left:calc(50% - 1px);
     width: 2px;
-    height: 45%;
-    background: rgba(255,255,255,1);
+    height: 50%;
+    background: rgba(255,255,255,0.7);
     border-radius: 1px;
     content:"";
 		align-self: flex-start;
@@ -121,13 +119,13 @@ const subtitles = [
   }
 
 	@keyframes scroll {
-		0% { opacity: 1; height: 45%;}
-		20% { opacity: 1; height: 45%;}
+		0% { opacity: 1; height: 50%;}
+		20% { opacity: 1; height: 50%;}
 		30% { height: 100%; align-self: flex-start;}
 		40% { opacity: 1; align-self: flex-end;}
 		80% {  opacity: 0; height: 0%; align-self: flex-end;}
-		81% {  opacity: 0; height: 45%; align-self: flex-start;}
-		100% { opacity: 1; height: 45%;}
+		81% {  opacity: 0; height: 50%; align-self: flex-start;}
+		100% { opacity: 1; height: 50%;}
 	}
 
 	@keyframes bleach {

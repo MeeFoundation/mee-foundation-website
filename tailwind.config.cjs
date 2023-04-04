@@ -45,6 +45,7 @@ module.exports = {
         45: '11.25rem',
       },
       width: {
+        4.5: '1.125rem',
         160: '40rem',
       },
       gap: {
