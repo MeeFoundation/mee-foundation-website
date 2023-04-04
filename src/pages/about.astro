@@ -71,12 +71,6 @@ const textArray = [
 </Layout>
 
 <style>
-  .scrollContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-  }
   .aboutText {
     background: linear-gradient(253.14deg, #559FAA 0%, #335F66 100%);
     -webkit-background-clip: text;
@@ -149,26 +143,5 @@ const textArray = [
 		});
 
     if (platform) observerPlatform.observe(platform);
-
-    
-    const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
-    height = scrollWrap.getBoundingClientRect().height - 1,
-    speed = 0.1;
-
-    
-    document.body.style.height = Math.floor(height) + "px";
-    
-    let offset = 0;
-            const smoothScroll = () => {
-                // offset += (window.pageYOffset - offset) * speed;
-                offset += Math.ceil((window.pageYOffset - offset) * speed);
-                const scroll = "translateY(-" + offset + "px)";
-                scrollWrap.style.transform = scroll;
-
-                requestAnimationFrame(smoothScroll);
-            }
-
-            // smoothScroll();
-            requestAnimationFrame(smoothScroll);
 
 </script>

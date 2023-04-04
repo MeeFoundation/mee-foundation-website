@@ -69,7 +69,12 @@ const { title } = Astro.props;
     	height: 9px;
   	}
 	}
-
+	.scrollContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
 	.animation-delay-200 {
 		animation-delay: 200ms;
 	}
@@ -113,3 +118,24 @@ const { title } = Astro.props;
     100% { width: 100% }
   }
 </style>
+
+<script>
+	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
+  			height = scrollWrap.getBoundingClientRect().height - 1,
+  			speed = 0.1;
+
+  document.body.style.height = Math.floor(height) + "px";
+    
+  let offset = 0;
+
+  const smoothScroll = () => {
+    // offset += (window.pageYOffset - offset) * speed;
+    offset += Math.ceil((window.pageYOffset - offset) * speed);
+    const scroll = "translateY(-" + offset + "px)";
+    scrollWrap.style.transform = scroll;
+
+    requestAnimationFrame(smoothScroll);
+  }
+	
+  requestAnimationFrame(smoothScroll);
+</script>
