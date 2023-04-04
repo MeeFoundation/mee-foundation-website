@@ -137,7 +137,7 @@ const {  } = Astro.props;
 
 <script>
   const icons = document.querySelectorAll(".floatIcon") as NodeListOf<HTMLElement>;
-  const startDelay = 2400; // initial delay for first figure
+  const startDelay = 1200; // initial delay for first figure
     
   icons.forEach(icon => {
     icon.style.animationDelay = startDelay + Math.floor(Math.random() * 4200) + "ms";
