@@ -88,9 +88,6 @@ export const Landing: React.FC<LandingProps> = ({ appButton: AppButton }) => {
               </p>
             </div>
 
-            <p className="text-black">
-              {JSON.stringify(authState?.error?.error_description)}
-            </p>
             <div className="w-full flex flex-row flex-wrap">
               <div className="bg-alt-color-1 h-34 md:h-42 min-w-[225px] ssm:min-w-[200px] flex-1 flex flex-col justify-between pt-4 pl-4 pr-6">
                 <span className="text-landing-secondary-text">
