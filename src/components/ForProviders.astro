@@ -1,93 +1,93 @@
 ---
-import Footer from "./Footer.astro";
-import done from "../../assets/done.svg";
+import Footer from './Footer.astro';
+import done from '../../assets/done.svg';
 export interface Props {}
 
 const {} = Astro.props;
 const gives_you = [
   [
-    "Better user experience",
-    " – one-tap account creation, password-free sign-in, less form filling.",
+    'Better user experience',
+    ' – one-tap account creation, password-free sign-in, less form filling.',
   ],
   [
-    "Access to high-quality, up-to-date user profile data",
-    " allowing you to provide more personalized/relevant content, offers, and advertising.",
+    'Access to high-quality, up-to-date user profile data',
+    ' allowing you to provide more personalized/relevant content, offers, and advertising.',
   ],
   [
-    "Enhanced brand reputation",
-    " – the Mee trustmark on your site lets users know that you respect your user’s privacy.",
+    'Enhanced brand reputation',
+    ' – the Mee trustmark on your site lets users know that you respect your user’s privacy.',
   ],
 ];
 ---
 
 <article
-  id="envision"
-  class="envision relative flex flex-col justify-center items-center w-screen overflow-x-hidden"
+  class="relative flex w-screen flex-col items-center justify-center overflow-x-hidden"
 >
   <section
-    class="flex top-0 section items-center justify-center w-screen mt-32 md:mt-48"
+    class="section top-0 mt-32 flex w-screen items-center justify-center md:mt-48 mb-10"
   >
     <div
-      class="transition-opacity duration-500 flex flex-col items-center justify-center mb-8 px-6 md:p-0"
+      class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
     >
-      <div id="title" class="title w-full md:w-160 mb-7 overflow-hidden">
+      <div id="title" class="title w-full overflow-hidden md:w-160">
         <h2
-          class="text marker text-[28px] leading-snug md:text-4xl md:leading-normal font-bold text-center animate-riseIn text-black"
+          class="text marker animate-riseIn text-center text-[28px] font-bold leading-snug text-black/80 md:text-4xl md:leading-normal"
         >
-          Why <mark>your</mark> organization should join
-          the community of Mee providers.
+          Why <mark>your</mark> organization should join the community of Mee providers.
         </h2>
       </div>
     </div>
   </section>
   <section
-    class="providers-bg relative section flex flex-col items-center justify-center w-screen pb-20"
+    class="providers-bg section relative flex w-screen flex-col items-center justify-center pb-20"
   >
     <div class="flex flex-col items-center justify-center">
       <div
-        id="title"
-        class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0"
+        class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
       >
-        <h2
-          class="text text-base md:text-xl md:leading-8 font-medium tracking-wider text-center animate-riseIn text-black mb-6"
-        >
-          By displaying the Mee trustmark and adding the “Connect with Mee”
-          button, your users know you have committed to surveillance-free
-          interactions and agreed to abide by the Mee HIL.
-        </h2>
+        <div class="overflow-hidden mb-6">
+          <h2
+          class="text animate-riseIn animation-delay-1000 text-center text-base font-medium text-black/80 md:text-xl leading-relaxed"
+          >
+            By displaying the Mee trustmark and adding the “Connect with Mee”
+            button, your users know you have committed to surveillance-free
+            interactions and agreed to abide by the Mee HIL.
+          </h2>
+        </div>
       </div>
       <div
-        id="title"
-        class="title overflow-hidden z-100 w-full md:w-160 px-6 md:p-0"
+        class="title z-100 w-full overflow-hidden px-6 md:w-160 mb-16"
       >
         <h2
-          class="text text-base md:text-xl font-extrabold tracking-wider text-center animate-riseIn text-black pb-16"
+          class="text animate-riseIn animation-delay-1200 text-center text-base font-extrabold text-black/80 md:text-xl leading-relaxed"
         >
           This gives your organization:
         </h2>
       </div>
-      {
-        gives_you.map((items) => (
-          <div class="flex flex-col items-center section-0 mb-2 md:mb-4 w-full md:w-160 px-6 md:p-0 overflow-hidden">
-            <div class=" bg-orange-lighter pt-2 pb-4 flex animate-riseIn rounded-lg px-2">
-              <div class="mr-4">
-                <div class="h-6 w-6 md:h-8 md:w-8 border-[1.5px] border-white m-2 relative rounded">
-                  <img
-                    src={done}
-                    alt=""
-                    class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
-                  />
+      <div class="flex flex-col">
+        {
+          gives_you.map((items, index) => (
+            <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0">
+              <div class="animate-riseIn-short animation-delay-1400  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4">
+                <div class="mr-4">
+                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                    <img
+                      src={done}
+                      alt=""
+                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                    />
+                  </div>
                 </div>
+  
+                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
+                  <span class="font-extrabold">{items[0]}</span>
+                  <span>{items[1]}</span>
+                </h2>
               </div>
-
-              <h2 class="text text-base ms:text-xl text-black mt-2 pr-2">
-                <span class="font-extrabold">{items[0]}</span>
-                <span>{items[1]}</span>
-              </h2>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </section>
   <Footer mode="light" />
@@ -99,7 +99,7 @@ const gives_you = [
     height: auto;
   }
   .providers-bg::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 120vw;
     border-top-left-radius: 50%;
@@ -114,13 +114,21 @@ const gives_you = [
     filter: blur(100px);
     z-index: -1;
   }
-  
+  .givesItem:nth-child(1) > div {
+    animation-delay: 1400ms;
+  }
+  .givesItem:nth-child(2) > div {
+    animation-delay: 1600ms;
+  }
+  .givesItem:nth-child(3) > div {
+    animation-delay: 1800ms;
+  }
   .text {
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
   }
 
   .marker > mark::after {
-    animation-delay: 500ms;
+    animation-delay: 800ms;
   }
 </style>

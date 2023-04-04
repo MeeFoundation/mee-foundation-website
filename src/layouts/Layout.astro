@@ -56,12 +56,12 @@ const { title } = Astro.props;
     position: absolute;
     left: 0;
     bottom: 3px;
-    width: 0%;
     height: 6px;
     border-radius: 2px;
     background-color: #F9DF89;
     z-index: -1;
-		animation: drawUnderline 200ms forwards;
+		animation: drawUnderline 200ms both;
+		animation-delay: 800ms;
   }
 
 	@media (min-width: 768px) {
@@ -70,6 +70,36 @@ const { title } = Astro.props;
   	}
 	}
 
+	.animation-delay-200 {
+		animation-delay: 200ms;
+	}
+	.animation-delay-400 {
+		animation-delay: 400ms;
+	}
+	.animation-delay-800 {
+		animation-delay: 800ms;
+	}
+	.animation-delay-1000 {
+		animation-delay: 1s;
+	}
+	.animation-delay-1200 {
+		animation-delay: 1.2s;
+	}
+	.animation-delay-1400 {
+		animation-delay: 1.4s;
+	}
+	.animation-delay-1600 {
+		animation-delay: 1.6s;
+	}
+	.animation-delay-1800 {
+		animation-delay: 1.8s;
+	}
+	.animation-delay-2000 {
+		animation-delay: 2s;
+	}
+	.animation-delay-2200 {
+		animation-delay: 2.2s;
+	}
 	.pause {
      animation-play-state: paused;
    }
