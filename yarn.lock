@@ -2403,10 +2403,10 @@ make-dir@^3.0.2:
   dependencies:
     semver "^6.0.0"
 
-mee-js-sdk@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/mee-js-sdk/-/mee-js-sdk-0.1.0.tgz#40ae552f64b2dff4ec517c54c4b21c49334ea33e"
-  integrity sha512-eeMz1BNU9Qy+miV20UFMSjItL1R4PQYJofqGbauRD+FU9gkUe+PZQb/OLNjk8CSkmM5q3NW2PFPlpzGkuTcdxA==
+mee-js-sdk@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/mee-js-sdk/-/mee-js-sdk-0.1.2.tgz#a1d35442cbb634c5c038b92e79930ffa5abfbb10"
+  integrity sha512-GXUXznnXPfNCx2lw9JSmLwvDNKzwhdfpAX3G4xfn4zvbwj8UYP60RNs5TO5v2kjm5/UFRLdYTwCMNnJdNTlYNw==
   dependencies:
     big-integer "^1.6.51"
     jose "^4.11.2"

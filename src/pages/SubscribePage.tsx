@@ -26,7 +26,7 @@ export const SubscribePage: React.FC = () => {
 
   const name = meeData?.data?.name;
 
-  const [email, setEmail] = useState<string | undefined>(meeData?.data?.email);
+  const [email, setEmail] = useState<string | undefined>(meeData?.data?.email as string);
   const [error, setError] = useState<string | null>(null);
 
   return (
