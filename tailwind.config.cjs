@@ -83,6 +83,10 @@ module.exports = {
           '0%': {transform: 'scale(1)'},
           '100%': {transform: 'scale(0)'},
         },
+        collapse3d: {
+          '0%': {transform: 'scale3d(1,1,1)'},
+          '100%': {transform: 'scale3d(0,0,0)'},
+        },
         moveCard: {
           '0%': {opacity: 0, transform: 'translateX(-50%)'},
           '100%': {opacity: 1, transform: 'translateX(0)'},
@@ -112,6 +116,7 @@ module.exports = {
         'fadeOut-short': 'fadeOut 200ms ease-in-out forwards',
         'fadeOut-long': 'fadeOut 1.5s ease-in-out forwards',
         collapse: 'collapse 1.5s ease-in-out forwards',
+        collapse3d: 'collapse3d 1.5s ease-in-out forwards',
       },
     },
     colors: {

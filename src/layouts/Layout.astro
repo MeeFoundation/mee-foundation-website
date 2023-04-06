@@ -122,10 +122,10 @@ const { title } = Astro.props;
 
 <script>
 	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
-  			// height = scrollWrap.getBoundingClientRect().height - 1,
+  			height = scrollWrap.getBoundingClientRect().height - 1,
   			speed = 0.1;
 
-  // document.body.style.height = Math.floor(height) + "px";
+  document.body.style.height = Math.floor(height) + "px";
     
   let offset = 0;
 

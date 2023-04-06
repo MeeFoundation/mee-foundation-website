@@ -17,35 +17,35 @@ const subtitles = [
 	"You can trust that certified apps and sites  will act in your best interest."]
 ---
 
-<article id="envision" class="envision hidden flex relative flex-col justify-center items-center w-screen overflow-x-hidden">
+<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden">
 	<section class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
 		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
 				<Logo />
 			</div>
 			<div class="overflow-hidden">
-				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue translate-y-full animate-riseIn">is restoring balance</p>
+				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
 		</div>
 	</section>
-	<section class="bg-1 relative flex flex-col items-center justify-center w-screen h-screen">
+	<section class="bg-1 relative flex flex-col items-center justify-center w-screen min-h-[100vh]">
 		<!-- <div class="bg-1 top-0 mt-[100vh] w-[120vw]" /> -->
-		<div class="section flex flex-col items-center justify-center w-screen min-h-screen opacity-0">
+		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
 			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 				<div class="overflow-hidden px-5">
-					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center translate-y-full animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
+					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
 				</div>
 			</div>
 			{subtitles.map(subtitle => (
-				<div class="flex section flex-col items-center overflow-hidden w-screen h-[25vh]">
+				<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh]">
 					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
-						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center translate-y-full">{subtitle}</h2>
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
 					</div>
 				</div>
 			))}
 		</div>
 	</section>
-	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[65vh] translate-y-5 md:translate-y-20">
+	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
 		<AppButtons btnSize="big"/>
 	</section>
 	<Footer mode="dark" withAppButtons={false}/>
@@ -71,7 +71,7 @@ const subtitles = [
 		position: absolute;
 		top: 0;
 		width: 150%;
-		height: 200%;
+		height: 110%;
 		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 75%, rgba(249, 182, 137, 0.4) 100%);
 		filter: blur(100px);
 		border-top-left-radius: 50%;
@@ -125,10 +125,12 @@ const subtitles = [
 					// console.log('intersecting', entry.target);
 					// entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 					entry.target.classList.remove("opacity-0");
-					entry.target.querySelector(".subtitle")?.classList.add("animate-riseIn");
+					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
+					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
+					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
 					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
 					// console.log('removed', entry.target);
 					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);

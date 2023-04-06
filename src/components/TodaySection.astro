@@ -10,10 +10,10 @@ export interface Props {
 const {  } = Astro.props;
 const subtitles = [
 	"there is an online power imbalance.",
-	"you can’t control who has your data or how they’ll use it",
-	"data brokers and marketers are buying and selling information about you without your knowledge",
-	"businesses treat your data as their property",
-	"many users navigate this world with mistrust and fear"]
+	"you can’t control who has your data or how they’ll use it.",
+	"data brokers and marketers are buying and selling information about you without your knowledge.",
+	"businesses treat your data as their property.",
+	"many users navigate this world with mistrust and fear."]
 ---
 
 <article id="today" class="flex today flex-col items-center translate-y-0">
@@ -28,7 +28,7 @@ const subtitles = [
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
 				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold animate-riseIn text-white/[.85] animation-delay-800 hidden">{subtitle}</h2>
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 				</div>
 			</div>
 		))}
@@ -116,6 +116,7 @@ const subtitles = [
 	const shadow = document.querySelector(".shadow");
 	const background = document.querySelector(".background");
 	const title = document.getElementById("title");
+	const figuresContainer = document.querySelector('.figuresContainer') as HTMLElement;
 	const floatingFigures = document.querySelector('.floatingFigures');
 	const grid = document.querySelector('.grid');
 	const gradients = document.querySelectorAll('.floatGradient');
@@ -138,8 +139,9 @@ const subtitles = [
 					if(entry.target.id === "animationTrigger") {
 						title?.classList.add("animate-fadeOut", "titleBleach");
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
-						floatingFigures?.classList.add("animate-collapse", "figuresBleach");
 						grid?.classList.add("animate-fadeOut", "figuresBleach");
+						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
+						// requestAnimationFrame(collapseIcons);
 						gradients.forEach(gradient => {gradient.removeAttribute('style');gradient.classList.add("animate-fadeOut", "figuresBleach")})
 						shadow?.classList.add("bg-1");
 
@@ -169,12 +171,17 @@ const subtitles = [
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
 				} else {
-					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-riseIn','animation-delay-1800')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-riseIn')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-fadeOut')});
 				}
 			})
 		}, options);
 
+		const collapseIcons = () => {
+			console.log("an");
+			figuresContainer.style.transform = `scale(calc(1 - var(--bleachProgress) * 2))`;
+			// figuresContainer?.classList.add("animate-collapse", "figuresBleach");
+		}
 
 		sections.forEach((section) => {
 			observer.observe(section)
@@ -188,7 +195,7 @@ const subtitles = [
 				if(animationScroll === 1) {
 					// todaySection?.classList.add("hidden");
 					envisionSection?.classList.remove("hidden");
-					todaySection?.classList.add('translate-y-0')
+					todaySection?.classList.add('translate-y-0') // Hack for remove border shadow between today and envision
 				} else {
 					// todaySection?.classList.remove("hidden");
 					envisionSection?.classList.add("hidden");
