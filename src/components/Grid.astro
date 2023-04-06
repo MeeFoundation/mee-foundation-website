@@ -154,6 +154,13 @@ const {  } = Astro.props;
   transform-origin: right center;
 }
 
+.figuresBleach {
+		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+
 @keyframes move {
   0% {
     transform: perspective(300px) translateZ(-700px);

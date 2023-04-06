@@ -16,7 +16,7 @@ const subtitles = [
 	"many users navigate this world with mistrust and fear"]
 ---
 
-<article id="today" class="flex today flex-col items-center">
+<article id="today" class="flex today flex-col items-center translate-y-0">
 	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
@@ -26,7 +26,7 @@ const subtitles = [
 			</div>
     </div>
 		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
 				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
 					<h2 class="text subtitle text-xl md:text-3xl font-bold animate-riseIn text-white/[.85] animation-delay-800 hidden">{subtitle}</h2>
 				</div>
@@ -35,34 +35,9 @@ const subtitles = [
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
-
-		<!-- Test riseIn -->
-		<!-- {subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
-				<div class="subtitle overflow-hidden fixed z-100 top-[20vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short linear text-white/[.85]">{subtitle} 400ms linear</h2>
-				</div>
-				<div class="subtitle overflow-hidden fixed z-100 top-[30vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short easeInOut text-white/[.85]">{subtitle} 400ms easeInOut</h2>
-				</div>
-				<div class="subtitle overflow-hidden fixed z-100 top-[40vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short easeOut text-white/[.85]">{subtitle} 400ms easeOut</h2>
-				</div>
-				<div class="subtitle overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short linear text-white/[.85]">{subtitle} 800ms linear</h2>
-				</div>
-				<div class="subtitle overflow-hidden fixed z-100 top-[60vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short easeInOut text-white/[.85]">{subtitle} 800ms easeInOut</h2>
-				</div>
-				<div class="subtitle overflow-hidden fixed z-100 top-[70vh] w-full px-5 md:w-[660px] hidden opacity-0">
-					<h2 class="text text-xl md:text-3xl font-bold animate-riseIn-short easeOut text-white/[.85]">{subtitle} 800ms easeOut</h2>
-				</div>
-			</div>
-		))} -->
-		
-		<!-- End test riseIn -->
-
-		<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-[100vh]"/>
+		<div id="bleachAnimation" class="flex overflow-scroll h-[400vh]">
+			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
+		</div>
   </section>
 	<!-- <section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section overflow-hidden items-center justify-center w-screen h-screen z-999">
 		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
@@ -85,13 +60,6 @@ const subtitles = [
 		animation-duration: 800ms;
 		opacity: 0;
 	}
-
-  .lines {
-		width: 100vw;
-		height: 100vh;
-		position: fixed;
-		object-fit: cover;
-	}
 	.title {
 		animation-duration: 300ms;
 	}
@@ -102,6 +70,18 @@ const subtitles = [
 	.scrollIcon {
     border: 2px solid rgba(255,255,255,0.7);
     border-radius: 12px;
+	}
+	.titleBleach {
+		animation-delay: calc(var(--bleachProgress) * 10 * -400ms);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+	.figuresBleach {
+		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
 	}
   .scrollIcon::after {
     position: relative;
@@ -128,15 +108,6 @@ const subtitles = [
 		100% { opacity: 1; height: 50%;}
 	}
 
-	@keyframes bleach {
-		0% {opacity: 0;}
-		30% {opacity: 1}
-		52% {height: 20px; filter: blur(5px);}
-		87% {height: 20px; filter: blur(5px);}
-		98% {height: 100%; border-radius: 50%; filter: blur(90px);}
-		100% {height: 300%;border-radius: 0; filter: blur(0);}
-	}
-
 </style>
 
 <script>
@@ -151,6 +122,7 @@ const subtitles = [
 	const mainLogo = document.getElementById("mainLogo");
 	const todaySection = document.getElementById("today");
 	const envisionSection = document.getElementById("envision");
+	const bleachSection = document.getElementById("bleachAnimation");
 	const restoringBalance = document.getElementById("restoringBalance");
 	const restoringBalanceText = document.getElementById("restoringBalanceText");
 
@@ -164,17 +136,20 @@ const subtitles = [
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					if(entry.target.id === "animationTrigger") {
-						title?.classList.add("animate-fadeOut");
-						floatingFigures?.classList.add("animate-collapse");
+						title?.classList.add("animate-fadeOut", "titleBleach");
+						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
+						floatingFigures?.classList.add("animate-collapse", "figuresBleach");
+						grid?.classList.add("animate-fadeOut", "figuresBleach");
+						gradients.forEach(gradient => {gradient.removeAttribute('style');gradient.classList.add("animate-fadeOut", "figuresBleach")})
 						shadow?.classList.add("bg-1");
-						grid?.classList.add("animate-fadeOut");
-						gradients.forEach(gradient => gradient.classList.add("animate-fadeOut"))
-						setTimeout(() => {
-							mainLogo?.classList.add("logo--contrast");
-							todaySection?.classList.toggle("hidden");
-							window.scrollTo(0, 0);
-							envisionSection?.classList.toggle("hidden");
-						},2900);
+
+						// setTimeout(() => {
+						// 	mainLogo?.classList.add("logo--contrast");
+						// 	todaySection?.classList.toggle("hidden");
+						// 	window.scrollTo(0, 0);
+						// 	envisionSection?.classList.toggle("hidden");
+						// },2900);
+
 						// setTimeout(() => {
 							// restoringBalance?.classList.toggle("hidden");
 						// },3900);
@@ -207,6 +182,19 @@ const subtitles = [
 
 		document.addEventListener('scroll', () => {
 			storeScroll();
+			if(bleachSection) {
+				const animationScroll = calcElScroll(bleachSection);
+				document.documentElement.style.setProperty('--bleachProgress', animationScroll.toString());
+				if(animationScroll === 1) {
+					// todaySection?.classList.add("hidden");
+					envisionSection?.classList.remove("hidden");
+					todaySection?.classList.add('translate-y-0')
+				} else {
+					// todaySection?.classList.remove("hidden");
+					envisionSection?.classList.add("hidden");
+					todaySection?.classList.remove('translate-y-0')
+				}
+			}
 			if(window.scrollY > 400) {
 				scrollIcon?.classList.add("opacity-0");
 				setTimeout(()=>{
@@ -219,5 +207,11 @@ const subtitles = [
 		document.documentElement.style.setProperty('--scroll',
 		(window.scrollY /
 		(document.body.offsetHeight - window.innerHeight)).toString())
+	};
+	const calcElScroll = (element:Element | HTMLElement) => {
+		const rect = element.getBoundingClientRect();
+		if(rect.top - window.innerHeight > 0) return 0;
+		if(rect.bottom - window.innerHeight < 0) return 1;
+		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
 	}
 </script>
