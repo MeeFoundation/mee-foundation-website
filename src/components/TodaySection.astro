@@ -1,8 +1,5 @@
 ---
 import Background from './Background.astro';
-import FloatingFigures from './FloatingFigures.astro';
-import Grid from './Grid.astro';
-import Logo from './Logo.astro';
 
 export interface Props {
 }
@@ -35,20 +32,10 @@ const subtitles = [
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
-		<div id="bleachAnimation" class="flex overflow-scroll h-[400vh]">
+		<div id="bleachAnimation" class="flex h-[400vh]">
 			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
 		</div>
   </section>
-	<!-- <section id="restoringBalance" class="transition-opacity duration-200 hidden fixed section overflow-hidden items-center justify-center w-screen h-screen z-999">
-		<div class="h-screen flex flex-col items-center justify-center gap-4 md:gap-5"> 
-			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 animate-fadeIn">
-				<Logo />
-			</div>
-			<div class="overflow-hidden h-16">
-				<p id="restoringBalanceText" class="text hidden text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
-			</div>
-		</div>
-	</section> -->
 </article>
 
 <style>
@@ -114,7 +101,6 @@ const subtitles = [
   const sections = document.querySelectorAll('.today .section');
 	const scrollIcon = document.querySelector(".scrollIcon");
 	const shadow = document.querySelector(".shadow");
-	const background = document.querySelector(".background");
 	const title = document.getElementById("title");
 	const figuresContainer = document.querySelector('.figuresContainer') as HTMLElement;
 	const floatingFigures = document.querySelector('.floatingFigures');
@@ -124,8 +110,6 @@ const subtitles = [
 	const todaySection = document.getElementById("today");
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
-	const restoringBalance = document.getElementById("restoringBalance");
-	const restoringBalanceText = document.getElementById("restoringBalanceText");
 
 
 		const options: IntersectionObserverInit = {
@@ -141,7 +125,6 @@ const subtitles = [
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
 						grid?.classList.add("animate-fadeOut", "figuresBleach");
 						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
-						// requestAnimationFrame(collapseIcons);
 						gradients.forEach(gradient => {gradient.removeAttribute('style');gradient.classList.add("animate-fadeOut", "figuresBleach")})
 						shadow?.classList.add("bg-1");
 
@@ -177,12 +160,6 @@ const subtitles = [
 			})
 		}, options);
 
-		const collapseIcons = () => {
-			console.log("an");
-			figuresContainer.style.transform = `scale(calc(1 - var(--bleachProgress) * 2))`;
-			// figuresContainer?.classList.add("animate-collapse", "figuresBleach");
-		}
-
 		sections.forEach((section) => {
 			observer.observe(section)
 		});
@@ -217,8 +194,9 @@ const subtitles = [
 	};
 	const calcElScroll = (element:Element | HTMLElement) => {
 		const rect = element.getBoundingClientRect();
+		console.log("🚀 ~ file: TodaySection.astro:197 ~ calcElScroll ~ rect:", rect, window.innerHeight)
 		if(rect.top - window.innerHeight > 0) return 0;
-		if(rect.bottom - window.innerHeight < 0) return 1;
+		if((rect.bottom - window.innerHeight) < 0) return 1;
 		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
 	}
 </script>
