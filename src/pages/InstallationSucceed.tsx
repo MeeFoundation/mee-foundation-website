@@ -11,8 +11,8 @@ import { decodeJwt } from 'jose';
 import { PARTNER_DATA } from './DownloadPage';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
-import illustrationEmpty from '../assets/meeIllustrationEmpty.svg';
-import informationIcon from '../assets/informationIcon.svg';
+import cloud from '../assets/cloud.svg';
+import guy from '../assets/guy.svg';
 import MeeCertifiedIcon from '../assets/meeCertifiedMark.svg';
 import MeeCompatibleIcon from '../assets/meeCompatibleMark.svg';
 // import MeeButtonIcon from '../assets/meeButtonActive.svg';
@@ -85,7 +85,13 @@ const partnerList: PartnerItem[] = [
     partnerImageUrl: 'https://mee.foundation/assets/mee_fav_icon.23140c64.svg',
     isCertified: true,
   },
-
+  {
+    partnerName: 'The Olde York Times',
+    partnerUrl: 'https://oldeyorktimes.com',
+    partnerDisplayedUrl: 'oldeyorktimes.com',
+    partnerImageUrl: 'https://oldeyorktimes.com/favicon.png',
+    isCertified: true,
+  },
 ];
 
 interface PartnerListItemProps {
@@ -137,30 +143,40 @@ const ContextDoesNotExist: React.FC = () => (
       <Header />
       <div className="max-w-256 mx-auto">
         <div className="min-h-screen">
-          <div className="sub-header bg-primary flex flex-col items-center">
-            <img src={illustrationEmpty} alt="mee-illustration" className="w-full" />
-            <div className="my-3 w-full px-5 text-center">
-              <h1 className="text-secondary text-2xl font-bold">Onwards and upwards!</h1>
-              <p className="text-primary-content text-sm pt-2">
-                You and I are at the beginning of our journey. I look forward to taking more steps together.
-              </p>
-            </div>
-          </div>
-          <div className="text-alt-color-8 px-4">
-            <div className="pt-4 pb-2 flex flex-row justify-between">
-              <h2 className="text-primary text-xl font-medium">Certified Apps</h2>
-              <button
-                type="button"
-                onClick={() => {
-                  window.open('/#/mee-certified', '_blank');
-                }}
+          <div className="sub-header bg-secondary pt-5 flex flex-col items-center">
+            <div className="w-full flex flex-col justify-center items-center">
+              <div className="relative">
+                <img className="" src={cloud} alt="cloud" />
+                <div className="absolute left-0 right-0 bottom-0 top-0 flex flex-col justify-center items-center px-8 pt-2">
+                  <h1 className="text-primary text-center font-normal text-xl xs:text-3xl px-2">
+                    Let’s set up your first connection
+                  </h1>
+                  <p className="text-primary text-center text-sm xs:text-base pt-2">
+                    It is your first time setting up Mee!
+                    By creating a connection I mean establishing a way for Mee to talk
+                    to apps/sites you would like to sign in/up.
+                    Choose who you want me to start talking with.
+                  </p>
+                </div>
+
+              </div>
+              <img className="pt-2 z-10" src={guy} alt="person" />
+              <div className="relative w-full h-19
+               overflow-hidden flex flex-col items-center justify-center -mt-2"
               >
-                <img src={informationIcon} alt="mee-information" className="" />
-              </button>
+                <div className="bg-white border-t rounded-t-[50%] h-[200vh] w-[200vh] absolute top-0 bottom-0">
+                  <h2 className="pt-11 text-primary text-xl text-center font-medium">Sites to connect to</h2>
+                </div>
+              </div>
+
             </div>
+
+          </div>
+          <div className="text-alt-color-8 px-4 pt-8">
+
             {
           partnerList.filter((partner) => partner.isCertified).map((partner) => (
-            <PartnerListItem partner={partner} />
+            <PartnerListItem key={partner.partnerUrl} partner={partner} />
           ))
 
         }
