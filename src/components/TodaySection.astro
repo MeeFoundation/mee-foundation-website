@@ -172,11 +172,13 @@ const subtitles = [
 				if(animationScroll === 1) {
 					// todaySection?.classList.add("hidden");
 					envisionSection?.classList.remove("hidden");
-					todaySection?.classList.add('translate-y-0') // Hack for remove border shadow between today and envision
+					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
+					mainLogo?.classList.add("logo--contrast");
 				} else {
 					// todaySection?.classList.remove("hidden");
 					envisionSection?.classList.add("hidden");
-					todaySection?.classList.remove('translate-y-0')
+					todaySection?.classList.remove('translate-y-0');
+					mainLogo?.classList.remove("logo--contrast");
 				}
 			}
 			if(window.scrollY > 400) {
@@ -194,7 +196,6 @@ const subtitles = [
 	};
 	const calcElScroll = (element:Element | HTMLElement) => {
 		const rect = element.getBoundingClientRect();
-		console.log("🚀 ~ file: TodaySection.astro:197 ~ calcElScroll ~ rect:", rect, window.innerHeight)
 		if(rect.top - window.innerHeight > 0) return 0;
 		if((rect.bottom - window.innerHeight) < 0) return 1;
 		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
