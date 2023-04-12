@@ -18,14 +18,14 @@ const textArray = [
   <Header logoColor="blue" />
   <main class="scrollContainer transform-gpu">
     <section class="flex flex-col justify-center items-center w-screen bg-white transform-gpu">
-      <section class="flex flex-col justify-center items-center w-screen overflow-hidden pt-32 md:pt-30 bg-white">
+      <section class="scrollSection flex flex-col justify-center items-center w-screen overflow-hidden pt-32 md:pt-30 bg-white">
         <div class="overflow-hidden mb-8">
           <h1 class="text-xl font-bold leading-normal text-black/80 animate-riseIn">The Mee Foundation</h1>
         </div>
         <section class="relative flex flex-col items-center gap-15 md:gap-25 lg:gap-32 xl:gap-50.5 px-5 pb-25 lg:pb-80 w-full max-w-[1094px]">
           {textArray.map(text => (
             <div class="overflow-hidden">
-              <p class="aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center animation-delay-800" set:html={text} />
+              <p class="aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center animation-delay-800 translate-y-full" set:html={text} />
             </div>
           ))}
           <div class="absolute -bottom-7.5 lg:bottom-45 z-10">
@@ -33,7 +33,7 @@ const textArray = [
           </div>
         </section>
       </section>
-      <section class="platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw]">
+      <section class="scrollSection platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw]">
         <h2 class="text-3xl leading-thick md:text-4xl md:leading-normal font-bold mb-15 md:mb-25">The Mee Platform:</h2>
         <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 mb-23 px-5 lg:mb-35.5 w-screen">
           <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px]">
@@ -57,7 +57,7 @@ const textArray = [
           <p class="platform__subtitle text-xl leading-normal font-bold md:text-3xl md:leading-relaxed w-screen max-w-[866px] text-center animation-delay-1200">Our global team of developers works to give people control over their online identity by developing identity agent technology and fostering the development of a <mark>community</mark> of compatible apps and sites.</p>
         </div>
       </section>
-      <section class="flex flex-col items-center py-25 md:pt-40 md:pb-52 bg-white w-[400vw] lg:w-[200vw] rounded-t-1/2 -translate-y-25">
+      <section class="scrollSection flex flex-col items-center py-25 md:pt-40 md:pb-52 bg-white w-[400vw] lg:w-[200vw] rounded-t-1/2 -translate-y-25">
         <h2 class="text-xl md:text-3xl leading-normal font-bold text-blue mb-12 md:mb-21">Mee Affiliates</h2>
         <div class="flex flex-col justify-evenly items-center md:flex-row gap-6 w-screen">
           <img src="/images/linux-foundation-logo.svg" width="179" height="60" class="w-[94px] md:w-[179px]" alt="Linux foundation logo" />
@@ -113,10 +113,6 @@ const textArray = [
   const platformItems = document.querySelectorAll(".platform__item");
   const platformSubtitle = document.querySelector(".platform__subtitle");
 
-  const options: IntersectionObserverInit = {
-			// root: null,
-			threshold: 0,
-		};
 	const observerAboutText = new IntersectionObserver((entries, _) => {
 		entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -125,7 +121,7 @@ const textArray = [
         entry.target.classList.remove("animation-delay-800");
       }
 		})
-	}, options);
+	}, {rootMargin: "100% 0% 0%"});
 
   const observerPlatform = new IntersectionObserver((entries, _) => {
 		entries.forEach((entry) => {
@@ -136,10 +132,10 @@ const textArray = [
 		})
 	}, {threshold: 0.1});
 
-		aboutTexts.forEach((text) => {
-			observerAboutText.observe(text)
-		});
+	aboutTexts.forEach((text) => {
+		observerAboutText.observe(text)
+	});
 
-    if (platform) observerPlatform.observe(platform);
 
+  if (platform) observerPlatform.observe(platform);
 </script>

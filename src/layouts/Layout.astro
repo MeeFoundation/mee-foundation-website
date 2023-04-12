@@ -121,24 +121,34 @@ const { title } = Astro.props;
 </style>
 
 <script>
-	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
-  			speed = 0.1;
-	if(scrollWrap) {
-		const height = scrollWrap.getBoundingClientRect().height - 1;
-		document.body.style.height = Math.floor(height) + "px";
-	}
+	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement;
+  const scrollSections = document.querySelectorAll('.scrollSection');
+  let speed = 0.1;
+	let scrollOffset = 0;
 
-    
-  let offset = 0;
+	const scrollObserver = new IntersectionObserver((entries, _) => {
+		entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // slow down scroll speed on each section
+        speed = 0.04;
+        // return scroll to default after few ms
+        setTimeout(() => {speed = 0.1}, 400)
+			}
+		})
+	});
 
-  const smoothScroll = () => {
-    // offset += (window.pageYOffset - offset) * speed;
-    offset += Math.ceil((window.pageYOffset - offset) * speed);
-    const scroll = "translateY(-" + offset + "px)";
+	scrollSections.forEach(section => scrollObserver.observe(section));
+
+	const smoothScroll = () => {
+    scrollOffset += Math.ceil((window.scrollY - scrollOffset) * speed);
+    const scroll = "translateY(-" + scrollOffset + "px)";
     scrollWrap.style.transform = scroll;
-
     requestAnimationFrame(smoothScroll);
   }
 	
-  if(scrollWrap) requestAnimationFrame(smoothScroll);
+	if(scrollWrap) {
+		const height = scrollWrap.getBoundingClientRect().height - 1;
+		document.body.style.height = Math.floor(height) + "px";
+		requestAnimationFrame(smoothScroll);
+	}
 </script>
