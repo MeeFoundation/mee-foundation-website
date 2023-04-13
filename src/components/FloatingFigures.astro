@@ -106,7 +106,7 @@ const {  } = Astro.props;
     /* animation-play-state: paused; */
     animation-delay: calc(((var(--scroll) * 5) + var(--i) / 2) * -100s);
     animation-fill-mode: both;
-    backface-visibility: hidden; 
+    backface-visibility: hidden;
   }
 
   /* Try position icons on multiple container with different --from translate value */
@@ -129,12 +129,12 @@ const {  } = Astro.props;
 
   @keyframes moveToCenter {
   0% {
-    transform: perspective(300px) translateZ(var(--from));
+    transform: perspective(300px) translateZ(var(--from)) scale(calc(1 - var(--bleachProgress) * 2));
     /* transform: scale(1); */
   }
 
   100% {
-    transform: perspective(300px) translateZ(-700px);
+    transform: perspective(300px) translateZ(-700px) scale(calc(1 - var(--bleachProgress) * 2));
     /* transform: scale(-1); */
   }
 }

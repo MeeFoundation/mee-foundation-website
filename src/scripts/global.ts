@@ -16,3 +16,11 @@ export const enableScroll = () => {
   window.onscroll = function () {};
   isScrollStopped = false;
 };
+
+export const storeScroll = () => {
+  scrollY = window.scrollY;
+  document.documentElement.style.setProperty(
+    '--scroll',
+    (scrollY / (document.body.offsetHeight - window.innerHeight)).toString(),
+  );
+};

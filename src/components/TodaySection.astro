@@ -98,7 +98,7 @@ const subtitles = [
 </style>
 
 <script>
-	import { disableScroll, enableScroll, isScrollStopped } from "../scripts/global";
+	import { disableScroll, enableScroll, isScrollStopped, storeScroll } from "../scripts/global";
 
   const sections = document.querySelectorAll('.today .section');
 	const scrollIcon = document.querySelector(".scrollIcon");
@@ -128,7 +128,7 @@ const subtitles = [
 						title?.classList.add("animate-fadeOut", "titleBleach");
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
 						grid?.classList.add("animate-fadeOut", "figuresBleach");
-						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
+						// figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
 						gradients.forEach(gradient => {gradient.removeAttribute('style');gradient.classList.add("animate-fadeOut", "figuresBleach")})
 						shadow?.classList.add("bg-1");
 
@@ -197,11 +197,6 @@ const subtitles = [
 			}
 		}, {passive: true})
 
-	const storeScroll = () => {
-		document.documentElement.style.setProperty('--scroll',
-		(window.scrollY /
-		(document.body.offsetHeight - window.innerHeight)).toString())
-	};
 	const calcElScroll = (element:Element | HTMLElement) => {
 		const rect = element.getBoundingClientRect();
 		if(rect.top - window.innerHeight > 0) return 0;
