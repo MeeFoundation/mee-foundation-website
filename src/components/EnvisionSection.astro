@@ -4,8 +4,6 @@ import Features from './Features.astro';
 import Footer from './Footer.astro';
 import Logo from './Logo.astro';
 import TrustIcon from './TrustIcon.astro';
-
-
 export interface Props {
 }
 
@@ -107,8 +105,8 @@ const subtitles = [
 
 </style>
 
-<!-- <script is:inline src="https://unpkg.com/intersection-observer-debugger"></script> -->
 <script>
+	import { disableScroll, enableScroll } from "../scripts/global";
 	const envision = document.getElementById("envision");
 	const welcomeSection = document.getElementById("welcomeSection");
 	const sections = document.querySelectorAll('.envision .section');
@@ -128,6 +126,9 @@ const subtitles = [
 					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
 					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
+
+					disableScroll();
+					setTimeout(() => {enableScroll()}, 1000);
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
