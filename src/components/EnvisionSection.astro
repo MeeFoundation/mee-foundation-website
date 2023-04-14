@@ -35,7 +35,7 @@ const subtitles = [
 				</div>
 			</div>
 			{subtitles.map(subtitle => (
-				<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh]">
+				<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh] mb-4">
 					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
 					</div>
@@ -119,7 +119,7 @@ const subtitles = [
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					// console.log('intersecting', entry.target);
+					console.log('intersecting', entry.target);
 					// entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 					entry.target.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
