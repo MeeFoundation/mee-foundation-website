@@ -129,12 +129,12 @@ const {  } = Astro.props;
 
   @keyframes moveToCenter {
   0% {
-    transform: perspective(300px) translateZ(var(--from)) scale(calc(1 - var(--bleachProgress) * 2));
+    transform: perspective(300px) translateZ(100px) scale(var(--scaleFactor));
     /* transform: scale(1); */
   }
 
   100% {
-    transform: perspective(300px) translateZ(-700px) scale(calc(1 - var(--bleachProgress) * 2));
+    transform: perspective(300px) translateZ(-700px) scale(var(--scaleFactor));
     /* transform: scale(-1); */
   }
 }
