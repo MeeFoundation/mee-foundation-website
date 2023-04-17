@@ -8,10 +8,25 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="Mee Foundation">
 	<Header />
-	
+
+  <div class="w-full flex justify-center">
+    <div id="phoneMain" class="phoneMain fixed hidden border-black02 border-2 rounded-2.5xl h-[650px] w-[350px]"></div>
+  </div>
+
   <main class="scrollContainer transform-gpu">
     <div class="wrapper w-screen hmw-bg">
       <article class="flex flex-col items-center">
+        <section class="flex items-center flex-col">
+          <h1 id="mainHeader" class="marker animate-riseIn mt-[200px] text-7xl font-bold">
+            How Mee <mark>Works</mark>
+          </h1>
+
+          <div id="scrollIndicator" class="flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
+            <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+          </div>
+
+          <div id="phone" class="phone animate-riseIn border-black02 border-2 rounded-2.5xl mt-[61px] h-[650px] w-[350px]"></div>
+        </section>
         <section class="section mt-[891px]">
           <div>Mee is your identity agent.</div>
         </section>
@@ -32,19 +47,29 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
+import type { log } from 'astro/dist/core/logger/core';
+
+  const mainHeader = document.getElementById("mainHeader");
+  const scrollIndicator = document.getElementById("scrollIndicator");
+  const phone = document.getElementById("phone");
+  const phoneMain = document.getElementById("phoneMain");
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+  let isFirstScrollHappen = false
+  let isPhoneFixed = false
 
-  const sections = document.querySelectorAll('.wrapper .section');
+  const sections = document.querySelectorAll('.wrapper .section, .phone');
   const options: IntersectionObserverInit = {
 			threshold: 0.1,
 		};
 
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-          console.log('isIntersecting', entry.target);
+        if (entry.isIntersecting) {
+          console.log('isIntersecting', entry.target.id);
         }
 			})
 		}, options);
@@ -52,10 +77,49 @@ import Footer from '../components/Footer.astro';
   sections.forEach((section) => {
 			observer.observe(section)
 		});
+
+  document.addEventListener('scroll', () => {
+    if (!isFirstScrollHappen) {
+      mainHeader?.classList.remove('animate-riseIn')
+      mainHeader?.classList.add('animate-fadeOut')
+
+      scrollIndicator?.classList.remove('animate-fadeIn')
+      scrollIndicator?.classList.add('animate-fadeOut')
+
+      isFirstScrollHappen = true
+    }
+
+    if (!isPhoneFixed) {
+      const phoneRect = phone?.getBoundingClientRect()
+
+      if (phoneRect && phone) {
+        const phoneStyle = window.getComputedStyle(phone, null);
+        const phoneTop = phoneRect?.top - parseInt(phoneStyle.marginTop)
+        const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
+
+        if (phoneTop < phoneViewCenterTop) {
+          isPhoneFixed = true
+          phone?.classList.add('hidden')
+          phoneMain?.classList.remove('hidden')
+          if (phoneMain) {
+            phoneMain.style.top = String(`${phoneViewCenterTop}px`)
+          }
+        }
+      }
+    }
+  })
 </script>
 
 <style>
   .hmw-bg {
     background: linear-gradient(180deg, rgba(249, 182, 137, 0.4) 0%, rgba(249, 223, 137, 0.4) 28.46%, rgba(197, 192, 92, 0.4) 57.37%, rgba(79, 134, 142, 0.4) 85.38%);
   }
+
+  .scrollIcon {
+    border: 2px solid black;
+	}
+  .scrollIcon::after {
+    background: black;
+  }
+
 </style>

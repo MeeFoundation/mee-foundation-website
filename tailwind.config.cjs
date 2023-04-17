@@ -64,6 +64,7 @@ module.exports = {
       },
       borderRadius: {
         '1/2': '50%',
+        '2.5xl': '20px',
       },
       transitionDuration: {
         400: '400ms',
@@ -124,6 +125,7 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
+      black02: '#00000020',
       black: {
         DEFAULT: '#000',
       },
