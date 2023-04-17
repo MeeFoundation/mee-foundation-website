@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+
+<Layout title="Mee Foundation">
+	<Header />
+	
+  <main class="scrollContainer transform-gpu">
+    <div class="wrapper w-screen hmw-bg">
+      <article class="flex flex-col items-center">
+        <section class="section mt-[891px]">
+          <div>Mee is your identity agent.</div>
+        </section>
+        <section class="section mt-[1254px]">
+          <div>Using Mee on compatible apps/sites.</div>
+        </section>
+        <section class="section mt-[1311px]">
+          <div>We’re building a community of certified providers.</div>
+        </section>
+        <section class="section mt-[1474px] mb-[1300px]">
+          <div>What can certified providers to with your data:</div>
+        </section>
+        <Footer mode="light" withAppButtons={false}/>
+      </article>
+    </div>
+  </main>
+
+</Layout>
+
+<script>
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+
+  const sections = document.querySelectorAll('.wrapper .section');
+  const options: IntersectionObserverInit = {
+			threshold: 0.1,
+		};
+
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+          console.log('isIntersecting', entry.target);
+        }
+			})
+		}, options);
+
+  sections.forEach((section) => {
+			observer.observe(section)
+		});
+</script>
+
+<style>
+  .hmw-bg {
+    background: linear-gradient(180deg, rgba(249, 182, 137, 0.4) 0%, rgba(249, 223, 137, 0.4) 28.46%, rgba(197, 192, 92, 0.4) 57.37%, rgba(79, 134, 142, 0.4) 85.38%);
+  }
+</style>
