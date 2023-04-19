@@ -176,7 +176,7 @@ const subtitles = [
 			observer.observe(section)
 		});
 
-		// window.addEventListener('wheel', wheelHandler);
+		window.addEventListener('wheel', wheelHandler);
 		
 		document.addEventListener('scroll', (e: Event) => {
 			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
