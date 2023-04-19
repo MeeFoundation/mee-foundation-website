@@ -122,8 +122,26 @@ const subtitles = [
 	let isScroll = false;
 	let lastTimeStamp: number;
 
-	const getAverage = (numbers: number[]) => numbers.reduce((acc, number) => acc + number, 0) / numbers.length
-	
+	const getAverage = (numbers: number[]) => numbers.reduce((acc, number) => acc + number, 0) / numbers.length;
+
+	const wheelHandler = (e: WheelEvent) => {
+			scrollFiguresProgress += e.deltaY;
+			if(!isScroll) {
+				isScroll = true;
+				const currentSlide = document.querySelector('.currentSection');
+				const nextSlide = currentSlide?.nextElementSibling as HTMLElement;
+				const prevSlide = currentSlide?.previousElementSibling as HTMLElement;
+				if (e.deltaY < 0) scrollY = prevSlide?.offsetTop;
+				if (e.deltaY > 0) scrollY = nextSlide?.offsetTop;
+			}
+			console.log(e.timeStamp - lastTimeStamp);
+			if(e.timeStamp - lastTimeStamp > 200 ) {
+				isScroll = false;
+			}
+
+			lastTimeStamp = e.timeStamp;
+		};
+
 
 		const options: IntersectionObserverInit = {
 			// root: document.body,
@@ -158,23 +176,7 @@ const subtitles = [
 			observer.observe(section)
 		});
 
-		window.addEventListener('wheel', (e: WheelEvent) => {
-			scrollFiguresProgress += e.deltaY;
-			if(!isScroll) {
-				isScroll = true;
-				const currentSlide = document.querySelector('.currentSection');
-				const nextSlide = currentSlide?.nextElementSibling as HTMLElement;
-				const prevSlide = currentSlide?.previousElementSibling as HTMLElement;
-				if (e.deltaY < 0) scrollY = prevSlide?.offsetTop;
-				if (e.deltaY > 0) scrollY = nextSlide?.offsetTop;
-			}
-			console.log(e.timeStamp - lastTimeStamp);
-			if(e.timeStamp - lastTimeStamp > 200 ) {
-				isScroll = false;
-			}
-
-			lastTimeStamp = e.timeStamp;
-		})
+		// window.addEventListener('wheel', wheelHandler);
 		
 		document.addEventListener('scroll', (e: Event) => {
 			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
@@ -190,11 +192,13 @@ const subtitles = [
 					envisionSection?.classList.remove("hidden");
 					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 					mainLogo?.classList.add("logo--contrast");
+					window.removeEventListener('wheel', wheelHandler);
 				} else {
 					// todaySection?.classList.remove("hidden");
 					envisionSection?.classList.add("hidden");
 					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
+					window.addEventListener('wheel', wheelHandler);
 				}
 			}
 			if(window.scrollY > 400) {
