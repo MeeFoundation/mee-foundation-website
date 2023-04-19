@@ -127,18 +127,18 @@ const { title } = Astro.props;
   let speed = 0.1;
 	let scrollOffset = 0;
 
-	const scrollObserver = new IntersectionObserver((entries, _) => {
-		entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // slow down scroll speed on each section
-        speed = 0.04;
-        // return scroll to default after few ms
-        setTimeout(() => {speed = 0.1}, 400)
-			}
-		})
-	});
+	// const scrollObserver = new IntersectionObserver((entries, _) => {
+	// 	entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       // slow down scroll speed on each section
+  //       speed = 0.04;
+  //       // return scroll to default after few ms
+  //       setTimeout(() => {speed = 0.1}, 400)
+	// 		}
+	// 	})
+	// });
 
-	scrollSections.forEach(section => scrollObserver.observe(section));
+	// scrollSections.forEach(section => scrollObserver.observe(section));
 
 	const smoothScroll = () => {
     scrollOffset += Math.ceil((window.scrollY - scrollOffset) * speed);

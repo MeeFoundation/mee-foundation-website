@@ -17,10 +17,14 @@ export const enableScroll = () => {
   isScrollStopped = false;
 };
 
-export const storeScroll = () => {
-  scrollY = window.scrollY;
+export const storeScroll = (scrollPos?: number) => {
+  // scrollY = window.scrollY;
+  scrollY = scrollPos || window.scrollY;
+  if (scrollPos && scrollY > scrollPos) scrollY = scrollPos;
   document.documentElement.style.setProperty(
     '--scroll',
     (scrollY / (document.body.offsetHeight - window.innerHeight)).toString(),
   );
 };
+
+export const scrollBySection = (e: WheelEvent) => {};

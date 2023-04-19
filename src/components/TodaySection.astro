@@ -22,6 +22,7 @@ const subtitles = [
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
 			</div>
     </div>
+		<div class="scroll-smooth">
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] mb-4">
 				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
@@ -29,6 +30,7 @@ const subtitles = [
 				</div>
 			</div>
 		))}
+		</div>
 		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 		</div>
@@ -113,7 +115,14 @@ const subtitles = [
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
 
+	let scrollSpeed = 4;
 
+	let scrollY = window.scrollY;
+	let scrollFiguresProgress = 0;
+	let isScroll = false;
+	let lastTimeStamp: number;
+
+	const getAverage = (numbers: number[]) => numbers.reduce((acc, number) => acc + number, 0) / numbers.length
 	
 
 		const options: IntersectionObserverInit = {
@@ -123,7 +132,6 @@ const subtitles = [
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
-				console.log("🚀 ~ file: TodaySection.astro:126 ~ entries.forEach ~ entry:", entry);
 				if (entry.isIntersecting) {
 					if(entry.target.id === "animationTrigger") {
 						title?.classList.add("animate-fadeOut", "titleBleach");
@@ -135,14 +143,13 @@ const subtitles = [
 					} else {
 						entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 						entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
-						
-						// Stop scrolling for subtitles
-						disableScroll();
-						setTimeout(() => {enableScroll()}, 1000);
+						entry.target.classList.add('currentSection');
 					}
 				} else {
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-riseIn')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-fadeOut')});
+
+					entry.target.classList.remove('currentSection');
 				}
 			})
 		}, options);
@@ -151,8 +158,28 @@ const subtitles = [
 			observer.observe(section)
 		});
 
-		document.addEventListener('scroll', () => {
-			if(!isScrollStopped) storeScroll();
+		window.addEventListener('wheel', (e: WheelEvent) => {
+			scrollFiguresProgress += e.deltaY;
+			if(!isScroll) {
+				isScroll = true;
+				const currentSlide = document.querySelector('.currentSection');
+				const nextSlide = currentSlide?.nextElementSibling as HTMLElement;
+				const prevSlide = currentSlide?.previousElementSibling as HTMLElement;
+				if (e.deltaY < 0) scrollY = prevSlide?.offsetTop;
+				if (e.deltaY > 0) scrollY = nextSlide?.offsetTop;
+			}
+			
+			if(e.timeStamp - lastTimeStamp > 40 ) {
+				isScroll = false;
+			}
+
+			lastTimeStamp = e.timeStamp;
+			if(scrollY && scrollY !== window.scrollY) window.scrollTo({left: 0, top: scrollY});
+		})
+		
+		document.addEventListener('scroll', (e: Event) => {
+			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
+
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
 				document.documentElement.style.setProperty('--scaleFactor', calcScale(bleachSection).toString());
@@ -175,7 +202,7 @@ const subtitles = [
 					scrollIcon?.classList.add("hidden");
 				},400)
 			}
-		}, {passive: true})
+		})
 
 	const calcElScroll = (element:Element | HTMLElement) => {
 		const rect = element.getBoundingClientRect();
