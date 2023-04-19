@@ -168,17 +168,18 @@ const subtitles = [
 				if (e.deltaY < 0) scrollY = prevSlide?.offsetTop;
 				if (e.deltaY > 0) scrollY = nextSlide?.offsetTop;
 			}
-			
-			if(e.timeStamp - lastTimeStamp > 40 ) {
+			console.log(e.timeStamp - lastTimeStamp);
+			if(e.timeStamp - lastTimeStamp > 200 ) {
 				isScroll = false;
 			}
 
 			lastTimeStamp = e.timeStamp;
-			if(scrollY && scrollY !== window.scrollY) window.scrollTo({left: 0, top: scrollY});
 		})
 		
 		document.addEventListener('scroll', (e: Event) => {
 			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
+
+			if(scrollY && scrollY !== window.scrollY) window.scrollTo({left: 0, top: scrollY});
 
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
