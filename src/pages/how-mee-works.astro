@@ -10,7 +10,7 @@ import Footer from '../components/Footer.astro';
 	<Header />
 
   <div class="w-full flex justify-center">
-    <div id="phoneMain" class="phoneMain p-4 z-10 fixed border-black02 border-2 rounded-2.5xl hidden h-[650px] w-[350px]">
+    <div id="phoneMain" class="phoneMain animate-riseIn p-4 z-10 mt-[412px] border-black02 border-2 rounded-2.5xl h-[650px] w-[350px]">
       <div id="phoneScreens" class="overflow-hidden rounded-xl relative h-full">
         <img id="screen7" class="phoneScreen absolute" src="/assets/phoneScreens/mee-7.png" width="318" height="618" class=""/>
         <img id="screen6" class="phoneScreen absolute" src="/assets/phoneScreens/license-6.png" width="318" height="618" class=""/>
@@ -33,10 +33,6 @@ import Footer from '../components/Footer.astro';
 
           <div id="scrollIndicator" class="flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
             <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
-          </div>
-
-          <div id="phone" class="phone p-4 animate-riseIn border-black02 border-2 rounded-2.5xl mt-[61px] h-[650px] w-[350px]">
-            <img src="/assets/phoneScreens/init-1.png" width="318" height="618" class=""/>
           </div>
         </section>
         <section class="w-full section mt-[891px] flex flex-col justify-start ml-[72px]">
@@ -107,6 +103,14 @@ import Footer from '../components/Footer.astro';
 
 <script>
   const SCREEN_HEIGHT = 614
+  const INIT_TOP_PHONE = 412
+
+  // animate-riseIn works badly with position fixed
+  setTimeout(() => {
+    phoneMain?.classList.remove(`mt-[${INIT_TOP_PHONE}px]`)
+    phoneMain?.classList.add(`t-[${INIT_TOP_PHONE}px]`)
+    phoneMain?.classList.add('fixed')
+  })
 
   const parseMatrix = (matrix: string): string[] => {
     const matrixPattern = /^\w*\((((-?\d+)|(-?\d*\.\d+)),\s*)*((-?\d+)|(-?\d*\.\d+))\)/i;
@@ -127,7 +131,6 @@ import Footer from '../components/Footer.astro';
 
   const mainHeader = document.getElementById("mainHeader");
   const scrollIndicator = document.getElementById("scrollIndicator");
-  const phone = document.getElementById("phone");
   const phoneMain = document.getElementById("phoneMain");
   const phoneScreens = document.getElementById("phoneScreens");
   const main = document.getElementById("main");
@@ -139,7 +142,7 @@ import Footer from '../components/Footer.astro';
   let isFirstScrollHappen = false
   let isPhoneFixed = false
 
-  const sections = document.querySelectorAll('.wrapper .section, .phone, .footer');
+  const footer = document.querySelectorAll('.footer');
   const options: IntersectionObserverInit = {
 			threshold: 0.1,
       rootMargin: '0px 0px 150px'
@@ -160,7 +163,7 @@ import Footer from '../components/Footer.astro';
     })
   }, options);
 
-  sections.forEach((section) => {
+  footer.forEach((section) => {
     observer.observe(section)
   });
 
@@ -176,17 +179,20 @@ import Footer from '../components/Footer.astro';
     }
 
     if (!isPhoneFixed) {
-      const phoneRect = phone?.getBoundingClientRect()
+      const phoneRect = phoneMain?.getBoundingClientRect()
 
-      if (phoneRect && phone) {
-        const phoneStyle = window.getComputedStyle(phone, null);
+      if (phoneRect && phoneMain) {
+        const phoneStyle = window.getComputedStyle(phoneMain, null);
         const phoneTop = phoneRect?.top - parseInt(phoneStyle.marginTop)
         const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
 
         if (phoneTop < phoneViewCenterTop) {
           isPhoneFixed = true
-          phone?.classList.add('hidden')
           phoneMain?.classList.remove('hidden')
+          phoneMain?.classList.remove('t-[412px]')
+          phoneMain?.classList.add('fixed')
+          scrollablePhone = null
+
           if (phoneMain) {
             phoneMain.style.top = String(`${phoneViewCenterTop}px`)
           }
@@ -209,9 +215,10 @@ import Footer from '../components/Footer.astro';
   let currScreenY = -240 // first init margin from phone to view top
 
 
-  let scrollablePhone: HTMLElement | null
-  let initScreenYForPhone = 0
-  let initPhoneTop = 0
+  let scrollablePhone: HTMLElement | null = phoneMain
+  let initScreenYForPhone = main ? getYElement(main) : 0
+  let initPhoneTop = INIT_TOP_PHONE
+
 
   const mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
@@ -243,7 +250,7 @@ import Footer from '../components/Footer.astro';
         const targetEl = mutationRecord.target as Element
         const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
         const currScreenYForPhone = Number(trMatrix[trMatrix.length - 1])
-        console.log('dd', initPhoneTop, currScreenYForPhone - initScreenYForPhone, initPhoneTop - currScreenYForPhone - initScreenYForPhone);
+
         let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
         if (newTop > initPhoneTop) {
           newTop = initPhoneTop
