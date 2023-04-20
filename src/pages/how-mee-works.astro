@@ -10,8 +10,8 @@ import Footer from '../components/Footer.astro';
 	<Header />
 
   <div class="w-full flex justify-center">
-    <div id="phoneMain" class="overflow-hidden phoneMain p-4 z-10 fixed border-black02 border-2 rounded-2.5xl hidden h-[650px] w-[350px]">
-      <div id="phoneScreens" class="transform-gpu relative h-full">
+    <div id="phoneMain" class="phoneMain p-4 z-10 fixed border-black02 border-2 rounded-2.5xl hidden h-[650px] w-[350px]">
+      <div id="phoneScreens" class="overflow-hidden rounded-xl relative h-full">
         <img id="screen7" class="phoneScreen absolute" src="/assets/phoneScreens/mee-7.png" width="318" height="618" class=""/>
         <img id="screen6" class="phoneScreen absolute" src="/assets/phoneScreens/license-6.png" width="318" height="618" class=""/>
         <img id="screen5" class="phoneScreen absolute" src="/assets/phoneScreens/billing-filled-5.png" width="318" height="618" class=""/>
@@ -59,17 +59,24 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-const SCREEN_HEIGHT = 614
+  const SCREEN_HEIGHT = 614
 
-const parseMatrix = (matrix: string): string[] => {
-  const matrixPattern = /^\w*\((((-?\d+)|(-?\d*\.\d+)),\s*)*((-?\d+)|(-?\d*\.\d+))\)/i;
-  let matrixValue: string[] = [];
-  if (matrixPattern.test(matrix)) { // When it satisfy the pattern.
-      const matrixCopy = matrix.replace(/^\w*\(/, '').replace(')', '');
-      matrixValue = matrixCopy.split(/\s*,\s*/);
+  const parseMatrix = (matrix: string): string[] => {
+    const matrixPattern = /^\w*\((((-?\d+)|(-?\d*\.\d+)),\s*)*((-?\d+)|(-?\d*\.\d+))\)/i;
+    let matrixValue: string[] = [];
+    if (matrixPattern.test(matrix)) {
+        const matrixCopy = matrix.replace(/^\w*\(/, '').replace(')', '');
+        matrixValue = matrixCopy.split(/\s*,\s*/);
+    }
+    return matrixValue
   }
-  return matrixValue
-}
+
+  const getYElement = (el: HTMLElement) => {
+    const trMatrix = parseMatrix(window.getComputedStyle(el).transform)
+
+    const transformY = trMatrix[trMatrix.length - 1]
+    return Number(transformY)
+  }
 
   const mainHeader = document.getElementById("mainHeader");
   const scrollIndicator = document.getElementById("scrollIndicator");
@@ -88,13 +95,20 @@ const parseMatrix = (matrix: string): string[] => {
   const sections = document.querySelectorAll('.wrapper .section, .phone, .footer');
   const options: IntersectionObserverInit = {
 			threshold: 0.1,
+      rootMargin: '0px 0px 150px'
 		};
 
   const observer = new IntersectionObserver((entries, _) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        if (entry.target.id === 'footer')
-        console.log('isIntersecting', 'footer here');
+        if (entry.target.id === 'footer') {
+          if (main && phoneMain) {
+            scrollablePhone = phoneMain
+            initScreenYForPhone = getYElement(main)
+            const initPhoneTopStr = window.getComputedStyle(phoneMain).top
+            initPhoneTop = Number(initPhoneTopStr.slice(0, -2))
+          }
+        }
       }
     })
   }, options);
@@ -147,17 +161,21 @@ const parseMatrix = (matrix: string): string[] => {
   let currScreenMutationObserveId = 1
   let currScreenY = -240 // first init margin from phone to view top
 
+
+  let scrollablePhone: HTMLElement | null
+  let initScreenYForPhone = 0
+  let initPhoneTop = 0
+
   const mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
       if (currScreen) {
         const targetEl = mutationRecord.target as Element
-        currScreen.style.transform = window.getComputedStyle(targetEl).transform
+
         const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
 
         const transformY = trMatrix[trMatrix.length - 1]
 
         if (currScreenMutationObserveId < currentScreenId) {
-          console.log('RESET');
           currScreenY = Number(transformY)
           currScreenMutationObserveId = currentScreenId
         } else if (currScreenMutationObserveId > currentScreenId) {
@@ -166,7 +184,25 @@ const parseMatrix = (matrix: string): string[] => {
         }
 
         const newY = Number(transformY) - currScreenY
-        currScreen.style.transform = `matrix(1, 0, 0, 1, 0, ${newY})`
+
+        if (newY < 0) {
+          currScreen.style.transform = `matrix(1, 0, 0, 1, 0, ${newY})`
+        } else {
+          currScreen.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
+        }
+      }
+
+      if (scrollablePhone) {
+        const targetEl = mutationRecord.target as Element
+        const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
+        const currScreenYForPhone = Number(trMatrix[trMatrix.length - 1])
+        console.log('dd', initPhoneTop, currScreenYForPhone - initScreenYForPhone, initPhoneTop - currScreenYForPhone - initScreenYForPhone);
+        let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
+        if (newTop > initPhoneTop) {
+          newTop = initPhoneTop
+          scrollablePhone = null
+        }
+        scrollablePhone!.style.top = `${newTop}px`
       }
     });
   });
@@ -194,7 +230,7 @@ const parseMatrix = (matrix: string): string[] => {
           const currScreenId = currScreen.id.slice(-1)
 
           if (targetId === currScreenId
-            && Number(targetId) < allScreens.length
+            && Number(targetId) < allScreens.length - 1
             && upPreviousY
             && currentY < upPreviousY) {
 
@@ -214,7 +250,7 @@ const parseMatrix = (matrix: string): string[] => {
           const currScreenId = currScreen!.id.slice(-1)
 
           if (targetId === currScreenId
-            && Number(targetId) > 0
+            && Number(targetId) > 1
             && currentY > downPreviousY
             && downPreviousY) {
 
@@ -248,4 +284,8 @@ const parseMatrix = (matrix: string): string[] => {
     background: black;
   }
 
+  .phoneScreen {
+    transition-duration: 100ms;
+    transition-timing-function: linear;
+  }
 </style>
