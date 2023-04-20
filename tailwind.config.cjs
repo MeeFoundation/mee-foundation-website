@@ -46,6 +46,7 @@ module.exports = {
       },
       width: {
         4.5: '1.125rem',
+        about: '21.25rem',
         160: '40rem',
       },
       maxWidth: {
@@ -126,6 +127,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       black02: '#00000020',
+      'about-bg': '#FCE1B1',
       black: {
         DEFAULT: '#000',
       },
