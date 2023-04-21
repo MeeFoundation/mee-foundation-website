@@ -80,7 +80,7 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
         </section>
-        <section class="section mt-[920px] mb-[500px] flex justify-end w-full mr-[72px]">
+        <section class="section mt-[1020px] mb-[500px] flex justify-end w-full mr-[72px]">
           <div class="w-about">
             <div class="text-2xl mb-[42px]">What can certified providers to with your data:</div>
             <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
@@ -104,6 +104,7 @@ import Footer from '../components/Footer.astro';
 <script>
   const SCREEN_HEIGHT = 614
   const INIT_TOP_PHONE = 412
+  const INIT_MARGIN_PHONE_TO_VIEW_TOP = -240 // first init margin from phone to view top
 
   // animate-riseIn works badly with position fixed
   setTimeout(() => {
@@ -145,7 +146,7 @@ import Footer from '../components/Footer.astro';
   const footer = document.querySelectorAll('.footer');
   const options: IntersectionObserverInit = {
 			threshold: 0.1,
-      rootMargin: '0px 0px 150px'
+      rootMargin: '0px 0px 132px' //footer padding
 		};
 
   const observer = new IntersectionObserver((entries, _) => {
@@ -212,13 +213,12 @@ import Footer from '../components/Footer.astro';
   let currScreen = screen1
   let currentScreenId = 1
   let currScreenMutationObserveId = 1
-  let currScreenY = -240 // first init margin from phone to view top
+  let currScreenY = INIT_MARGIN_PHONE_TO_VIEW_TOP
 
 
   let scrollablePhone: HTMLElement | null = phoneMain
   let initScreenYForPhone = main ? getYElement(main) : 0
   let initPhoneTop = INIT_TOP_PHONE
-
 
   const mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
@@ -244,6 +244,15 @@ import Footer from '../components/Footer.astro';
         } else {
           currScreen.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
         }
+
+        // reset currScreenY to init
+        if (Number(transformY) === 0) {
+          currScreenY = INIT_MARGIN_PHONE_TO_VIEW_TOP
+        }
+        // put at the place first slide if we common scroll ends
+        if (Number(transformY) === 0 && Number(newY) < 0 && currentScreenId === 1) {
+          currScreen.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
+        }
       }
 
       if (scrollablePhone) {
@@ -252,11 +261,12 @@ import Footer from '../components/Footer.astro';
         const currScreenYForPhone = Number(trMatrix[trMatrix.length - 1])
 
         let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
+        scrollablePhone.style.top = `${newTop}px`
+
         if (newTop > initPhoneTop) {
           newTop = initPhoneTop
           scrollablePhone = null
         }
-        scrollablePhone!.style.top = `${newTop}px`
       }
     });
   });
@@ -265,6 +275,7 @@ import Footer from '../components/Footer.astro';
     mutationObserver.observe(main, { attributes : true, attributeFilter : ['style'] });
   }
 
+  // не зацепает когда сменили направление в первом threshold
   const screens = document.querySelectorAll('.phoneScreen');
   const optionsPhone: IntersectionObserverInit = {
       root: phoneScreens,
@@ -291,6 +302,7 @@ import Footer from '../components/Footer.astro';
             currScreen.style.transform = `matrix(1, 0, 0, 1, 0, -${SCREEN_HEIGHT})`
             currScreen = allScreens[Number(targetId)]
             currentScreenId = Number(targetId) + 1
+
             upPreviousY = 0
             downPreviousY = 0
           } else {
@@ -311,6 +323,7 @@ import Footer from '../components/Footer.astro';
             currScreen!.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
             currScreen = allScreens[Number(targetId) - 2]
             currentScreenId = Number(targetId) - 1
+
             downPreviousY = 0
             upPreviousY = 0
           } else {

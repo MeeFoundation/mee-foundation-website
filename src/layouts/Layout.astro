@@ -161,7 +161,7 @@ const { title } = Astro.props;
 
   const smoothScroll = () => {
     // offset += (window.pageYOffset - offset) * speed;
-    offset += Math.ceil((window.pageYOffset - offset) * speed);
+		offset += Math.floor((window.pageYOffset - offset) * speed);
     const scroll = "translateY(-" + offset + "px)";
     scrollWrap.style.transform = scroll;
 
