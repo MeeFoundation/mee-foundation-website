@@ -45,11 +45,13 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
 
   return (
     <div className="h-screen w-screen bg-white flex flex-col justify-start pt-32 text-primary items-center px-5 text-center">
-      <img className="h-12 mb-22" alt="mee" src={MeeLogo} />
+      <img className="h-12 mb-20" alt="mee" src={MeeLogo} />
 
-      <h1 className="pb-10 text-2xl font-bold">
-        Congratulations! You’ve successfully installed Mee!
+      <h1 className="pb-8 text-2xl font-bold">
+        Let’s set up your first connection!
       </h1>
+
+      <p className="text-lg font-medium pb-8">Allow Mee to establish a way to talk to the site you’ve just chosen to interact with.</p>
       <p className="text-lg font-medium">Click Next to connect to </p>
       <p className="text-3xl text-alt-color-8 font-bold">
         {partnerDataUnparsed.partnerName || partnerDataUnparsed.client_metadata?.client_name }
