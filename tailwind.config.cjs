@@ -46,7 +46,9 @@ module.exports = {
       },
       width: {
         4.5: '1.125rem',
+        'about-sm': '20.9375rem',
         about: '21.25rem',
+        "about-lg": '17.8125rem',
         160: '40rem',
       },
       maxWidth: {
@@ -127,7 +129,10 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       black02: '#00000020',
-      'about-bg': '#FCE1B1',
+      'about-bg1': '#FCE1B1',
+      'about-bg2': '#ECE3AC',
+      'about-bg3': '#C7D1B2',
+      'about-bg4': '#A5C1C5',
       black: {
         DEFAULT: '#000',
       },

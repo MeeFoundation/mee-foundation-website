@@ -10,16 +10,16 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
 <Layout title="Mee Foundation">
 	<Header />
 
-  <div class="w-full flex justify-center">
+  <div class="w-full hidden lg:flex justify-center">
     <div id="phoneMain" class="phoneMain animate-riseIn p-4 z-10 mt-[412px] border-black02 border-2 rounded-2.5xl h-[650px] w-[350px]">
       <div id="phoneScreens" class="overflow-hidden rounded-xl relative h-full">
-        <img id="screen7" class="phoneScreen absolute" src="/assets/phoneScreens/mee-7.png" width="318" height="618" class=""/>
-        <img id="screen6" class="phoneScreen absolute" src="/assets/phoneScreens/license-6.png" width="318" height="618" class=""/>
-        <img id="screen5" class="phoneScreen absolute" src="/assets/phoneScreens/billing-filled-5.png" width="318" height="618" class=""/>
-        <img id="screen4" class="phoneScreen absolute" src="/assets/phoneScreens/billing-4.png" width="318" height="618" class=""/>
-        <img id="screen3" class="phoneScreen absolute" src="/assets/phoneScreens/login-3.png" width="318" height="618" class=""/>
-        <img id="screen2" class="phoneScreen absolute" src="/assets/phoneScreens/main-page-2.png" width="318" height="618" class=""/>
-        <img id="screen1" class="phoneScreen absolute" src="/assets/phoneScreens/init-1.png" width="318" height="618" class=""/>
+        <img id="screen7" class="phoneScreen absolute" src="/assets/phoneScreens/mee-7.png" width="318" height="618" />
+        <img id="screen6" class="phoneScreen absolute" src="/assets/phoneScreens/license-6.png" width="318" height="618" />
+        <img id="screen5" class="phoneScreen absolute" src="/assets/phoneScreens/billing-filled-5.png" width="318" height="618" />
+        <img id="screen4" class="phoneScreen absolute" src="/assets/phoneScreens/billing-4.png" width="318" height="618" />
+        <img id="screen3" class="phoneScreen absolute" src="/assets/phoneScreens/login-3.png" width="318" height="618" />
+        <img id="screen2" class="phoneScreen absolute" src="/assets/phoneScreens/main-page-2.png" width="318" height="618" />
+        <img id="screen1" class="phoneScreen absolute" src="/assets/phoneScreens/init-1.png" width="318" height="618" />
       </div>
     </div>
   </div>
@@ -28,11 +28,11 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
     <div class="wrapper w-screen hmw-bg">
       <article class="flex flex-col items-center">
         <section class="flex items-center flex-col">
-          <h1 id="mainHeader" class="marker animate-riseIn mt-[200px] text-7xl font-bold">
+          <h1 id="mainHeader" class="marker animate-none lg:animate-riseIn mt-[128px] lg:mt-[200px] text-3xl lg:text-7xl font-bold">
             How Mee <mark>Works</mark>
           </h1>
 
-          <div id="scrollIndicator" class="flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
+          <div id="scrollIndicator" class="hidden lg:flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
             <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
           </div>
         </section>
@@ -50,6 +50,9 @@ import { parseMatrix } from '../helper'
   const SCREEN_HEIGHT = 614
   const INIT_TOP_PHONE = 412
   const INIT_MARGIN_PHONE_TO_VIEW_TOP = -240 // first init margin from phone to view top
+  const SCREEN_WIDTH = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+
+  const isMobile = SCREEN_WIDTH < 1024
 
   // animate-riseIn works badly with position fixed
   setTimeout(() => {
@@ -104,8 +107,10 @@ import { parseMatrix } from '../helper'
   });
 
   document.addEventListener('scroll', (e) => {
-    if (!isFirstScrollHappen) {
-      mainHeader?.classList.remove('animate-riseIn')
+    if (!isFirstScrollHappen && !isMobile) {
+      console.log('ddd', isMobile, SCREEN_WIDTH);
+      mainHeader?.classList.remove('animate-none')
+      mainHeader?.classList.remove('lg:animate-riseIn')
       mainHeader?.classList.add('animate-fadeOut')
 
       scrollIndicator?.classList.remove('animate-fadeIn')
