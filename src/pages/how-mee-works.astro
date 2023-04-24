@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
 
 ---
 
@@ -35,65 +36,7 @@ import Footer from '../components/Footer.astro';
             <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
           </div>
         </section>
-        <section class="w-full section mt-[791px] flex flex-col justify-start ml-[72px]">
-          <div class="w-about">
-            <div class="text-2xl mb-[42px]">Mee is your identity agent.</div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              It respects your privacy on any app/site
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              It tells apps/sites “Do Not Sell My Personal Information”
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              It deletes third-party tracking (surveillance) cookies
-            </div>
-          </div>
-        </section>
-        <section class="section mt-[580px] flex justify-end w-full mr-[72px]">
-          <div class="w-about">
-            <div class="text-2xl mb-[42px]">Using Mee on compatible apps/sites.</div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              One tap on the Connect-with-Mee button logs you in (or signs you up)
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              No more passwords—Mee confirms your identity for you
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              Less form-filling—Mee shares your information for you over a private connection
-            </div>
-          </div>
-        </section>
-        <section class="section mt-[880px] flex justify-start w-full ml-[72px]">
-          <div class="w-about">
-            <div class="text-2xl mb-[36px]">We’re building a community of certified providers.</div>
-            <div class="text-base mb-[24px]">
-              Certified providers take a stand to respect user privacy and build user trust by signing the <b>Human Information License:</b>
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              They agree not to process, store or transfer your data without your consent
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              They allow you to download your data into your agent
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              They allow your agent to update or delete the data they hold about you
-            </div>
-          </div>
-        </section>
-        <section class="section mt-[1020px] mb-[500px] flex justify-end w-full mr-[72px]">
-          <div class="w-about">
-            <div class="text-2xl mb-[42px]">What can certified providers to with your data:</div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              Only retain information beyond while you are using their app or site if it is required for business processes like automatic payments or transactional emails.
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              They are allowed to display the Mee trustmark
-            </div>
-            <div class="bg-about-bg text-base px-2.5 py-3 mb-2 rounded-lg">
-              They are subject to financial penalties if they fail to comply
-            </div>
-          </div>
-        </section>
+        <HowMeeWorksAboutBlocks />
         <Footer mode="light" withAppButtons={false}/>
       </article>
     </div>
