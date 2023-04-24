@@ -45,6 +45,8 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
 </Layout>
 
 <script>
+import { parseMatrix } from '../helper'
+
   const SCREEN_HEIGHT = 614
   const INIT_TOP_PHONE = 412
   const INIT_MARGIN_PHONE_TO_VIEW_TOP = -240 // first init margin from phone to view top
@@ -55,16 +57,6 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
     phoneMain?.classList.add(`t-[${INIT_TOP_PHONE}px]`)
     phoneMain?.classList.add('fixed')
   })
-
-  const parseMatrix = (matrix: string): string[] => {
-    const matrixPattern = /^\w*\((((-?\d+)|(-?\d*\.\d+)),\s*)*((-?\d+)|(-?\d*\.\d+))\)/i;
-    let matrixValue: string[] = [];
-    if (matrixPattern.test(matrix)) {
-        const matrixCopy = matrix.replace(/^\w*\(/, '').replace(')', '');
-        matrixValue = matrixCopy.split(/\s*,\s*/);
-    }
-    return matrixValue
-  }
 
   const getYElement = (el: HTMLElement) => {
     const trMatrix = parseMatrix(window.getComputedStyle(el).transform)
@@ -133,7 +125,7 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
         if (phoneTop < phoneViewCenterTop) {
           isPhoneFixed = true
           phoneMain?.classList.remove('hidden')
-          phoneMain?.classList.remove('t-[412px]')
+          phoneMain?.classList.remove(`t-[${INIT_TOP_PHONE}px]`)
           phoneMain?.classList.add('fixed')
           scrollablePhone = null
 
