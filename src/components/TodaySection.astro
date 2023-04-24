@@ -24,7 +24,7 @@ const subtitles = [
     </div>
 		<div class="scroll-smooth">
 			{subtitles.map(subtitle => (
-				<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] mb-4">
+				<div class="section flex flex-col items-center section-0 overflow-hidden h-[100vh] mb-4">
 					<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
 						<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 					</div>
@@ -100,7 +100,7 @@ const subtitles = [
 </style>
 
 <script>
-	import { disableScroll, enableScroll, isScrollStopped, storeScroll } from "../scripts/global";
+import { isScrollStopped, storeScroll } from "../scripts/global";
 
   const sections = document.querySelectorAll('.today .section');
 	const scrollIcon = document.querySelector(".scrollIcon");
@@ -115,41 +115,54 @@ const subtitles = [
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
 
-	let scrollSpeed = 4;
-
-	let scrollY = window.scrollY;
-	let targetEl: Element | null | undefined;
+	let targetEl: Element | null | undefined = document.querySelector('.currentSection');;
 	let scrollFiguresProgress = 0;
 	let isScroll = false;
 	let lastTimeStamp: number;
 
 	const getAverage = (numbers: number[]) => numbers.reduce((acc, number) => acc + number, 0) / numbers.length;
 
+	const getScrollTarget = (deltaY:number, currentTarget:Element | null | undefined) => {
+		let target: Element | null | undefined;
+		const currentSlide = document.querySelector('.currentSection');
+		let nextSlide = currentSlide?.nextElementSibling;
+		let prevSlide = currentSlide?.previousElementSibling;
+
+		if(!currentTarget && nextSlide) return currentSlide;
+
+		if(currentSlide?.classList.contains('textsSection')) {
+			nextSlide = currentSlide.querySelector('.currentTextSection')?.nextElementSibling || currentSlide?.nextElementSibling;
+			console.log("🚀 ~ file: TodaySection.astro:135 ~ getScrollTarget ~ nextSlide:", nextSlide)
+			prevSlide = currentSlide.querySelector('.currentTextSection')?.previousElementSibling || currentSlide?.previousElementSibling;
+		}
+
+		if (prevSlide?.classList.contains('textsSection')) {
+			const subtitles = prevSlide.querySelectorAll('.subtitleContainer');
+			prevSlide = subtitles[subtitles.length - 1];
+		}
+
+		target = deltaY < 0 ? prevSlide : nextSlide;
+
+		return target;
+	}
+
 	const wheelHandler = (e: WheelEvent) => {
+		if (e.deltaY > 0) {
 			scrollFiguresProgress += e.deltaY * 0.4;
-			if(!isScroll) {
-				isScroll = true;
-				const currentSlide = document.querySelector('.currentSection');
-				let nextSlide = currentSlide?.nextElementSibling;
-				let prevSlide = currentSlide?.previousElementSibling;
-				if(currentSlide?.classList.contains('textsSection')) {
-					nextSlide = currentSlide.querySelector('.currentTextSection')?.nextElementSibling || currentSlide?.nextElementSibling;
-					prevSlide = currentSlide.querySelector('.currentTextSection')?.previousElementSibling || currentSlide?.previousElementSibling;
-				}
-				// if (e.deltaY < 0) scrollY = prevSlide?.scrollTop;
-				if (e.deltaY < 0) targetEl = prevSlide;
-				// if (e.deltaY > 0) scrollY = nextSlide?.scrollTop;
-				if (e.deltaY > 0) targetEl = nextSlide;
+		}
 
-				console.log(targetEl);
-			}
-			if(e.timeStamp - lastTimeStamp > 40 ) {
-				isScroll = false;
-			}
-			// console.log(e.timeStamp - lastTimeStamp)
+		if(!isScroll) {
+			targetEl = getScrollTarget(e.deltaY, targetEl);
 
-			lastTimeStamp = e.timeStamp;
-		};
+			if(targetEl) isScroll = true;
+		}
+
+		if(e.timeStamp - lastTimeStamp > 40 || !targetEl) {
+			isScroll = false;
+		}
+
+		lastTimeStamp = e.timeStamp;
+	};
 
 
 		const options: IntersectionObserverInit = {
@@ -187,11 +200,10 @@ const subtitles = [
 		window.addEventListener('wheel', wheelHandler);
 		
 		document.addEventListener('scroll', (e: Event) => {
-			// if(!isScrollStopped) storeScroll(scrollFiguresProgress);
+			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
 
-			if(targetEl) targetEl.scrollIntoView({behavior: 'auto'});
-
-			// if(scrollY && scrollY !== window.scrollY) window.scrollTo({left: 0, top: scrollY});
+			if(targetEl) targetEl.scrollIntoView({block: 'start',behavior: 'auto'});
+			console.log("🚀 ~ file: TodaySection.astro:205 ~ document.addEventListener ~ targetEl:", targetEl)
 
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
@@ -202,13 +214,11 @@ const subtitles = [
 					envisionSection?.classList.remove("opacity-0");
 					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 					mainLogo?.classList.add("logo--contrast");
-					// window.removeEventListener('wheel', wheelHandler);
 				} else {
 					// envisionSection?.classList.add("hidden");
 					envisionSection?.classList.add("opacity-0");
 					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
-					// window.addEventListener('wheel', wheelHandler);
 				}
 			}
 			if(window.scrollY > 400) {

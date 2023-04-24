@@ -26,5 +26,3 @@ export const storeScroll = (scrollPos?: number) => {
     (scrollY / (document.body.offsetHeight - window.innerHeight)).toString(),
   );
 };
-
-export const scrollBySection = (e: WheelEvent) => {};

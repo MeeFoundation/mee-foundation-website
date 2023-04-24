@@ -15,8 +15,8 @@ const subtitles = [
 	"You can trust that certified apps and sites  will act in your best interest."]
 ---
 
-<article id="envision" class="envision hidden flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
-	<section class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
+<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
+	<section class="flex section items-center justify-center w-screen min-h-screen transition-opacity ease-in-out duration-500">
 		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
 				<Logo />
@@ -26,24 +26,24 @@ const subtitles = [
 			</div>
 		</div>
 	</section>
-	<section class="bg-1 relative flex flex-col items-center justify-center w-screen">
+	<section class="bg-1 section textsSection relative flex flex-col items-center justify-center w-screen">
 		<!-- <div class="bg-1 top-0 mt-[100vh] w-[120vw]" /> -->
-		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
+		<div class="flex flex-col items-center justify-center w-screen">
 			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 				<div class="overflow-hidden px-5">
 					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
 				</div>
 			</div>
-			{subtitles.map(subtitle => (
-				<div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] mb-4">
-					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
-						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
+				{subtitles.map((subtitle, index) => (
+					<div class="flex subtitleContainer flex-col items-center overflow-hidden w-screen h-[100vh] mb-4">
+						<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
+							<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
+						</div>
 					</div>
-				</div>
-			))}
+				))}
 		</div>
 	</section>
-	<section class="bg-2 relative flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
+	<section class="bg-2 section relative flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
 		<AppButtons btnSize="big"/>
 	</section>
 	<Footer mode="dark" withAppButtons={false}/>
@@ -75,6 +75,7 @@ const subtitles = [
 		border-top-left-radius: 50%;
 		border-top-right-radius: 50%;
 	}
+
 
 	.bg-2 {
 		width: 200vw;
@@ -110,23 +111,35 @@ const subtitles = [
 	const envision = document.getElementById("envision");
 	const welcomeSection = document.getElementById("welcomeSection");
 	const sections = document.querySelectorAll('.envision .section');
+	const subtitlesBoxes = document.querySelectorAll('.subtitleContainer');
 
 	const options: IntersectionObserverInit = {
-			// root: null,
-			threshold: 0,
-			rootMargin: "-40% 0% -60%"
-		};
+		// root: null,
+		threshold: 0,
+		rootMargin: "-40% 0% -60%"
+	};
+
+	const subtitlesObserver = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('currentTextSection');
+				entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut');
+				entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
+			} else {
+				entry.target.classList.remove('currentTextSection');
+				entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
+				entry.target.querySelector(".subtitle")?.classList.add("animate-fadeOut");
+			}
+		})
+	})
+	
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					entry.target.classList.remove("opacity-0");
-					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
-					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
 					entry.target.classList.add('currentSection');
 				} else {
-					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
-					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
 					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
 					entry.target.classList.add("opacity-0");
 					entry.target.classList.remove('currentSection');
@@ -138,5 +151,9 @@ const subtitles = [
 		sections.forEach((section) => {
 			observer.observe(section)
 		});
+
+		subtitlesBoxes.forEach(sub => {
+			subtitlesObserver.observe(sub);
+		})
 	
 </script>

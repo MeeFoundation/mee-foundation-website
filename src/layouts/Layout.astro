@@ -141,7 +141,7 @@ const { title } = Astro.props;
 	// scrollSections.forEach(section => scrollObserver.observe(section));
 
 	const smoothScroll = () => {
-    scrollOffset += Math.ceil((window.scrollY - scrollOffset) * speed);
+    scrollOffset += Math.floor((window.scrollY - scrollOffset) * speed);
     const scroll = "translateY(-" + scrollOffset + "px)";
     scrollWrap.style.transform = scroll;
     requestAnimationFrame(smoothScroll);
