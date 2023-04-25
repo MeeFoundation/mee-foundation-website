@@ -48,20 +48,20 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
 import { parseMatrix } from '../helper'
 
   const SCREEN_HEIGHT = 614
-  const INIT_TOP_PHONE = 412
-  const INIT_MARGIN_PHONE_TO_VIEW_TOP = -240 // first init margin from phone to view top
+  const INIT_PHONE_TOP = 412
+  const INIT_PHONE_MARGIN_TO_VIEW_TOP = -240 // first init margin from phone to view top
   const SCREEN_WIDTH = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 
   const isMobile = SCREEN_WIDTH < 1024
 
   // animate-riseIn works badly with position fixed
   setTimeout(() => {
-    phoneMain?.classList.remove(`mt-[${INIT_TOP_PHONE}px]`)
-    phoneMain?.classList.add(`t-[${INIT_TOP_PHONE}px]`)
+    phoneMain?.classList.remove(`mt-[${INIT_PHONE_TOP}px]`)
+    phoneMain?.classList.add(`t-[${INIT_PHONE_TOP}px]`)
     phoneMain?.classList.add('fixed')
   })
 
-  const getYElement = (el: HTMLElement) => {
+  const getElementY = (el: HTMLElement) => {
     const trMatrix = parseMatrix(window.getComputedStyle(el).transform)
 
     const transformY = trMatrix[trMatrix.length - 1]
@@ -75,17 +75,14 @@ import { parseMatrix } from '../helper'
   const main = document.getElementById("main");
   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
-	window.onbeforeunload = function () {
-		window.scrollTo(0, 0);
-	}
   let isFirstScrollHappen = false
   let isPhoneFixed = false
 
   const footer = document.querySelectorAll('.footer');
   const options: IntersectionObserverInit = {
-			threshold: 0.1,
+    threshold: 0.1,
       rootMargin: '0px 0px 132px' //footer padding
-		};
+    };
 
   const observer = new IntersectionObserver((entries, _) => {
     entries.forEach((entry) => {
@@ -93,7 +90,7 @@ import { parseMatrix } from '../helper'
         if (entry.target.id === 'footer') {
           if (main && phoneMain) {
             scrollablePhone = phoneMain
-            initScreenYForPhone = getYElement(main)
+            initScreenYForPhone = getElementY(main)
             const initPhoneTopStr = window.getComputedStyle(phoneMain).top
             initPhoneTop = Number(initPhoneTopStr.slice(0, -2))
           }
@@ -108,7 +105,6 @@ import { parseMatrix } from '../helper'
 
   document.addEventListener('scroll', (e) => {
     if (!isFirstScrollHappen && !isMobile) {
-      console.log('ddd', isMobile, SCREEN_WIDTH);
       mainHeader?.classList.remove('animate-none')
       mainHeader?.classList.remove('lg:animate-riseIn')
       mainHeader?.classList.add('animate-fadeOut')
@@ -153,12 +149,12 @@ import { parseMatrix } from '../helper'
   let currScreen = screen1
   let currentScreenId = 1
   let currScreenMutationObserveId = 1
-  let currScreenY = INIT_MARGIN_PHONE_TO_VIEW_TOP
+  let currScreenY = INIT_PHONE_MARGIN_TO_VIEW_TOP
 
 
   let scrollablePhone: HTMLElement | null = phoneMain
-  let initScreenYForPhone = main ? getYElement(main) : 0
-  let initPhoneTop = INIT_TOP_PHONE
+  let initScreenYForPhone = main ? getElementY(main) : 0
+  let initPhoneTop = INIT_PHONE_TOP
 
   const mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
@@ -187,7 +183,7 @@ import { parseMatrix } from '../helper'
 
         // reset currScreenY to init
         if (Number(transformY) === 0) {
-          currScreenY = INIT_MARGIN_PHONE_TO_VIEW_TOP
+          currScreenY = INIT_PHONE_MARGIN_TO_VIEW_TOP
         }
         // put at the place first slide if we common scroll ends
         if (Number(transformY) === 0 && Number(newY) < 0 && currentScreenId === 1) {
@@ -219,8 +215,8 @@ import { parseMatrix } from '../helper'
   const screens = document.querySelectorAll('.phoneScreen');
   const optionsPhone: IntersectionObserverInit = {
       root: phoneScreens,
-			threshold: [0, 0.1, 0.2, 0.8, 0.9, 1],
-		};
+      threshold: [0, 0.1, 0.2, 0.8, 0.9, 1],
+    };
 
   let upPreviousY = 0
   let downPreviousY = 0
@@ -230,6 +226,7 @@ import { parseMatrix } from '../helper'
       if (entry.isIntersecting && currScreen) {
         const currentY = entry.boundingClientRect.y
 
+        // scroll up
         if (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.2) {
           const targetId = entry.target.id.slice(-1)
           const currScreenId = currScreen.id.slice(-1)
@@ -248,9 +245,9 @@ import { parseMatrix } from '../helper'
           } else {
             upPreviousY = currentY
           }
-
         }
 
+        // scroll down
         if (entry.intersectionRatio > 0.8 && entry.intersectionRatio < 1) {
           const targetId = entry.target.id.slice(-1)
           const currScreenId = currScreen!.id.slice(-1)
