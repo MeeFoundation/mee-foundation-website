@@ -75,6 +75,10 @@ import { parseMatrix } from '../helper'
   const main = document.getElementById("main");
   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+
   let isFirstScrollHappen = false
   let isPhoneFixed = false
 
@@ -103,7 +107,7 @@ import { parseMatrix } from '../helper'
     observer.observe(section)
   });
 
-  document.addEventListener('scroll', (e) => {
+  document.addEventListener('scroll', () => {
     if (!isFirstScrollHappen && !isMobile) {
       mainHeader?.classList.remove('animate-none')
       mainHeader?.classList.remove('lg:animate-riseIn')
@@ -126,7 +130,7 @@ import { parseMatrix } from '../helper'
         if (phoneTop < phoneViewCenterTop) {
           isPhoneFixed = true
           phoneMain?.classList.remove('hidden')
-          phoneMain?.classList.remove(`t-[${INIT_TOP_PHONE}px]`)
+          phoneMain?.classList.remove(`t-[${INIT_PHONE_TOP}px]`)
           phoneMain?.classList.add('fixed')
           scrollablePhone = null
 
