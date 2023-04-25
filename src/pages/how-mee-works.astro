@@ -181,12 +181,12 @@ import { parseMatrix } from '../helper'
         let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
         scrollablePhone.style.top = `${newTop}px`
 
-        if (!isPhoneFixed) {
-          const phoneRect = phoneMain?.getBoundingClientRect()
+        const phoneRect = phoneMain?.getBoundingClientRect()
+        const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
 
+        if (!isPhoneFixed) {
           if (phoneRect && phoneMain) {
             const phoneTop = phoneRect?.top
-            const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
 
             if (phoneTop < phoneViewCenterTop) {
               isPhoneFixed = true
@@ -202,9 +202,13 @@ import { parseMatrix } from '../helper'
           }
         }
 
+        // scroll from footer
         if (newTop > initPhoneTop) {
           newTop = initPhoneTop
           scrollablePhone = null
+          if (phoneMain) {
+            phoneMain.style.top = String(`${phoneViewCenterTop}px`)
+          }
         }
       }
     });
