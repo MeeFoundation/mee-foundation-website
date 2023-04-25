@@ -118,28 +118,6 @@ import { parseMatrix } from '../helper'
 
       isFirstScrollHappen = true
     }
-
-    if (!isPhoneFixed) {
-      const phoneRect = phoneMain?.getBoundingClientRect()
-
-      if (phoneRect && phoneMain) {
-        const phoneStyle = window.getComputedStyle(phoneMain, null);
-        const phoneTop = phoneRect?.top - parseInt(phoneStyle.marginTop)
-        const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
-
-        if (phoneTop < phoneViewCenterTop) {
-          isPhoneFixed = true
-          phoneMain?.classList.remove('hidden')
-          phoneMain?.classList.remove(`t-[${INIT_PHONE_TOP}px]`)
-          phoneMain?.classList.add('fixed')
-          scrollablePhone = null
-
-          if (phoneMain) {
-            phoneMain.style.top = String(`${phoneViewCenterTop}px`)
-          }
-        }
-      }
-    }
   })
 
   const screen1 = document.getElementById("screen1");
@@ -202,6 +180,27 @@ import { parseMatrix } from '../helper'
 
         let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
         scrollablePhone.style.top = `${newTop}px`
+
+        if (!isPhoneFixed) {
+          const phoneRect = phoneMain?.getBoundingClientRect()
+
+          if (phoneRect && phoneMain) {
+            const phoneTop = phoneRect?.top
+            const phoneViewCenterTop = Math.round(vh / 2 - phoneRect?.height / 2)
+
+            if (phoneTop < phoneViewCenterTop) {
+              isPhoneFixed = true
+              phoneMain?.classList.remove('hidden')
+              phoneMain?.classList.remove(`t-[${INIT_PHONE_TOP}px]`)
+              phoneMain?.classList.add('fixed')
+              scrollablePhone = null
+
+              if (phoneMain) {
+                phoneMain.style.top = String(`${phoneViewCenterTop}px`)
+              }
+            }
+          }
+        }
 
         if (newTop > initPhoneTop) {
           newTop = initPhoneTop
