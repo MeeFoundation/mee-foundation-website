@@ -41,7 +41,7 @@ const subtitles = [
 				</div>
 			</div>
 			<div class="scroll-smooth">
-				{subtitles.map((subtitle, index) => (
+				{subtitles.map((subtitle) => (
 					<div class="flex subtitleContainer flex-col items-center overflow-hidden w-screen h-[100vh] mb-4">
 						<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 							<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
@@ -51,7 +51,7 @@ const subtitles = [
 			</div>
 		</div>
 	</section>
-	<section class="bg-2 section relative flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
+	<section class="bg-2 relative flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
 		<AppButtons btnSize="big"/>
 	</section>
 	<Footer mode="dark" withAppButtons={false}/>

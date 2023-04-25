@@ -100,7 +100,7 @@ const subtitles = [
 </style>
 
 <script>
-import { isScrollStopped, storeScroll } from "../scripts/global";
+import { disableScroll, isScrollStopped, storeScroll } from "../scripts/global";
 
   const sections = document.querySelectorAll('.today .section');
 	const scrollIcon = document.querySelector(".scrollIcon");
@@ -128,18 +128,22 @@ import { isScrollStopped, storeScroll } from "../scripts/global";
 		let nextSlide = currentSlide?.nextElementSibling;
 		let prevSlide = currentSlide?.previousElementSibling;
 
+		// If we have common scroll, next slide should be currentSlide when it will be visible.
 		if(!currentTarget && nextSlide) return currentSlide;
 
+		// If current slide have subtitles or another text, scroll should change subtitles instead sections 
 		if(currentSlide?.classList.contains('textsSection')) {
 			nextSlide = currentSlide.querySelector('.currentTextSection')?.nextElementSibling || currentSlide?.nextElementSibling;
 			prevSlide = currentSlide.querySelector('.currentTextSection')?.previousElementSibling || currentSlide?.previousElementSibling;
 		}
 
+		// If we scroll top and previous slide contains subtitles, we need show last subtitle
 		if (prevSlide?.classList.contains('textsSection')) {
 			const subtitles = prevSlide.querySelectorAll('.subtitleContainer');
 			prevSlide = subtitles[subtitles.length - 1];
 		}
 
+		// Check scroll direction
 		target = deltaY < 0 ? prevSlide : nextSlide;
 
 		return target;
@@ -200,8 +204,8 @@ import { isScrollStopped, storeScroll } from "../scripts/global";
 		
 		document.addEventListener('scroll', (e: Event) => {
 			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
-
-			if(targetEl) targetEl.scrollIntoView({block: 'start',behavior: 'auto'});
+			
+			if(targetEl) targetEl.scrollIntoView();
 
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
