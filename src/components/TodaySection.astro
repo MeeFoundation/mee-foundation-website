@@ -115,7 +115,7 @@ import { isScrollStopped, storeScroll } from "../scripts/global";
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
 
-	let targetEl: Element | null | undefined = document.querySelector('.currentSection');;
+	let targetEl: Element | null | undefined = document.querySelector('.currentSection');
 	let scrollFiguresProgress = 0;
 	let isScroll = false;
 	let lastTimeStamp: number;
@@ -132,7 +132,6 @@ import { isScrollStopped, storeScroll } from "../scripts/global";
 
 		if(currentSlide?.classList.contains('textsSection')) {
 			nextSlide = currentSlide.querySelector('.currentTextSection')?.nextElementSibling || currentSlide?.nextElementSibling;
-			console.log("🚀 ~ file: TodaySection.astro:135 ~ getScrollTarget ~ nextSlide:", nextSlide)
 			prevSlide = currentSlide.querySelector('.currentTextSection')?.previousElementSibling || currentSlide?.previousElementSibling;
 		}
 
@@ -203,19 +202,18 @@ import { isScrollStopped, storeScroll } from "../scripts/global";
 			if(!isScrollStopped) storeScroll(scrollFiguresProgress);
 
 			if(targetEl) targetEl.scrollIntoView({block: 'start',behavior: 'auto'});
-			console.log("🚀 ~ file: TodaySection.astro:205 ~ document.addEventListener ~ targetEl:", targetEl)
 
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
 				document.documentElement.style.setProperty('--scaleFactor', calcScale(bleachSection).toString());
 				document.documentElement.style.setProperty('--bleachProgress', animationScroll.toString());
 				if(animationScroll === 1) {
-					// envisionSection?.classList.remove("hidden");
+					envisionSection?.classList.remove("hidden");
 					envisionSection?.classList.remove("opacity-0");
 					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 					mainLogo?.classList.add("logo--contrast");
 				} else {
-					// envisionSection?.classList.add("hidden");
+					envisionSection?.classList.add("hidden");
 					envisionSection?.classList.add("opacity-0");
 					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
