@@ -214,11 +214,14 @@ import { parseMatrix } from '../helper'
     mutationObserver.observe(main, { attributes : true, attributeFilter : ['style'] });
   }
 
-  // не зацепает когда сменили направление в первом threshold
   const screens = document.querySelectorAll('.phoneScreen');
+  const thresholdSize = 21
+  const thresholdStep = 0.01
+  const thresholdUp = Array.from({length: thresholdSize}, (_, i) => i * thresholdStep) // 0 - 0.2
+  const thresholdDown = Array.from({length: thresholdSize}, (_, i) => 1 - i * thresholdStep).sort() // 0.8 - 1
   const optionsPhone: IntersectionObserverInit = {
       root: phoneScreens,
-      threshold: [0, 0.1, 0.2, 0.8, 0.9, 1],
+      threshold: [...thresholdUp, ...thresholdDown],
     };
 
   let upPreviousY = 0
