@@ -1,5 +1,3 @@
-import { AuthMockApi } from './AuthMockApi';
-import { SecretMockApi } from './SecretMockApi';
+import { ProxyLiveApi } from './ProxyLiveApi';
 
-export const AuthApi = new AuthMockApi();
-export const SecretApi = new SecretMockApi();
+export const PollApi = new ProxyLiveApi();

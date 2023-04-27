@@ -1,8 +1,12 @@
-import React from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { Header } from 'src/components/Header';
 import { MaxW } from 'src/components/MaxW';
+import { RequestData } from 'src/model/partnerItem';
+import { decodeJwt } from 'jose';
+import { PollApi } from 'src/api/common';
 import appStoreImg from '../assets/appStore.svg';
 import { APP_STORE_LINK, PARTNER_DATA } from './DownloadPage';
 
@@ -12,6 +16,40 @@ interface AboutMeePageProps {
 
 export const AboutMeePage: React.FC<AboutMeePageProps> = ({ showQrCode = false }) => {
   const { partnerData } = useParams();
+  const partnerDataUnparsed: RequestData | undefined = useMemo(() => {
+    if (typeof partnerData === 'undefined') return undefined;
+    try {
+      return decodeJwt(partnerData) as RequestData;
+    } catch {
+      return undefined;
+    }
+  }, [partnerData]);
+
+  const getData = async () => {
+    const nonce = partnerDataUnparsed?.nonce;
+    if (nonce) {
+      try {
+        const data = await PollApi.poll(nonce);
+        console.log(data);
+        const url = partnerDataUnparsed.client_id;
+        console.log(partnerDataUnparsed);
+        if (url) {
+          const redirectUrl = new URL(url);
+          redirectUrl.searchParams.set('mee_auth_token', data);
+          console.log(redirectUrl);
+          window.location.href = redirectUrl.href;
+        }
+      } catch {
+        // eslint-disable-next-line no-console
+        console.log('error');
+      }
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [partnerDataUnparsed]);
 
   return (
     <MaxW>
