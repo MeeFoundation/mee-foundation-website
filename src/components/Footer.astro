@@ -22,7 +22,7 @@ const {mode,withAppButtons = true} = Astro.props;
   </ul>
   <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
-    <a href="#" class:list={["connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5", {"text-black/[.8] bg-white before:bg-blue": mode === "dark", "bg-blue text-white before:bg-white": mode === "light"}]}>
+    <a id="meeConnectBtn" href="#" class:list={["connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5", {"text-black/[.8] bg-white before:bg-blue": mode === "dark", "bg-blue text-white before:bg-white": mode === "light"}]}>
       <!-- <img class="mr-5" src="/images/mee-simple-icon.svg" alt="Mee foundation logo" > Connect with Mee  -->
       Connect with Mee
     </a>
@@ -65,3 +65,15 @@ const {mode,withAppButtons = true} = Astro.props;
     height: 44px;
   }
 </style>
+
+<script>
+  import { authorize } from 'mee-js-sdk';
+  const meeConnectBtn = document.getElementById("meeConnectBtn")
+
+  if (meeConnectBtn) {
+    meeConnectBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      authorize()
+    });
+  }
+</script>
