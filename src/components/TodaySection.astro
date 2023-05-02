@@ -54,10 +54,6 @@ const subtitles = [
 		transition: opacity 300ms;
 	}
 
-	.scrollIcon {
-    border: 2px solid rgba(255,255,255,0.7);
-    border-radius: 12px;
-	}
 	.titleBleach {
 		animation-delay: calc(var(--bleachProgress) * 10 * -400ms);
 		animation-play-state: paused;
@@ -69,30 +65,6 @@ const subtitles = [
 		animation-play-state: paused;
 		animation-fill-mode: both;
     backface-visibility: hidden; 
-	}
-  .scrollIcon::after {
-    position: relative;
-    left:calc(50% - 1px);
-    width: 2px;
-    height: 50%;
-    background: rgba(255,255,255,0.7);
-    border-radius: 1px;
-    content:"";
-		align-self: flex-start;
-    animation-name: scroll;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-delay: 2s;
-  }
-
-	@keyframes scroll {
-		0% { opacity: 1; height: 50%;}
-		20% { opacity: 1; height: 50%;}
-		30% { height: 100%; align-self: flex-start;}
-		40% { opacity: 1; align-self: flex-end;}
-		80% {  opacity: 0; height: 0%; align-self: flex-end;}
-		81% {  opacity: 0; height: 50%; align-self: flex-start;}
-		100% { opacity: 1; height: 50%;}
 	}
 
 </style>
