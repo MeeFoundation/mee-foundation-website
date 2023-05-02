@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { AboutMeePage } from '../../legacy/pages/AboutMee';
+
+
+const { partnerData } = Astro.params;
+---
+
+<Layout title="Mee Foundation">
+  <AboutMeePage showQrCode partnerData={partnerData} client:only />
+</Layout>

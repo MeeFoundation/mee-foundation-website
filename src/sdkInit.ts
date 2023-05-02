@@ -1,5 +1,4 @@
 import { init, MeeConsentDuration } from 'mee-js-sdk';
-import Astro from 'astro'
 
 export const sdkInit = () => {
   init({
@@ -39,7 +38,7 @@ export const sdkInit = () => {
       && typeof data?.data !== 'undefined'
       && typeof data?.data.name !== 'undefined'
     ) {
-      Astro.redirect("/subscribe");
+      window.location.href = "/subscribe"
     } else {
       // setShowToast(true);
       // add daisy?
