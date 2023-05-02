@@ -29,7 +29,7 @@ export const SubscribePage: React.FC = () => {
 
   return (
     <MaxW>
-      <>
+      <div data-theme="meeTheme" >
         <Header />
         <div className="text-black min-h-screen py-5 px-4 max-w-86 mx-auto">
           <h1>
@@ -89,7 +89,7 @@ export const SubscribePage: React.FC = () => {
         </div>
 
         <Footer />
-      </>
+      </div>
     </MaxW>
   );
 };

@@ -54,7 +54,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({ partnerData, showQrC
 
   return (
     <MaxW>
-      <div className="min-h-screen">
+      <div className="min-h-screen" data-theme="meeTheme" >
         <Header />
         <div className="w-full pt-38 px-4 flex flex-col justify-start items-center ">
           {showQrCode ? (

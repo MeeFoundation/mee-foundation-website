@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { InstallationSucceed } from '../../legacy/pages/InstallationSucceed';
+
+
+const { partnerData } = Astro.params;
+---
+
+<Layout title="Mee Foundation">
+  <InstallationSucceed partner={partnerData} client:only />
+</Layout>

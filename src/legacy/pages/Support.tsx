@@ -5,7 +5,7 @@ import { MaxW } from '../components/MaxW';
 
 export const SupportPage: React.FC = () => (
   <MaxW>
-    <>
+    <div data-theme="meeTheme">
       <Header />
       <div className="text-black min-h-screen pt-5 px-4 text-center mx-auto">
         <h1 className="text-lg pb-5">
@@ -15,6 +15,6 @@ export const SupportPage: React.FC = () => (
       </div>
 
       <Footer />
-    </>
+    </div>
   </MaxW>
 );

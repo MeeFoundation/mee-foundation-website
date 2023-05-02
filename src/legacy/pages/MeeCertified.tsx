@@ -3,7 +3,7 @@ import MeeCertifiedMarkIcon from '../assets/meeCertifiedMark.svg';
 
 export const MeeCertifiedPage: React.FC = () => (
   <MaxW>
-    <div className="max-w-256 mx-auto pt-5 md:pt-48 pb-48 px-5 md:px-0 text-[#111827]">
+    <div data-theme="meeTheme" className="max-w-256 mx-auto pt-5 md:pt-48 pb-48 px-5 md:px-0 text-[#111827]">
       <div className="flex flex-col md:flex-row items-center justify-center pb-11 gap-5">
         <img className="h-20" alt="mee certified mark" src={MeeCertifiedMarkIcon} />
         <h1 className="text-center text-5xl font-bold">Mee-certified</h1>
