@@ -36,6 +36,12 @@ import '../index.css'
 	<body>
 		<slot />
 	</body>
+
+	{(
+		<div id="connectionErrAlert" class="hidden mt-16 toast toast-top toast-end">
+			<div class="alert alert-error"><span>Connection attempt was unsuccessful</span></div>
+		</div>
+	)}
 </html>
 
 
@@ -165,6 +171,7 @@ import '../index.css'
 
 <script>
 	import { sdkInit } from '../sdkInit';
+	const SHOW_ERR_ALERT_FOR_MS = 3000
 
 	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
   			speed = 0.1;
@@ -187,5 +194,18 @@ import '../index.css'
 	
   if(scrollWrap) requestAnimationFrame(smoothScroll);
 
-	sdkInit()
+	const connectionErrAlert = document.getElementById("connectionErrAlert");
+	const errorConnectCb = () => {
+		if (connectionErrAlert) {
+			connectionErrAlert.classList.remove('hidden')
+		}
+
+		setTimeout(() => {
+			if (connectionErrAlert) {
+				connectionErrAlert.classList.add('hidden')
+			}
+		}, SHOW_ERR_ALERT_FOR_MS);
+	}
+
+	sdkInit(errorConnectCb)
 </script>

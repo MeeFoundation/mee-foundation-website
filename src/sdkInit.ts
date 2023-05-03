@@ -1,6 +1,6 @@
 import { init, MeeConsentDuration } from 'mee-js-sdk';
 
-export const sdkInit = () => {
+export const sdkInit = (errorConnectCb: () => void) => {
   init({
     client_metadata: {
       client_name: 'Mee Foundation',
@@ -40,12 +40,7 @@ export const sdkInit = () => {
     ) {
       window.location.href = "/subscribe"
     } else {
-      // setShowToast(true);
-      // add daisy?
-      console.error("Connection attempt was unsuccessful")
-      setTimeout(() => {
-        // setShowToast(false);
-      }, 2000);
+      errorConnectCb()
     }
   });
 }
