@@ -2029,10 +2029,10 @@ mdast-util-to-string@^3.0.0, mdast-util-to-string@^3.1.0:
   dependencies:
     "@types/mdast" "^3.0.0"
 
-mee-js-sdk@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/mee-js-sdk/-/mee-js-sdk-0.1.2.tgz#a1d35442cbb634c5c038b92e79930ffa5abfbb10"
-  integrity sha512-GXUXznnXPfNCx2lw9JSmLwvDNKzwhdfpAX3G4xfn4zvbwj8UYP60RNs5TO5v2kjm5/UFRLdYTwCMNnJdNTlYNw==
+mee-js-sdk@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/mee-js-sdk/-/mee-js-sdk-0.1.3.tgz#501961150106f73ff6c44c4f9be91f55746f9a1e"
+  integrity sha512-cyXGRoulsgqLOO3liz4lRb/+PvZWsr1raVtKeCHOiW6W1BKDsx0UZ3tzqNA67WnXigYWCkClfavbICojmlND6g==
   dependencies:
     big-integer "^1.6.51"
     jose "^4.11.2"
