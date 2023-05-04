@@ -32,19 +32,13 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
     if (nonce) {
       try {
         const data = await PollApi.poll(nonce);
-        console.log(data);
         const url = partnerDataUnparsed.client_id;
-        console.log(partnerDataUnparsed);
         if (url) {
           const redirectUrl = new URL(url);
           redirectUrl.searchParams.set('id_token', data);
-          console.log(redirectUrl);
           window.location.href = redirectUrl.href;
         }
-      } catch {
-        // eslint-disable-next-line no-console
-        console.log('error');
-      }
+      } catch {}
     }
   };
 

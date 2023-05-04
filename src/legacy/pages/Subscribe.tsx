@@ -5,29 +5,34 @@ import {ActionButton} from '../components/ActionButton';
 import {Footer} from '../components/Footer';
 import {Header} from '../components/Header';
 import {MaxW} from '../components/MaxW';
-import {MeeAuthState, SubscribedState} from '../state/MeeAuthState';
+import {SubscribedState} from '../state/MeeAuthState';
+import type {MeeResponse} from 'mee-js-sdk';
 
 const emailValidationRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,10}$/g;
 
 export const SubscribePage: React.FC = () => {
-  const meeData = useAtomValue(MeeAuthState);
+  const [meeData, setMeeData] = useState<MeeResponse | null>(null);
   const [isSubscribed, setSubscribed] = useAtom(SubscribedState);
+  const [email, setEmail] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (
-      meeData === null ||
-      typeof meeData?.data === 'undefined' ||
-      typeof meeData?.data?.name === 'undefined'
-    ) {
+    try {
+      const userDataStringified = localStorage.getItem('userData');
+      if (userDataStringified === null) {
+        window.location.href = '/';
+        return;
+      }
+      const parsedData = JSON.parse(window.atob(userDataStringified));
+      setMeeData(parsedData);
+      setEmail(parsedData?.data.email);
+      localStorage.clear();
+    } catch {
       window.location.href = '/';
     }
-  }, [meeData]);
+  }, []);
 
-  const name = meeData?.data?.name;
+  const name = meeData?.data?.name as string;
 
-  const [email, setEmail] = useState<string | undefined>(
-    meeData?.data?.email as string,
-  );
   const [error, setError] = useState<string | null>(null);
 
   return (
@@ -70,8 +75,6 @@ export const SubscribePage: React.FC = () => {
                     setError('Incorrect Email');
                     return;
                   }
-                  // eslint-disable-next-line no-console
-                  console.log('email: ', email);
                   setSubscribed(true);
                 }}
               />

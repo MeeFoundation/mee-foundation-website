@@ -32,8 +32,7 @@ export const sdkInit = (errorConnectCb: () => void) => {
       },
     },
   }, (data) => {
-    localStorage.setItem('userData', JSON.stringify(data))
-
+    localStorage.setItem('userData', window.btoa(JSON.stringify(data)))
     if (data !== null
       && typeof data?.data !== 'undefined'
       && typeof data?.data.name !== 'undefined'
