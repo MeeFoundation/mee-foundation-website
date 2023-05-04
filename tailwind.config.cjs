@@ -176,5 +176,26 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        meeTheme: {
+          primary: "#4E868E",
+          "primary-content": "#FFFFFF",
+          secondary: "#F1D77A",
+          "secondary-content": "#F5F6F6",
+          accent: "#F5B68926",
+          neutral: "#333C4D",
+
+          "base-100": "#FFFFFF", // background
+
+          info: "#3ABFF8",
+          success: "#36D399",
+          warning: "#FBBD23",
+          error: "#E66C4E",
+        },
+      },
+    ],
+  },
 };
