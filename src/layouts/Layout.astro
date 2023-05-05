@@ -220,11 +220,11 @@ import '../index.css'
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
 
-    var percent = getScrolledPercent(winScroll, height);
-    const scroll_indicator = document.getElementById('scroll-indicator');
+    const percent = getScrolledPercent(winScroll, height);
+    const scrollIndicator = document.getElementById('scroll-indicator');
 
-    if (scroll_indicator) {
-      scroll_indicator.style.width = percent + '%';
+    if (scrollIndicator) {
+      scrollIndicator.style.width = percent + '%';
     }
   }
 
@@ -236,11 +236,11 @@ import '../index.css'
     if (envision && header) {
       if (!envision.getBoundingClientRect().height) {
 				header.style.backgroundColor = "transparent"
-        return 0;
+				return 0;
       } else {
 				header.style.backgroundColor = "#fff";
-				const today_height = today?.getBoundingClientRect().height || 0;
-				const scrolled = ((winScroll - today_height) / (height - today_height)) * 100;
+				const todayHeight = today?.getBoundingClientRect().height || 0;
+				const scrolled = ((winScroll - todayHeight) / (height - todayHeight)) * 100;
 				return scrolled > 0 ? scrolled : 0;
       }
     }
