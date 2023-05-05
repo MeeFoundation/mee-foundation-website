@@ -60,7 +60,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
               </p>
               <QRCodeSVG
                 className="h-full w-1/2"
-                value={window.location.href.replace('consent', 'cdconsent')}
+                value={`${window.location.href}&respondTo=proxy`}
               />
             </div>
           ) : (
