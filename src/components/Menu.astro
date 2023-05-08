@@ -105,7 +105,13 @@ export const links = [
         })
       }, 200);
     }
-    backdrop?.classList.toggle("opacity-0");
+    if (backdrop?.classList.contains("opacity-0")) {
+      backdrop?.classList.remove("opacity-0");
+      backdrop?.classList.add("opacity-70");
+    } else {
+      backdrop?.classList.remove("opacity-70");
+      backdrop?.classList.add("opacity-0");
+    }
     toggleButton?.classList.toggle("menu__item--active");
     nav?.classList.toggle("nav--active");
   }
