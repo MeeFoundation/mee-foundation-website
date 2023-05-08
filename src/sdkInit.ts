@@ -16,7 +16,7 @@ export const sdkInit = (errorConnectCb: () => void) => {
           name: 'First Name',
           typ: 'string',
           essential: true,
-          retention_duration: MeeConsentDuration.ephemeral,
+          retention_duration: MeeConsentDuration.whileUsingApp,
           business_purpose: '',
           is_sensitive: true,
         },
@@ -25,15 +25,14 @@ export const sdkInit = (errorConnectCb: () => void) => {
           name: 'Email',
           typ: 'email',
           essential: false,
-          retention_duration: MeeConsentDuration.ephemeral,
+          retention_duration: MeeConsentDuration.whileUsingApp,
           business_purpose: '',
           is_sensitive: true,
         },
       },
     },
   }, (data) => {
-    localStorage.setItem('userData', JSON.stringify(data))
-
+    localStorage.setItem('userData', window.btoa(JSON.stringify(data)))
     if (data !== null
       && typeof data?.data !== 'undefined'
       && typeof data?.data.name !== 'undefined'

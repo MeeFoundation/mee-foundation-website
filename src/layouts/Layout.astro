@@ -208,4 +208,43 @@ import '../index.css'
 	}
 
 	sdkInit(errorConnectCb)
+
+	window.onscroll = function () {
+    updateScrollIndicator();
+  };
+
+  function updateScrollIndicator() {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    let height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const percent = getScrolledPercent(winScroll, height);
+    const scrollIndicator = document.getElementById('scroll-indicator');
+
+    if (scrollIndicator) {
+      scrollIndicator.style.width = percent + '%';
+    }
+  }
+
+  function getScrolledPercent(winScroll: number, height: number): number {
+    const envision = document.getElementById('envision');
+    const today = document.getElementById('today');
+    const header = document.getElementById('header');
+
+    if (envision && header) {
+      if (!envision.getBoundingClientRect().height) {
+				header.style.backgroundColor = "transparent"
+				return 0;
+      } else {
+				header.style.backgroundColor = "#fff";
+				const todayHeight = today?.getBoundingClientRect().height || 0;
+				const scrolled = ((winScroll - todayHeight) / (height - todayHeight)) * 100;
+				return scrolled > 0 ? scrolled : 0;
+      }
+    }
+    return (winScroll / height) * 100;
+  }
+
 </script>

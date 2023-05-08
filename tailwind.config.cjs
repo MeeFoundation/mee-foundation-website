@@ -111,6 +111,7 @@ module.exports = {
       animation: {
         'riseIn-short': 'riseIn 400ms ease-out both',
         riseIn: 'riseIn 800ms ease-out both',
+        'riseIn-long': 'riseIn 1000ms ease-out both',
         fadeIn: 'fadeIn 400ms ease-in both',
         'fadeIn-long': 'fadeIn 800ms ease-in both',
         fadeOut: 'fadeOut 400ms ease-out both',
@@ -133,6 +134,7 @@ module.exports = {
       'about-bg2': '#ECE3AC',
       'about-bg3': '#C7D1B2',
       'about-bg4': '#A5C1C5',
+      'how-me-header-bg': '#fde3d1',
       black: {
         DEFAULT: '#000',
       },
