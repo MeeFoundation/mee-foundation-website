@@ -109,7 +109,7 @@ import { parseMatrix } from '../helper'
 
   let lastY = 0
   document.addEventListener('scroll', () => {
-    if (!isFirstScrollHappen && !isMobile) {
+    if (!isFirstScrollHappen && !isMobile && direction === 'up') {
       mainHeader?.classList.remove('animate-none')
       mainHeader?.classList.remove('lg:animate-riseIn')
       mainHeader?.classList.add('animate-fadeOut')
@@ -149,16 +149,15 @@ import { parseMatrix } from '../helper'
   let scrollablePhone: HTMLElement | null = phoneMain
   let initScreenYForPhone = main ? getElementY(main) : 0
   let initPhoneTop = INIT_PHONE_TOP
+  let phoneCenterBodyTransformY = 0
 
   const mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
+      const targetEl = mutationRecord.target as Element
+      const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
+      const transformY = trMatrix[trMatrix.length - 1]
+
       if (currScreen) {
-        const targetEl = mutationRecord.target as Element
-
-        const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
-
-        const transformY = trMatrix[trMatrix.length - 1]
-
         if (currScreenMutationObserveId < currentScreenId) {
           currScreenY = Number(transformY)
           currScreenMutationObserveId = currentScreenId
@@ -168,7 +167,6 @@ import { parseMatrix } from '../helper'
         }
 
         const newY = Number(transformY) - currScreenY
-
 
         if (currScreen) {
           if (newY < 0 && currentScreenId !== allScreens.length) {
@@ -216,6 +214,7 @@ import { parseMatrix } from '../helper'
               phoneMain?.classList.remove(`t-[${INIT_PHONE_TOP}px]`)
               phoneMain?.classList.add('fixed')
               scrollablePhone = null
+              phoneCenterBodyTransformY = Number(transformY)
 
               if (phoneMain) {
                 phoneMain.style.top = String(`${phoneViewCenterTop}px`)
@@ -228,12 +227,34 @@ import { parseMatrix } from '../helper'
         if (newTop > initPhoneTop) {
           newTop = initPhoneTop
           scrollablePhone = null
+          initPhoneTop = INIT_PHONE_TOP
+          initScreenYForPhone = 0
           if (phoneMain) {
             phoneMain.style.top = String(`${phoneViewCenterTop}px`)
           }
         }
       }
     });
+
+    if (main) {
+      const trMatrix = parseMatrix(window.getComputedStyle(main).transform)
+      const currScreenY = Number(trMatrix[trMatrix.length - 1])
+
+      if (currScreenY > phoneCenterBodyTransformY && isPhoneFixed) {
+        mainHeader?.classList.remove('animate-fadeOut')
+        mainHeader?.classList.add('animate-none')
+        mainHeader?.classList.add('lg:animate-riseIn')
+
+        scrollIndicator?.classList.remove('animate-fadeOut')
+        scrollIndicator?.classList.add('animate-fadeIn')
+
+        isPhoneFixed = false
+        scrollablePhone = phoneMain
+
+        isFirstScrollHappen = false
+      }
+    }
+
   });
 
   if (main) {
@@ -243,8 +264,10 @@ import { parseMatrix } from '../helper'
   const screens = document.querySelectorAll('.phoneScreen');
   const thresholdSize = 21
   const thresholdStep = 0.01
-  const thresholdUp = Array.from({length: thresholdSize}, (_, i) => i * thresholdStep) // 0 - 0.2
-  const thresholdDown = Array.from({length: thresholdSize}, (_, i) => 1 - i * thresholdStep).sort() // 0.8 - 1
+  // 0 - 0.2
+  const thresholdUp = Array.from({length: thresholdSize}, (_, i) => i * thresholdStep)
+  // 0.8 - 1
+  const thresholdDown = Array.from({length: thresholdSize}, (_, i) => 1 - i * thresholdStep).sort()
   const optionsPhone: IntersectionObserverInit = {
       root: phoneScreens,
       threshold: [...thresholdUp, ...thresholdDown],
