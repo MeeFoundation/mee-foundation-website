@@ -69,6 +69,7 @@ export const links = [
   }
   .menu__item a {
     text-shadow: 0 14px 0 rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
   }
   .nav .menu__item span {
     display: block;
@@ -110,18 +111,6 @@ export const links = [
   }
 
   toggleButton?.addEventListener("click", toggleNav);
-
-  // For letters wave animation
-  const links = document.querySelectorAll("li.menu__item a");
-
-  const splitTextToLetters = (text:string) => {
-    const arr = text.trim().split("");
-    return arr.map((letter,index) => `<span style="transition-delay:${50 + 50 * index}ms">${letter}</span>`).join("");
-  }
-
-  links.forEach(
-    link => link.innerHTML = splitTextToLetters(link.textContent || "")
-  );
 
   const toggleLink = (button: any) => {
     const link = button && button.target ? button.target.querySelector("a"): null;
