@@ -232,17 +232,27 @@ import '../index.css'
     const envision = document.getElementById('envision');
     const today = document.getElementById('today');
     const header = document.getElementById('header');
-
+		
     if (envision && header) {
-      if (!envision.getBoundingClientRect().height) {
-				header.style.backgroundColor = "transparent"
-				return 0;
+			const srollToEnd = document.getElementById("sroll-to-end");
+      const todayHeight = today?.getBoundingClientRect().height || 0;
+
+			if (todayHeight < winScroll) {
+				srollToEnd && !srollToEnd.classList.contains('hidden') &&
+				srollToEnd.classList.add('hidden')
+			} else {
+				srollToEnd && srollToEnd.classList.contains('hidden') &&
+				srollToEnd.classList.remove('hidden')
+			}
+			
+      const scrolled =
+        ((winScroll - todayHeight) / (height - todayHeight)) * 100;
+      if (scrolled > 0) {
+        header.style.backgroundColor = '#fff';
       } else {
-				header.style.backgroundColor = "#fff";
-				const todayHeight = today?.getBoundingClientRect().height || 0;
-				const scrolled = ((winScroll - todayHeight) / (height - todayHeight)) * 100;
-				return scrolled > 0 ? scrolled : 0;
+        header.style.backgroundColor = 'transparent';
       }
+      return scrolled > 0 ? scrolled : 0;
     }
     return (winScroll / height) * 100;
   }

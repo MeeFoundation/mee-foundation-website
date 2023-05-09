@@ -14,9 +14,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header />
 	<main class="overflow-x-visible bg-white">
+		<div id="sroll-to-end" class="h-6 w-6 fixed bottom-12 right-10 z-999"><img src="/images/scroll-down.svg"/></div>
 		<TodaySection />
-		<!-- <div id="end-element"/> -->
 		<EnvisionSection />
+		<div id="end-element"/>
 	</main>
 </Layout>
 
@@ -24,6 +25,14 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+
+	function scrollToEnvision() {
+		const endElement = document.getElementById("end-element");
+		endElement?.scrollIntoView({ behavior: 'smooth'})
+	}
+	
+	const srollToEnd = document.getElementById("sroll-to-end");
+	srollToEnd?.addEventListener("click", scrollToEnvision);
 </script>
 
 <style>

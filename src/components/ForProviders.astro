@@ -38,8 +38,9 @@ const gives_you = [
       </div>
     </div>
   </section>
+  <div class="bg-1" />
   <section
-    class="providers-bg section relative flex w-screen flex-col items-center justify-center pb-20"
+    class="section relative flex w-screen flex-col items-center justify-center pb-20"
   >
     <div class="flex flex-col items-center justify-center">
       <div
@@ -98,18 +99,21 @@ const gives_you = [
     z-index: 1;
     height: auto;
   }
-  .providers-bg::after {
+
+  .bg-1 {
     content: '';
     position: absolute;
     width: 120vw;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    top: 50px;
-    height: 120%;
+    height: 101%;
     background: linear-gradient(
-      to top,
-      rgba(249, 200, 137, 0.4) 50%,
-      rgba(249, 182, 137, 0.4) 100%
+      180deg,
+      rgba(255, 255, 255, 0.3)  20%,
+      rgba(249, 200, 137, 0.4) 25%,
+      rgba(249, 182, 137, 0.4) 90%,
+      rgba(255, 255, 255, 1) 91%,
+      rgba(255, 255, 255, 1) 100%
     );
     filter: blur(100px);
     z-index: -1;

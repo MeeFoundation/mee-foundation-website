@@ -17,7 +17,6 @@ const subtitles = [
 	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
-		<!-- <div id="sroll-to-end" class="h-6 w-6 fixed bottom-12 right-10 z-999"><img src="/assets/scroll-down.svg"/></div> -->
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
 			<div class="overflow-hidden">
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
@@ -30,8 +29,9 @@ const subtitles = [
 				</div>
 			</div>
 		))}
-		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
+		<div class="scrollIconContainer fixed flex flex-col items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+			<img  class="w-4 h-4 mt-1" src="/images/bottom-arrow.svg">
 		</div>
 		<div id="bleachAnimation" class="flex h-[400vh]">
 			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
@@ -72,7 +72,7 @@ const subtitles = [
 
 <script>
   const sections = document.querySelectorAll('.today .section');
-	const scrollIcon = document.querySelector(".scrollIcon");
+	const scrollIconContainer = document.querySelector(".scrollIconContainer");
 	const shadow = document.querySelector(".shadow");
 	const title = document.getElementById("title");
 	const figuresContainer = document.querySelector('.figuresContainer') as HTMLElement;
@@ -144,20 +144,20 @@ const subtitles = [
 				document.documentElement.style.setProperty('--bleachProgress', animationScroll.toString());
 				if(animationScroll === 1) {
 					// todaySection?.classList.add("hidden");
-					envisionSection?.classList.remove("hidden");
+					// envisionSection?.classList.remove("hidden");
 					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 					mainLogo?.classList.add("logo--contrast");
 				} else {
 					// todaySection?.classList.remove("hidden");
-					envisionSection?.classList.add("hidden");
+					// envisionSection?.classList.add("hidden");
 					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
 				}
 			}
 			if(window.scrollY > 400) {
-				scrollIcon?.classList.add("opacity-0");
+				scrollIconContainer?.classList.add("opacity-0");
 				setTimeout(()=>{
-					scrollIcon?.classList.add("hidden");
+					scrollIconContainer?.classList.add("hidden");
 				},400)
 			}
 		}, {passive: true})
@@ -174,11 +174,5 @@ const subtitles = [
 		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
 	}
 
-	// function scrollToEnvision() {
-	// 	const end_element = document.getElementById("end-element");
-	// 	end_element?.scrollIntoView({ behavior: 'smooth'})
-	// }
-	// const sroll_to_end = document.getElementById("sroll-to-end");
-	// sroll_to_end?.addEventListener("click", scrollToEnvision);
 	
 </script>
