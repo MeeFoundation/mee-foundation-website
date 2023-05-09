@@ -83,6 +83,11 @@ const subtitles = [
 	const todaySection = document.getElementById("today");
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
+	let currBleach = 0
+	const logoSection = document.getElementById("logoSection");
+	let showTodatSectionTriggerScroll = 0
+	const bleachSpeedMS = 50
+	const bleachStep = 0.05
 
 
 		const options: IntersectionObserverInit = {
@@ -93,37 +98,53 @@ const subtitles = [
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					if(entry.target.id === "animationTrigger") {
+					if(entry.target.id === "animationTrigger" && currBleach <= 0) {
 						title?.classList.add("animate-fadeOut", "titleBleach");
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
 						grid?.classList.add("animate-fadeOut", "figuresBleach");
 						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
-						gradients.forEach(gradient => {gradient.removeAttribute('style');gradient.classList.add("animate-fadeOut", "figuresBleach")})
+						gradients.forEach(gradient => {
+							gradient.removeAttribute('style');
+							gradient.classList.add("animate-fadeOut", "figuresBleach")
+						})
 						shadow?.classList.add("bg-1");
+						showTodatSectionTriggerScroll = window.scrollY
 
-						// setTimeout(() => {
-						// 	mainLogo?.classList.add("logo--contrast");
-						// 	todaySection?.classList.toggle("hidden");
-						// 	window.scrollTo(0, 0);
-						// 	envisionSection?.classList.toggle("hidden");
-						// },2900);
+						let bleachIntervalId = setInterval(() => {
+							if (currBleach < 1) {
+								currBleach = currBleach + bleachStep
+								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+							} else {
+								window.scrollTo(0, window.scrollY + window.innerHeight);
+								clearInterval(bleachIntervalId)
 
-						// setTimeout(() => {
-							// restoringBalance?.classList.toggle("hidden");
-						// },3900);
-						// setTimeout(() => {
-						// 	restoringBalanceText?.classList.toggle("hidden");
-						// },4700);
-						// setTimeout(() => {
-						// 	restoringBalance?.classList.toggle("opacity-0");
-						// 	setTimeout(() => {
-						// 		todaySection?.classList.toggle("hidden");
-						// 	},200)
-						// 	envisionSection?.classList.add("flex");
-						// 	window.scrollTo(0, 0);
-						// 	envisionSection?.classList.remove("hidden");
-						// },6900);
+								envisionSection?.classList.remove("hidden");
+								todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
+								mainLogo?.classList.add("logo--contrast");
+
+								logoSection?.classList.remove("opacity-0");
+							}
+						}, bleachSpeedMS)
 					}
+
+					if(entry.target.id === "animationTrigger" && currBleach > 0) {
+						envisionSection?.classList.add("hidden");
+						mainLogo?.classList.remove("logo--contrast");
+						todaySection?.classList.remove('translate-y-0');
+						logoSection?.classList.add("opacity-0");
+
+						let bleachIntervalId = setInterval(() => {
+							if (currBleach > 0) {
+								currBleach = currBleach - bleachStep
+								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+							} else {
+								window.scrollTo(0, window.scrollY - window.innerHeight);
+								clearInterval(bleachIntervalId)
+								showTodatSectionTriggerScroll = 0
+							}
+						}, bleachSpeedMS)
+					}
+
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
 				} else {
@@ -139,21 +160,17 @@ const subtitles = [
 
 		document.addEventListener('scroll', () => {
 			storeScroll();
+
 			if(bleachSection) {
 				const animationScroll = calcElScroll(bleachSection);
-				document.documentElement.style.setProperty('--bleachProgress', animationScroll.toString());
-				if(animationScroll === 1) {
-					// todaySection?.classList.add("hidden");
-					// envisionSection?.classList.remove("hidden");
-					todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
-					mainLogo?.classList.add("logo--contrast");
-				} else {
-					// todaySection?.classList.remove("hidden");
-					// envisionSection?.classList.add("hidden");
+
+				if(currBleach === 0) {
+					envisionSection?.classList.add("hidden");
 					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
 				}
 			}
+
 			if(window.scrollY > 400) {
 				scrollIconContainer?.classList.add("opacity-0");
 				setTimeout(()=>{
