@@ -48,7 +48,7 @@ module.exports = {
         4.5: '1.125rem',
         'about-sm': '20.9375rem',
         about: '21.25rem',
-        "about-lg": '17.8125rem',
+        "about-lg": '16.75rem',
         160: '40rem',
       },
       maxWidth: {
