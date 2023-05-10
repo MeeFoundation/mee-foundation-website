@@ -62,7 +62,10 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({ showQrCode = false }
                 Please scan the QR code on your mobile phone or just click the button to download
                 the Mee Identity Agent app
               </p>
-              <QRCodeSVG className="w-1/4 h-full" value={window.location.href.replace('consent', 'cdconsent')} />
+              <QRCodeSVG
+                className="h-full w-1/2"
+                value={`${window.location.href}&respondTo=proxy`}
+              />
             </div>
           ) : (
             <p className="max-w-86 pt-2 text-sm text-center pb-12 text-[#5A5A5A]">
