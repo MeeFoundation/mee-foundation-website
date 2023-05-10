@@ -8,7 +8,7 @@ export const sdkInit = (errorConnectCb: () => void) => {
       display_url: 'mee.foundation',
       contacts: [],
     },
-    redirect_uri: 'https://mee.foundation/',
+    redirect_uri: 'https://mee-foundation-test.netlify.app/',
     claims: {
       id_token: {
         name: {
