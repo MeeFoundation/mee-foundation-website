@@ -195,8 +195,13 @@ interface InstallationSucceedProps {
 
 export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({partner}) => {
   const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
-  const params = { partnerData: partner };
   const environment = getEnvironment();
+
+  const url = new URL(window.location.href)
+  const hashPrepared = url.hash !== "" ? url.hash.slice(1) : 'undefined'
+
+  const params = { partnerData: hashPrepared };
+
   useEffect(() => {
     if (environment === Environment.prodApp || environment === Environment.devApp) {
       const isDevEnv = environment === Environment.devApp;
