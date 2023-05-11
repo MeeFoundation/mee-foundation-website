@@ -31,7 +31,7 @@ const subtitles = [
 		))}
 		<div class="scrollIconContainer fixed flex flex-col items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
-			<img  class="w-4 h-4 mt-1" src="/images/bottom-arrow.svg">
+			<div class="down-arrow w-4 h-4 mt-1" />
 		</div>
 		<div id="bleachAnimation" class="flex h-[400vh]">
 			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
@@ -66,6 +66,10 @@ const subtitles = [
 		animation-play-state: paused;
 		animation-fill-mode: both;
     backface-visibility: hidden; 
+	}
+	.down-arrow {
+		background-color: #ffffffb3;
+		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
 
 </style>
