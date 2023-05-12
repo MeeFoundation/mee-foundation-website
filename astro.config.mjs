@@ -8,4 +8,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://mee.foundation',
   integrations: [tailwind(), react()],
+  build: {
+    assets: 'assets'
+  }
 });
