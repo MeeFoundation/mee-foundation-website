@@ -18,14 +18,18 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
   partnerData,
   showQrCode = false,
 }) => {
+
+  const url = new URL(window.location.href)
+  const hashPrepared = url.hash !== "" ? url.hash.slice(1) : 'undefined'
+
   const partnerDataUnparsed: RequestData | undefined = useMemo(() => {
-    if (partnerData === null) return undefined;
+    if (hashPrepared === null) return undefined;
     try {
-      return decodeJwt(partnerData) as RequestData;
+      return decodeJwt(hashPrepared) as RequestData;
     } catch {
       return undefined;
     }
-  }, [partnerData]);
+  }, [hashPrepared]);
 
   const getData = async () => {
     const nonce = partnerDataUnparsed?.nonce;

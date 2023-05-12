@@ -24,6 +24,19 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+
+  const url = new URL(window.location.href)
+  const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
+
+	const hashData = hashPrepared.split('/')
+	if (hashData[0] === 'consent') {
+		window.location.href = `/authorize#${hashData[1]}`
+	}
+
+	if (hashData[0] === 'installed') {
+		window.location.href = `/installed#${hashData[1]}`
+	}
+
 </script>
 
 <style>
