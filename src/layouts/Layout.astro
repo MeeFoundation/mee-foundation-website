@@ -205,7 +205,7 @@ import '../index.css'
     const header = document.getElementById('header');
 		if (envision && header) {
 			const srollToEnd = document.getElementById("sroll-to-end");
-			const todayHeight = today?.getBoundingClientRect().height || 0;
+			const todayHeight = (today?.getBoundingClientRect().height || 0) - document.documentElement.clientHeight;
 		
 			if (todayHeight > winScroll) {
 				srollToEnd && srollToEnd.classList.contains('hidden') &&
