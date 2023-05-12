@@ -198,31 +198,32 @@ import '../index.css'
       scrollIndicator.style.width = percent + '%';
     }
   }
+	let initWinScroll = 0;
 
-  function getScrolledPercent(winScroll: number, height: number): number {
+	function getScrolledPercent(winScroll: number, height: number): number {
     const envision = document.getElementById('envision');
-    const today = document.getElementById('today');
     const header = document.getElementById('header');
+		
 		if (envision && header) {
 			const srollToEnd = document.getElementById("sroll-to-end");
-			const todayHeight = (today?.getBoundingClientRect().height || 0) - document.documentElement.clientHeight;
-		
-			if (todayHeight > winScroll) {
+      if (!envision.getBoundingClientRect().height) {
+				header.style.backgroundColor = "transparent"
+				initWinScroll = 0
 				srollToEnd && srollToEnd.classList.contains('hidden') &&
 				srollToEnd.classList.remove('hidden')
-			} else {
+				return 0;
+      } else {
 				srollToEnd && !srollToEnd.classList.contains('hidden') &&
 				srollToEnd.classList.add('hidden')
-			}
-			
-      const scrolled = todayHeight < winScroll ? ((winScroll - todayHeight) / (height - todayHeight)) * 100:0;
+				if (initWinScroll === 0) {
+					initWinScroll = winScroll
+				}
+				header.style.backgroundColor = "#fff";
 
-      if (scrolled > 0) {
-        header.style.backgroundColor = '#fff';
-      } else {
-        header.style.backgroundColor = 'transparent';
+				const scrolled = ((winScroll - initWinScroll) / (height - initWinScroll)) * 100;
+
+				return scrolled > 0 ? scrolled : 0;
       }
-      return scrolled;
     }
     return (winScroll / height) * 100;
   }
