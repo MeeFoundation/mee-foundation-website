@@ -1,5 +1,6 @@
 import type { AxiosError } from 'axios';
-import { gNumber, gObject, gString } from '../../utils/guards';
+import { gObject, gNumber, gString } from '../utils/guards';
+
 
 export class RestError extends Error {
   public constructor(
