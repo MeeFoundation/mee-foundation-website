@@ -64,7 +64,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
               </p>
               <QRCodeSVG
                 className="h-full w-1/2"
-                value={`${window.location.href}&respondTo=proxy`}
+                value={`https://auth.mee.foundation/authorize?scope=openid&request=${hashPrepared}&respondTo=proxy`}
               />
             </div>
           ) : (
