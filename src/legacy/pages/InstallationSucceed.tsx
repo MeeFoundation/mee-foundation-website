@@ -1,19 +1,19 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useMemo, useState } from 'react';
-import { Fallback } from '../components/Fallback';
-import { MaxW } from '../components/MaxW';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import type { PartnerItem } from '../model/partnerItem';
-import { Environment, getEnvironment } from '../helpers/getEnvironment';
-import { decodeJwt } from 'jose';
+import React, {useEffect, useMemo, useState} from 'react';
+import {Fallback} from '../components/Fallback';
+import {MaxW} from '../components/MaxW';
+import {Header} from '../components/Header';
+import {Footer} from '../components/Footer';
+import type {PartnerItem} from '../model/partnerItem';
+import {Environment, getEnvironment} from '../helpers/getEnvironment';
+import {decodeJwt} from 'jose';
 import MeeLogo from '../assets/mee_logo.svg';
 import LockImage from '../assets/lock.svg';
 import cloud from '../assets/cloud.svg';
 import guy from '../assets/guy.svg';
 import MeeCertifiedIcon from '../assets/meeCertifiedMark.svg';
 import MeeCompatibleIcon from '../assets/meeCompatibleMark.svg';
-import { PARTNER_DATA } from '../../constants';
+import {PARTNER_DATA} from '../../constants';
 // import MeeButtonIcon from '../assets/meeButtonActive.svg';
 
 // const OpenAppButton: React.FC = () => (
@@ -28,7 +28,7 @@ interface ContextExistsProps {
   partnerData: string;
 }
 
-const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
+const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
   const partnerDataUnparsed: PartnerItem = useMemo(() => {
     try {
       return decodeJwt(partnerData);
@@ -37,43 +37,47 @@ const ContextExists: React.FC<ContextExistsProps> = ({ partnerData }) => {
         return JSON.parse(window.atob(partnerData));
       } catch {
         window.location.href = '/';
-        return { partnerName: '', partnerUrl: '', partnerDisplayedUrl: '' };
+        return {partnerName: '', partnerUrl: '', partnerDisplayedUrl: ''};
       }
     }
   }, [partnerData]);
 
   return (
-    <div className="h-screen w-screen bg-white flex flex-col justify-start pt-32 text-primary items-center px-5 text-center">
-      <img className="h-12 mb-20" alt="mee" src={MeeLogo} />
+    <div className="flex h-screen w-screen flex-col items-center justify-start bg-white px-5 pt-32 text-center text-primary">
+      <img className="mb-20 h-12" alt="mee" src={MeeLogo} />
 
       <h1 className="pb-8 text-2xl font-bold">
         Let’s set up your first connection!
       </h1>
 
-      <p className="text-lg font-medium pb-8">Allow Mee to establish a way to talk to the site you’ve just chosen to interact with.</p>
+      <p className="pb-8 text-lg font-medium">
+        Allow Mee to establish a way to talk to the site you’ve just chosen to
+        interact with.
+      </p>
       <p className="text-lg font-medium">Click Next to connect to </p>
-      <p className="text-3xl text-alt-color-8 font-bold">
-        {partnerDataUnparsed.partnerName || partnerDataUnparsed.client_metadata?.client_name }
+      <p className="text-alt-color-8 text-3xl font-bold">
+        {partnerDataUnparsed.partnerName ||
+          partnerDataUnparsed.client_metadata?.client_name}
       </p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
         <p className="text-3xl font-bold">
-          {partnerDataUnparsed.partnerDisplayedUrl || partnerDataUnparsed.client_metadata?.display_url}
+          {partnerDataUnparsed.partnerDisplayedUrl ||
+            partnerDataUnparsed.client_metadata?.display_url}
         </p>
       </div>
 
       <button
         type="button"
-        className="py-2 px-4 bg-primary text-sm font-bold text-white"
+        className="bg-primary px-4 py-2 text-sm font-bold text-white"
         onClick={() => {
           window.location.href = `https://auth.mee.foundation/#/consent/${partnerData}`;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        // (window as any).MeeWebSDK.buttonAction(partnerId);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // (window as any).MeeWebSDK.buttonAction(partnerId);
         }}
       >
         Next
       </button>
-
     </div>
   );
 };
@@ -99,35 +103,34 @@ interface PartnerListItemProps {
   partner: PartnerItem;
 }
 
-const PartnerListItem: React.FC<PartnerListItemProps> = ({ partner }) => {
-
+const PartnerListItem: React.FC<PartnerListItemProps> = ({partner}) => {
   return (
     <div
-      className="py-3 border-t border-alt-color-6 cursor-pointer"
+      className="border-alt-color-6 cursor-pointer border-t py-3"
       tabIndex={-1}
       role="link"
       onClick={() => {
-        window.location.href = partner.partnerUrl
+        window.location.href = partner.partnerUrl;
       }}
       onKeyPress={(e) => {
         if (e.key === 'enter') {
-          window.location.href = partner.partnerUrl
+          window.location.href = partner.partnerUrl;
         }
       }}
     >
       <div className="flex flex-row gap-2">
-        <img className="w-12 h-12 rounded-full" src={partner.partnerImageUrl} alt={partner.partnerName} />
-        <div className="flex flex-col text-alt-color-8">
+        <img
+          className="h-12 w-12 rounded-full"
+          src={partner.partnerImageUrl}
+          alt={partner.partnerName}
+        />
+        <div className="text-alt-color-8 flex flex-col">
           <div className="flex flex-row gap-1">
             <p className="text-base">{partner.partnerName}</p>
             <img
               className="w-5"
-              src={partner.isCertified
-                ? MeeCertifiedIcon
-                : MeeCompatibleIcon}
-              alt={partner.isCertified
-                ? 'Mee certified'
-                : 'Mee compatible'}
+              src={partner.isCertified ? MeeCertifiedIcon : MeeCompatibleIcon}
+              alt={partner.isCertified ? 'Mee certified' : 'Mee compatible'}
             />
           </div>
 
@@ -144,43 +147,41 @@ const ContextDoesNotExist: React.FC = () => (
       <Header />
       <div className="max-w-256 mx-auto">
         <div className="min-h-screen">
-          <div className="sub-header bg-secondary pt-5 flex flex-col items-center">
-            <div className="w-full flex flex-col justify-center items-center">
+          <div className="sub-header flex flex-col items-center bg-secondary pt-5">
+            <div className="flex w-full flex-col items-center justify-center">
               <div className="relative">
                 <img className="" src={cloud} alt="cloud" />
-                <div className="absolute left-0 right-0 bottom-0 top-0 flex flex-col justify-center items-center px-8 pt-2">
-                  <h1 className="text-primary text-center font-normal text-xl xs:text-3xl px-2">
+                <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-center px-8 pt-2">
+                  <h1 className="xs:text-3xl px-2 text-center text-xl font-normal text-primary">
                     Let’s set up your first connection
                   </h1>
-                  <p className="text-primary text-center text-sm pt-2">
-                    It is your first time setting up Mee!
-                    By creating a connection I mean establishing a way for Mee to talk
-                    to apps/sites you would like to sign in/up.
-                    Choose who you want me to start talking with.
+                  <p className="pt-2 text-center text-sm text-primary">
+                    It is your first time setting up Mee! By creating a
+                    connection I mean establishing a way for Mee to talk to
+                    apps/sites you would like to sign in/up. Choose who you want
+                    me to start talking with.
                   </p>
                 </div>
-
               </div>
-              <img className="pt-2 z-10" src={guy} alt="person" />
-              <div className="relative w-full h-19
-               overflow-hidden flex flex-col items-center justify-center -mt-2"
+              <img className="z-10 pt-2" src={guy} alt="person" />
+              <div
+                className="h-19 relative -mt-2
+               flex w-full flex-col items-center justify-center overflow-hidden"
               >
-                <div className="bg-white border-t rounded-t-[50%] h-[200vh] w-[200vh] absolute top-0 bottom-0">
-                  <h2 className="pt-11 text-primary text-xl text-center font-medium">Sites to connect to</h2>
+                <div className="absolute bottom-0 top-0 h-[200vh] w-[200vh] rounded-t-[50%] border-t bg-white">
+                  <h2 className="pt-11 text-center text-xl font-medium text-primary">
+                    Sites to connect to
+                  </h2>
                 </div>
               </div>
-
             </div>
-
           </div>
           <div className="text-alt-color-8 px-4 pt-8">
-
-            {
-          partnerList.filter((partner) => partner.isCertified).map((partner) => (
-            <PartnerListItem key={partner.partnerUrl} partner={partner} />
-          ))
-
-        }
+            {partnerList
+              .filter((partner) => partner.isCertified)
+              .map((partner) => (
+                <PartnerListItem key={partner.partnerUrl} partner={partner} />
+              ))}
           </div>
         </div>
         <Footer />
@@ -193,25 +194,36 @@ interface InstallationSucceedProps {
   partner?: string;
 }
 
-export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({partner}) => {
-  const [partnerData, setPartnerData] = useState<string | undefined | null>(undefined);
+export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({
+  partner,
+}) => {
+  const [partnerData, setPartnerData] = useState<string | undefined | null>(
+    undefined,
+  );
   const environment = getEnvironment();
 
-  const url = new URL(window.location.href)
-  const hashPrepared = url.hash !== "" ? url.hash.slice(1) : 'undefined'
+  const url = new URL(window.location.href);
+  const hashPrepared = url.hash !== '' ? url.hash.slice(1) : undefined;
 
-  const params = { partnerData: hashPrepared };
+  const params = {partnerData: hashPrepared};
 
   useEffect(() => {
-    if (environment === Environment.prodApp || environment === Environment.devApp) {
+    if (
+      environment === Environment.prodApp ||
+      environment === Environment.devApp
+    ) {
       const isDevEnv = environment === Environment.devApp;
       try {
         const localStoragePartnerData = localStorage.getItem(PARTNER_DATA);
         localStorage.removeItem(PARTNER_DATA);
         if (localStoragePartnerData !== null) {
-          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}mee.foundation/#/installed/${localStoragePartnerData}`;
+          window.location.href = `https://${
+            isDevEnv ? 'www-dev.' : ''
+          }mee.foundation/installed#${localStoragePartnerData}`;
         } else {
-          window.location.href = `https://${isDevEnv ? 'www-dev.' : ''}mee.foundation/#/installed`;
+          window.location.href = `https://${
+            isDevEnv ? 'www-dev.' : ''
+          }mee.foundation/installed`;
         }
       } catch {
         //
@@ -225,10 +237,15 @@ export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({partner
 
   return (
     <div>
-      {typeof partnerData !== 'undefined'
-        ? partnerData !== null
-          ? <ContextExists partnerData={partnerData} /> : <ContextDoesNotExist />
-        : <Fallback />}
+      {typeof partnerData !== 'undefined' ? (
+        partnerData !== null ? (
+          <ContextExists partnerData={partnerData} />
+        ) : (
+          <ContextDoesNotExist />
+        )
+      ) : (
+        <Fallback />
+      )}
     </div>
   );
 };
