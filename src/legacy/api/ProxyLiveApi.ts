@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import { svcUrl } from '../../config';
 import type { ProxyApiInterface } from './ProxyApi';
 import { BaseRestClient } from './BaseRestClient';
+import { svcUrl } from '../../config';
 
 const client = new BaseRestClient({
   baseURL: svcUrl,
