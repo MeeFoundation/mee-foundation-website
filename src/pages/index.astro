@@ -14,16 +14,36 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header />
 	<main class="overflow-x-visible bg-white">
+		<div id="sroll-to-end" class="h-8 w-8 fixed bottom-12 right-10 z-999 cursor-pointer"/>
 		<TodaySection />
-		<!-- <div id="end-element"/> -->
+		<div id="middle-element"/>
 		<EnvisionSection />
+		<div id="end-element"/>
 	</main>
 </Layout>
 
 <script>
+	import { scrollIntoView } from "seamless-scroll-polyfill";
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+
+	let srollTimeout = 0;
+
+	function scrollToEnvision() {
+		srollTimeout && clearTimeout(srollTimeout);
+		const middleElement = document.getElementById("middle-element");
+		const endElement = document.getElementById("end-element");
+		if (middleElement && endElement) {
+			scrollIntoView(middleElement, { behavior: "smooth"});
+			srollTimeout = setTimeout(()=>{
+				scrollIntoView(endElement, { behavior: "smooth"});
+			}, 1700)
+		}
+	}
+
+	const srollToEnd = document.getElementById("sroll-to-end");
+	srollToEnd?.addEventListener("click", scrollToEnvision);
 
   const url = new URL(window.location.href)
   const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
@@ -90,6 +110,11 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+
+	#sroll-to-end {
+		background-color: #ffffffb3;
+		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
 	
 </style>

@@ -97,36 +97,7 @@ import '../index.css'
     left: 0;
     overflow: hidden;
   }
-	.animation-delay-200 {
-		animation-delay: 200ms;
-	}
-	.animation-delay-400 {
-		animation-delay: 400ms;
-	}
-	.animation-delay-800 {
-		animation-delay: 800ms;
-	}
-	.animation-delay-1000 {
-		animation-delay: 1s;
-	}
-	.animation-delay-1200 {
-		animation-delay: 1.2s;
-	}
-	.animation-delay-1400 {
-		animation-delay: 1.4s;
-	}
-	.animation-delay-1600 {
-		animation-delay: 1.6s;
-	}
-	.animation-delay-1800 {
-		animation-delay: 1.8s;
-	}
-	.animation-delay-2000 {
-		animation-delay: 2s;
-	}
-	.animation-delay-2200 {
-		animation-delay: 2.2s;
-	}
+
 	.pause {
      animation-play-state: paused;
    }
@@ -227,19 +198,23 @@ import '../index.css'
       scrollIndicator.style.width = percent + '%';
     }
   }
-	let initWinScroll: number
+	let initWinScroll = 0;
 
-  function getScrolledPercent(winScroll: number, height: number): number {
+	function getScrolledPercent(winScroll: number, height: number): number {
     const envision = document.getElementById('envision');
-    const today = document.getElementById('today');
     const header = document.getElementById('header');
-
-    if (envision && header) {
+		
+		if (envision && header) {
+			const srollToEnd = document.getElementById("sroll-to-end");
       if (!envision.getBoundingClientRect().height) {
 				header.style.backgroundColor = "transparent"
 				initWinScroll = 0
+				srollToEnd && srollToEnd.classList.contains('hidden') &&
+				srollToEnd.classList.remove('hidden')
 				return 0;
       } else {
+				srollToEnd && !srollToEnd.classList.contains('hidden') &&
+				srollToEnd.classList.add('hidden')
 				if (initWinScroll === 0) {
 					initWinScroll = winScroll
 				}

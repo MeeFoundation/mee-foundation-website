@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -9,6 +10,18 @@ module.exports = {
         '3xl': ['1.75rem', '1.5'],
         '7xl': ['4rem', '1.3'],
         '25xl': '6rem',
+      },
+      transitionDelay: {
+        200: '200ms',
+        400: '400ms',
+        800: '800ms',
+        1000: '1000ms',
+        1200: '1200ms',
+        1400: '1400ms',
+        1600: '1600ms',
+        1800: '1800ms',
+        2000: '2000ms',
+        2200: '2200ms',
       },
       lineHeight: {
         thick: '1.3',
@@ -178,7 +191,23 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          "animation-delay": (value) => {
+            return {
+              "animation-delay": value,
+            };
+          },
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
+    }),
+  ],
   daisyui: {
     themes: [
       {

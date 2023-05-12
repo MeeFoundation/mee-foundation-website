@@ -32,8 +32,9 @@ import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
             Mee for<mark>You</mark>
           </h1>
 
-          <div id="scrollIndicator" class="hidden lg:flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
+          <div id="scrollIndicator" class="hidden flex flex-col items-center justify-center lg:flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
             <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+            <div class="down-arrow w-4 h-4 mt-1" />
           </div>
         </section>
         <HowMeeWorksAboutBlocks />
@@ -342,6 +343,10 @@ import { parseMatrix } from '../helper'
 	}
   .scrollIcon::after {
     background: black;
+  }
+  .down-arrow {
+    background-color: black;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
   }
 
   .phoneScreen {
