@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "astro",
     "Claimes",
     "HARDLINK",
     "heroicons",
@@ -12,6 +13,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/node_modules": false
-  }
+    "**/node_modules": true
+  },
+  "svg.preview.background": "dark-transparent"
 }

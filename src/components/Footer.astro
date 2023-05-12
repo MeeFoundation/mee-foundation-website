@@ -1,0 +1,76 @@
+---
+import AppButtons from './AppButtons.astro';
+import { links } from './Menu.astro';
+
+export interface Props {
+  mode: "dark" | "light";
+  withAppButtons?: boolean;
+}
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const {mode,withAppButtons = true} = Astro.props;
+
+// TODO Add bg animation on connect with mee button
+// TODO Add link to connect button
+
+---
+
+<footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
+  <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
+    <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
+    <a id="meeConnectBtn" href="#" class:list={["connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5", {"text-black/[.8] bg-white before:bg-blue": mode === "dark", "bg-blue text-white before:bg-white": mode === "light"}]}>
+      <!-- <img class="mr-5" src="/images/mee-simple-icon.svg" alt="Mee foundation logo" > Connect with Mee  -->
+      Connect with Mee
+    </a>
+  </div>
+  {withAppButtons && <AppButtons class="mb-25" />}
+  <div class:list={["flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7", {"text-white": mode === "dark", "text-gray": mode === "light"}]}>
+    <span class="hidden whitespace-nowrap max-w-[102px] xl:inline">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
+    <ul class="flex text-center flex-col md:flex-row gap-7 md:gap-10 mb-13 md:mb-0">
+      {links.map(link => <li><a href={link.link}>{link.name}</a></li>)}
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <a href="#" target="_blank">Privacy Policy</a>
+    <span class="inline xl:hidden">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+    background-color: white;
+		/* transform: translateY(120px); */
+	}
+  .footer--fill {
+    background:  linear-gradient(218.91deg, #559FAA 16.17%, #335F66 56.32%) left bottom no-repeat;
+  }
+  .link::after {
+    content: "";
+    mask: url('/images/arrow-right.svg') no-repeat center;
+    display: block;
+    width: 21px;
+    height: 12px;
+  }
+
+  .connectBtn::before {
+    content: "";
+    mask: url('/images/mee-simple-icon.svg') no-repeat center;
+    display: block;
+    width: 44px;
+    height: 44px;
+  }
+</style>
+
+<script>
+  import { authorize } from 'mee-js-sdk';
+  const meeConnectBtn = document.getElementById("meeConnectBtn")
+
+  if (meeConnectBtn) {
+    meeConnectBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      authorize()
+    });
+  }
+</script>

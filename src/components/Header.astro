@@ -1,0 +1,60 @@
+---
+import Logo from './Logo.astro';
+import Menu from './Menu.astro';
+
+export interface Props {
+  logoColor?: 'blue' | 'white';
+  backgroundColor?: 'bg-white' | 'bg-how-me-header-bg' | 'bg-transparent';
+  withoutProgress?: boolean;
+}
+
+const {logoColor = 'white', backgroundColor = 'bg-transparent', withoutProgress = false} = Astro.props;
+---
+
+<header id="header" class:list={[
+  'header fixed top-0 z-200 w-full',
+  backgroundColor,
+]}>
+  <div class="flex justify-between px-5 pt-4 md:px-[60px] md:pt-6 ">
+    <a
+      href="/"
+      id="mainLogo"
+      class:list={[
+        'block logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0',
+        {'logo--contrast': logoColor === 'blue'},
+      ]}
+    >
+      <Logo />
+    </a>
+    <Menu />
+  </div>
+  {!withoutProgress && <div class="progress-container mt-4 md:mt-6">
+    <div class="progress-bar" id="scroll-indicator"></div>
+  </div>}
+  
+</header>
+
+<style is:global>
+  .logo > svg {
+    fill: white;
+    transition: all;
+    /* transition-delay: 2.9s; */
+    transition-duration: 200ms;
+    transition-timing-function: linear;
+  }
+  .logo--contrast > svg {
+    fill: #447f88;
+  }
+
+  .progress-container {
+    width: 100%;
+    display: flex;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: #559FAA;
+    width: 0%;
+    border-radius: 12px;
+  }
+</style>

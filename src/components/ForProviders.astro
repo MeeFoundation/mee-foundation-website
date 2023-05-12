@@ -1,0 +1,134 @@
+---
+import Footer from './Footer.astro';
+import done from '../../assets/done.svg';
+export interface Props {}
+
+const {} = Astro.props;
+const gives_you = [
+  [
+    'Better user experience',
+    ' – one-tap account creation, password-free sign-in, less form filling.',
+  ],
+  [
+    'Access to high-quality, up-to-date user profile data',
+    ' allowing you to provide more personalized/relevant content, offers, and advertising.',
+  ],
+  [
+    'Enhanced brand reputation',
+    ' – the Mee trustmark on your site lets users know that you respect your user’s privacy.',
+  ],
+];
+---
+
+<article
+  class="relative flex w-screen flex-col items-center justify-center overflow-x-hidden"
+>
+  <section
+    class="section top-0 mt-32 flex w-screen items-center justify-center md:mt-48 mb-10"
+  >
+    <div
+      class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
+    >
+      <div id="title" class="title w-full overflow-hidden md:w-160">
+        <h2
+          class="text marker animate-riseIn text-center text-[28px] font-bold leading-snug text-black/80 md:text-4xl md:leading-normal"
+        >
+          Why <mark>your</mark> organization should join the community of Mee providers.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <section
+    class="providers-bg section relative flex w-screen flex-col items-center justify-center pb-20"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <div
+        class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
+      >
+        <div class="overflow-hidden mb-6">
+          <h2
+          class="text animate-riseIn animation-delay-1000 text-justify text-base font-medium text-black/80 md:text-xl leading-relaxed"
+          >
+            By displaying the Mee trustmark and adding the “Connect with Mee”
+            button, your users know you have committed to surveillance-free
+            interactions and agreed to abide by the Mee HIL.
+          </h2>
+        </div>
+      </div>
+      <div
+        class="title z-100 w-full overflow-hidden px-6 md:w-160 mb-16"
+      >
+        <h2
+          class="text animate-riseIn animation-delay-1200 text-center text-base font-extrabold text-black/80 md:text-xl leading-relaxed"
+        >
+          This gives your organization:
+        </h2>
+      </div>
+      <div class="flex flex-col">
+        {
+          gives_you.map((items, index) => (
+            <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0">
+              <div class="animate-riseIn-short animation-delay-1400  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4">
+                <div class="mr-4">
+                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                    <img
+                      src={done}
+                      alt=""
+                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                    />
+                  </div>
+                </div>
+  
+                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
+                  <span class="font-extrabold">{items[0]}</span>
+                  <span>{items[1]}</span>
+                </h2>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <Footer mode="light" />
+</article>
+
+<style>
+  .providers-bg {
+    z-index: 1;
+    height: auto;
+  }
+  .providers-bg::after {
+    content: '';
+    position: absolute;
+    width: 120vw;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    top: 50px;
+    height: 120%;
+    background: linear-gradient(
+      to top,
+      rgba(249, 200, 137, 0.4) 50%,
+      rgba(249, 182, 137, 0.4) 100%
+    );
+    filter: blur(100px);
+    z-index: -1;
+  }
+  .givesItem:nth-child(1) > div {
+    animation-delay: 1400ms;
+  }
+  .givesItem:nth-child(2) > div {
+    animation-delay: 1600ms;
+  }
+  .givesItem:nth-child(3) > div {
+    animation-delay: 1800ms;
+  }
+  .text {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
+
+  .marker > mark::after {
+    animation-delay: 800ms;
+  }
+</style>

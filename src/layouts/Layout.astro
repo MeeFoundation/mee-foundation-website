@@ -1,0 +1,256 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+import '../index.css'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#ffffff">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="generator" content={Astro.generator} />
+
+		<meta name="description"
+			content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
+		<meta property="og:title" content="Identity agents to restore the internet balance of power" />
+		<meta property="og:description"
+			content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data" />
+		<meta property="og:image" content="https://mee.foundation/mee_fav_icon.svg" />
+		<meta property="twitter:title" content="Identity agents to restore the internet balance of power" />
+		<meta property="twitter:description"
+			content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data" />
+		<meta property="twitter:image" content="https://mee.foundation/mee_fav_icon.svg" />
+
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+
+	{(
+		<div id="connectionErrAlert" class="hidden mt-16 toast toast-top toast-end">
+			<div class="alert alert-error"><span>Connection attempt was unsuccessful</span></div>
+		</div>
+	)}
+</html>
+
+
+<style is:global>
+	:root {
+		
+	}
+	html {
+		background-color: #F6F6F6;
+		-ms-overflow-style: none; 
+    scrollbar-width: none; 
+		--scroll: 0;
+		--bleachProgress: 0;
+		transition: left 1s;
+	}
+	html::-webkit-scrollbar { 
+    display: none;
+	}
+
+	strong {
+		font-weight: 800;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	.marker > mark {
+    position: relative;
+    background: none;
+    color: inherit;
+  }
+  .marker > mark::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    height: 6px;
+    border-radius: 2px;
+    background-color: #F9DF89;
+    z-index: -1;
+		animation: drawUnderline 200ms both;
+		animation-delay: 800ms;
+  }
+
+	@media (min-width: 768px) {
+		.marker > mark::after {
+    	height: 9px;
+  	}
+	}
+	.scrollContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+	.animation-delay-200 {
+		animation-delay: 200ms;
+	}
+	.animation-delay-400 {
+		animation-delay: 400ms;
+	}
+	.animation-delay-800 {
+		animation-delay: 800ms;
+	}
+	.animation-delay-1000 {
+		animation-delay: 1s;
+	}
+	.animation-delay-1200 {
+		animation-delay: 1.2s;
+	}
+	.animation-delay-1400 {
+		animation-delay: 1.4s;
+	}
+	.animation-delay-1600 {
+		animation-delay: 1.6s;
+	}
+	.animation-delay-1800 {
+		animation-delay: 1.8s;
+	}
+	.animation-delay-2000 {
+		animation-delay: 2s;
+	}
+	.animation-delay-2200 {
+		animation-delay: 2.2s;
+	}
+	.pause {
+     animation-play-state: paused;
+   }
+
+	 .play {
+		animation-play-state: running;
+	 }
+
+	@keyframes drawUnderline {
+  	0% { width: 0% }
+    100% { width: 100% }
+  }
+
+	.scrollIcon {
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 12px;
+	}
+  .scrollIcon::after {
+    position: relative;
+    left:calc(50% - 1px);
+    width: 2px;
+    height: 50%;
+    background: rgba(255,255,255,0.7);
+    border-radius: 1px;
+    content:"";
+		align-self: flex-start;
+    animation-name: scroll;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+  }
+	@keyframes scroll {
+		0% { opacity: 1; height: 50%;}
+		20% { opacity: 1; height: 50%;}
+		30% { height: 100%; align-self: flex-start;}
+		40% { opacity: 1; align-self: flex-end;}
+		80% {  opacity: 0; height: 0%; align-self: flex-end;}
+		81% {  opacity: 0; height: 50%; align-self: flex-start;}
+		100% { opacity: 1; height: 50%;}
+	}
+</style>
+
+<script>
+	import { sdkInit } from '../sdkInit';
+	const SHOW_ERR_ALERT_FOR_MS = 3000
+
+	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
+  			speed = 0.1;
+	if(scrollWrap) {
+		const height = scrollWrap.getBoundingClientRect().height - 1;
+		document.body.style.height = Math.floor(height) + "px";
+	}
+
+    
+  let offset = 0;
+
+  const smoothScroll = () => {
+    // offset += (window.pageYOffset - offset) * speed;
+		offset += Math.floor((window.pageYOffset - offset) * speed);
+    const scroll = "translateY(-" + offset + "px)";
+    scrollWrap.style.transform = scroll;
+
+    requestAnimationFrame(smoothScroll);
+  }
+	
+  if(scrollWrap) requestAnimationFrame(smoothScroll);
+
+	const connectionErrAlert = document.getElementById("connectionErrAlert");
+	const errorConnectCb = () => {
+		if (connectionErrAlert) {
+			connectionErrAlert.classList.remove('hidden')
+		}
+
+		setTimeout(() => {
+			if (connectionErrAlert) {
+				connectionErrAlert.classList.add('hidden')
+			}
+		}, SHOW_ERR_ALERT_FOR_MS);
+	}
+
+	sdkInit(errorConnectCb)
+
+	window.onscroll = function () {
+    updateScrollIndicator();
+  };
+
+  function updateScrollIndicator() {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    let height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const percent = getScrolledPercent(winScroll, height);
+    const scrollIndicator = document.getElementById('scroll-indicator');
+
+    if (scrollIndicator) {
+      scrollIndicator.style.width = percent + '%';
+    }
+  }
+	let initWinScroll: number
+
+  function getScrolledPercent(winScroll: number, height: number): number {
+    const envision = document.getElementById('envision');
+    const today = document.getElementById('today');
+    const header = document.getElementById('header');
+
+    if (envision && header) {
+      if (!envision.getBoundingClientRect().height) {
+				header.style.backgroundColor = "transparent"
+				initWinScroll = 0
+				return 0;
+      } else {
+				if (initWinScroll === 0) {
+					initWinScroll = winScroll
+				}
+				header.style.backgroundColor = "#fff";
+
+				const scrolled = ((winScroll - initWinScroll) / (height - initWinScroll)) * 100;
+
+				return scrolled > 0 ? scrolled : 0;
+      }
+    }
+    return (winScroll / height) * 100;
+  }
+
+</script>

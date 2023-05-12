@@ -1,0 +1,136 @@
+---
+import AppButtons from './AppButtons.astro';
+import Features from './Features.astro';
+import Footer from './Footer.astro';
+import Logo from './Logo.astro';
+import TrustIcon from './TrustIcon.astro';
+
+
+export interface Props {
+}
+
+const {  } = Astro.props;
+const subtitles = [
+	"Your privacy is respected by blocking tracking the sale of your data.",
+	"You decide how and when your data is shared, stored, and used.",
+	"You can easily share information with Mee-certified sites without passwords and endless form filling.",
+	"You can trust that certified apps and sites  will act in your best interest."]
+---
+
+<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
+	<section id="logoSection" class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
+		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
+			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
+				<Logo />
+			</div>
+			<div class="overflow-hidden">
+				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
+			</div>
+		</div>
+	</section>
+	<section class="relative flex flex-col items-center justify-center w-screen min-h-[100vh]">
+		<div class="bg-1 w-[120vw]" />
+		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
+			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
+				<div class="overflow-hidden px-5">
+					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
+				</div>
+			</div>
+			{subtitles.map(subtitle => (
+				<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh]">
+					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
+		<AppButtons btnSize="big"/>
+	</section>
+	<Footer mode="dark" withAppButtons={false}/>
+</article>
+
+<style>
+	.envision {
+		background: #fff;
+	}
+
+	.bg-1 {
+		position: absolute;
+		height: 100%;
+		transform: translate(-10vw, 0);
+		z-index: 70;
+		transform: translateY(150px);
+		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 75%, rgba(249, 182, 137, 0.4) 100%);
+		filter: blur(100px);
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+	}
+
+	.bg-2 {
+		width: 200vw;
+		border-top-left-radius: 50%;
+		border-top-right-radius: 50%;
+		background: #fff;
+		z-index: 100;
+	}
+	.text {
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;
+		/* animation-duration: 400ms; */
+		animation-delay: 800ms;  
+	}
+
+	.logo {
+		animation-duration: 800ms;
+		animation-timing-function: ease-in;
+	}
+	.subtitleSection:last-child {
+		height: 100vh;
+	}
+
+	@keyframes riseBg {
+		0% { transform: translateY(150px);}
+		100% { transform: translateY(-150px);}
+	}
+
+</style>
+
+<!-- <script is:inline src="https://unpkg.com/intersection-observer-debugger"></script> -->
+<script>
+	const envision = document.getElementById("envision");
+	const welcomeSection = document.getElementById("welcomeSection");
+	const sections = document.querySelectorAll('.envision .section');
+
+	const options: IntersectionObserverInit = {
+			// root: null,
+			threshold: 0,
+			rootMargin: "-40% 0% -60%"
+		};
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// console.log('intersecting', entry.target);
+					// entry.target.querySelector(".subtitle")?.classList.remove("hidden");
+					entry.target.classList.remove("opacity-0");
+					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
+					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
+					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
+				} else {
+					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
+					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
+					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
+					// console.log('removed', entry.target);
+					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
+					entry.target.classList.add("opacity-0");
+				}
+			})
+		}, options);
+
+
+		sections.forEach((section) => {
+			observer.observe(section)
+		});
+	
+</script>

@@ -1,0 +1,1 @@
+export const svcUrl: string | undefined = import.meta.env.PUBLIC_SVC_URL as | string | undefined;

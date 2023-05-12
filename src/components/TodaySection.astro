@@ -1,0 +1,201 @@
+---
+import Background from './Background.astro';
+
+export interface Props {
+}
+
+const {  } = Astro.props;
+const subtitles = [
+	"there is an online power imbalance.",
+	"you can’t control who has your data or how they’ll use it.",
+	"data brokers and marketers are buying and selling information about you without your knowledge.",
+	"businesses treat your data as their property.",
+	"many users navigate this world with mistrust and fear."]
+---
+
+<article id="today" class="flex today flex-col items-center translate-y-0">
+	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
+  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
+		<Background />
+		<!-- <div id="sroll-to-end" class="h-6 w-6 fixed bottom-12 right-10 z-999"><img src="/assets/scroll-down.svg"/></div> -->
+    <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
+			<div class="overflow-hidden">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
+			</div>
+    </div>
+		{subtitles.map(subtitle => (
+			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
+				</div>
+			</div>
+		))}
+		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000">
+			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+		</div>
+		<div id="bleachAnimation" class="flex h-[400vh]">
+			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
+		</div>
+  </section>
+</article>
+
+<style>
+	.text {
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;  
+	}
+	.logo {
+		animation-duration: 800ms;
+		opacity: 0;
+	}
+	.title {
+		animation-duration: 300ms;
+	}
+	.subtitle {
+		transition: opacity 300ms;
+	}
+
+	.titleBleach {
+		animation-delay: calc(var(--bleachProgress) * 10 * -400ms);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+	.figuresBleach {
+		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+
+</style>
+
+<script>
+  const sections = document.querySelectorAll('.today .section');
+	const scrollIcon = document.querySelector(".scrollIcon");
+	const shadow = document.querySelector(".shadow");
+	const title = document.getElementById("title");
+	const figuresContainer = document.querySelector('.figuresContainer') as HTMLElement;
+	const floatingFigures = document.querySelector('.floatingFigures');
+	const grid = document.querySelector('.grid');
+	const gradients = document.querySelectorAll('.floatGradient');
+	const mainLogo = document.getElementById("mainLogo");
+	const todaySection = document.getElementById("today");
+	const envisionSection = document.getElementById("envision");
+	const bleachSection = document.getElementById("bleachAnimation");
+	let currBleach = 0
+	const logoSection = document.getElementById("logoSection");
+	let showTodatSectionTriggerScroll = 0
+	const bleachSpeedMS = 50
+	const bleachStep = 0.05
+
+
+		const options: IntersectionObserverInit = {
+			// root: document.body,
+			threshold: 0.1,
+			rootMargin: "-99% 0% 0%"
+		};
+		const observer = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					if(entry.target.id === "animationTrigger" && currBleach <= 0) {
+						title?.classList.add("animate-fadeOut", "titleBleach");
+						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
+						grid?.classList.add("animate-fadeOut", "figuresBleach");
+						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
+						gradients.forEach(gradient => {
+							gradient.removeAttribute('style');
+							gradient.classList.add("animate-fadeOut", "figuresBleach")
+						})
+						shadow?.classList.add("bg-1");
+						showTodatSectionTriggerScroll = window.scrollY
+
+						let bleachIntervalId = setInterval(() => {
+							if (currBleach < 1) {
+								currBleach = currBleach + bleachStep
+								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+							} else {
+								window.scrollTo(0, window.scrollY + window.innerHeight);
+								clearInterval(bleachIntervalId)
+
+								envisionSection?.classList.remove("hidden");
+								todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
+								mainLogo?.classList.add("logo--contrast");
+
+								logoSection?.classList.remove("opacity-0");
+							}
+						}, bleachSpeedMS)
+					}
+
+					if(entry.target.id === "animationTrigger" && currBleach > 0) {
+						envisionSection?.classList.add("hidden");
+						mainLogo?.classList.remove("logo--contrast");
+						todaySection?.classList.remove('translate-y-0');
+						logoSection?.classList.add("opacity-0");
+
+						let bleachIntervalId = setInterval(() => {
+							if (currBleach > 0) {
+								currBleach = currBleach - bleachStep
+								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+							} else {
+								window.scrollTo(0, window.scrollY - window.innerHeight);
+								clearInterval(bleachIntervalId)
+								showTodatSectionTriggerScroll = 0
+							}
+						}, bleachSpeedMS)
+					}
+
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
+				} else {
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-riseIn')});
+					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-fadeOut')});
+				}
+			})
+		}, options);
+
+		sections.forEach((section) => {
+			observer.observe(section)
+		});
+
+		document.addEventListener('scroll', () => {
+			storeScroll();
+
+			if(bleachSection) {
+				const animationScroll = calcElScroll(bleachSection);
+
+				if(currBleach === 0) {
+					envisionSection?.classList.add("hidden");
+					todaySection?.classList.remove('translate-y-0');
+					mainLogo?.classList.remove("logo--contrast");
+				}
+			}
+
+			if(window.scrollY > 400) {
+				scrollIcon?.classList.add("opacity-0");
+				setTimeout(()=>{
+					scrollIcon?.classList.add("hidden");
+				},400)
+			}
+		}, {passive: true})
+
+	const storeScroll = () => {
+		document.documentElement.style.setProperty('--scroll',
+		(window.scrollY /
+		(document.body.offsetHeight - window.innerHeight)).toString())
+	};
+	const calcElScroll = (element:Element | HTMLElement) => {
+		const rect = element.getBoundingClientRect();
+		if(rect.top - window.innerHeight > 0) return 0;
+		if((rect.bottom - window.innerHeight) < 0) return 1;
+		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
+	}
+
+	// function scrollToEnvision() {
+	// 	const end_element = document.getElementById("end-element");
+	// 	end_element?.scrollIntoView({ behavior: 'smooth'})
+	// }
+	// const sroll_to_end = document.getElementById("sroll-to-end");
+	// sroll_to_end?.addEventListener("click", scrollToEnvision);
+	
+</script>

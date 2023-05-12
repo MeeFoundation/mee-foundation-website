@@ -1,0 +1,351 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HowMeeWorksAboutBlocks from '../components/HowMeeWorksAboutBlocks.astro';
+
+---
+
+
+<Layout title="Mee Foundation">
+	<Header backgroundColor="bg-how-me-header-bg"/>
+
+  <div class="w-full hidden lg:flex justify-center">
+    <div id="phoneMain" class="phoneMain animate-riseIn p-4 z-10 mt-[412px] border-black02 border-2 rounded-2.5xl h-[650px] w-[350px]">
+      <div id="phoneScreens" class="overflow-hidden rounded-xl relative h-full">
+        <img id="screen7" class="phoneScreen absolute" src="/assets/phoneScreens/mee-7.png" width="318" height="618" />
+        <img id="screen6" class="phoneScreen absolute" src="/assets/phoneScreens/license-6.png" width="318" height="618" />
+        <img id="screen5" class="phoneScreen absolute" src="/assets/phoneScreens/billing-filled-5.png" width="318" height="618" />
+        <img id="screen4" class="phoneScreen absolute" src="/assets/phoneScreens/billing-4.png" width="318" height="618" />
+        <img id="screen3" class="phoneScreen absolute" src="/assets/phoneScreens/login-3.png" width="318" height="618" />
+        <img id="screen2" class="phoneScreen absolute" src="/assets/phoneScreens/main-page-2.png" width="318" height="618" />
+        <img id="screen1" class="phoneScreen absolute" src="/assets/phoneScreens/init-1.png" width="318" height="618" />
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="scrollContainer transform-gpu">
+    <div class="wrapper w-screen hmw-bg">
+      <article class="flex flex-col items-center">
+        <section class="flex items-center flex-col">
+          <h1 id="mainHeader" class="marker animate-none lg:animate-riseIn mt-[128px] lg:mt-[200px] text-3xl lg:text-7xl font-bold">
+            Mee for<mark>You</mark>
+          </h1>
+
+          <div id="scrollIndicator" class="hidden lg:flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
+            <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
+          </div>
+        </section>
+        <HowMeeWorksAboutBlocks />
+        <Footer mode="light" withAppButtons={false}/>
+      </article>
+    </div>
+  </main>
+
+</Layout>
+
+<script>
+import { parseMatrix } from '../helper'
+
+  const SCREEN_HEIGHT = 614
+  const INIT_PHONE_TOP = 412
+  const INIT_PHONE_MARGIN_TO_VIEW_TOP = -240 // first init margin from phone to view top
+  const SCREEN_WIDTH = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+  const MATRIX_Y_ZERO = `matrix(1, 0, 0, 1, 0, 0)`
+  const isMobile = SCREEN_WIDTH < 1024
+
+  // animate-riseIn works badly with position fixed
+  setTimeout(() => {
+    phoneMain?.classList.remove(`mt-[${INIT_PHONE_TOP}px]`)
+    phoneMain?.classList.add(`t-[${INIT_PHONE_TOP}px]`)
+    phoneMain?.classList.add('fixed')
+  }, 100)
+
+  const getElementY = (el: HTMLElement) => {
+    const trMatrix = parseMatrix(window.getComputedStyle(el).transform)
+
+    const transformY = trMatrix[trMatrix.length - 1]
+    return Number(transformY)
+  }
+
+  const mainHeader = document.getElementById("mainHeader");
+  const scrollIndicator = document.getElementById("scrollIndicator");
+  const phoneMain = document.getElementById("phoneMain");
+  const phoneScreens = document.getElementById("phoneScreens");
+  const main = document.getElementById("main");
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+
+  let isFirstScrollHappen = false
+  let isPhoneFixed = false
+
+  const footer = document.querySelectorAll('.footer');
+  const options: IntersectionObserverInit = {
+    threshold: 0.1,
+      rootMargin: '0px 0px 132px' //footer padding
+    };
+
+  const observer = new IntersectionObserver((entries, _) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.id === 'footer') {
+          if (main && phoneMain) {
+            scrollablePhone = phoneMain
+            initScreenYForPhone = getElementY(main)
+            const initPhoneTopStr = window.getComputedStyle(phoneMain).top
+            initPhoneTop = Number(initPhoneTopStr.slice(0, -2))
+          }
+        }
+      }
+    })
+  }, options);
+
+  footer.forEach((section) => {
+    observer.observe(section)
+  });
+
+  let lastY = 0
+  document.addEventListener('scroll', () => {
+    if (!isFirstScrollHappen && !isMobile && direction === 'up') {
+      mainHeader?.classList.remove('animate-none')
+      mainHeader?.classList.remove('lg:animate-riseIn')
+      mainHeader?.classList.add('animate-fadeOut')
+
+      scrollIndicator?.classList.remove('animate-fadeIn')
+      scrollIndicator?.classList.add('animate-fadeOut')
+
+      isFirstScrollHappen = true
+    }
+
+    if (main) {
+      if (lastY > getElementY(main)) {
+        direction = 'up';
+      } else {
+        direction = 'down';
+      }
+
+      lastY = getElementY(main)
+    }
+  })
+
+  const screen1 = document.getElementById("screen1");
+  const screen2 = document.getElementById("screen2");
+  const screen3 = document.getElementById("screen3");
+  const screen4 = document.getElementById("screen4");
+  const screen5 = document.getElementById("screen5");
+  const screen6 = document.getElementById("screen6");
+  const screen7 = document.getElementById("screen7");
+  const allScreens = [screen1, screen2, screen3, screen4, screen5, screen6, screen7]
+  let currScreen = screen1
+  let currentScreenId = 1
+  let currScreenMutationObserveId = 1
+  let currScreenY = INIT_PHONE_MARGIN_TO_VIEW_TOP
+  let direction = 'up'
+
+
+  let scrollablePhone: HTMLElement | null = phoneMain
+  let initScreenYForPhone = main ? getElementY(main) : 0
+  let initPhoneTop = INIT_PHONE_TOP
+  let phoneCenterBodyTransformY = 0
+
+  const mutationObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutationRecord) {
+      const targetEl = mutationRecord.target as Element
+      const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
+      const transformY = trMatrix[trMatrix.length - 1]
+
+      if (currScreen) {
+        if (currScreenMutationObserveId < currentScreenId) {
+          currScreenY = Number(transformY)
+          currScreenMutationObserveId = currentScreenId
+        } else if (currScreenMutationObserveId > currentScreenId) {
+          currScreenY = Number(transformY) + SCREEN_HEIGHT
+          currScreenMutationObserveId = currentScreenId
+        }
+
+        const newY = Number(transformY) - currScreenY
+
+        if (currScreen) {
+          if (newY < 0 && currentScreenId !== allScreens.length) {
+            currScreen.style.transform = `matrix(1, 0, 0, 1, 0, ${newY})`
+          } else {
+            currScreen.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
+          }
+        }
+
+        // put at the place first slide if we common scroll ends at the start
+        if (Number(transformY) === 0 && isFirstScrollHappen) {
+          currScreen = screen1
+          currentScreenId = 1
+          currScreenMutationObserveId = 1
+          currScreenY = INIT_PHONE_MARGIN_TO_VIEW_TOP
+
+          screen1!.style.transform = MATRIX_Y_ZERO
+          screen2!.style.transform = MATRIX_Y_ZERO
+          screen3!.style.transform = MATRIX_Y_ZERO
+          screen4!.style.transform = MATRIX_Y_ZERO
+          screen5!.style.transform = MATRIX_Y_ZERO
+          screen6!.style.transform = MATRIX_Y_ZERO
+          screen7!.style.transform = MATRIX_Y_ZERO
+        }
+      }
+
+      if (scrollablePhone) {
+        const targetEl = mutationRecord.target as Element
+        const trMatrix = parseMatrix(window.getComputedStyle(targetEl).transform)
+        const currScreenYForPhone = Number(trMatrix[trMatrix.length - 1])
+
+        let newTop = initPhoneTop + (currScreenYForPhone - initScreenYForPhone)
+        scrollablePhone.style.top = `${newTop}px`
+
+        const phoneRect = phoneMain?.getBoundingClientRect()
+        const phoneHeight = phoneRect?.height || 0;
+        const phoneViewCenterTop = Math.round(vh / 2 - phoneHeight / 2)
+
+        if (!isPhoneFixed) {
+          if (phoneRect && phoneMain) {
+            const phoneTop = phoneRect?.top || 0;
+
+            if (phoneTop < phoneViewCenterTop) {
+              isPhoneFixed = true
+              phoneMain?.classList.remove('hidden')
+              phoneMain?.classList.remove(`t-[${INIT_PHONE_TOP}px]`)
+              phoneMain?.classList.add('fixed')
+              scrollablePhone = null
+              phoneCenterBodyTransformY = Number(transformY)
+
+              if (phoneMain) {
+                phoneMain.style.top = String(`${phoneViewCenterTop}px`)
+              }
+            }
+          }
+        }
+
+        // scroll from footer
+        if (newTop > initPhoneTop) {
+          newTop = initPhoneTop
+          scrollablePhone = null
+          initPhoneTop = INIT_PHONE_TOP
+          initScreenYForPhone = 0
+          if (phoneMain) {
+            phoneMain.style.top = String(`${phoneViewCenterTop}px`)
+          }
+        }
+      }
+    });
+
+    if (main) {
+      const trMatrix = parseMatrix(window.getComputedStyle(main).transform)
+      const currScreenY = Number(trMatrix[trMatrix.length - 1])
+
+      if (currScreenY > phoneCenterBodyTransformY && isPhoneFixed) {
+        mainHeader?.classList.remove('animate-fadeOut')
+        mainHeader?.classList.add('animate-none')
+        mainHeader?.classList.add('lg:animate-riseIn')
+
+        scrollIndicator?.classList.remove('animate-fadeOut')
+        scrollIndicator?.classList.add('animate-fadeIn')
+
+        isPhoneFixed = false
+        scrollablePhone = phoneMain
+
+        isFirstScrollHappen = false
+      }
+    }
+
+  });
+
+  if (main) {
+    mutationObserver.observe(main, { attributes : true, attributeFilter : ['style'] });
+  }
+
+  const screens = document.querySelectorAll('.phoneScreen');
+  const thresholdSize = 21
+  const thresholdStep = 0.01
+  // 0 - 0.2
+  const thresholdUp = Array.from({length: thresholdSize}, (_, i) => i * thresholdStep)
+  // 0.8 - 1
+  const thresholdDown = Array.from({length: thresholdSize}, (_, i) => 1 - i * thresholdStep).sort()
+  const optionsPhone: IntersectionObserverInit = {
+      root: phoneScreens,
+      threshold: [...thresholdUp, ...thresholdDown],
+    };
+
+  let upPreviousY = 0
+  let downPreviousY = 0
+
+  const observerPhone = new IntersectionObserver((entries, _) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && currScreen) {
+        const currentY = entry.boundingClientRect.y
+
+        // scroll up
+        if (entry.intersectionRatio > 0 && entry.intersectionRatio < 0.2) {
+          const targetId = entry.target.id.slice(-1)
+          const currScreenId = currScreen.id.slice(-1)
+
+          if (targetId === currScreenId
+            && Number(targetId) < allScreens.length - 1
+            && upPreviousY
+            && currentY < upPreviousY) {
+
+            currScreen.style.transform = `matrix(1, 0, 0, 1, 0, -${SCREEN_HEIGHT})`
+            currScreen = allScreens[Number(targetId)]
+            currentScreenId = Number(targetId) + 1
+
+            upPreviousY = 0
+            downPreviousY = 0
+          } else {
+            upPreviousY = currentY
+          }
+        }
+
+        // scroll down
+        if (entry.intersectionRatio > 0.8 && entry.intersectionRatio < 1) {
+          const targetId = entry.target.id.slice(-1)
+          const currScreenId = currScreen!.id.slice(-1)
+
+          if (targetId === currScreenId
+            && Number(targetId) > 1
+            && currentY > downPreviousY
+            && downPreviousY) {
+
+            currScreen!.style.transform = `matrix(1, 0, 0, 1, 0, 0)`
+            currScreen = allScreens[Number(targetId) - 2]
+            currentScreenId = Number(targetId) - 1
+
+            downPreviousY = 0
+            upPreviousY = 0
+          } else {
+            downPreviousY = currentY
+          }
+        }
+      }
+    })
+  }, optionsPhone);
+
+  screens.forEach((section) => {
+    observerPhone.observe(section)
+  });
+</script>
+
+<style>
+  .hmw-bg {
+    background: linear-gradient(180deg, rgba(249, 182, 137, 0.4) 0%, rgba(249, 223, 137, 0.4) 28.46%, rgba(197, 192, 92, 0.4) 57.37%, rgba(79, 134, 142, 0.4) 85.38%);
+  }
+
+  .scrollIcon {
+    border: 2px solid black;
+	}
+  .scrollIcon::after {
+    background: black;
+  }
+
+  .phoneScreen {
+    transition-duration: 100ms;
+    transition-timing-function: linear;
+  }
+</style>

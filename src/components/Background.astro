@@ -1,0 +1,66 @@
+---
+import FloatingFigures from './FloatingFigures.astro';
+import Grid from './Grid.astro';
+
+export interface Props {
+
+}
+
+const { } = Astro.props;
+---
+
+<div class="sticky top-0 md:fixed h-screen w-screen background">
+  <Grid />
+	<FloatingFigures />
+	<div class="shadow"/>
+</div>
+<style>
+	.background {
+		background: radial-gradient(#0D070C, #200E1D);
+	}
+  .shadow {
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+		background: radial-gradient(#0F080E 20%, transparent 60%) center no-repeat;
+		backface-visibility: hidden;
+		transition: all 2s linear;
+	}
+
+	.bg-1 {
+		/* background: radial-gradient( #0D070C 0%, #200E1D 100%) center no-repeat; */
+		z-index: 300;
+		overflow: hidden;
+	}
+	.bg-1::after {
+		content: '';
+		/* position: absolute;
+		top:0; */
+		display: flex;
+		aspect-ratio: 1;
+		height: 96px;
+		filter: blur(40px);
+		border-radius: 50%;
+		background: #fff;
+		animation: bleach 2.9s linear forwards;
+		animation-delay: calc(var(--bleachProgress) * -2.9s);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+
+
+	@keyframes bleach {
+		0% {opacity: 0;}
+		30% {opacity: 1}
+		52% {height: 20px; filter: blur(5px);}
+		87% {height: 20px; filter: blur(5px);}
+		98% {height: 100%; border-radius: 50%; filter: blur(90px);}
+		100% {height: 300%;border-radius: 0; filter: blur(0);}
+	}
+
+</style>

@@ -1,0 +1,174 @@
+---
+export interface Props {
+
+}
+
+const {  } = Astro.props;
+---
+<div class="body grid animate-fadeIn-long">
+  <div class="tunnel">
+    {[...Array(5).keys()].map((item) => {
+        return <div class="frame transform-gpu" style={`--i:${item + 1}`}></div>
+      })
+    }
+    
+  </div>
+  <div class="gridWrapper">
+    <div class="plane planeB transform-gpu">
+      {[...Array(5).keys()].map((item) => {
+        return <div class="line lineB transform-gpu" style={`--i:${item}`}></div>
+      })}
+    </div>
+    <div class="plane planeT transform-gpu">
+      {[...Array(5).keys()].map((item) => {
+        return <div class="line lineT transform-gpu" style={`--i:${item}`}></div>
+      })}
+    </div>
+    <div class="plane planeL transform-gpu">
+      {[...Array(5).keys()].map((item) => {
+        return <div class="line lineL transform-gpu" style={`--i:${item}`}></div>
+      })}
+    </div>
+    <div class="plane planeR transform-gpu">
+      {[...Array(5).keys()].map((item) => {
+        return <div class="line lineR transform-gpu" style={`--i:${item}`}></div>
+      })}
+    </div>
+  </div>
+</div>
+<style>
+
+
+.body {
+  width: 100vw;
+  height: 100vh;
+  /* height: -webkit-fill-available;  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  overflow-anchor: none;
+  position: fixed;
+}
+
+.tunnel {
+  width: 101vw;
+  height: 101vh;
+  position: relative;
+  z-index: 1;
+}
+
+.frame {
+  width: 100%;
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #F9B6890F;
+  position: absolute;
+  z-index: 1;
+  transform-style: preserve-3d;
+  
+  animation-name: move;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: calc(3s * (var(--i)) - 15s);
+  /* animation-play-state: paused; */
+  animation-fill-mode: both;
+}
+
+.gridWrapper {
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  perspective: 300px;
+  z-index: 1;
+  
+  transform-style: preserve-3d;
+}
+
+.line {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #F9B6890F;
+  transform-style: preserve-3d;
+  z-index: 1;
+  position: absolute;
+}
+
+.lineB {
+  width: 1px;
+  height: 100vh;
+  left: calc(25% * var(--i));
+  bottom: 0;
+}
+
+.lineT {
+  height: 100vh;
+  width: 1px;
+  left: calc(25% * var(--i));
+  bottom: 0;
+}
+
+.lineL {
+  height: 1px;
+  width: 100vh;
+  left: 0;
+  top: calc(25% * var(--i));
+}
+
+.lineR {
+  height: 1px;
+  width: 100vh;
+  right: 0;
+  top: calc(25% * var(--i));
+}
+
+.plane {
+  z-index: 1;
+  position:absolute;
+  width:100%;
+  height:100%;
+  transform-style: preserve-3d;
+}
+
+.planeB {
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+}
+
+.planeT {
+  transform: rotateX(-90deg);
+  transform-origin: top center;
+}
+
+.planeL {
+  transform: rotateY(90deg);
+  transform-origin: left center;
+}
+
+.planeR {
+  transform: rotateY(-90deg);
+  transform-origin: right center;
+}
+
+.figuresBleach {
+		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
+		animation-play-state: paused;
+		animation-fill-mode: both;
+    backface-visibility: hidden; 
+	}
+
+@keyframes move {
+  0% {
+    transform: perspective(300px) translateZ(-700px);
+  }
+
+  100% {
+    transform: perspective(300px) translateZ(0px);
+  }
+}
+
+</style>

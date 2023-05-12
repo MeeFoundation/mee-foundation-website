@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import TodaySection from '../components/TodaySection.astro';
+import EnvisionSection from '../components/EnvisionSection.astro';
+
+// FIXME Lagging with grid by css
+// TODO Add snap scrolling, or smooth scroll with pauses on blocks
+// TODO Add smooth scroll to all pages
+// TODO Make howto page
+---
+
+
+<Layout title="Mee Foundation">
+	<Header />
+	<main class="overflow-x-visible bg-white">
+		<TodaySection />
+		<!-- <div id="end-element"/> -->
+		<EnvisionSection />
+	</main>
+</Layout>
+
+<script>
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+
+  const url = new URL(window.location.href)
+  const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
+
+	const hashData = hashPrepared.split('/')
+	if (hashData[0] === 'consent') {
+		window.location.href = `/authorize#${hashData[1]}`
+	}
+
+	if (hashData[0] === 'installed') {
+		window.location.href = `/installed#${hashData[1]}`
+	}
+
+</script>
+
+<style>
+	html {
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;    
+		-webkit-backface-visibility: hidden; 
+		backface-visibility: hidden;
+		/* height: -webkit-fill-available;  */
+	}
+	body {
+		display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}	
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+	
+</style>
