@@ -1,30 +1,260 @@
 <!DOCTYPE html>
-<html lang="en" id="html" data-theme="meeTheme">
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="theme-color" content="#ffffff">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="generator" content="Astro v2.2.2">
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/assets/mee_fav_icon.23140c64.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mee - Putting you in control of your digital identity</title>
-  <meta name="title" content="Identity agents to restore the internet balance of power">
-  <meta name="description"
-    content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
-  <meta property="og:title" content="Identity agents to restore the internet balance of power" />
-  <meta property="og:description"
-    content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data" />
-  <meta property="og:image" content="https://mee.foundation/mee_fav_icon.svg" />
-  <meta property="twitter:title" content="Identity agents to restore the internet balance of power" />
-  <meta property="twitter:description"
-    content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data" />
-  <meta property="twitter:image" content="https://mee.foundation/mee_fav_icon.svg" />
+		<meta name="description" content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
+		<meta property="og:title" content="Identity agents to restore the internet balance of power">
+		<meta property="og:description" content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
+		<meta property="og:image" content="https://mee.foundation/mee_fav_icon.svg">
+		<meta property="twitter:title" content="Identity agents to restore the internet balance of power">
+		<meta property="twitter:description" content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
+		<meta property="twitter:image" content="https://mee.foundation/mee_fav_icon.svg">
 
-  <script type="module" crossorigin src="/assets/index.571ac3b4.js"></script>
-  <link rel="stylesheet" href="/assets/index.262b79e4.css">
-</head>
-
-<body>
-  <div id="root"></div>
+		<title>Mee Foundation</title>
+	<link rel="stylesheet" href="/_astro/about.6641fcd0.css" />
+<link rel="stylesheet" href="/_astro/about.d188a037.css" />
+<link rel="stylesheet" href="/_astro/index.43e394d5.css" />
+<link rel="stylesheet" href="/_astro/index.ed9a0a59.css" /><script type="module" src="/_astro/hoisted.676e3290.js"></script></head>
+	<body>
+		
+	<header id="header" class="header fixed top-0 z-200 w-full bg-transparent">
+  <div class="flex justify-between px-5 pt-4 md:px-[60px] md:pt-6 ">
+    <a href="/" id="mainLogo" class="block logo w-[69px] h-5 pt-1.5 md:w-[97px] md:h-[28px] md:pt-0">
+      <svg viewBox="0 0 97 28" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+  <path d="M55.6357 0.0625C47.8066 0.0625 42.0408 6.01827 42.0408 13.979C42.0408 21.5744 46.8338 27.8934 55.877 27.8934C60.2465 27.8934 64.3748 26.132 66.6812 23.4596C67.1048 22.9725 67.4088 22.4246 67.4088 21.8179C67.4174 21.5053 67.3623 21.1941 67.2466 20.9036C67.1311 20.613 66.9573 20.3492 66.7363 20.1283C66.5153 19.9074 66.2515 19.7339 65.9611 19.6187C65.6707 19.5033 65.3599 19.4486 65.0477 19.4579C64.3201 19.4579 63.6534 19.884 63.167 20.369C61.1646 22.2542 59.2818 23.348 56.1262 23.348C51.0899 23.348 48.2363 20.1864 47.9343 15.9939H66.0793C67.7189 15.9939 68.2641 15.022 68.2641 14.05C68.258 6.26788 63.2825 0.0625 55.6357 0.0625ZM48.0498 11.3653C48.595 7.59905 51.4466 4.62013 55.6357 4.62013C59.7621 4.62013 62.492 7.71873 62.9784 11.3653H48.0498Z"></path>
+  <path d="M82.7283 0.0625C75.0817 0.0625 70.1143 6.26788 70.1143 14.0398C70.1143 15.0119 70.6595 15.9838 72.299 15.9838H90.446C90.142 20.1763 87.2884 23.3358 82.2521 23.3358C79.0965 23.3358 77.2137 22.244 75.2114 20.3589C74.7269 19.8739 74.0582 19.4477 73.3306 19.4477C73.017 19.4376 72.7047 19.492 72.4128 19.6074C72.1211 19.723 71.8561 19.8972 71.6342 20.1193C71.4123 20.3415 71.2383 20.6068 71.1229 20.899C71.0076 21.1911 70.9533 21.5039 70.9634 21.8179C70.9634 22.4267 71.2674 22.9725 71.691 23.4596C73.9973 26.132 78.1237 27.8934 82.4953 27.8934C91.5384 27.8934 96.3315 21.5744 96.3315 13.979C96.3234 6.01827 90.5574 0.0625 82.7283 0.0625ZM75.3837 11.3653C75.8701 7.71272 78.6 4.62013 82.7263 4.62013C86.9155 4.62013 89.767 7.59905 90.3142 11.3653H75.3837Z"></path>
+  <path d="M28.8125 0C25.3185 0 22.1892 1.67819 20.0976 4.31009C18.0082 1.67208 14.881 0 11.3829 0C5.10021 0 0.00101604 5.41194 0.00101604 12.0618V25.2518C-0.00883423 25.609 0.0530255 25.9647 0.182754 26.2977C0.312482 26.6306 0.507616 26.9342 0.756532 27.1904C1.00545 27.4466 1.30312 27.6502 1.63202 27.7893C1.96083 27.9284 2.31425 28 2.67123 28C3.0282 28 3.38153 27.9284 3.71043 27.7893C4.03923 27.6502 4.33691 27.4466 4.58583 27.1904C4.83474 26.9342 5.02988 26.6306 5.1596 26.2977C5.28943 25.9647 5.35119 25.609 5.34134 25.2518V12.0618C5.34134 8.36042 8.05105 5.34909 11.3829 5.34909C14.7148 5.34909 17.4224 8.35845 17.4245 12.0597V25.2498C17.4245 25.9587 17.7056 26.6387 18.2061 27.1403C18.7067 27.6417 19.3856 27.9238 20.0936 27.9242C20.6257 27.9238 21.1456 27.7648 21.5873 27.4677C21.6582 27.419 21.7272 27.3683 21.79 27.3135C22.0936 27.0623 22.3381 26.7471 22.5059 26.3904C22.6738 26.0336 22.7608 25.6441 22.7608 25.2498V12.0597C22.7608 8.35845 25.4705 5.34909 28.8023 5.34909C32.1342 5.34909 34.85 8.36042 34.85 12.0618V25.2518C34.85 25.9611 35.1314 26.6413 35.6323 27.1429C36.1333 27.6445 36.8127 27.9263 37.5211 27.9263C38.2295 27.9263 38.909 27.6445 39.41 27.1429C39.9109 26.6413 40.1923 25.9611 40.1923 25.2518V12.0618C40.1944 5.41194 35.0871 0 28.8125 0Z"></path>
+</svg>
+    </a>
+    <section class="flex font-extrabold gap-5 flex-col lg:flex-row-reverse items-end">
+  <button id="menuToggle" class="menu__item flex flex-row min-h-[34px] md:min-h-[28px] justify-center py-2.5 px-3.5 md:py-[7px] md:px-[13px] overflow-hidden z-10"><span class="">Menu</span></button>
+  <ul id="nav" class="nav flex flex-col items-end max-lg:h-0 lg:w-0 lg:h-auto lg:flex-row gap-5 max-lg:overflow-y-hidden lg:overflow-x-clip z-10">
+    <li class="text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer"><a href="/how-mee-works" class="flex flex-row overflow-hidden">Mee for You</a></li><li class="text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer"><a href="/for-providers" class="flex flex-row overflow-hidden">For Providers</a></li><li class="text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer"><a href="https://docs-dev.mee.foundation/welcome" class="flex flex-row overflow-hidden">For Developers</a></li><li class="text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer"><a href="/about" class="flex flex-row overflow-hidden">About Us</a></li>
+  </ul>
+  <div id="backdrop" class="absolute h-screen max-h-0  z-0 top-0 left-0 opacity-0 bg-gray-dark w-full transition-all duration-500 ease-linear md:hidden"></div>
+</section>
+  </div>
+  <div class="progress-container mt-4 md:mt-6">
+    <div class="progress-bar" id="scroll-indicator"></div>
+  </div>
   
+</header>
+	<main class="overflow-x-visible bg-white astro-J7PV25F6">
+		<article id="today" class="flex today flex-col items-center translate-y-0 astro-FG5FHEWA">
+	
+  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px] astro-FG5FHEWA">
+		<div class="sticky top-0 md:fixed h-screen w-screen background astro-Y3SOREGM">
+  <div class="body grid animate-fadeIn-long astro-VC5TSDMU">
+  <div class="tunnel astro-VC5TSDMU">
+    <div class="frame transform-gpu astro-VC5TSDMU" style="--i:1"></div><div class="frame transform-gpu astro-VC5TSDMU" style="--i:2"></div><div class="frame transform-gpu astro-VC5TSDMU" style="--i:3"></div><div class="frame transform-gpu astro-VC5TSDMU" style="--i:4"></div><div class="frame transform-gpu astro-VC5TSDMU" style="--i:5"></div>
+    
+  </div>
+  <div class="gridWrapper astro-VC5TSDMU">
+    <div class="plane planeB transform-gpu astro-VC5TSDMU">
+      <div class="line lineB transform-gpu astro-VC5TSDMU" style="--i:0"></div><div class="line lineB transform-gpu astro-VC5TSDMU" style="--i:1"></div><div class="line lineB transform-gpu astro-VC5TSDMU" style="--i:2"></div><div class="line lineB transform-gpu astro-VC5TSDMU" style="--i:3"></div><div class="line lineB transform-gpu astro-VC5TSDMU" style="--i:4"></div>
+    </div>
+    <div class="plane planeT transform-gpu astro-VC5TSDMU">
+      <div class="line lineT transform-gpu astro-VC5TSDMU" style="--i:0"></div><div class="line lineT transform-gpu astro-VC5TSDMU" style="--i:1"></div><div class="line lineT transform-gpu astro-VC5TSDMU" style="--i:2"></div><div class="line lineT transform-gpu astro-VC5TSDMU" style="--i:3"></div><div class="line lineT transform-gpu astro-VC5TSDMU" style="--i:4"></div>
+    </div>
+    <div class="plane planeL transform-gpu astro-VC5TSDMU">
+      <div class="line lineL transform-gpu astro-VC5TSDMU" style="--i:0"></div><div class="line lineL transform-gpu astro-VC5TSDMU" style="--i:1"></div><div class="line lineL transform-gpu astro-VC5TSDMU" style="--i:2"></div><div class="line lineL transform-gpu astro-VC5TSDMU" style="--i:3"></div><div class="line lineL transform-gpu astro-VC5TSDMU" style="--i:4"></div>
+    </div>
+    <div class="plane planeR transform-gpu astro-VC5TSDMU">
+      <div class="line lineR transform-gpu astro-VC5TSDMU" style="--i:0"></div><div class="line lineR transform-gpu astro-VC5TSDMU" style="--i:1"></div><div class="line lineR transform-gpu astro-VC5TSDMU" style="--i:2"></div><div class="line lineR transform-gpu astro-VC5TSDMU" style="--i:3"></div><div class="line lineR transform-gpu astro-VC5TSDMU" style="--i:4"></div>
+    </div>
+  </div>
+</div>
+	<div class="flex w-full h-full figuresContainer transform-gpu astro-WDWYODET">
+  <img src="/images/green-gradient-rtl-figure.svg" width="158" height="59" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 top-[31%] left-0 md:w-auto md:h-auto md:top-[40%] astro-WDWYODET">    
+  <img src="/images/purple-gradient-rtl-figure.svg" width="198" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-25 -left-[2.5%] bottom-[18.5%] md:w-auto md:h-auto md:bottom-[12%] md:left-[3%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-rtl-2-figure.svg" width="356" height="98" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-44.5 -left-[1.5%] bottom-[28%] md:w-auto md:h-auto md:bottom-[31%] md:left-[5.5%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-ltr-figure.svg" width="277" height="134" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-34.5 top-[10.5%] left-[10.5%] md:w-auto md:h-auto md:top-[15%] md:left-[25%] astro-WDWYODET"> 
+  <img src="/images/green-gradient-rtl-2-figure.svg" width="158" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 left-[14.5%] bottom-[8%] md:w-auto md:h-auto md:bottom-[9.5%] md:left-[37%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-rtl-3-figure.svg" width="178" height="118" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-22.5 -bottom-[2%] right-[14%] md:w-auto md:h-auto md:bottom-0 md:right-[31%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-rtl-4-figure.svg" width="79" height="79" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-10 top-[24.5%] right-[44.5%] md:w-auto md:h-auto md:top-[27.7%] md:right-[23%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-ltr-2-figure.svg" width="257" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-32 bottom-[23%] right-[3%] md:w-auto md:h-auto md:bottom-[31%] md:right-[5.5%] astro-WDWYODET"> 
+  <img src="/images/green-gradient-ltr-figure.svg" width="158" height="59" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 top-[13%] right-[4%] md:w-auto md:h-auto md:top-[12%] md:right-[2.5%] astro-WDWYODET"> 
+  <img src="/images/purple-gradient-ltr-3-figure.svg" width="198" height="118" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-24.5 top-[26%] right-0 md:w-auto md:h-auto md:top-[31%] astro-WDWYODET"> 
+
+  
+
+  <div class="floatingFigures moveM flex fixed top-0 md:left-0 w-screen h-screen delay-300 transform-gpu astro-WDWYODET">
+    <div class="transform-gpu astro-WDWYODET" style="--i:1">
+      <img src="/images/watch-figure.svg" width="51" height="70" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7 left-[37.5%] top-[61%] md:w-auto md:h-auto md:top-[71%] astro-WDWYODET">
+      <img src="/images/fingerprint-figure.svg" width="51" height="64" style="--i:14" class="transform-gpu floatIcon absolute animate-fadeIn-long w-4 top-[33.5%] left-[60%] md:w-auto md:h-auto md:top-[25%] md:left-[42%] astro-WDWYODET">
+      <img src="/images/dollar-figure.png" width="79" height="80" style="--i:6" class="transform-gpu floatIcon absolute animate-fadeIn-long w-8 right-[21%] bottom-[34.5%] md:w-auto md:h-auto md:bottom-[24.5%] md:right-[20%] astro-WDWYODET">
+      <img src="/images/bubbles-figure.svg" width="121" height="120" style="--i:8" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 top-[17.5%] right-[3%] md:w-auto md:h-auto md:top-[47%] md:right-[8%] astro-WDWYODET">
+      <img src="/images/hand-figure.svg" width="114" height="124" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-13.5 -left-[2.5%] top-[59%] md:w-auto md:h-auto md:top-[50%] md:left-[5.5%] astro-WDWYODET">    
+    </div>    
+    <div class="transform-gpu astro-WDWYODET" style="--i:2">
+      <img src="/images/smiles-figure.svg" width="142" height="140" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-17.5 left-[53.5%] -bottom-[3%] md:w-auto md:h-auto md:bottom-[5%] md:left-[47.5%] astro-WDWYODET">
+      <img src="/images/storage-download-figure.svg" width="168" height="160" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 -top-[2%] left-[45%] md:w-auto md:h-auto md:-top-[4.5%] md:left-[38%] astro-WDWYODET">
+      <img src="/images/screen-eye-figure.svg" width="112" height="104" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-15.5 bottom-[9%] left-[40%] md:w-auto md:h-auto md:bottom-[6.5%] md:left-[27%] astro-WDWYODET">
+      <img src="/images/asterisks-figure.svg" width="105" height="52" style="--i:8" class="transform-gpu floatIcon absolute animate-fadeIn-long w-12.5 top-[79%] right-[28%] md:w-auto md:h-auto md:top-[38%] md:right-[17%] astro-WDWYODET">    
+      <img src="/images/data-cloud-figure.svg" width="105" height="112" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-12 top-[12%] left-[53%] md:w-auto md:h-auto md:top-[14%] astro-WDWYODET">    
+      <img src="/images/ball-web-figure.svg" width="152" height="152" style="--i:13" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 left-[7%] -bottom-[2%] md:w-auto md:h-auto md:-bottom-[3%] md:left-[7.5%] astro-WDWYODET">    
+    </div>
+    <div class="transform-gpu astro-WDWYODET" style="--i:3">
+      <img src="/images/what-apps-bubble.svg" width="114" height="74" class="transform-gpu floatIcon absolute animate-fadeIn-long w-15.5 top-[22%] right-[22.5%] md:w-auto md:h-auto md:top-[3.4%] md:right-[35%] astro-WDWYODET">
+      <img src="/images/passwords-bubble.svg" width="173" height="74" style="--i:5" class="transform-gpu floatIcon absolute animate-fadeIn-long w-24.5 top-[84.5%] right-[10.5%] md:w-auto md:h-auto md:top-[24%] md:right-[9.5%] astro-WDWYODET">
+      <img src="/images/diglett-figure.svg" width="73" height="84" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7.5 top-[21.5%] left-[26.5%] md:w-auto md:h-auto md:top-[9.5%] md:left-[13%] astro-WDWYODET">    
+      <img src="/images/profiles-figure.svg" width="126" height="136" style="--i:13" class="transform-gpu floatIcon absolute animate-fadeIn-long w-16.5 -left-[4%] top-[20%] md:w-auto md:h-auto md:top-[21%] md:-left-[2%] astro-WDWYODET">    
+      <img src="/images/data-secure.svg" width="93" height="88" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-6.5 left-[32.5%] top-[32%] md:w-auto md:h-auto md:top-[40%] md:left-[16%] astro-WDWYODET">    
+      <img src="/images/lock-figure.svg" width="49" height="68" style="--i:14" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7 top-[36.5%] left-[4%] md:w-auto md:h-auto md:top-[33%] md:left-[26.5%] astro-WDWYODET">    
+    </div>
+    <div class="transform-gpu astro-WDWYODET" style="--i:4">
+      <img src="/images/whos-tracking-bubble.svg" width="151" height="88" style="--i:6" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 bottom-[24.5%] left-[16%] md:w-auto md:h-auto md:bottom-[18%] md:left-[3%] astro-WDWYODET">
+      <img src="/images/notebook-figure.svg" width="78" height="84" style="--i:9" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 right-[39%] bottom-[24%] md:w-auto md:h-auto md:bottom-[21%] md:right-[34%] astro-WDWYODET">    
+      <img src="/images/loudspeaker-figure.svg" width="113" height="117" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-14.5 left-[17%] bottom-[13.5%] md:w-auto md:h-auto md:bottom-[19%] md:left-[19.5%] astro-WDWYODET">    
+      <img src="/images/screens-figure.svg" width="195" height="176" style="--i:7" class="transform-gpu floatIcon absolute animate-fadeIn-long w-23.5 bottom-[22.5%] -right-[7%] md:w-auto md:h-auto md:bottom-[10.5%] md:-right-[3%] astro-WDWYODET">  
+      <img src="/images/stop-on-screen-figure.svg" width="74" height="104" style="--i:7" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 top-[8%] left-[27%] md:w-auto md:h-auto md:top-[2.5%] md:left-[24.5%] astro-WDWYODET">
+      <img src="/images/tickets-figure.svg" width="87" height="74" style="--i:9" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10.5 right-[3%] top-[36.5%] md:w-auto md:h-auto md:top-[20%] md:right-[12%] astro-WDWYODET">    
+    </div>
+    <div class="transform-gpu hidden md:block astro-WDWYODET" style="--i:5">
+      <img src="/images/blank-shield-figure.svg" width="134" height="140" style="--i:9" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:-top-[5%] md:right-[18.5%] astro-WDWYODET">    
+      <img src="/images/agreeing-bubble.svg" width="175" height="60" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[7%] md:right-[10.5%] astro-WDWYODET">
+      <img src="/images/keyboard-figure.svg" width="113" height="112" style="--i:8" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[4%] md:right-[27%] astro-WDWYODET">    
+      <img src="/images/what-data-bubble.svg" width="139" height="74" style="--i:5" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bot-[14%] md:left-[47%] astro-WDWYODET">
+      <img src="/images/how-many-times-bubble.svg" width="154" height="88" style="--i:6" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[25%] md:left-[12%] astro-WDWYODET">
+      <img src="/images/diagramm-figure.svg" width="98" height="144" style="--i:7" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[21%] md:-right-[2.5%] astro-WDWYODET">   
+    </div>
+      
+  </div>
+</div>
+	<div class="shadow astro-Y3SOREGM"></div>
+</div>
+		<!-- <div id="sroll-to-end" class="h-6 w-6 fixed bottom-12 right-10 z-999"><img src="/assets/scroll-down.svg"/></div> -->
+    <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7 astro-FG5FHEWA">
+			<div class="overflow-hidden astro-FG5FHEWA">
+				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400 astro-FG5FHEWA">In today’s digital world...</h2>
+			</div>
+    </div>
+		<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">there is an online power imbalance.</h2>
+				</div>
+			</div><div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">you can’t control who has your data or how they’ll use it.</h2>
+				</div>
+			</div><div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">data brokers and marketers are buying and selling information about you without your knowledge.</h2>
+				</div>
+			</div><div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">businesses treat your data as their property.</h2>
+				</div>
+			</div><div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
+				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">many users navigate this world with mistrust and fear.</h2>
+				</div>
+			</div>
+		<div class="fixed flex items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000 astro-FG5FHEWA">
+			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden astro-FG5FHEWA"></i>
+		</div>
+		<div id="bleachAnimation" class="flex h-[400vh] astro-FG5FHEWA">
+			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen astro-FG5FHEWA"></div>
+		</div>
+  </section>
+</article>
+		<!-- <div id="end-element"/> -->
+		<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh] astro-6HCXU2SR">
+	<section id="logoSection" class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500 astro-6HCXU2SR">
+		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100 astro-6HCXU2SR"> 
+			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn astro-6HCXU2SR">
+				<svg viewBox="0 0 97 28" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+  <path d="M55.6357 0.0625C47.8066 0.0625 42.0408 6.01827 42.0408 13.979C42.0408 21.5744 46.8338 27.8934 55.877 27.8934C60.2465 27.8934 64.3748 26.132 66.6812 23.4596C67.1048 22.9725 67.4088 22.4246 67.4088 21.8179C67.4174 21.5053 67.3623 21.1941 67.2466 20.9036C67.1311 20.613 66.9573 20.3492 66.7363 20.1283C66.5153 19.9074 66.2515 19.7339 65.9611 19.6187C65.6707 19.5033 65.3599 19.4486 65.0477 19.4579C64.3201 19.4579 63.6534 19.884 63.167 20.369C61.1646 22.2542 59.2818 23.348 56.1262 23.348C51.0899 23.348 48.2363 20.1864 47.9343 15.9939H66.0793C67.7189 15.9939 68.2641 15.022 68.2641 14.05C68.258 6.26788 63.2825 0.0625 55.6357 0.0625ZM48.0498 11.3653C48.595 7.59905 51.4466 4.62013 55.6357 4.62013C59.7621 4.62013 62.492 7.71873 62.9784 11.3653H48.0498Z"></path>
+  <path d="M82.7283 0.0625C75.0817 0.0625 70.1143 6.26788 70.1143 14.0398C70.1143 15.0119 70.6595 15.9838 72.299 15.9838H90.446C90.142 20.1763 87.2884 23.3358 82.2521 23.3358C79.0965 23.3358 77.2137 22.244 75.2114 20.3589C74.7269 19.8739 74.0582 19.4477 73.3306 19.4477C73.017 19.4376 72.7047 19.492 72.4128 19.6074C72.1211 19.723 71.8561 19.8972 71.6342 20.1193C71.4123 20.3415 71.2383 20.6068 71.1229 20.899C71.0076 21.1911 70.9533 21.5039 70.9634 21.8179C70.9634 22.4267 71.2674 22.9725 71.691 23.4596C73.9973 26.132 78.1237 27.8934 82.4953 27.8934C91.5384 27.8934 96.3315 21.5744 96.3315 13.979C96.3234 6.01827 90.5574 0.0625 82.7283 0.0625ZM75.3837 11.3653C75.8701 7.71272 78.6 4.62013 82.7263 4.62013C86.9155 4.62013 89.767 7.59905 90.3142 11.3653H75.3837Z"></path>
+  <path d="M28.8125 0C25.3185 0 22.1892 1.67819 20.0976 4.31009C18.0082 1.67208 14.881 0 11.3829 0C5.10021 0 0.00101604 5.41194 0.00101604 12.0618V25.2518C-0.00883423 25.609 0.0530255 25.9647 0.182754 26.2977C0.312482 26.6306 0.507616 26.9342 0.756532 27.1904C1.00545 27.4466 1.30312 27.6502 1.63202 27.7893C1.96083 27.9284 2.31425 28 2.67123 28C3.0282 28 3.38153 27.9284 3.71043 27.7893C4.03923 27.6502 4.33691 27.4466 4.58583 27.1904C4.83474 26.9342 5.02988 26.6306 5.1596 26.2977C5.28943 25.9647 5.35119 25.609 5.34134 25.2518V12.0618C5.34134 8.36042 8.05105 5.34909 11.3829 5.34909C14.7148 5.34909 17.4224 8.35845 17.4245 12.0597V25.2498C17.4245 25.9587 17.7056 26.6387 18.2061 27.1403C18.7067 27.6417 19.3856 27.9238 20.0936 27.9242C20.6257 27.9238 21.1456 27.7648 21.5873 27.4677C21.6582 27.419 21.7272 27.3683 21.79 27.3135C22.0936 27.0623 22.3381 26.7471 22.5059 26.3904C22.6738 26.0336 22.7608 25.6441 22.7608 25.2498V12.0597C22.7608 8.35845 25.4705 5.34909 28.8023 5.34909C32.1342 5.34909 34.85 8.36042 34.85 12.0618V25.2518C34.85 25.9611 35.1314 26.6413 35.6323 27.1429C36.1333 27.6445 36.8127 27.9263 37.5211 27.9263C38.2295 27.9263 38.909 27.6445 39.41 27.1429C39.9109 26.6413 40.1923 25.9611 40.1923 25.2518V12.0618C40.1944 5.41194 35.0871 0 28.8125 0Z"></path>
+</svg>
+			</div>
+			<div class="overflow-hidden astro-6HCXU2SR">
+				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn astro-6HCXU2SR">is restoring balance</p>
+			</div>
+		</div>
+	</section>
+	<section class="relative flex flex-col items-center justify-center w-screen min-h-[100vh] astro-6HCXU2SR">
+		<div class="bg-1 w-[120vw] astro-6HCXU2SR"></div>
+		<div class="section flex flex-col items-center justify-center w-screen opacity-0 astro-6HCXU2SR">
+			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7 astro-6HCXU2SR">
+				<div class="overflow-hidden px-5 astro-6HCXU2SR">
+					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6] astro-6HCXU2SR">Mee envisions the world where…</h2>
+				</div>
+			</div>
+			<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh] astro-6HCXU2SR">
+					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">Your privacy is respected by blocking tracking the sale of your data.</h2>
+					</div>
+				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh] astro-6HCXU2SR">
+					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">You decide how and when your data is shared, stored, and used.</h2>
+					</div>
+				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh] astro-6HCXU2SR">
+					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">You can easily share information with Mee-certified sites without passwords and endless form filling.</h2>
+					</div>
+				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh] astro-6HCXU2SR">
+					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">You can trust that certified apps and sites  will act in your best interest.</h2>
+					</div>
+				</div>
+		</div>
+	</section>
+	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20 astro-6HCXU2SR">
+		<section class="flex flex-col w-screen px-5 md:max-w-[560px] astro-6HCXU2SR gap-16">
+  <h6 class="text-2xl leading-normal font-bold text-center">Download our free identity agent app and let it start protecting your interests online</h6>
+  <div class="flex flex-col md:flex-row justify-center items-center gap-16">
+    <a class="transition-transform duration-400 ease-out" href="https://apps.apple.com/us/app/mee-identity-agent/id1673110845?itsct=apps_box_badge&itscg=30200" target="_blank" rel="nofollow">
+      <img src="/images/download-apple-btn.svg" class="max-w-[284px] h-21" alt="Link to Mee application on AppStore">
+    </a>
+    <a class="transition-transform duration-400 ease-out" href="#" target="_blank" rel="nofollow">
+      <img src="/images/download-android-btn.svg" class="max-w-[284px] h-21" alt="Link to Mee application on Google Play">
+    </a>
+  </div>
+</section>
+	</section>
+	<footer id="footer" class="footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300 footer--fill text-white astro-SZ7XMLTE">
+  <div class="flex flex-col gap-7 mb-12.5 w-screen items-center astro-SZ7XMLTE">
+    <h6 class="text-2xl leading-normal font-bold astro-SZ7XMLTE">Click here for Mee updates</h6>
+    <a id="meeConnectBtn" href="#" class="connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5 text-black/[.8] bg-white before:bg-blue astro-SZ7XMLTE">
+      <!-- <img class="mr-5" src="/images/mee-simple-icon.svg" alt="Mee foundation logo" > Connect with Mee  -->
+      Connect with Mee
+    </a>
+  </div>
+  
+  <div class="flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7 text-white astro-SZ7XMLTE">
+    <span class="hidden whitespace-nowrap max-w-[102px] xl:inline astro-SZ7XMLTE">© 2023 The Mee Foundation, Inc.</span>
+    <ul class="flex text-center flex-col md:flex-row gap-7 md:gap-10 mb-13 md:mb-0 astro-SZ7XMLTE">
+      <li class="astro-SZ7XMLTE"><a href="/how-mee-works" class="astro-SZ7XMLTE">Mee for You</a></li><li class="astro-SZ7XMLTE"><a href="/for-providers" class="astro-SZ7XMLTE">For Providers</a></li><li class="astro-SZ7XMLTE"><a href="https://docs-dev.mee.foundation/welcome" class="astro-SZ7XMLTE">For Developers</a></li><li class="astro-SZ7XMLTE"><a href="/about" class="astro-SZ7XMLTE">About Us</a></li>
+      <li class="astro-SZ7XMLTE"><a href="#" class="astro-SZ7XMLTE">Blog</a></li>
+    </ul>
+    <a href="#" target="_blank" class="astro-SZ7XMLTE">Privacy Policy</a>
+    <span class="inline xl:hidden astro-SZ7XMLTE">© 2023 The Mee Foundation, Inc.</span>
+  </div>
+</footer>
+</article>
+
+
+
+<!-- <script is:inline src="https://unpkg.com/intersection-observer-debugger"></script> -->
+	</main>
+
+	<div id="connectionErrAlert" class="hidden mt-16 toast toast-top toast-end">
+			<div class="alert alert-error"><span>Connection attempt was unsuccessful</span></div>
+		</div>
 </body>
 
+
+
+
 </html>
+
