@@ -13,7 +13,7 @@ const {  } = Astro.props;
 const subtitles = [
 	"Your privacy is respected by blocking tracking the sale of your data.",
 	"You decide how and when your data is shared, stored, and used.",
-	"You can easily share information with Mee-certified sites without passwords and endless form filling.",
+	"You can easily share information with Mee-certified sites without passwords.",
 	"You can trust that certified apps and sites  will act in your best interest."]
 ---
 
@@ -33,11 +33,11 @@ const subtitles = [
 		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
 			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 				<div class="overflow-hidden px-5">
-					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions the world where…</h2>
+					<h2 class="title text-base leading-5 font-bold tracking-wider uppercase text-center animate-riseIn text-black/[.6]">Mee envisions a world where…</h2>
 				</div>
 			</div>
 			{subtitles.map(subtitle => (
-				<div class="flex section flex-col items-center overflow-hidden w-screen h-[50vh]">
+				<div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh]">
 					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
 					</div>
@@ -46,7 +46,7 @@ const subtitles = [
 		</div>
 	</section>
 	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
-		<AppButtons btnSize="big"/>
+		<AppButtons btnSize="medium"/>
 	</section>
 	<Footer mode="dark" withAppButtons={false}/>
 </article>
