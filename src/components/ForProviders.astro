@@ -38,10 +38,13 @@ const gives_you = [
       </div>
     </div>
   </section>
-  <div class="bg-1" />
-  <section
+  <section 
     class="section relative flex w-screen flex-col items-center justify-center pb-20"
   >
+    <div class="fixed h-screen w-screen top-0">
+      <div class="overflow-hidden"/>
+    </div>
+		<div class="bg-1 " />
     <div class="flex flex-col items-center justify-center">
       <div
         class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
@@ -68,7 +71,7 @@ const gives_you = [
       <div class="flex flex-col">
         {
           gives_you.map((items, index) => (
-            <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0">
+            <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0 z-10">
               <div class="animate-riseIn-short animation-delay-1400  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4">
                 <div class="mr-4">
                   <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
@@ -106,18 +109,16 @@ const gives_you = [
     width: 120vw;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    height: 101%;
+    top: 50px;
+    height: 100%;
     background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3)  20%,
-      rgba(249, 200, 137, 0.4) 25%,
-      rgba(249, 182, 137, 0.4) 90%,
-      rgba(255, 255, 255, 1) 91%,
-      rgba(255, 255, 255, 1) 100%
+      to top,
+      rgba(249, 200, 137, 0.4) 50%,
+      rgba(249, 182, 137, 0.4) 100%
     );
     filter: blur(100px);
-    z-index: -1;
-  }
+    z-index: 1;
+	}
   .givesItem:nth-child(1) > div {
     animation-delay: 1400ms;
   }
