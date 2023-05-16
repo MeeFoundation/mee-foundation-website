@@ -76,8 +76,8 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
             type="button"
             onClick={() => {
               try {
-                if (partnerData)
-                  localStorage.setItem(PARTNER_DATA, partnerData);
+                if (hashPrepared)
+                  localStorage.setItem(PARTNER_DATA, hashPrepared);
               } finally {
                 window.location.href = APP_STORE_LINK;
               }
