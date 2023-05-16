@@ -181,20 +181,21 @@ import '../index.css'
 	sdkInit(errorConnectCb)
 
 	window.onscroll = function () {
-    updateScrollIndicator();
+		updateScrollIndicator();
   };
 
   function updateScrollIndicator() {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    let height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
+		const scrollIndicator = document.getElementById('scroll-indicator');
 
-    const percent = getScrolledPercent(winScroll, height);
-    const scrollIndicator = document.getElementById('scroll-indicator');
+		if (scrollIndicator) {
+			const winScroll =
+				document.body.scrollTop || document.documentElement.scrollTop;
+			let height =
+				document.documentElement.scrollHeight -
+				document.documentElement.clientHeight;
 
-    if (scrollIndicator) {
+			const percent = getScrolledPercent(winScroll, height);
+
       scrollIndicator.style.width = percent + '%';
     }
   }
