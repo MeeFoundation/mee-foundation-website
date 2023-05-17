@@ -33,7 +33,7 @@ const subtitles = [
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 			<div class="down-arrow w-4 h-4 mt-1" />
 		</div>
-		<div id="bleachAnimation" class="flex h-[400vh]">
+		<div id="bleachAnimation" class="flex h-[400vh] border border-purple ">
 			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
 		</div>
   </section>
@@ -94,6 +94,7 @@ const subtitles = [
 	const bleachStep = 0.05
 	let flashInProgress = false
 	let scrollIconContainerHidden = false
+	let changeScroll = 0
 
 
 		const options: IntersectionObserverInit = {
@@ -104,60 +105,67 @@ const subtitles = [
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-						if(entry.target.id === "animationTrigger" && currBleach <= 0) {
-							title?.classList.add("animate-fadeOut", "titleBleach");
-							entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
-							grid?.classList.add("animate-fadeOut", "figuresBleach");
-							figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
-							gradients.forEach(gradient => {
-								gradient.removeAttribute('style');
-								gradient.classList.add("animate-fadeOut", "figuresBleach")
-							})
-							shadow?.classList.add("bg-1");
-							showTodatSectionTriggerScroll = window.scrollY
+					if(entry.target.id === "animationTrigger" && currBleach <= 0) {
+						title?.classList.add("animate-fadeOut", "titleBleach");
+						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
+						grid?.classList.add("animate-fadeOut", "figuresBleach");
+						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
+						gradients.forEach(gradient => {
+							gradient.removeAttribute('style');
+							gradient.classList.add("animate-fadeOut", "figuresBleach")
+						})
+						shadow?.classList.add("bg-1");
+						showTodatSectionTriggerScroll = window.scrollY
 
-							if (!flashInProgress) {
-								flashInProgress = true
-								let bleachIntervalId = setInterval(() => {
-									if (currBleach < 1) {
-										currBleach = currBleach + bleachStep
-										document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-									} else {
-										window.scrollTo(0, window.scrollY + window.innerHeight);
-										clearInterval(bleachIntervalId)
+						if (!flashInProgress) {
+							flashInProgress = true
+							changeScroll = window.scrollY
+							let bleachIntervalId = setInterval(() => {
+								if (currBleach < 1) {
+									currBleach = currBleach + bleachStep
+									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+								} else {
+									// window.scrollTo(0, window.scrollY + window.innerHeight + 1500);
+									setTimeout(() => {
+										window.scrollTo(0, changeScroll + window.innerHeight + 2000);
 										flashInProgress = false
+									}, 1000)
+									clearInterval(bleachIntervalId)
 
-										envisionSection?.classList.remove("hidden");
-										todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
-										mainLogo?.classList.add("logo--contrast");
+									envisionSection?.classList.remove("hidden");
+									todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
+									mainLogo?.classList.add("logo--contrast");
 
-										logoSection?.classList.remove("opacity-0");
-									}
-								}, bleachSpeedMS)
-							}
+									logoSection?.classList.remove("opacity-0");
+								}
+							}, bleachSpeedMS)
 						}
+					}
 
-						if(entry.target.id === "animationTrigger" && currBleach > 0) {
-							envisionSection?.classList.add("hidden");
-							mainLogo?.classList.remove("logo--contrast");
-							todaySection?.classList.remove('translate-y-0');
-							logoSection?.classList.add("opacity-0");
+					if(entry.target.id === "animationTrigger" && currBleach > 0) {
+						envisionSection?.classList.add("hidden");
+						mainLogo?.classList.remove("logo--contrast");
+						todaySection?.classList.remove('translate-y-0');
+						logoSection?.classList.add("opacity-0");
 
-							if (!flashInProgress) {
-								flashInProgress = true
-								let bleachIntervalId = setInterval(() => {
-									if (currBleach > 0) {
-										currBleach = currBleach - bleachStep
-										document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-									} else {
+						if (!flashInProgress) {
+							flashInProgress = true
+							changeScroll = window.scrollY
+							let bleachIntervalId = setInterval(() => {
+								if (currBleach > 0) {
+									currBleach = currBleach - bleachStep
+									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+								} else {
+									setTimeout(() => {
 										flashInProgress = false
-										window.scrollTo(0, window.scrollY - window.innerHeight);
-										clearInterval(bleachIntervalId)
-										showTodatSectionTriggerScroll = 0
-									}
-								}, bleachSpeedMS)
-							}
+										window.scrollTo(0, changeScroll - window.innerHeight);
+									}, 1000)
+									clearInterval(bleachIntervalId)
+									showTodatSectionTriggerScroll = 0
+								}
+							}, bleachSpeedMS)
 						}
+					}
 
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
@@ -173,7 +181,9 @@ const subtitles = [
 		});
 
 		document.addEventListener('scroll', () => {
-			requestAnimationFrame(storeScroll)
+			if (!flashInProgress) {
+				requestAnimationFrame(storeScroll)
+			}
 
 			if(bleachSection) {
 				if(currBleach === 0) {
