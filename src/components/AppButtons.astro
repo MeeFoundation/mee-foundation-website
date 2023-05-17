@@ -12,7 +12,7 @@ const {class: className,btnSize = "normal"} = Astro.props;
     <a class="transition-transform duration-400 ease-out" href="https://apps.apple.com/us/app/mee-identity-agent/id1673110845?itsct=apps_box_badge&amp;itscg=30200" target="_blank" rel="nofollow">
       <img src="/images/download-apple-btn.svg" class:list={["max-w-[284px]", {"h-21": btnSize === "big"},{"h-16": btnSize === "medium"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on AppStore">
     </a>
-    <a class="transition-transform duration-400 ease-out" href="#"  target="_blank" rel="nofollow">
+    <a class="hidden transition-transform duration-400 ease-out" href="#"  target="_blank" rel="nofollow">
       <img src="/images/download-android-btn.svg" class:list={["max-w-[284px]", {"h-21": btnSize === "big"},{"h-16": btnSize === "medium"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on Google Play">
     </a>
   </div>
