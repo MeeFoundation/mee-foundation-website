@@ -90,9 +90,10 @@ const subtitles = [
 	let currBleach = 0
 	const logoSection = document.getElementById("logoSection");
 	let showTodatSectionTriggerScroll = 0
-	const bleachSpeedMS = 50
+	const bleachSpeedMS = 100
 	const bleachStep = 0.05
 	let flashInProgress = false
+	let scrollIconContainerHidden = false
 
 
 		const options: IntersectionObserverInit = {
@@ -172,11 +173,9 @@ const subtitles = [
 		});
 
 		document.addEventListener('scroll', () => {
-			storeScroll();
+			requestAnimationFrame(storeScroll)
 
 			if(bleachSection) {
-				const animationScroll = calcElScroll(bleachSection);
-
 				if(currBleach === 0) {
 					envisionSection?.classList.add("hidden");
 					todaySection?.classList.remove('translate-y-0');
@@ -184,8 +183,9 @@ const subtitles = [
 				}
 			}
 
-			if(window.scrollY > 400) {
+			if(!scrollIconContainerHidden && window.scrollY > 400) {
 				scrollIconContainer?.classList.add("opacity-0");
+				scrollIconContainerHidden = true
 				setTimeout(()=>{
 					scrollIconContainer?.classList.add("hidden");
 				},400)
@@ -197,6 +197,7 @@ const subtitles = [
 		(window.scrollY /
 		(document.body.offsetHeight - window.innerHeight)).toString())
 	};
+	// outdated
 	const calcElScroll = (element:Element | HTMLElement) => {
 		const rect = element.getBoundingClientRect();
 		if(rect.top - window.innerHeight > 0) return 0;
