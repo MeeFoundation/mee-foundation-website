@@ -87,7 +87,7 @@ const partnerList: PartnerItem[] = [
     partnerName: 'Mee Foundation',
     partnerUrl: 'https://mee.foundation',
     partnerDisplayedUrl: 'mee.foundation',
-    partnerImageUrl: 'https://mee.foundation/assets/mee_fav_icon.svg',
+    partnerImageUrl: 'https://mee.foundation/mee_fav_icon.svg',
     isCertified: true,
   },
   {
