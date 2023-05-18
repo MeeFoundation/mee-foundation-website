@@ -92,7 +92,9 @@ const subtitles = [
 	let showTodatSectionTriggerScroll = 0
 	const bleachSpeedMS = 100
 	const bleachStep = 0.05
+	let flashInProgress = false
 	let scrollIconContainerHidden = false
+	let changeScroll = 0
 
 
 		const options: IntersectionObserverInit = {
@@ -115,21 +117,28 @@ const subtitles = [
 						shadow?.classList.add("bg-1");
 						showTodatSectionTriggerScroll = window.scrollY
 
-						let bleachIntervalId = setInterval(() => {
-							if (currBleach < 1) {
-								currBleach = currBleach + bleachStep
-								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-							} else {
-								window.scrollTo(0, window.scrollY + window.innerHeight);
-								clearInterval(bleachIntervalId)
+						if (!flashInProgress) {
+							flashInProgress = true
+							changeScroll = window.scrollY
+							let bleachIntervalId = setInterval(() => {
+								if (currBleach < 1) {
+									currBleach = currBleach + bleachStep
+									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+								} else {
+									setTimeout(() => {
+										window.scrollTo(0, changeScroll + window.innerHeight + 2000);
+										flashInProgress = false
+									}, 1000)
+									clearInterval(bleachIntervalId)
 
-								envisionSection?.classList.remove("hidden");
-								todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
-								mainLogo?.classList.add("logo--contrast");
+									envisionSection?.classList.remove("hidden");
+									todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
+									mainLogo?.classList.add("logo--contrast");
 
-								logoSection?.classList.remove("opacity-0");
-							}
-						}, bleachSpeedMS)
+									logoSection?.classList.remove("opacity-0");
+								}
+							}, bleachSpeedMS)
+						}
 					}
 
 					if(entry.target.id === "animationTrigger" && currBleach > 0) {
@@ -138,16 +147,23 @@ const subtitles = [
 						todaySection?.classList.remove('translate-y-0');
 						logoSection?.classList.add("opacity-0");
 
-						let bleachIntervalId = setInterval(() => {
-							if (currBleach > 0) {
-								currBleach = currBleach - bleachStep
-								document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-							} else {
-								window.scrollTo(0, window.scrollY - window.innerHeight);
-								clearInterval(bleachIntervalId)
-								showTodatSectionTriggerScroll = 0
-							}
-						}, bleachSpeedMS)
+						if (!flashInProgress) {
+							flashInProgress = true
+							changeScroll = window.scrollY
+							let bleachIntervalId = setInterval(() => {
+								if (currBleach > 0) {
+									currBleach = currBleach - bleachStep
+									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
+								} else {
+									setTimeout(() => {
+										flashInProgress = false
+										window.scrollTo(0, changeScroll - window.innerHeight);
+									}, 1000)
+									clearInterval(bleachIntervalId)
+									showTodatSectionTriggerScroll = 0
+								}
+							}, bleachSpeedMS)
+						}
 					}
 
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
@@ -164,7 +180,9 @@ const subtitles = [
 		});
 
 		document.addEventListener('scroll', () => {
-			requestAnimationFrame(storeScroll)
+			if (!flashInProgress) {
+				requestAnimationFrame(storeScroll)
+			}
 
 			if(bleachSection) {
 				if(currBleach === 0) {
