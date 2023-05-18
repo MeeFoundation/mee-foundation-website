@@ -16,7 +16,7 @@ const {mode,withAppButtons = true} = Astro.props;
 
 ---
 
-<footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-300", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
+<footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-100", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
   <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
     <a id="meeConnectBtn" href="#" class:list={["connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5", {"text-black/[.8] bg-white before:bg-blue": mode === "dark", "bg-blue text-white before:bg-white": mode === "light"}]}>
