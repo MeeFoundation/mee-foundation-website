@@ -22,6 +22,20 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	</main>
 </Layout>
 
+<script async>
+	const url = new URL(window.location.href)
+  const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
+
+	const hashData = hashPrepared.split('/')
+	if (hashData[0] === 'consent') {
+		window.location.href = `/authorize#${hashData[1]}`
+	}
+
+	if (hashData[0] === 'installed') {
+		window.location.href = `/installed#${hashData[1]}`
+	}
+</script>
+
 <script>
 	import { scrollIntoView } from "seamless-scroll-polyfill";
 	window.onbeforeunload = function () {
@@ -44,18 +58,6 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 
 	const srollToEnd = document.getElementById("sroll-to-end");
 	srollToEnd?.addEventListener("click", scrollToEnvision);
-
-  const url = new URL(window.location.href)
-  const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
-
-	const hashData = hashPrepared.split('/')
-	if (hashData[0] === 'consent') {
-		window.location.href = `/authorize#${hashData[1]}`
-	}
-
-	if (hashData[0] === 'installed') {
-		window.location.href = `/installed#${hashData[1]}`
-	}
 
 </script>
 
