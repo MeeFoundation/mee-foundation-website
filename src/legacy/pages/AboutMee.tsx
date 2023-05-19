@@ -41,7 +41,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
         const url = partnerDataUnparsed.client_id;
         if (url) {
           const redirectUrl = new URL(url);
-          redirectUrl.searchParams.set('id_token', data);
+          redirectUrl.searchParams.set('mee_auth_token', data);
           window.location.href = redirectUrl.href;
         }
       } catch {}
