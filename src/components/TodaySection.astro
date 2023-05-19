@@ -13,7 +13,7 @@ const subtitles = [
 	"most users navigate this world with mistrust and fear."]
 ---
 
-<article id="today" class="flex today flex-col items-center translate-y-0">
+<article id="today" class="flex today flex-col items-center">
 	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
   <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
@@ -96,7 +96,6 @@ const subtitles = [
 	let scrollIconContainerHidden = false
 	let changeScroll = 0
 
-
 		const options: IntersectionObserverInit = {
 			// root: document.body,
 			threshold: 0.1,
@@ -132,7 +131,6 @@ const subtitles = [
 									clearInterval(bleachIntervalId)
 
 									envisionSection?.classList.remove("hidden");
-									todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 									mainLogo?.classList.add("logo--contrast");
 
 									logoSection?.classList.remove("opacity-0");
@@ -144,7 +142,6 @@ const subtitles = [
 					if(entry.target.id === "animationTrigger" && currBleach > 0) {
 						envisionSection?.classList.add("hidden");
 						mainLogo?.classList.remove("logo--contrast");
-						todaySection?.classList.remove('translate-y-0');
 						logoSection?.classList.add("opacity-0");
 
 						if (!flashInProgress) {
@@ -187,7 +184,6 @@ const subtitles = [
 			if(bleachSection) {
 				if(currBleach === 0) {
 					envisionSection?.classList.add("hidden");
-					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
 				}
 			}
