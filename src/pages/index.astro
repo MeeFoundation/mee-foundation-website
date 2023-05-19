@@ -9,19 +9,6 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 // TODO Add smooth scroll to all pages
 // TODO Make howto page
 ---
-
-
-<Layout title="Mee Foundation">
-	<Header />
-	<main class="overflow-x-visible bg-white">
-		<div id="sroll-to-end" class="h-8 w-8 fixed bottom-12 right-10 z-999 cursor-pointer"/>
-		<TodaySection />
-		<div id="middle-element"/>
-		<EnvisionSection />
-		<div id="end-element"/>
-	</main>
-</Layout>
-
 <script async>
 	const url = new URL(window.location.href)
   const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
@@ -35,6 +22,17 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		window.location.href = `/installed#${hashData[1]}`
 	}
 </script>
+
+<Layout title="Mee Foundation">
+	<Header />
+	<main class="overflow-x-visible bg-white">
+		<div id="sroll-to-end" class="h-8 w-8 fixed bottom-12 right-10 z-999 cursor-pointer"/>
+		<TodaySection />
+		<div id="middle-element"/>
+		<EnvisionSection />
+		<div id="end-element"/>
+	</main>
+</Layout>
 
 <script>
 	import { scrollIntoView } from "seamless-scroll-polyfill";
