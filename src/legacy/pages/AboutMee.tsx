@@ -31,6 +31,8 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
     }
   }, [hashPrepared]);
 
+  console.log(hashPrepared, partnerDataUnparsed);
+
   const getData = async () => {
     const nonce = partnerDataUnparsed?.nonce;
     if (nonce) {
