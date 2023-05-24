@@ -92,8 +92,11 @@ export const links = [
   const toggleButtonText = document.querySelector("#menuToggle span")
   const backdrop = document.querySelector("#backdrop");
   const nav = document.querySelector("#nav");
+  let isMenuOpen = false
 
-  const toggleNav = () => {
+  const toggleNav = (e) => {
+    e.stopPropagation();
+    isMenuOpen = toggleButtonText?.textContent === "Menu"
     const btnText = toggleButtonText?.textContent === "Menu" ? "Close" : "Menu";
     if(toggleButtonText) {
       toggleButtonText?.classList.add("opacity-0");
@@ -118,6 +121,12 @@ export const links = [
   }
 
   toggleButton?.addEventListener("click", toggleNav);
+
+  window.addEventListener("click", (e) => {
+    if (isMenuOpen) {
+      toggleNav(e)
+    }
+  });
 
   const toggleLink = (button: any) => {
     const link = button && button.target ? button.target.querySelector("a"): null;
