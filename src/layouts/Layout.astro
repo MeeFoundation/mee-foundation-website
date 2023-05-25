@@ -208,7 +208,6 @@ import '../index.css'
 		if (envision && header) {
 			const srollToEnd = document.getElementById("sroll-to-end");
       if (!envision.getBoundingClientRect().height) {
-				header.style.backgroundColor = "transparent"
 				initWinScroll = 0
 				srollToEnd && srollToEnd.classList.contains('hidden') &&
 				srollToEnd.classList.remove('hidden')
@@ -219,7 +218,6 @@ import '../index.css'
 				if (initWinScroll === 0) {
 					initWinScroll = winScroll
 				}
-				header.style.backgroundColor = "#fff";
 
 				const scrolled = ((winScroll - initWinScroll) / (height - initWinScroll)) * 100;
 
