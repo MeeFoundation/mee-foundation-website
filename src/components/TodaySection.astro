@@ -13,9 +13,9 @@ const subtitles = [
 	"most users navigate this world with mistrust and fear."]
 ---
 
-<article id="today" class="flex today flex-col items-center translate-y-0">
+<article id="today" class="flex today flex-col items-center">
 	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
-  <section class="relative z-100 flex flex-col items-center text-center w-full md:w-[692px]">
+  <section class="relative z-20 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
 			<div class="overflow-hidden">
@@ -24,7 +24,7 @@ const subtitles = [
     </div>
 		{subtitles.map(subtitle => (
 			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
-				<div class="overflow-hidden fixed z-100 top-[50vh] w-full px-5 md:w-[692px]">
+				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
 					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 				</div>
 			</div>
@@ -96,7 +96,6 @@ const subtitles = [
 	let scrollIconContainerHidden = false
 	let changeScroll = 0
 
-
 		const options: IntersectionObserverInit = {
 			// root: document.body,
 			threshold: 0.1,
@@ -132,7 +131,6 @@ const subtitles = [
 									clearInterval(bleachIntervalId)
 
 									envisionSection?.classList.remove("hidden");
-									todaySection?.classList.add('translate-y-0'); // Hack for remove border shadow between today and envision
 									mainLogo?.classList.add("logo--contrast");
 
 									logoSection?.classList.remove("opacity-0");
@@ -144,7 +142,6 @@ const subtitles = [
 					if(entry.target.id === "animationTrigger" && currBleach > 0) {
 						envisionSection?.classList.add("hidden");
 						mainLogo?.classList.remove("logo--contrast");
-						todaySection?.classList.remove('translate-y-0');
 						logoSection?.classList.add("opacity-0");
 
 						if (!flashInProgress) {
@@ -187,7 +184,6 @@ const subtitles = [
 			if(bleachSection) {
 				if(currBleach === 0) {
 					envisionSection?.classList.add("hidden");
-					todaySection?.classList.remove('translate-y-0');
 					mainLogo?.classList.remove("logo--contrast");
 				}
 			}
