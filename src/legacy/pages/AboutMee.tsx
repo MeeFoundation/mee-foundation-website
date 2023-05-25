@@ -11,27 +11,24 @@ import {APP_STORE_LINK, PARTNER_DATA} from '../../constants';
 
 interface AboutMeePageProps {
   showQrCode?: boolean;
-  partnerData: string | null;
 }
 
 export const AboutMeePage: React.FC<AboutMeePageProps> = ({
-  partnerData,
   showQrCode = false,
 }) => {
   const url = new URL(window.location.href);
-  const hashPrepared = url.hash !== '' ? url.hash.slice(1) : undefined;
+  const partnerData = url.searchParams.get('request') || undefined;
+  const scope = url.searchParams.get('scope') || undefined;
 
   const partnerDataUnparsed: RequestData | undefined = useMemo(() => {
-    if (hashPrepared === null || typeof hashPrepared === 'undefined')
+    if (partnerData === null || typeof partnerData === 'undefined')
       return undefined;
     try {
-      return decodeJwt(hashPrepared) as RequestData;
+      return decodeJwt(partnerData) as RequestData;
     } catch {
       return undefined;
     }
-  }, [hashPrepared]);
-
-  console.log(hashPrepared, partnerDataUnparsed);
+  }, [partnerData]);
 
   const getData = async () => {
     const nonce = partnerDataUnparsed?.nonce;
@@ -66,7 +63,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
               </p>
               <QRCodeSVG
                 className="h-full w-1/2"
-                value={`https://auth.mee.foundation/authorize?scope=openid&request=${hashPrepared}&respondTo=proxy`}
+                value={`https://auth.mee.foundation/authorize?scope=${scope}&request=${partnerData}&respondTo=proxy`}
               />
             </div>
           ) : (
@@ -78,8 +75,8 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
             type="button"
             onClick={() => {
               try {
-                if (hashPrepared)
-                  localStorage.setItem(PARTNER_DATA, hashPrepared);
+                if (partnerData)
+                  localStorage.setItem(PARTNER_DATA, partnerData);
               } finally {
                 window.location.href = APP_STORE_LINK;
               }

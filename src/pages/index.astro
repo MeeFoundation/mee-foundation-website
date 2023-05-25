@@ -9,19 +9,6 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 // TODO Add smooth scroll to all pages
 // TODO Make howto page
 ---
-<script async>
-	const url = new URL(window.location.href)
-  const hashPrepared = url.hash !== "" ? url.hash.slice(2) : 'undefined'
-
-	const hashData = hashPrepared.split('/')
-	if (hashData[0] === 'consent') {
-		window.location.href = `/authorize#${hashData[1]}`
-	}
-
-	if (hashData[0] === 'installed') {
-		window.location.href = `/installed#${hashData[1]}`
-	}
-</script>
 
 <Layout title="Mee Foundation">
 	<Header />
