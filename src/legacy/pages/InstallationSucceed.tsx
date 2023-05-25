@@ -203,7 +203,7 @@ export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({
   const environment = getEnvironment();
 
   const url = new URL(window.location.href);
-  const hashPrepared = url.hash !== '' ? url.hash.slice(1) : undefined;
+  const hashPrepared = url.searchParams.get('request') || undefined;
 
   const params = {partnerData: hashPrepared};
 
