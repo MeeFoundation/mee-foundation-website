@@ -117,6 +117,7 @@ const subtitles = [
 	const envision = document.getElementById("envision");
 	const welcomeSection = document.getElementById("welcomeSection");
 	const sections = document.querySelectorAll('.envision .section');
+	let isLogoSectionShown = false
 
 	const options: IntersectionObserverInit = {
 			// root: null,
@@ -132,6 +133,9 @@ const subtitles = [
 					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
 					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
+					if (entry.target.id === 'logoSection') {
+						isLogoSectionShown = true
+					}
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
@@ -139,6 +143,15 @@ const subtitles = [
 					// console.log('removed', entry.target);
 					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
 					entry.target.classList.add("opacity-0");
+
+					if (entry.target.id === 'logoSection' && isLogoSectionShown) {
+						isLogoSectionShown = false
+
+						if (direction === 'up') {
+							const screenHeight = window.screen.height;
+							window.scrollTo(0, window.scrollY - 2 * screenHeight); //fix: show first section with little scroll
+						}
+					}
 				}
 			})
 		}, options);
@@ -148,4 +161,16 @@ const subtitles = [
 			observer.observe(section)
 		});
 
+		let lastScroll = 0
+		let direction: string
+		document.addEventListener('scroll', () => {
+			const st = window.pageYOffset || document.documentElement.scrollTop;
+
+			if (lastScroll > st) {
+				direction = 'up';
+			} else {
+				direction = 'down';
+			}
+			lastScroll = st
+		})
 </script>

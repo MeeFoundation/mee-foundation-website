@@ -210,5 +210,17 @@ const subtitles = [
 		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
 	}
 
-	
+	function scrollToEnvision() {
+		currBleach = 1
+		document.documentElement.style.setProperty('--bleachProgress', '1');
+		const todaySection = document.getElementById("today");
+		const envisionSection = document.getElementById("envision");
+		title?.classList.add("animate-fadeOut", "titleBleach");
+		shadow?.classList.add("bg-1");
+		envisionSection?.classList.remove("hidden");
+		window.scrollTo(0, document.body.scrollHeight);
+	}
+
+	const srollToEnd = document.getElementById("sroll-to-end");
+	srollToEnd?.addEventListener("click", scrollToEnvision);
 </script>

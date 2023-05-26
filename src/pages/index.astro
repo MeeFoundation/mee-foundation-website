@@ -23,26 +23,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 
 <script>
 	import { scrollIntoView } from "seamless-scroll-polyfill";
+
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
-
-	let srollTimeout = 0;
-
-	function scrollToEnvision() {
-		srollTimeout && clearTimeout(srollTimeout);
-		const middleElement = document.getElementById("middle-element");
-		const endElement = document.getElementById("end-element");
-		if (middleElement && endElement) {
-			scrollIntoView(middleElement, { behavior: "smooth"});
-			srollTimeout = setTimeout(()=>{
-				scrollIntoView(endElement, { behavior: "smooth"});
-			}, 1700)
-		}
-	}
-
-	const srollToEnd = document.getElementById("sroll-to-end");
-	srollToEnd?.addEventListener("click", scrollToEnvision);
 
 </script>
 
