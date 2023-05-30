@@ -185,7 +185,7 @@ import { parseMatrix } from '../helper'
         }
 
         // put at the place first slide if we common scroll ends at the start
-        if (Number(transformY) === 0 && isFirstScrollHappen) {
+        if (Number(transformY) === 0) {
           currScreen = screen1
           currentScreenId = 1
           currScreenMutationObserveId = 1
