@@ -131,7 +131,7 @@ import { parseMatrix } from '../helper'
     if (main) {
       if (lastY > getElementY(main)) {
         direction = 'up';
-      } else {
+      } else if (lastY < getElementY(main)) {
         direction = 'down';
       }
 
@@ -250,15 +250,17 @@ import { parseMatrix } from '../helper'
       const currScreenY = Number(trMatrix[trMatrix.length - 1])
 
       if (currScreenY > phoneCenterBodyTransformY && isPhoneFixed) {
+        isPhoneFixed = false
+        scrollablePhone = phoneMain
+      }
+
+      if ((direction === 'down' && mainHeader?.classList.contains('animate-fadeOut'))) {
         mainHeader?.classList.remove('animate-fadeOut')
         mainHeader?.classList.add('animate-none')
         mainHeader?.classList.add('lg:animate-riseIn')
 
         scrollIndicator?.classList.remove('animate-fadeOut')
         scrollIndicator?.classList.add('animate-fadeIn')
-
-        isPhoneFixed = false
-        scrollablePhone = phoneMain
 
         isFirstScrollHappen = false
       }

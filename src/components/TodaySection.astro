@@ -181,10 +181,6 @@ const subtitles = [
 		});
 
 		document.addEventListener('scroll', () => {
-			setTimeout(()=>{
-				console.log('_stopat ', window.scrollY);
-			},150)
-
 			if (!flashInProgress) {
 				requestAnimationFrame(storeScroll)
 			}
