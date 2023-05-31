@@ -219,7 +219,7 @@ export const InstallationSucceed: React.FC<InstallationSucceedProps> = ({
         if (localStoragePartnerData !== null) {
           window.location.href = `https://${
             isDevEnv ? 'www-dev.' : ''
-          }mee.foundation/installed#${localStoragePartnerData}`;
+          }mee.foundation/installed?request=${localStoragePartnerData}`;
         } else {
           window.location.href = `https://${
             isDevEnv ? 'www-dev.' : ''
