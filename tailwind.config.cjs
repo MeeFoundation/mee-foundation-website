@@ -147,6 +147,7 @@ module.exports = {
       'about-bg2': '#ECE3AC',
       'about-bg3': '#C7D1B2',
       'about-bg4': '#A5C1C5',
+      'about-bg5': '#f5e6b0',
       'how-me-header-bg': '#fde3d1',
       black: {
         DEFAULT: '#000',
