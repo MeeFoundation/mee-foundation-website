@@ -22,8 +22,8 @@ const subtitles = [
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
 			</div>
     </div>
-		{subtitles.map(subtitle => (
-			<div class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
+		{subtitles.map((subtitle, index) => (
+			<div id={`section-${index}`} class="section flex flex-col items-center section-0 overflow-hidden h-[200vh]">
 				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
 					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 				</div>
@@ -75,6 +75,7 @@ const subtitles = [
 </style>
 
 <script>
+	import { scrollIntoView } from "seamless-scroll-polyfill";
   const sections = document.querySelectorAll('.today .section');
 	const scrollIconContainer = document.querySelector(".scrollIconContainer");
 	const shadow = document.querySelector(".shadow");
@@ -146,7 +147,7 @@ const subtitles = [
 
 						if (!flashInProgress) {
 							flashInProgress = true
-							changeScroll = window.scrollY
+
 							let bleachIntervalId = setInterval(() => {
 								if (currBleach > 0) {
 									currBleach = currBleach - bleachStep
@@ -154,7 +155,10 @@ const subtitles = [
 								} else {
 									setTimeout(() => {
 										flashInProgress = false
-										window.scrollTo(0, changeScroll - window.innerHeight);
+										const lastSection = document.getElementById("section-4");
+										if (lastSection) {
+											scrollIntoView(lastSection)
+										}
 									}, 1000)
 									clearInterval(bleachIntervalId)
 									showTodatSectionTriggerScroll = 0
@@ -210,5 +214,17 @@ const subtitles = [
 		return (Math.abs(rect.top - window.innerHeight)) / rect.height; 
 	}
 
-	
+	function scrollToEnvision() {
+		currBleach = 1
+		document.documentElement.style.setProperty('--bleachProgress', '1');
+		const todaySection = document.getElementById("today");
+		const envisionSection = document.getElementById("envision");
+		title?.classList.add("animate-fadeOut", "titleBleach");
+		shadow?.classList.add("bg-1");
+		envisionSection?.classList.remove("hidden");
+		window.scrollTo(0, document.body.scrollHeight);
+	}
+
+	const srollToEnd = document.getElementById("sroll-to-end");
+	srollToEnd?.addEventListener("click", scrollToEnvision);
 </script>

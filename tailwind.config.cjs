@@ -153,6 +153,7 @@ module.exports = {
       },
       white: {
         DEFAULT: '#fff',
+        trans70: '#ffffffb3'
       },
       gray: {
         philippine: '#90878F',
