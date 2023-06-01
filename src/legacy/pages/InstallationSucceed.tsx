@@ -43,25 +43,25 @@ const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
   }, [partnerData]);
 
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-start bg-white px-5 pt-32 text-center text-primary">
+    <div className="flex h-screen w-screen flex-col items-center justify-start bg-white px-5 pt-32 text-center">
       <img className="mb-20 h-12" alt="mee" src={MeeLogo} />
 
-      <h1 className="pb-8 text-2xl font-bold">
+      <h1 className="pb-8 text-2xl font-bold text-primary">
         Let’s set up your first connection!
       </h1>
 
-      <p className="pb-8 text-lg font-medium">
+      <p className="pb-8 text-lg font-medium text-black">
         Allow Mee to establish a way to talk to the site you’ve just chosen to
         interact with.
       </p>
-      <p className="text-lg font-medium">Click Next to connect to </p>
-      <p className="text-alt-color-8 text-3xl font-bold">
+      <p className="text-lg font-medium text-black">Connect to </p>
+      <p className="text-alt-color-8 text-3xl font-bold text-black">
         {partnerDataUnparsed.partnerName ||
           partnerDataUnparsed.client_metadata?.client_name}
       </p>
       <div className="flex flex-row gap-3 pb-10">
         <img alt="lock" src={LockImage} className="w-4" />
-        <p className="text-3xl font-bold">
+        <p className="text-xl font-bold text-primary">
           {partnerDataUnparsed.partnerDisplayedUrl ||
             partnerDataUnparsed.client_metadata?.display_url}
         </p>
