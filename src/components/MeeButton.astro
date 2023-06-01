@@ -17,7 +17,7 @@ const {mode} = Astro.props;
     <span>Connect with</span>
     <div
       class:list={[
-        'block logo h-[16px] w-[56px] h-5 pt-1.5 md:pt-0 ml-[10px]',
+        'block btnLogo h-[16px] w-[56px] h-5 pt-1.5 md:pt-0 ml-[10px]',
         {'logo--contrast': mode === 'dark'},
       ]}
     >
@@ -31,5 +31,8 @@ const {mode} = Astro.props;
     ]}>Password-less, surveilance free, and privacy-respecting</div>
 </div> 
 
-<style>
+<style is:global>
+  .btnLogo > svg {
+    fill: #EAEAEF;
+  }
 </style>
