@@ -1,6 +1,7 @@
 ---
 import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
+import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
 
 export interface Props {
@@ -20,22 +21,7 @@ const {mode,withAppButtons = true} = Astro.props;
 <footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-100", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
   <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
-    <a id="meeConnectBtn" href="#" class:list={
-      [
-        "connectBtn flex flex-row items-center justify-center text-meeBtn eading-normal font-medium w-[343px] h-[51px] text-center rounded-[10px] before:mr-5",
-        {"text-blue bg-white before:bg-blue": mode === "dark",
-        "bg-blue text-white before:bg-white": mode === "light"}
-      ]}>
-      <span>Connect with</span>
-      <div
-        class:list={[
-          'block logo h-[16px] w-[56px] h-5 pt-1.5 md:pt-0 ml-[10px]',
-          {'logo--contrast': mode === 'dark'},
-        ]}
-      >
-        <Logo />
-      </div>
-    </a>
+    <MeeButton mode={mode} />
   </div>
   {withAppButtons && <AppButtons class="mb-25" />}
   <div class:list={["flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7", {"text-white": mode === "dark", "text-gray": mode === "light"}]}>
