@@ -10,6 +10,7 @@ module.exports = {
         '3xl': ['1.75rem', '1.5'],
         '7xl': ['4rem', '1.3'],
         '25xl': '6rem',
+        'meeBtn': ['22px', '26px'],
       },
       transitionDelay: {
         200: '200ms',

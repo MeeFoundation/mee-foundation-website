@@ -1,0 +1,38 @@
+---
+import Logo from './Logo.astro';
+
+export interface Props {
+  mode: "dark" | "light";
+}
+
+const {mode} = Astro.props;
+---
+<div class="text-center">
+  <a id="meeConnectBtn" href="#" class:list={
+    [
+      "connectBtn flex flex-row items-center justify-center text-meeBtn eading-normal font-medium w-[343px] h-[51px] text-center rounded-[10px]",
+      {"text-blue bg-white before:bg-blue": mode === "dark",
+      "bg-blue text-white before:bg-white": mode === "light"}
+    ]}>
+    <span>Connect with</span>
+    <div
+      class:list={[
+        'block btnLogo h-[16px] w-[56px] h-5 pt-1.5 md:pt-0 ml-[10px]',
+        {'logo--contrast': mode === 'dark'},
+      ]}
+    >
+      <Logo />
+    </div>
+  </a>
+  <div
+    class:list={[
+      'mt-1 text-xs',
+      {'text-blue': mode === 'light'},
+    ]}>Password-less, surveilance free, and privacy-respecting</div>
+</div> 
+
+<style is:global>
+  .btnLogo > svg {
+    fill: #EAEAEF;
+  }
+</style>

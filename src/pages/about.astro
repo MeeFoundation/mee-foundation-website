@@ -6,9 +6,10 @@ import Layout from "../layouts/Layout.astro";
 import identityAgentIcon from "../../assets/identity-agent-icon.svg"
 import hilIcon from "../../assets/hil-icon.svg"
 import meeFoundationIcon from "../../assets/mee-foundation-icon.svg"
-import difIcon from "../../public/images/dif-logo.png"
-import twitterIcon from "../../public/images/twitter-logo.png"
+import difIcon from "../../images/dif-logo.png"
+import twitterIcon from "../../images/twitter-logo.png"
 import AppButtons from '../components/AppButtons.astro';
+import MeeButton from '../components/MeeButton.astro';
 
 const textArray = [
   "We are a nonprofit committed to empowering people by putting them in control of their online identity.",
@@ -21,7 +22,6 @@ const joinUsText = [
   "We invite online service providers across all industries to join us in committing to <strong>fair and responsible data practices</strong> that will build trust with users. Just tap the Connect with Mee button to connect with us."
 ];
 
-const mode = 'light';
 // TODO Add link to HIL link
 ---
 
@@ -62,10 +62,7 @@ const mode = 'light';
                 ["animation-delay-800 lg:animation-delay-1000 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify "]}
                 set:html={joinUsText[1]} />
                 <div class="aboutButtons flex items-center mt-10">
-                  <a id="meeConnectBtn" href="#" class:list={["connectBtn flex items-center text-xl text-left leading-normal font-medium w-[277px] px-3 py-3 rounded-full before:mr-5", {"text-black/[.8] bg-white before:bg-blue": mode === "dark", "bg-blue text-white before:bg-white": mode === "light"}]}>
-                    <!-- <img class="mr-5" src="/images/mee-simple-icon.svg" alt="Mee foundation logo" > Connect with Mee  -->
-                    Connect with Mee
-                  </a>
+                  <MeeButton mode="light" />
                   <a href="https://twitter.com/mee_foundation" class="ml-8" target="_blank">
                     <img src={twitterIcon} width="68" height="68" class="w-[68px]" alt="Twitter logo" />
                   </a>
@@ -149,14 +146,6 @@ const mode = 'light';
     display: block;
     width: 21px;
     height: 21px;
-  }
-
-  .connectBtn::before {
-    content: "";
-    mask: url('/images/mee-simple-icon.svg') no-repeat center;
-    display: block;
-    width: 44px;
-    height: 44px;
   }
 </style>
 
