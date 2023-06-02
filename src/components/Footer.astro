@@ -5,11 +5,12 @@ import { links } from './Menu.astro';
 export interface Props {
   mode: "dark" | "light";
   withAppButtons?: boolean;
+  appsBtnsSize?: "normal" | "big" | "medium";
 }
 
 const pathname = new URL(Astro.request.url).pathname;
 
-const {mode,withAppButtons = true} = Astro.props;
+const {mode,withAppButtons = true, appsBtnsSize = "normal"} = Astro.props;
 
 // TODO Add bg animation on connect with mee button
 // TODO Add link to connect button
@@ -24,7 +25,7 @@ const {mode,withAppButtons = true} = Astro.props;
       Connect with Mee
     </a>
   </div>
-  {withAppButtons && <AppButtons class="mb-25" />}
+  {withAppButtons && <AppButtons btnSize={appsBtnsSize} class="mb-25" />}
   <div class:list={["flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7", {"text-white": mode === "dark", "text-gray": mode === "light"}]}>
     <span class="hidden whitespace-nowrap max-w-[102px] xl:inline">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
     <ul class="flex text-center flex-col md:flex-row gap-7 md:gap-10 mb-13 md:mb-0">

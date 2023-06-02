@@ -31,7 +31,9 @@ const mode = 'light';
     <section class="flex flex-col justify-center items-center w-screen bg-white transform-gpu">
       <section class="flex flex-col justify-center items-center w-screen pt-32 md:pt-30 pb-25 lg:pb-40 bg-white h-auto">
         <div class="overflow-hidden mb-8">
-          <h1 class="text-xl font-bold leading-normal text-black/80 animate-riseIn">About us</h1>
+          <h1 class="marker animate-none lg:animate-riseIn mt-[128px] lg:mt-[200px] text-3xl lg:text-7xl font-bold">
+            <mark>About</mark> us
+          </h1>
         </div>
         <section class="relative flex flex-col items-center gap-15 md:gap-25 lg:gap-32 xl:gap-32 px-10  w-full max-w-[1094px] animation-delay-800">
           {textArray.map((text,i) => (
@@ -48,7 +50,9 @@ const mode = 'light';
 
       <section class="flex flex-col justify-center items-center w-screen pt-32 md:pt-30 pb-25 lg:pb-40 bg-white h-auto">
         <div class="overflow-hidden mb-8">
-          <h1 class="text-xl font-bold leading-normal text-black/80 animate-riseIn">Join us</h1>
+          <h1 class="marker animate-none lg:animate-riseIn mt-[128px] lg:mt-[200px] text-3xl lg:text-7xl font-bold">
+            <mark>Join</mark> us
+          </h1>
         </div>
         <section class="relative flex flex-col items-center gap-15 md:gap-25 lg:gap-32 xl:gap-32 px-10  w-full max-w-[1094px] animation-delay-800">
             <div class="overflow-hidden flex items-center flex-col">
@@ -112,7 +116,7 @@ const mode = 'light';
           <img src={difIcon} width="165" height="56" class="w-[100px] md:w-[165px]" alt="Decentralized Identity Foundation logo" />
         </div>
       </section>
-      <Footer mode="dark" withAppButtons={true} />
+      <Footer appsBtnsSize="medium" mode="dark" withAppButtons={true} />
     </section>
 	</main>
 </Layout>
