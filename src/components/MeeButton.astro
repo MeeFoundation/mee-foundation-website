@@ -17,7 +17,7 @@ const {mode} = Astro.props;
     <span>Connect with</span>
     <div
       class:list={[
-        'block btnLogo h-[16px] w-[56px] h-5 pt-0 ml-[10px]',
+        'block logo h-[16px] w-[56px] h-5 pt-0 ml-[10px]',
         {'logo--contrast': mode === 'dark'},
       ]}
     >
@@ -32,11 +32,4 @@ const {mode} = Astro.props;
 </div> 
 
 <style is:global>
-  .btnLogo > svg {
-    fill: #EAEAEF;
-  }
-
-  .logo--contrast > svg {
-    fill: #447f88;
-  }
 </style>
