@@ -13,7 +13,12 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
-		<div id="sroll-to-end" class="h-8 w-8 fixed bottom-12 right-10 z-999 cursor-pointer"/>
+		<div class="fixed bottom-12 right-10 z-999 cursor-pointer">
+			<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white-trans70 border border-white-trans70 rounded-lg">
+				<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
+				Skip intro
+			</div>
+		</div>
 		<TodaySection />
 		<div id="middle-element"/>
 		<EnvisionSection />
@@ -23,26 +28,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 
 <script>
 	import { scrollIntoView } from "seamless-scroll-polyfill";
+
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
-
-	let srollTimeout = 0;
-
-	function scrollToEnvision() {
-		srollTimeout && clearTimeout(srollTimeout);
-		const middleElement = document.getElementById("middle-element");
-		const endElement = document.getElementById("end-element");
-		if (middleElement && endElement) {
-			scrollIntoView(middleElement, { behavior: "smooth"});
-			srollTimeout = setTimeout(()=>{
-				scrollIntoView(endElement, { behavior: "smooth"});
-			}, 1700)
-		}
-	}
-
-	const srollToEnd = document.getElementById("sroll-to-end");
-	srollToEnd?.addEventListener("click", scrollToEnvision);
 
 </script>
 
@@ -99,7 +88,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		padding: 0;
 	}
 
-	#sroll-to-end {
+	#sroll-to-end-arrow {
 		background-color: #ffffffb3;
 		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
