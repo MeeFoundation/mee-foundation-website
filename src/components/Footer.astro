@@ -3,6 +3,7 @@ import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
 import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
+import twitterIcon from "../../public/images/twitter-logo.png"
 
 export interface Props {
   mode: "dark" | "light";
@@ -35,7 +36,12 @@ footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundatio
       {footerLinks.map(link => <li><a href={link.link}>{link.name}</a></li>)}
       <li><a href="https://medium.com/meefound">Blog</a></li>
     </ul>
-    <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+    <div class="flex items-center">
+      <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+      <a href="https://twitter.com/mee_foundation" class="ml-8" target="_blank">
+        <img src={twitterIcon} width="28" height="28" class="w-[28px]" alt="Twitter logo" />
+      </a>
+    </div>
     <span class="inline xl:hidden">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
   </div>
 </footer>

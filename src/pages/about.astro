@@ -7,13 +7,11 @@ import identityAgentIcon from "../../assets/identity-agent-icon.svg"
 import hilIcon from "../../assets/hil-icon.svg"
 import meeFoundationIcon from "../../assets/mee-foundation-icon.svg"
 import difIcon from "../../public/images/dif-logo.png"
-import twitterIcon from "../../public/images/twitter-logo.png"
-import AppButtons from '../components/AppButtons.astro';
-import MeeButton from '../components/MeeButton.astro';
+
 
 const textArray = [
   "We are a nonprofit committed to empowering people by putting them in control of their online identity.",
-  "We push back against the power of big tech and surveillance-based advertising by giving people tools to represent them and protect their interests online. These tools increase personal <strong>privacy, autonomy, and convenience.</strong>",
+  "We push back against surveillance advertising by giving people tools to represent them and protect their interests online. These tools increase personal privacy, autonomy, and convenience.",
 ];
 
 const joinUsText = [
@@ -59,18 +57,11 @@ const joinUsText = [
               <p class:list={
                 ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify"
               ]} set:html={joinUsText[0]} />
-              <AppButtons class="aboutButtons mt-20 md:mt-28" noDescription={true} />
             </div>
             <div class="overflow-hidden flex items-center flex-col">
               <p class:list={
                 ["animation-delay-800 lg:animation-delay-1000 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify "]}
                 set:html={joinUsText[1]} />
-                <div class="aboutButtons flex items-center mt-20 md:mt-28">
-                  <MeeButton mode="light" />
-                  <a href="https://twitter.com/mee_foundation" class="ml-8" target="_blank">
-                    <img src={twitterIcon} width="68" height="68" class="w-[68px]" alt="Twitter logo" />
-                  </a>
-                </div>
             </div>
             <div class="overflow-hidden">
               <p class:list={
@@ -155,7 +146,6 @@ const joinUsText = [
 
 <script>
   const aboutTexts = document.querySelectorAll(".aboutText");
-  const aboutButtons = document.querySelectorAll(".aboutButtons");
   const platform = document.querySelector(".platform");
   const platformItems = document.querySelectorAll(".platform__item");
   const platformSubtitle = document.querySelector(".platform__subtitle");
@@ -185,9 +175,6 @@ const joinUsText = [
 
 		aboutTexts.forEach((text) => {
 			observerAboutText.observe(text)
-		});
-		aboutButtons.forEach((btn) => {
-			observerAboutText.observe(btn)
 		});
 
     if (platform) observerPlatform.observe(platform);
