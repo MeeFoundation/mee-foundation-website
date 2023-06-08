@@ -10,6 +10,7 @@ import mainpage2 from '../../assets/phoneScreens/main-page-2.png';
 import init1 from '../../assets/phoneScreens/init-1.png';
 import license6 from '../../assets/phoneScreens/license-6.png';
 import mee7 from '../../assets/phoneScreens/mee-7.png';
+import collects8 from '../../assets/phoneScreens/collects-8.png';
 
 ---
 
@@ -20,12 +21,13 @@ import mee7 from '../../assets/phoneScreens/mee-7.png';
   <div class="w-full hidden lg:flex justify-center">
     <div id="phoneMain" class="phoneMain animate-riseIn p-4 z-10 mt-[412px] border-black02 border-2 rounded-2.5xl h-[650px] w-[350px]">
       <div id="phoneScreens" class="overflow-hidden rounded-xl relative h-full">
-        <img id="screen7" class="phoneScreen absolute" src={mee7} width="318" height="618" />
-        <img id="screen6" class="phoneScreen absolute" src={license6} width="318" height="618" />
-        <img id="screen5" class="phoneScreen absolute" src={billingfilled5} width="318" height="618" />
-        <img id="screen4" class="phoneScreen absolute" src={billing4} width="318" height="618" />
-        <img id="screen3" class="phoneScreen absolute" src={login3} width="318" height="618" />
-        <img id="screen2" class="phoneScreen absolute" src={mainpage2} width="318" height="618" />
+        <img id="screen8" class="phoneScreen absolute" src={mee7} width="318" height="618" />
+        <img id="screen7" class="phoneScreen absolute" src={license6} width="318" height="618" />
+        <img id="screen6" class="phoneScreen absolute" src={billingfilled5} width="318" height="618" />
+        <img id="screen5" class="phoneScreen absolute" src={billing4} width="318" height="618" />
+        <img id="screen4" class="phoneScreen absolute" src={login3} width="318" height="618" />
+        <img id="screen3" class="phoneScreen absolute" src={mainpage2} width="318" height="618" />
+        <img id="screen2" class="phoneScreen absolute" src={collects8} width="318" height="618" />
         <img id="screen1" class="phoneScreen absolute" src={init1} width="318" height="618" />
       </div>
     </div>
@@ -146,7 +148,9 @@ import { parseMatrix } from '../helper'
   const screen5 = document.getElementById("screen5");
   const screen6 = document.getElementById("screen6");
   const screen7 = document.getElementById("screen7");
-  const allScreens = [screen1, screen2, screen3, screen4, screen5, screen6, screen7]
+  const screen8 = document.getElementById("screen8");
+
+  const allScreens = [screen1, screen2, screen3, screen4, screen5, screen6, screen7, screen8]
   let currScreen = screen1
   let currentScreenId = 1
   let currScreenMutationObserveId = 1
