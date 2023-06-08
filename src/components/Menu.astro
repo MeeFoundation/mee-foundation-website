@@ -43,7 +43,7 @@ export const links = [
     flex-direction: row;
     align-items: center;
     padding-top: -4px;
-    margin-top: 4px;
+    margin-top: 8px;
     margin-bottom: 5px;
     line-height: 1;
     letter-spacing: 0.05em;
@@ -60,6 +60,13 @@ export const links = [
     -webkit-transform:translate3d(0,0,0);
     -webkit-transform-style: preserve-3d;
   }
+  .menu__item:first-child {
+    margin-left: 4px;
+  }
+  .menu__item:last-child {
+    margin-right: 4px;
+  }
+
   li.menu__item:hover {
     transform: translateY(-4px);
   }
