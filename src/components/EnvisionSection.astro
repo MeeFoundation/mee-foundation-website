@@ -11,10 +11,10 @@ export interface Props {
 
 const {  } = Astro.props;
 const subtitles = [
-	"Your privacy is respected by blocking tracking and the sale of your data.",
-	"You decide how and when your data is shared, stored, and used.",
-	"You can easily share information with sites without passwords.",
-	"You can trust that apps and sites will act in your best interest."]
+	"your privacy is respected by blocking tracking and the sale of your data.",
+	"you decide how and when your data is shared, stored, and used.",
+	"you can easily share information with sites without passwords.",
+	"you can trust that apps and sites will act in your best interest."]
 ---
 
 <article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
@@ -26,7 +26,7 @@ const subtitles = [
 			<div class="overflow-hidden">
 				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
-			<div id="scrollIndicatorInvision" class="flex flex-col items-center justify-center lg:flex items-center justify-center mt-[40px] z-20 animate-fadeIn">
+			<div id="scrollIndicatorInvision" class="flex flex-col items-center justify-center lg:flex mt-[40px] z-20 animate-fadeIn">
 				<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 				<div class="down-arrow w-4 h-4 mt-1" />
 			</div>
@@ -37,7 +37,7 @@ const subtitles = [
 		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
 			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
 				<div class="overflow-hidden px-5">
-					<h2 class="title text-base leading-5 font-bold tracking-wider text-center animate-riseIn text-black/[.6]">Mee envisions a world where…</h2>
+					<h2 class="uppercase title text-base leading-5 font-bold tracking-wider text-center animate-riseIn text-black/[.6]">Mee envisions a world where…</h2>
 				</div>
 			</div>
 			{subtitles.map(subtitle => (
