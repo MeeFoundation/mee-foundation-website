@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "foundation.mee.android_client",
+      "sha256_cert_fingerprints":
+        ["BF:53:40:30:E3:63:ED:C9:68:64:B2:EB:41:1F:D9:5D:F7:0D:BB:01:3D:7B:78:CF:FF:3A:EE:50:57:77:B8:88"]
+    }
+  }
+]
