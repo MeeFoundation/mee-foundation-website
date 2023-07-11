@@ -1,6 +1,7 @@
 ---
 Title: "Do Not Sell My Personal Information"
 Published: July 25, 2022
+Author: Paul Trevithick
 Tags: Privacy
 ---
 
