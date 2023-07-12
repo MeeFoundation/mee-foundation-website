@@ -7,7 +7,8 @@ import type {RequestData} from '../model/partnerItem';
 import {decodeJwt} from 'jose';
 import {PollApi} from '../api/common';
 import appStoreImg from '../assets/appStore.svg';
-import {APP_STORE_LINK, PARTNER_DATA} from '../../constants';
+import googlePlayImg from '../assets/googlePlay.png';
+import {APP_STORE_LINK, GOOGLE_PLAY_LINK, PARTNER_DATA} from '../../constants';
 
 interface AboutMeePageProps {
   showQrCode?: boolean;
@@ -84,6 +85,21 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
             className="mt-8"
           >
             <img alt="App Store" src={appStoreImg} />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              try {
+                if (partnerData)
+                  localStorage.setItem(PARTNER_DATA, partnerData);
+              } finally {
+                const currentUrlEncoded = window.btoa(window.location.href);
+                window.location.href = `${GOOGLE_PLAY_LINK}&referrer=authorize_mee%3D${currentUrlEncoded}`;
+              }
+            }}
+            className="mt-8 flex w-30 justify-center"
+          >
+            <img alt="App Store" src={googlePlayImg} />
           </button>
         </div>
       </div>
