@@ -136,7 +136,10 @@ const subtitles = [
 
 	const START_AUTOSCROLL_AFTER_MS = 3000
 	const AUTOSCROLL_SPEED_MS = 5000
+	let timer: number | undefined = undefined;
+	let autoscrollId: number
 	let autoScrollOn = false
+	handleAutoscroll()
 
 	function autoScroll() {
 		if (autoScrollOn) {
@@ -144,8 +147,6 @@ const subtitles = [
 		}
 	}
 
-	let timer: number | undefined = undefined;
-	let autoscrollId: number
 	function handleAutoscroll() {
 		if (autoScrollOn) {
 			autoScrollOn = false
@@ -169,6 +170,7 @@ const subtitles = [
 			clearTimeout(timer);
 			clearInterval(scrollToEnvisionIntervalId)
 			window.removeEventListener('wheel', handleAutoscroll)
+			window.removeEventListener('keypress', handleAutoscroll)
 			window.removeEventListener('scroll', clearListeners)
 			figures.forEach(el => {
 				const htmlEl = el as HTMLElement
@@ -179,6 +181,7 @@ const subtitles = [
 
 	window.addEventListener('scroll', clearListeners);
 	window.addEventListener('wheel', handleAutoscroll);
+	window.addEventListener('keypress', handleAutoscroll);
 	// autoscroll end
 
 		const options: IntersectionObserverInit = {
