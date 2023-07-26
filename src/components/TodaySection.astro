@@ -127,8 +127,9 @@ const subtitles = [
 				const htmlEl = el as HTMLElement
 				htmlEl.style.setProperty('animation-duration', '40s')
 			})
+			// final scroll to white section
 			scrollToEnvisionIntervalId = setInterval(() => {
-				window.scrollTo(0, window.scrollY + 10);
+				window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
 			}, 1)
 			clearInterval(autoscrollId)
 		}
