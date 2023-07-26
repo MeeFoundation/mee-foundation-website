@@ -96,6 +96,94 @@ const subtitles = [
 	let flashInProgress = false
 	let scrollIconContainerHidden = false
 	let changeScroll = 0
+	const SUBTITLES_NUMBER = 5
+
+	// autoscroll start
+	const figures = document.querySelectorAll(".floatingFigures > div")
+	let currentSectionId = 0
+	let scrollToEnvisionIntervalId: number
+	const autoscrollSpeedPx = 10
+	const durationAutoscrollMs = 1000
+
+  const smoothScroll = () => {
+		const nextSectionId = currentSectionId + 1
+		if (nextSectionId <= SUBTITLES_NUMBER - 1) {
+			const element = document.getElementById(`section-${nextSectionId}`)
+			const offsetTop = element?.offsetTop
+
+			if (offsetTop) {
+				const iid = setInterval(() => {
+					window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+				}, 0.1)
+				setTimeout(() => {
+					clearInterval(iid)
+					window.scrollTo(0, offsetTop);
+				}, durationAutoscrollMs);
+
+				currentSectionId ++
+			}
+		} else {
+			figures.forEach(el => {
+				const htmlEl = el as HTMLElement
+				htmlEl.style.setProperty('animation-duration', '40s')
+			})
+			// final scroll to white section
+			scrollToEnvisionIntervalId = setInterval(() => {
+				window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+			}, 1)
+			clearInterval(autoscrollId)
+		}
+  }
+
+	const START_AUTOSCROLL_AFTER_MS = 3000
+	const AUTOSCROLL_SPEED_MS = 5000
+	let timer: number | undefined = undefined;
+	let autoscrollId: number
+	let autoScrollOn = false
+	handleAutoscroll()
+
+	function autoScroll() {
+		if (autoScrollOn) {
+			smoothScroll()
+		}
+	}
+
+	function handleAutoscroll() {
+		if (autoScrollOn) {
+			autoScrollOn = false
+			clearInterval(autoscrollId)
+		}
+
+		if(timer !== null) {
+			clearTimeout(timer);
+		}
+		timer = setTimeout(function() {
+			if (!autoScrollOn) {
+				autoScrollOn = true
+				autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
+			}
+
+		}, START_AUTOSCROLL_AFTER_MS);
+	}
+
+	function clearListeners() {
+		if (currBleach >= 1) {
+			clearTimeout(timer);
+			clearInterval(scrollToEnvisionIntervalId)
+			window.removeEventListener('wheel', handleAutoscroll)
+			window.removeEventListener('keypress', handleAutoscroll)
+			window.removeEventListener('scroll', clearListeners)
+			figures.forEach(el => {
+				const htmlEl = el as HTMLElement
+				htmlEl.style.setProperty('animation-duration', '120s')
+			})
+		}
+	}
+
+	window.addEventListener('scroll', clearListeners);
+	window.addEventListener('wheel', handleAutoscroll);
+	window.addEventListener('keypress', handleAutoscroll);
+	// autoscroll end
 
 		const options: IntersectionObserverInit = {
 			// root: document.body,
@@ -167,6 +255,7 @@ const subtitles = [
 						}
 					}
 
+					currentSectionId = Number(entry.target.id.slice(-1))
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
 				} else {
