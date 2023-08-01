@@ -103,8 +103,7 @@ const subtitles = [
 	let currentSectionId = 0
 	let scrollToEnvisionIntervalId: number
 	const autoscrollSpeedPx = 10
-	const durationAutoscrollMs = 1000
-	const stepTime = 10
+	const durationAutoscrollMs = 700
 
   const smoothScroll = () => {
 		const nextSectionId = currentSectionId + 1
@@ -113,11 +112,12 @@ const subtitles = [
 			const offsetTop = element?.offsetTop
 
 			if (offsetTop) {
-
-				document.getElementById(`section-${currentSectionId + 1}`)?.scrollIntoView({behavior: 'smooth'})
-
-
+				const element = document.getElementById(`section-${currentSectionId + 1}`)
+				if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
 				currentSectionId ++
+				if (currentSectionId > SUBTITLES_NUMBER - 1) {
+					currentSectionId = 0
+				}
 			}
 		} else {
 			figures.forEach(el => {
