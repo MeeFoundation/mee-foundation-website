@@ -11,6 +11,9 @@ export default defineConfig({
   build: {
     assets: 'assets'
   },
+  experimental: {
+    assets: true
+   },  
   output: 'static',
   scopedStyleStrategy: 'class'
 });

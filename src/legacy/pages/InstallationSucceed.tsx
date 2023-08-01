@@ -44,7 +44,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-start bg-white px-5 pt-32 text-center">
-      <img className="mb-20 h-12" alt="mee" src={MeeLogo} />
+      <img className="mb-20 h-12" alt="mee" src={MeeLogo.src} />
 
       <h1 className="pb-8 text-2xl font-bold text-primary">
         Let’s set up your first connection!
@@ -60,7 +60,7 @@ const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
           partnerDataUnparsed.client_metadata?.client_name}
       </p>
       <div className="flex flex-row gap-3 pb-10">
-        <img alt="lock" src={LockImage} className="w-4" />
+        <img alt="lock" src={LockImage.src} className="w-4" />
         <p className="text-xl font-bold text-primary">
           {partnerDataUnparsed.partnerDisplayedUrl ||
             partnerDataUnparsed.client_metadata?.display_url}
@@ -129,7 +129,7 @@ const PartnerListItem: React.FC<PartnerListItemProps> = ({partner}) => {
             <p className="text-base">{partner.partnerName}</p>
             <img
               className="w-5"
-              src={partner.isCertified ? MeeCertifiedIcon : MeeCompatibleIcon}
+              src={partner.isCertified ? MeeCertifiedIcon.src : MeeCompatibleIcon.src}
               alt={partner.isCertified ? 'Mee certified' : 'Mee compatible'}
             />
           </div>
@@ -150,7 +150,7 @@ const ContextDoesNotExist: React.FC = () => (
           <div className="sub-header flex flex-col items-center bg-secondary pt-5">
             <div className="flex w-full flex-col items-center justify-center">
               <div className="relative">
-                <img className="" src={cloud} alt="cloud" />
+                <img className="" src={cloud.src} alt="cloud" />
                 <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-center px-8 pt-2">
                   <h1 className="xs:text-3xl px-2 text-center text-xl font-normal text-primary">
                     Let’s set up your first connection
@@ -163,7 +163,7 @@ const ContextDoesNotExist: React.FC = () => (
                   </p>
                 </div>
               </div>
-              <img className="z-10 pt-2" src={guy} alt="person" />
+              <img className="z-10 pt-2" src={guy.src} alt="person" />
               <div
                 className="h-19 relative -mt-2
                flex w-full flex-col items-center justify-center overflow-hidden"

@@ -84,7 +84,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
             }}
             className="mt-8"
           >
-            <img alt="App Store" src={appStoreImg} />
+            <img alt="App Store" src={appStoreImg.src} />
           </button>
           <button
             type="button"
@@ -99,7 +99,7 @@ export const AboutMeePage: React.FC<AboutMeePageProps> = ({
             }}
             className="mt-8 flex w-30 justify-center"
           >
-            <img alt="App Store" src={googlePlayImg} />
+            <img alt="App Store" src={googlePlayImg.src} />
           </button>
         </div>
       </div>

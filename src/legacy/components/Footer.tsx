@@ -27,6 +27,6 @@ export const Footer: React.FC = () => (
         </div>
       </div>
     </div>
-    <img src={head} alt="mee-illustration-2" className="w-23 h-21 absolute -top-7 right-0 left-0 m-auto" />
+    <img src={head.src} alt="mee-illustration-2" className="w-23 h-21 absolute -top-7 right-0 left-0 m-auto" />
   </div>
 );

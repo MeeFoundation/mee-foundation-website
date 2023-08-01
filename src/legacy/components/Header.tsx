@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
           window.location.href = '/';
         }}
       >
-        <img src={logo} alt="mee-logo" className="my-5 h-4" />
+        <img src={logo.src} alt="mee-logo" className="my-5 h-4" />
       </button>
       {logoutVisible && <LogoutButton />}
     </div>
