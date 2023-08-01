@@ -104,6 +104,7 @@ const subtitles = [
 	let scrollToEnvisionIntervalId: number
 	const autoscrollSpeedPx = 10
 	const durationAutoscrollMs = 1000
+	const stepTime = 10
 
   const smoothScroll = () => {
 		const nextSectionId = currentSectionId + 1
@@ -112,13 +113,9 @@ const subtitles = [
 			const offsetTop = element?.offsetTop
 
 			if (offsetTop) {
-				const iid = setInterval(() => {
-					window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
-				}, 0.1)
-				setTimeout(() => {
-					clearInterval(iid)
-					window.scrollTo(0, offsetTop);
-				}, durationAutoscrollMs);
+
+				document.getElementById(`section-${currentSectionId + 1}`)?.scrollIntoView({behavior: 'smooth'})
+
 
 				currentSectionId ++
 			}
