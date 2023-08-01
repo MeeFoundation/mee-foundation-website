@@ -189,6 +189,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"do-not-sell-my-personal-info.md": {
+	id: "do-not-sell-my-personal-info.md";
+  slug: "do-not-sell-my-personal-info";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "personal-data-management-in-30-seconds.md": {
 	id: "personal-data-management-in-30-seconds.md";
   slug: "personal-data-management-in-30-seconds";
