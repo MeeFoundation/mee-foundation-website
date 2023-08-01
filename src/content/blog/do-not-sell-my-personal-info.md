@@ -1,15 +1,17 @@
 ---
-Title: "Do Not Sell My Personal Information"
-Published: July 25, 2022
-Author: Paul Trevithick
-Tags: Privacy
+title: Do Not Sell My Personal Information
+author: Paul Trevithick
+featured: true
+published: 2022-07-25
+tags: 
+    - Privacy
 ---
 
 The CCPA says “A consumer shall have the right, at any time, to direct a business that sells personal information about the consumer to third parties not to sell the consumer’s personal information…”.
 
 Sounds good, but to get them to stop selling your data you have to fill in 6 fields, prove you’re not a robot, and click submit. And then repeat for the 200 digital services you use. Not going to happen. Just like you don’t read the 200 privacy notices.
 
-![disney-dns](../@assets/disney-dns.webp)
+![disney-dns](/src/assets/blog/disney-dns.webp)
 
 > *Every day, Internet users interact with technologies designed to undermine their privacy. Social media apps, surveillance technologies, and the Internet of Things are all built in ways that make it hard to guard personal information. And the law says this is okay because* **it is up to users to protect themselves** *—* **even when the odds are deliberately stacked against them**. — Privacy’s Blueprint: The battle to control the design of new technologies by Woodrow Hartzog.
 

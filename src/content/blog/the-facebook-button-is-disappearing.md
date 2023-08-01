@@ -1,13 +1,15 @@
 ---
-Title: The Facebook button is disappearing
-Published: September 10, 2022
-Author: Paul Trevithick
-Tags: Privacy, Identity
+title: The Facebook button is disappearing
+published: 2022-09-10
+author: Paul Trevithick
+tags: 
+    - Privacy
+    - Identity
 ---
 
 # The Facebook button is disappearing from websites as privacy demands grow
 
-![facebook-disappearing](../@assets/facebook-disappearing.webp)
+![facebook-disappearing](/src/assets/blog/facebook-disappearing.webp)
 
 The disappearing login is the latest sign of Facebook’s diminishing influence on the internet after more than a decade of spectacular growth.” [writes Jonathan Vanian from CNBC](https://www.nbcnews.com/tech/social-media/facebook-button-disappearing-websites-privacy-demands-grow-rcna46869).
 
@@ -15,7 +17,7 @@ The Mee Project nonprofit is working on a surveillance-free alternative that inv
 
 Instead of “Sign in with Facebook” (or Google), the user clicks “Connect with Mee”:
 
-![old-connect-with-mee](../@assets/old-connect-with-mee.webp)
+![old-connect-with-mee](/src/assets/blog/old-connect-with-mee.webp)
 
 The Mee agent is designed to be free, decentralized, open-source, and support the new, self-sovereign [OpenID SIOP](https://openid.net/specs/openid-connect-self-issued-v2-1_0.html) protocol.
 

@@ -2,10 +2,54 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require('tailwindcss/plugin')
 
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      textColor: {
+        skin: {
+          "blog-base": withOpacity("--color-text-base"),
+          "blog-accent": withOpacity("--color-accent"),
+          "blog-inverted": withOpacity("--color-fill"),
+        },
+      },
+      backgroundColor: {
+        skin: {
+          "blog-fill": withOpacity("--color-fill"),
+          "blog-accent": withOpacity("--color-accent"),
+          "blog-inverted": withOpacity("--color-text-base"),
+          "blog-card": withOpacity("--color-card"),
+          "blog-card-muted": withOpacity("--color-card-muted"),
+        },
+      },
+      outlineColor: {
+        skin: {
+          "blog-fill": withOpacity("--color-accent"),
+        },
+      },
+      borderColor: {
+        skin: {
+          "blog-line": withOpacity("--color-border"),
+          "blog-fill": withOpacity("--color-text-base"),
+          "blog-accent": withOpacity("--color-accent"),
+        },
+      },
+      fill: {
+        skin: {
+          "blog-base": withOpacity("--color-text-base"),
+          "blog-accent": withOpacity("--color-accent"),
+        },
+        "blog-transparent": "transparent",
+      },   
       fontSize: {
         '3xl': ['1.75rem', '1.5'],
         '7xl': ['4rem', '1.3'],
@@ -192,9 +236,10 @@ module.exports = {
         DEFAULT: '#BC52AD',
         dark: '#764F8E',
       },
-    },
+    },                 
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require("daisyui"),
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(

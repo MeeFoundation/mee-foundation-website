@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from '@layouts/blog/BlogLayout.astro';
+import Header from '@components/Header.astro';
+import Hr from '@components/blog/Hr.astro';
+import Main from '@layouts/blog/Main.astro';
+import getSortedPosts from "@utils/getSortedPosts";
+import Card from "@components/blog/Card";
+import slugify from "@utils/slugify";
+import LinkButton from "@components/blog/LinkButton.astro";
+import Footer from '@components/Footer.astro';
+
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+
+---
+
+<BlogLayout title="">
+    <Header logoColor="blue" backgroundColor="bg-white" />    
+    <div class="mt-[84px]">
+        <main id="main-content">
+            <section id="hero" class="pb-6 pt-8 mx-auto max-w-3xl px-4">
+                <h1 class="my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl">Mee Foundation Blog</h1>
+            </section>
+            <Hr />
+            {
+                featuredPosts.length > 0 && (
+                  <>
+                    <section id="featured" class="mx-auto max-w-3xl px-4 pb-6 pt-12">
+                      <h2 class="text-2xl font-semibold tracking-wide">Featured Posts</h2>
+                      <ul>
+                        {featuredPosts.map(({ data }) => (
+                          <Card
+                            href={`/blog/posts/${slugify(data)}`}
+                            frontmatter={data}
+                            secHeading={false}
+                          />
+                        ))}
+                      </ul>                      
+                    </section>
+                    <Hr />
+                  </>
+                )
+              }
+            <section id="recent-posts" class="mx-auto max-w-3xl px-4 pb-6 pt-12">
+                <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+                <ul>
+                {
+                    sortedPosts.map(
+                    ({ data }, index) =>
+                        index < 4 && (
+                        <Card
+                            href={`/blog/posts/${slugify(data)}`}
+                            frontmatter={data}
+                            secHeading={false}
+                        />
+                        )
+                    )
+                }
+                </ul>
+                <div class="my-8 text-center">
+                    <LinkButton href="/blog/posts">
+                        All Posts
+                        <svg class="fill-skin-blog-base group-hover:fill-skin-blog-accent inline-block h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                        ><path
+                            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+                        ></path>
+                        </svg>
+                    </LinkButton>
+                </div>
+            </section>              
+        </main>
+    </div>
+</BlogLayout>

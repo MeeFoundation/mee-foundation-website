@@ -189,47 +189,47 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"Personal data management in 30 seconds.md": {
-	id: "Personal data management in 30 seconds.md";
-  slug: "personal-data-management-in-30-seconds";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
-"Smartwallets, digital wallets, and authenticators.md": {
-	id: "Smartwallets, digital wallets, and authenticators.md";
-  slug: "smartwallets-digital-wallets-and-authenticators";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
-"The Facebook button is disappearing.md": {
-	id: "The Facebook button is disappearing.md";
-  slug: "the-facebook-button-is-disappearing";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
-"The Gropper Principle.md": {
-	id: "The Gropper Principle.md";
-  slug: "the-gropper-principle";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
-"User-exclusive Data.md": {
-	id: "User-exclusive Data.md";
-  slug: "user-exclusive-data";
-  body: string;
-  collection: "blog";
-  data: any
-} & { render(): Render[".md"] };
-"\"Do Not Sell My Personal Info\".md": {
-	id: "\"Do Not Sell My Personal Info\".md";
+"do-not-sell-my-personal-info.md": {
+	id: "do-not-sell-my-personal-info.md";
   slug: "do-not-sell-my-personal-info";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"personal-data-management-in-30-seconds.md": {
+	id: "personal-data-management-in-30-seconds.md";
+  slug: "personal-data-management-in-30-seconds";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"smartwallets-digital-wallets-and-authenticators.md": {
+	id: "smartwallets-digital-wallets-and-authenticators.md";
+  slug: "smartwallets-digital-wallets-and-authenticators";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"the-facebook-button-is-disappearing.md": {
+	id: "the-facebook-button-is-disappearing.md";
+  slug: "the-facebook-button-is-disappearing";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"the-gropper-principle.md": {
+	id: "the-gropper-principle.md";
+  slug: "the-gropper-principle";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"user-exclusive-data.md": {
+	id: "user-exclusive-data.md";
+  slug: "user-exclusive-data";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
 
@@ -241,5 +241,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = never;
+	type ContentConfig = typeof import("../src/content/config");
 }
