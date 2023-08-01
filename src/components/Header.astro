@@ -58,3 +58,60 @@ const {logoColor = 'white', backgroundColor = 'bg-transparent', withoutProgress 
     border-radius: 12px;
   }
 </style>
+
+
+<script>
+  const toggleButton = document.querySelector("#menuToggle");
+  const toggleButtonText = document.querySelector("#menuToggle span")
+  const backdrop = document.querySelector("#backdrop");
+  const nav = document.querySelector("#nav");
+  let isMenuOpen = false
+
+  const toggleNav = (e: Event) => {
+    e.stopPropagation();
+    isMenuOpen = toggleButtonText?.textContent === "Menu"
+    const btnText = toggleButtonText?.textContent === "Menu" ? "Close" : "Menu";
+    if(toggleButtonText) {
+      toggleButtonText?.classList.add("opacity-0");
+      toggleButtonText.textContent = btnText;
+      setTimeout(()=>{
+        requestAnimationFrame(()=>{
+          toggleButtonText?.classList.remove("opacity-0");
+          backdrop?.classList.toggle("max-h-0");
+        })
+      }, 200);
+    }
+    if (backdrop?.classList.contains("opacity-0")) {
+      backdrop?.classList.remove("opacity-0");
+      backdrop?.classList.add("opacity-70");
+    } else {
+      backdrop?.classList.remove("opacity-70");
+      backdrop?.classList.add("opacity-0");
+    }
+    toggleButton?.classList.toggle("menu__item--active");
+    nav?.classList.toggle("nav--active");
+    nav?.classList.toggle("max-lg:overflow-y-hidden");
+    nav?.classList.toggle("lg:w-0")
+  }
+
+  toggleButton?.addEventListener("click", toggleNav);
+
+  document.addEventListener("click", (e) => {
+    if (isMenuOpen) {
+      toggleNav(e)
+    }
+  });
+
+  const toggleLink = (button: any) => {
+    const link = button && button.target ? button.target.querySelector("a"): null;
+    const href = link && link.href ? link.href : null;
+    if (href) {
+      window.location.href = href;
+    }
+  }
+
+  const buttons = document.querySelectorAll("li.menu__item");
+  buttons.forEach(
+    button => button.addEventListener("click", toggleLink)
+  );
+</script>
