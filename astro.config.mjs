@@ -7,9 +7,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mee.foundation',
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }), react()],
+  integrations: [tailwind(), react()],
   build: {
     assets: 'assets'
   },
