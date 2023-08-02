@@ -1,5 +1,15 @@
 declare module 'astro:content' {
 	interface Render {
+		'.mdx': Promise<{
+			Content: import('astro').MarkdownInstance<{}>['Content'];
+			headings: import('astro').MarkdownHeading[];
+			remarkPluginFrontmatter: Record<string, any>;
+		}>;
+	}
+}
+
+declare module 'astro:content' {
+	interface Render {
 		'.md': Promise<{
 			Content: import('astro').MarkdownInstance<{}>['Content'];
 			headings: import('astro').MarkdownHeading[];
@@ -196,13 +206,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"personal-data-management-in-30-seconds.md": {
-	id: "personal-data-management-in-30-seconds.md";
+"personal-data-management-in-30-seconds.mdx": {
+	id: "personal-data-management-in-30-seconds.mdx";
   slug: "personal-data-management-in-30-seconds";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 "smartwallets-digital-wallets-and-authenticators.md": {
 	id: "smartwallets-digital-wallets-and-authenticators.md";
   slug: "smartwallets-digital-wallets-and-authenticators";
