@@ -15,5 +15,14 @@ export default defineConfig({
     assets: true
    },  
   output: 'static',
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]',
+        }
+      }
+    }
+  },  
   scopedStyleStrategy: 'class'
 });
