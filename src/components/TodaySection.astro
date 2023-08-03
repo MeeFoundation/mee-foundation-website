@@ -154,6 +154,7 @@ const subtitles = [
 		if(timer !== null) {
 			clearTimeout(timer);
 		}
+
 		timer = setTimeout(function() {
 			if (!autoScrollOn) {
 				autoScrollOn = true
@@ -167,6 +168,7 @@ const subtitles = [
 		if (currBleach >= 1) {
 			clearTimeout(timer);
 			clearInterval(scrollToEnvisionIntervalId)
+			clearInterval(autoscrollId)
 			window.removeEventListener('wheel', handleAutoscroll)
 			window.removeEventListener('keypress', handleAutoscroll)
 			window.removeEventListener('scroll', clearListeners)
@@ -177,9 +179,12 @@ const subtitles = [
 		}
 	}
 
-	window.addEventListener('scroll', clearListeners);
-	window.addEventListener('wheel', handleAutoscroll);
-	window.addEventListener('keypress', handleAutoscroll);
+	const setAutoscrollListeners = () => {
+		window.addEventListener('scroll', clearListeners);
+		window.addEventListener('wheel', handleAutoscroll);
+		window.addEventListener('keypress', handleAutoscroll);
+	}
+	setAutoscrollListeners()
 	// autoscroll end
 
 		const options: IntersectionObserverInit = {
@@ -247,6 +252,9 @@ const subtitles = [
 									}, 1000)
 									clearInterval(bleachIntervalId)
 									showTodatSectionTriggerScroll = 0
+
+									setAutoscrollListeners()
+									autoScrollOn = false
 								}
 							}, bleachSpeedMS)
 						}
@@ -301,6 +309,8 @@ const subtitles = [
 	}
 
 	function scrollToEnvision() {
+		clearListeners()
+		autoScrollOn = false
 		currBleach = 1
 		document.documentElement.style.setProperty('--bleachProgress', '1');
 		const todaySection = document.getElementById("today");
