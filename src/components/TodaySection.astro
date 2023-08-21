@@ -246,7 +246,8 @@ const subtitles = [
 									setTimeout(() => {
 										flashInProgress = false
 										const lastSection = document.getElementById("section-4");
-										if (lastSection) {
+
+										if (lastSection && !currentSectionId) {
 											scrollIntoView(lastSection)
 										}
 									}, 1000)
