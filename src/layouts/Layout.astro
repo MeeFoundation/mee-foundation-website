@@ -196,11 +196,9 @@ import "@styles/base.css";
 		}, SHOW_ERR_ALERT_FOR_MS);
 	}
 
-	sdkInit(errorConnectCb)
+	sdkInit(errorConnectCb);
 
-	window.onscroll = function () {
-		updateScrollIndicator();
-  };
+	window.addEventListener('scroll', updateScrollIndicator);
 
   function updateScrollIndicator() {
 		const scrollIndicator = document.getElementById('scroll-indicator');
@@ -225,15 +223,36 @@ import "@styles/base.css";
     const header = document.getElementById('header');
 		
 		if (envision && header) {
+			const animationControl = document.getElementById("animation-control");
 			const srollToEnd = document.getElementById("sroll-to-end");
       if (!envision.getBoundingClientRect().height) {
 				initWinScroll = 0
-				srollToEnd && srollToEnd.classList.contains('hidden') &&
-				srollToEnd.classList.remove('hidden')
+
+				if (srollToEnd && animationControl) {
+					animationControl.classList.add('white')
+					animationControl.classList.remove('gray')
+
+					srollToEnd.classList.add('white')
+					srollToEnd.classList.add('text-white')
+					srollToEnd.classList.add('border-white')
+					srollToEnd.classList.remove('gray')
+					srollToEnd.classList.remove('text-gray')
+					srollToEnd.classList.remove('border-gray')
+				}
 				return 0;
       } else {
-				srollToEnd && !srollToEnd.classList.contains('hidden') &&
-				srollToEnd.classList.add('hidden')
+				if (srollToEnd && animationControl) {
+					animationControl.classList.add('gray')
+					animationControl.classList.remove('white')
+
+					srollToEnd.classList.add('gray')
+					srollToEnd.classList.add('text-gray')
+					srollToEnd.classList.add('border-gray')
+					srollToEnd.classList.remove('white')
+					srollToEnd.classList.remove('text-white')
+					srollToEnd.classList.remove('border-white')
+				}
+
 				if (initWinScroll === 0) {
 					initWinScroll = winScroll
 				}

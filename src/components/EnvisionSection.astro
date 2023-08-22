@@ -40,8 +40,8 @@ const subtitles = [
 					<h2 class="uppercase title text-base leading-5 font-bold tracking-wider text-center animate-riseIn text-black/[.6]">Mee envisions a world where…</h2>
 				</div>
 			</div>
-			{subtitles.map(subtitle => (
-				<div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh]">
+			{subtitles.map((subtitle, index) => (
+				<div id={`en-section-${index}`} class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh]">
 					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
 					</div>
@@ -136,6 +136,9 @@ const subtitles = [
 					if (entry.target.id === 'logoSection') {
 						isLogoSectionShown = true
 					}
+
+					const event = new CustomEvent("envSectionChanged", { detail: entry.target.id });
+					window.dispatchEvent(event)
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");

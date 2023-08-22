@@ -13,12 +13,21 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
-		<div class="fixed bottom-12 right-10 z-999 cursor-pointer">
-			<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white-trans70 border border-white-trans70 rounded-lg">
-				<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
-				Skip intro
+		<div id="animation-control" class="white" >
+			<div class="fixed bottom-12 left-10 z-999 cursor-pointer">
+				<button id="animation-play-pause-btn" class="pause">
+					<div id="play-icon" class="h-5 w-5"/>
+					<div id="pause-icon" class="h-5 w-5"/>
+				</button>
+			</div>
+			<div class="fixed bottom-12 right-10 z-999 cursor-pointer">
+				<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white border border-white white rounded-lg">
+					<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
+					Get the App
+				</div>
 			</div>
 		</div>
+
 		<TodaySection />
 		<div id="middle-element"/>
 		<EnvisionSection />
@@ -88,8 +97,42 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		padding: 0;
 	}
 
-	#sroll-to-end-arrow {
-		background-color: #ffffffb3;
+	#animation-control.white {
+		#animation-play-pause-btn > #play-icon {
+			background-color: #ffffff;
+			mask: url(/images/play.svg) no-repeat center;
+		}
+
+		#animation-play-pause-btn > #pause-icon {
+			background-color: #ffffff;
+			mask: url(/images/pause.svg) no-repeat center;
+		}
+	}
+
+	#animation-control.gray {
+		#animation-play-pause-btn > #play-icon {
+			background-color: #4d4d4d;
+			mask: url(/images/play.svg) no-repeat center;
+		}
+
+		#animation-play-pause-btn > #pause-icon {
+			background-color: #4d4d4d;
+			mask: url(/images/pause.svg) no-repeat center;
+		}
+	}
+
+	#animation-play-pause-btn.play > #play-icon {display: block;}
+	#animation-play-pause-btn.play > #pause-icon {display: none;}
+	#animation-play-pause-btn.pause > #play-icon {display: none;}
+	#animation-play-pause-btn.pause > #pause-icon {display: block;}
+
+	#sroll-to-end.white #sroll-to-end-arrow {
+		background-color: #ffffff;
+		mask: url(/images/bottom-arrow.svg) no-repeat center;
+	}
+
+	#sroll-to-end.gray #sroll-to-end-arrow {
+		background-color: #4d4d4d;
 		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
 	

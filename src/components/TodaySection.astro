@@ -96,39 +96,77 @@ const subtitles = [
 	let flashInProgress = false
 	let scrollIconContainerHidden = false
 	let changeScroll = 0
-	const SUBTITLES_NUMBER = 5
+	const TO_SUBTITLES_NUMBER = 5
+	const EN_SUBTITLES_NUMBER = 4
 
 	// autoscroll start
 	const figures = document.querySelectorAll(".floatingFigures > div")
 	let currentSectionId = 0
+	let envCurrentSectionId = -1
 	let scrollToEnvisionIntervalId: number
 	const autoscrollSpeedPx = 10
 	const durationAutoscrollMs = 700
+	let playIsOn = true
+	const playPauseBtn = document.getElementById(`animation-play-pause-btn`)
 
   const smoothScroll = () => {
-		const nextSectionId = currentSectionId + 1
-		if (nextSectionId <= SUBTITLES_NUMBER - 1) {
-			const element = document.getElementById(`section-${nextSectionId}`)
-			const offsetTop = element?.offsetTop
+		let sectionType = 'today'
+		if (currBleach >= 1) {
+			sectionType = 'envision'
+		}
 
-			if (offsetTop) {
-				const element = document.getElementById(`section-${currentSectionId + 1}`)
-				if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
-				currentSectionId ++
-				if (currentSectionId > SUBTITLES_NUMBER - 1) {
-					currentSectionId = 0
+		if (sectionType === 'today') {
+			const SUBTITLES_NUMBER = TO_SUBTITLES_NUMBER
+			const idPrefix = 'section'
+			const nextSectionId = currentSectionId + 1
+
+			if (nextSectionId <= SUBTITLES_NUMBER - 1) {
+				const element = document.getElementById(`${idPrefix}-${nextSectionId}`)
+				const offsetTop = element?.offsetTop
+
+				if (offsetTop) {
+					const element = document.getElementById(`${idPrefix}-${currentSectionId + 1}`)
+
+					if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+					currentSectionId ++
+					if (currentSectionId > SUBTITLES_NUMBER - 1) {
+						currentSectionId = 0
+					}
 				}
+			} else {
+				figures.forEach(el => {
+					const htmlEl = el as HTMLElement
+					htmlEl.style.setProperty('animation-duration', '40s')
+				})
+
+				if (scrollToEnvisionIntervalId !== 0) {
+					clearInterval(scrollToEnvisionIntervalId)
+				}
+				// final scroll to white section
+				scrollToEnvisionIntervalId = setInterval(() => {
+					window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+				}, 1)
 			}
 		} else {
-			figures.forEach(el => {
-				const htmlEl = el as HTMLElement
-				htmlEl.style.setProperty('animation-duration', '40s')
-			})
-			// final scroll to white section
-			scrollToEnvisionIntervalId = setInterval(() => {
-				window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
-			}, 1)
-			clearInterval(autoscrollId)
+			const SUBTITLES_NUMBER = EN_SUBTITLES_NUMBER
+			const idPrefix = 'en-section'
+
+			const nextSectionId = envCurrentSectionId
+
+			if (nextSectionId < SUBTITLES_NUMBER - 1) {
+				const element = document.getElementById(`${idPrefix}-${envCurrentSectionId + 1}`)
+				if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+
+				envCurrentSectionId ++
+
+				if (envCurrentSectionId > SUBTITLES_NUMBER - 1) {
+					envCurrentSectionId = 0
+				}
+			} else {
+				scrollToEnvisionIntervalId = setInterval(() => {
+					window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+				}, 1)
+			}
 		}
   }
 
@@ -160,31 +198,64 @@ const subtitles = [
 				autoScrollOn = true
 				autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
 			}
-
 		}, START_AUTOSCROLL_AFTER_MS);
 	}
 
 	function clearListeners() {
-		if (currBleach >= 1) {
-			clearTimeout(timer);
-			clearInterval(scrollToEnvisionIntervalId)
-			clearInterval(autoscrollId)
-			window.removeEventListener('wheel', handleAutoscroll)
-			window.removeEventListener('keypress', handleAutoscroll)
-			window.removeEventListener('scroll', clearListeners)
-			figures.forEach(el => {
-				const htmlEl = el as HTMLElement
-				htmlEl.style.setProperty('animation-duration', '120s')
-			})
-		}
+		clearTimeout(timer);
+		clearInterval(scrollToEnvisionIntervalId)
+		scrollToEnvisionIntervalId = 0
+		clearInterval(autoscrollId)
+		window.removeEventListener('wheel', handleAutoscroll)
+		window.removeEventListener('keypress', handleAutoscroll)
+		window.removeEventListener('scroll', clearListeners)
+		window.removeEventListener('scroll', ifScrollAtEnd)
+		figures.forEach(el => {
+			const htmlEl = el as HTMLElement
+			htmlEl.style.setProperty('animation-duration', '120s')
+		})
 	}
 
 	const setAutoscrollListeners = () => {
-		window.addEventListener('scroll', clearListeners);
+		handleAutoscroll()
 		window.addEventListener('wheel', handleAutoscroll);
 		window.addEventListener('keypress', handleAutoscroll);
+		window.addEventListener('scroll', ifScrollAtEnd);
 	}
 	setAutoscrollListeners()
+
+	playPauseBtn?.addEventListener('click', () => {
+		if (playIsOn) {
+			playPauseBtn.classList.remove('pause')
+			playPauseBtn.classList.add('play')
+			clearListeners()
+			playIsOn = false
+		} else {
+			playPauseBtn.classList.add('pause')
+			playPauseBtn.classList.remove('play')
+			setAutoscrollListeners()
+			playIsOn = true
+		}
+	})
+
+	window.addEventListener('envSectionChanged', (e) => {
+		const id = e.detail
+		const currEnvCurrentSectionId = Number(id.slice(-1))
+
+		if (playIsOn && currEnvCurrentSectionId === EN_SUBTITLES_NUMBER - 1 && envCurrentSectionId === 0) {
+			setAutoscrollListeners()
+		}
+		envCurrentSectionId = currEnvCurrentSectionId
+
+	});
+
+	function ifScrollAtEnd() {
+    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+			if (currBleach >= 1) {
+				clearListeners()
+			}
+    }
+	};
 	// autoscroll end
 
 		const options: IntersectionObserverInit = {
@@ -225,6 +296,12 @@ const subtitles = [
 									mainLogo?.classList.add("logo--contrast");
 
 									logoSection?.classList.remove("opacity-0");
+
+									if (playIsOn) {
+										clearListeners()
+										setAutoscrollListeners()
+										handleAutoscroll()
+									}
 								}
 							}, bleachSpeedMS)
 						}
@@ -253,7 +330,6 @@ const subtitles = [
 									clearInterval(bleachIntervalId)
 									showTodatSectionTriggerScroll = 0
 
-									setAutoscrollListeners()
 									autoScrollOn = false
 								}
 							}, bleachSpeedMS)
