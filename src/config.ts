@@ -1,6 +1,6 @@
 import type { Site, SocialObjects } from "./types";
 
-export const svcUrl: string | undefined = import.meta.env.PUBLIC_SVC_URL as | string | undefined;
+export const svcUrl: string = import.meta.env.PUBLIC_SVC_URL as | string;
 
 export const postsPerPage = 3;
 
