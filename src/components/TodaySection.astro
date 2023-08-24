@@ -89,7 +89,7 @@ const subtitles = [
 	const envisionSection = document.getElementById("envision");
 	const bleachSection = document.getElementById("bleachAnimation");
 	let currBleach = 0
-	const logoSection = document.getElementById("logoSection");
+	const logoSection = document.getElementById("en-section-0");
 	let showTodatSectionTriggerScroll = 0
 	const bleachSpeedMS = 100
 	const bleachStep = 0.02
@@ -97,12 +97,14 @@ const subtitles = [
 	let scrollIconContainerHidden = false
 	let changeScroll = 0
 	const TO_SUBTITLES_NUMBER = 5
-	const EN_SUBTITLES_NUMBER = 4
+	const EN_SUBTITLES_NUMBER = 5
+	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
+
 
 	// autoscroll start
 	const figures = document.querySelectorAll(".floatingFigures > div")
 	let currentSectionId = 0
-	let envCurrentSectionId = -1
+	let envCurrentSectionId = 0
 	let scrollToEnvisionIntervalId: number
 	const autoscrollSpeedPx = 10
 	const durationAutoscrollMs = 700
@@ -128,7 +130,7 @@ const subtitles = [
 					const element = document.getElementById(`${idPrefix}-${currentSectionId + 1}`)
 
 					if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
-					currentSectionId ++
+
 					if (currentSectionId > SUBTITLES_NUMBER - 1) {
 						currentSectionId = 0
 					}
@@ -156,8 +158,6 @@ const subtitles = [
 			if (nextSectionId < SUBTITLES_NUMBER - 1) {
 				const element = document.getElementById(`${idPrefix}-${envCurrentSectionId + 1}`)
 				if (element) scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
-
-				envCurrentSectionId ++
 
 				if (envCurrentSectionId > SUBTITLES_NUMBER - 1) {
 					envCurrentSectionId = 0
@@ -242,16 +242,18 @@ const subtitles = [
 		const id = e.detail
 		const currEnvCurrentSectionId = Number(id.slice(-1))
 
+		console.log('-------', currEnvCurrentSectionId, EN_SUBTITLES_NUMBER, envCurrentSectionId);
 		if (playIsOn && currEnvCurrentSectionId === EN_SUBTITLES_NUMBER - 1 && envCurrentSectionId === 0) {
+			console.log('@@setne');
 			setAutoscrollListeners()
 		}
 		envCurrentSectionId = currEnvCurrentSectionId
-
 	});
 
 	function ifScrollAtEnd() {
     if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
 			if (currBleach >= 1) {
+				console.log('F1');
 				clearListeners()
 			}
     }
@@ -297,6 +299,9 @@ const subtitles = [
 
 									logoSection?.classList.remove("opacity-0");
 
+									const event = new CustomEvent("envSectionShown");
+									window.dispatchEvent(event)
+
 									if (playIsOn) {
 										clearListeners()
 										setAutoscrollListeners()
@@ -314,6 +319,9 @@ const subtitles = [
 
 						if (!flashInProgress) {
 							flashInProgress = true
+
+							const event = new CustomEvent("todaySectionShown");
+							window.dispatchEvent(event)
 
 							let bleachIntervalId = setInterval(() => {
 								if (currBleach > 0) {
@@ -337,6 +345,7 @@ const subtitles = [
 					}
 
 					currentSectionId = Number(entry.target.id.slice(-1))
+					changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.remove('animate-fadeOut','hidden')});
 					entry.target.querySelectorAll(".subtitle").forEach(subtitle => {subtitle.classList.add('animate-riseIn')});
 				} else {
@@ -389,14 +398,73 @@ const subtitles = [
 		autoScrollOn = false
 		currBleach = 1
 		document.documentElement.style.setProperty('--bleachProgress', '1');
-		const todaySection = document.getElementById("today");
-		const envisionSection = document.getElementById("envision");
 		title?.classList.add("animate-fadeOut", "titleBleach");
 		shadow?.classList.add("bg-1");
-		envisionSection?.classList.remove("hidden");
 		window.scrollTo(0, document.body.scrollHeight);
 	}
 
 	const srollToEnd = document.getElementById("sroll-to-end");
 	srollToEnd?.addEventListener("click", scrollToEnvision);
+
+	//set progress
+	window.addEventListener('scroll', updateScrollIndicator);
+	const sectionZero = document.getElementById(`section-0`);
+
+	let inScrollChangeScreenScrollY = changeScreenScrollY
+	let diff = sectionZero && -sectionZero.clientHeight / 2 || changeScreenScrollY
+	let inScrollSectionId = currentSectionId
+
+	updateScrollIndicator()
+	function updateScrollIndicator() {
+		const screenHeight = sectionZero && sectionZero.clientHeight;
+
+		if (!screenHeight) return
+
+		const winScroll =
+			document.body.scrollTop || document.documentElement.scrollTop;
+
+		if (inScrollChangeScreenScrollY !== changeScreenScrollY) {
+			inScrollChangeScreenScrollY = changeScreenScrollY
+			diff = changeScreenScrollY
+
+			if (direction === 'up') {
+				diff = inScrollChangeScreenScrollY - screenHeight
+			}
+		}
+
+		if (inScrollSectionId !== currentSectionId) {
+			const bitProgress = document.getElementById(`today-bit-progress-${inScrollSectionId}`);
+			if (direction === 'down') {
+				if (bitProgress) {
+					bitProgress.style.width = '100%';
+				}
+			} else {
+				if (bitProgress) {
+					bitProgress.style.width = '0%';
+				}
+			}
+			inScrollSectionId = currentSectionId
+		}
+
+		const currScroll = winScroll - diff
+		const percent = currScroll * 100 / screenHeight
+		// console.log('f', currentSectionId, percent, winScroll, changeScreenScrollY);
+		const bitProgress = document.getElementById(`today-bit-progress-${currentSectionId}`);
+		if (bitProgress && percent <= 100) {
+			bitProgress.style.width = percent + '%';
+		}
+	}
+
+	let lastScrollTop = 0;
+	let direction = 'down'
+
+	window.addEventListener("scroll", function(){
+		let st = window.pageYOffset || document.documentElement.scrollTop;
+		if (st > lastScrollTop) {
+			direction = 'down';
+		} else if (st < lastScrollTop) {
+			direction = 'up';
+		}
+		lastScrollTop = st <= 0 ? 0 : st;
+	}, false);
 </script>

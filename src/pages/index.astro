@@ -13,17 +13,31 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
-		<div id="animation-control" class="white" >
-			<div class="fixed bottom-12 left-10 z-999 cursor-pointer">
-				<button id="animation-play-pause-btn" class="pause">
-					<div id="play-icon" class="h-5 w-5"/>
-					<div id="pause-icon" class="h-5 w-5"/>
-				</button>
-			</div>
-			<div class="fixed bottom-12 right-10 z-999 cursor-pointer">
-				<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white border border-white white rounded-lg">
-					<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
-					Get the App
+		<div id="animation-control" class="white fixed bottom-12 left-48 w-[calc(100%-384px)] z-999" >
+			<div class="flex flex-row justify-between">
+				<div class="cursor-pointer absolute top-[-7px] left-[-32px]">
+					<button id="animation-play-pause-btn" class="pause">
+						<div id="play-icon" class="h-5 w-5"/>
+						<div id="pause-icon" class="h-5 w-5"/>
+					</button>
+				</div>
+
+				<div class="w-full cursor-pointer">
+					<div
+						class="progress-nav-bar w-full h-1 flex flex-row justify-between gap-[2px]"
+						id="scroll-nav-bar"
+					/>
+					<div
+						class="hidden progress-nav-bar w-full h-1 flex flex-row justify-between gap-[2px]"
+						id="en-scroll-nav-bar"
+					/>
+				</div>
+
+				<div class="cursor-pointer absolute top-[-17px] right-[-160px]">
+					<div id="sroll-to-end" class="uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
+						<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
+						Get the App
+					</div>
 				</div>
 			</div>
 		</div>
@@ -41,6 +55,59 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+	const todayBitsNumber = 5
+	const invBitsNumber = 6
+	const durationAutoscrollMs = 700
+
+	const toPref = 'today'
+	const enPref = 'env'
+	const navBar = document.getElementById("scroll-nav-bar");
+	const enNavBar = document.getElementById("en-scroll-nav-bar");
+
+	for (let index = 0; index < todayBitsNumber; index++) {
+		const bitProgress = document.createElement("div");
+		bitProgress.id = `${toPref}-bit-progress-${index}`
+		bitProgress.className = 'rounded-full absolute top-0 left-0 bg-[#FFFFFF75] h-[6px]'
+
+		const bit = document.createElement("div");
+		bit.id = `${toPref}-bit-${index}`
+		bit.className = 'relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit bg-[#FFFFFF40] h-[6px]'
+		bit.append(bitProgress)
+		navBar && navBar.append(bit)
+		const el = document.getElementById(`${toPref}-bit-${index}`);
+		el && el.addEventListener('click', () => {
+			const idPrefix = 'section'
+			const element = document.getElementById(`${idPrefix}-${index}`)
+			element && scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+		})
+	}
+
+	for (let index = 0; index < invBitsNumber; index++) {
+		const bitProgress = document.createElement("div");
+		bitProgress.id = `${enPref}-bit-progress-${index}`
+		bitProgress.className = 'rounded-full absolute top-0 left-0 bg-[#4d4d4d] h-[6px]'
+
+		const bit = document.createElement("div");
+		bit.id = `${enPref}-bit-${index}`
+		bit.className = 'relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit bg-[#4d4d4d65] h-[6px]'
+		bit.append(bitProgress)
+		enNavBar && enNavBar.append(bit)
+		const el = document.getElementById(`${enPref}-bit-${index}`);
+		el && el.addEventListener('click', () => {
+			const idPrefix = 'en-section'
+			const element = document.getElementById(`${idPrefix}-${index}`)
+			element && scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+		})
+	}
+
+	window.addEventListener('envSectionShown', () => {
+		navBar?.classList.add('hidden')
+		enNavBar?.classList.remove('hidden')
+	})
+	window.addEventListener('todaySectionShown', () => {
+		navBar?.classList.remove('hidden')
+		enNavBar?.classList.add('hidden')
+	})
 
 </script>
 

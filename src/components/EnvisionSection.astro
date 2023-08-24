@@ -18,7 +18,7 @@ const subtitles = [
 ---
 
 <article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
-	<section id="logoSection" class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
+	<section id="en-section-0" class="logoSection flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
 		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
 			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
 				<Logo />
@@ -41,7 +41,7 @@ const subtitles = [
 				</div>
 			</div>
 			{subtitles.map((subtitle, index) => (
-				<div id={`en-section-${index}`} class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh]">
+				<div id={`en-section-${index+1}`} class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh]">
 					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
 					</div>
@@ -49,7 +49,7 @@ const subtitles = [
 			))}
 		</div>
 	</section>
-	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
+	<section id="en-section-5"  class="section bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
 		<AppButtons btnSize="medium"/>
 	</section>
 	<Footer mode="dark" withAppButtons={false}/>
@@ -118,6 +118,8 @@ const subtitles = [
 	const welcomeSection = document.getElementById("welcomeSection");
 	const sections = document.querySelectorAll('.envision .section');
 	let isLogoSectionShown = false
+	let currentSectionId = 0
+	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
 
 	const options: IntersectionObserverInit = {
 			// root: null,
@@ -133,12 +135,14 @@ const subtitles = [
 					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
 					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
-					if (entry.target.id === 'logoSection') {
+					if (entry.target.id === 'en-section-0') {
 						isLogoSectionShown = true
 					}
 
 					const event = new CustomEvent("envSectionChanged", { detail: entry.target.id });
 					window.dispatchEvent(event)
+					currentSectionId = Number(entry.target.id.slice(-1))
+					changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
@@ -147,7 +151,7 @@ const subtitles = [
 					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
 					entry.target.classList.add("opacity-0");
 
-					if (entry.target.id === 'logoSection' && isLogoSectionShown) {
+					if (entry.target.id === 'en-section-0' && isLogoSectionShown) {
 						isLogoSectionShown = false
 
 						if (direction === 'up') {
@@ -158,7 +162,6 @@ const subtitles = [
 				}
 			})
 		}, options);
-
 
 		sections.forEach((section) => {
 			observer.observe(section)
@@ -176,4 +179,61 @@ const subtitles = [
 			}
 			lastScroll = st
 		})
+
+	window.addEventListener('scroll', updateScrollIndicator);
+	const section1 = document.getElementById(`en-section-1`);
+	const sectionLast = document.getElementById(`en-section-5`);
+
+	let inScrollChangeScreenScrollY = changeScreenScrollY
+	let diff = section1 && -section1.clientHeight / 2 || changeScreenScrollY
+	let inScrollSectionId = currentSectionId
+
+	window.addEventListener('envSectionShown', () => {
+		updateScrollIndicator()
+	})
+
+
+	function updateScrollIndicator() {
+		let screenHeight = section1 && section1.clientHeight;
+		if (currentSectionId === 5) {
+			const padding = 280
+			screenHeight = sectionLast && sectionLast.clientHeight - padding;
+		}
+
+		if (!screenHeight) return
+
+		const winScroll =
+			document.body.scrollTop || document.documentElement.scrollTop;
+
+		if (inScrollChangeScreenScrollY !== changeScreenScrollY) {
+			inScrollChangeScreenScrollY = changeScreenScrollY
+			diff = changeScreenScrollY
+
+			if (direction === 'up') {
+				diff = inScrollChangeScreenScrollY - screenHeight
+			}
+		}
+
+		if (inScrollSectionId !== currentSectionId) {
+			const bitProgress = document.getElementById(`env-bit-progress-${inScrollSectionId}`);
+			if (direction === 'down') {
+				if (bitProgress) {
+					bitProgress.style.width = '100%';
+				}
+			} else {
+				if (bitProgress) {
+					bitProgress.style.width = '0%';
+				}
+			}
+			inScrollSectionId = currentSectionId
+		}
+
+		const currScroll = winScroll - diff
+		const percent = currScroll * 100 / screenHeight
+		// console.log('f', currentSectionId, Math.round(percent), winScroll, changeScreenScrollY);
+		const bitProgress = document.getElementById(`env-bit-progress-${currentSectionId}`);
+		if (bitProgress && percent <= 100) {
+			bitProgress.style.width = percent + '%';
+		}
+	}
 </script>

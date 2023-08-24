@@ -221,14 +221,16 @@ import "@styles/base.css";
     const envision = document.getElementById('envision');
     const today = document.getElementById('today');
     const header = document.getElementById('header');
+		const bleach = document.documentElement.style.getPropertyValue('--bleachProgress')
 		
-		if (envision && header) {
+		if (Number(bleach) >= 1 && envision && header) {
 			const animationControl = document.getElementById("animation-control");
 			const srollToEnd = document.getElementById("sroll-to-end");
       if (!envision.getBoundingClientRect().height) {
 				initWinScroll = 0
 
 				if (srollToEnd && animationControl) {
+					//todo: move out side effects
 					animationControl.classList.add('white')
 					animationControl.classList.remove('gray')
 
@@ -265,6 +267,7 @@ import "@styles/base.css";
 				return scrolled > 0 ? scrolled : 0;
       }
     }
+
     return (winScroll / height) * 100;
   }
 
