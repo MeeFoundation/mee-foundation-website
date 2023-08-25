@@ -50,7 +50,8 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 </Layout>
 
 <script>
-	import { scrollIntoView } from "seamless-scroll-polyfill";
+	// import { scrollIntoView } from "seamless-scroll-polyfill";
+	import scrollIntoView from 'scroll-into-view-if-needed'
 
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
@@ -63,50 +64,122 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	const enPref = 'env'
 	const navBar = document.getElementById("scroll-nav-bar");
 	const enNavBar = document.getElementById("en-scroll-nav-bar");
+	let currSection = 'today'
 
 	for (let index = 0; index < todayBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${toPref}-bit-progress-${index}`
-		bitProgress.className = 'rounded-full absolute top-0 left-0 bg-[#FFFFFF75] h-[6px]'
+		bitProgress.className = 'bit-progress rounded-full absolute top-0 left-0 h-[6px]'
 
 		const bit = document.createElement("div");
 		bit.id = `${toPref}-bit-${index}`
-		bit.className = 'relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit bg-[#FFFFFF40] h-[6px]'
+		bit.className = 'bit relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-[6px]'
 		bit.append(bitProgress)
 		navBar && navBar.append(bit)
 		const el = document.getElementById(`${toPref}-bit-${index}`);
 		el && el.addEventListener('click', () => {
-			const idPrefix = 'section'
-			const element = document.getElementById(`${idPrefix}-${index}`)
-			element && scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+
+			syncStatusBar('section', index)
+			if (currSection === 'env') {
+				currSection = 'today'
+				const event = new CustomEvent("scrollToToday")
+				window.dispatchEvent(event)
+				// make all bits behind unfilled
+
+				setTimeout(() => scrollToSection('section', index)(), 1000)
+			} else {
+				scrollToSection('section', index)()
+			}
 		})
 	}
 
 	for (let index = 0; index < invBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${enPref}-bit-progress-${index}`
-		bitProgress.className = 'rounded-full absolute top-0 left-0 bg-[#4d4d4d] h-[6px]'
+		bitProgress.className = 'bit-progress rounded-full absolute top-0 left-0 h-[6px]'
 
 		const bit = document.createElement("div");
 		bit.id = `${enPref}-bit-${index}`
-		bit.className = 'relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit bg-[#4d4d4d65] h-[6px]'
+		bit.className = 'bit relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-[6px]'
 		bit.append(bitProgress)
-		enNavBar && enNavBar.append(bit)
+		navBar && navBar.append(bit)
 		const el = document.getElementById(`${enPref}-bit-${index}`);
 		el && el.addEventListener('click', () => {
-			const idPrefix = 'en-section'
-			const element = document.getElementById(`${idPrefix}-${index}`)
-			element && scrollIntoView(element, {behavior: 'smooth'}, {duration: durationAutoscrollMs})
+
+			syncStatusBar('en-section', index)
+			if (currSection === 'today') {
+				currSection = 'env'
+				const event = new CustomEvent("scrollToEnv")
+				window.dispatchEvent(event)
+
+				setTimeout(() => scrollToSection('en-section', index)(), 1000)
+			} else {
+				scrollToSection('en-section', index)()
+			}
 		})
 	}
 
+	const scrollToSection = (idPrefix: string, index: number) => () => {
+		const event = new CustomEvent("scrolledTo")
+		window.dispatchEvent(event)
+
+		const element = document.getElementById(`${idPrefix}-${index}`)
+
+		element && scrollIntoView(element, {
+			behavior: (actions) =>
+				actions.forEach(({ el, top, left }) => {
+					const tg = top - el.clientHeight / 2
+					el.scrollTop = tg + 50 //+50 to be over threshold
+					el.scrollLeft = left
+				}),
+		})
+	}
+
+	window.addEventListener('needSyncStatusBar', (params) => {
+		syncStatusBar(params.idPrefix, params.tgIndex)
+	})
+
+	const syncStatusBar = (idPrefix: string, tgIndex: number) => {
+		for (let index = 0; index < todayBitsNumber; index++) {
+			const bitProgress = document.getElementById(`today-bit-progress-${index}`);
+
+			if (bitProgress) {
+				if (idPrefix === 'section') {
+					if (tgIndex < index || tgIndex === index) {
+						bitProgress.style.width = '0%';
+					} else {
+						bitProgress.style.width = '100%';
+					}
+				} else {
+					bitProgress.style.width = '100%';
+				}
+			}
+		}
+
+		for (let index = 0; index < invBitsNumber; index++) {
+			const bitProgress = document.getElementById(`env-bit-progress-${index}`);
+
+			if (bitProgress) {
+				if (idPrefix === 'en-section') {
+					if (tgIndex < index || tgIndex === index) {
+						bitProgress.style.width = '0%';
+					} else {
+						bitProgress.style.width = '100%';
+					}
+				} else {
+					bitProgress.style.width = '0%';
+				}
+			}
+		}
+	}
+
 	window.addEventListener('envSectionShown', () => {
-		navBar?.classList.add('hidden')
-		enNavBar?.classList.remove('hidden')
+		currSection = 'env'
+		console.log('Change section to env');
 	})
 	window.addEventListener('todaySectionShown', () => {
-		navBar?.classList.remove('hidden')
-		enNavBar?.classList.add('hidden')
+		currSection = 'today'
+		console.log('Change section to today');
 	})
 
 </script>
@@ -174,6 +247,13 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 			background-color: #ffffff;
 			mask: url(/images/pause.svg) no-repeat center;
 		}
+
+		.bit {
+			background: #FFFFFF40;
+		}
+		.bit-progress {
+			background: #FFFFFF75;
+		}
 	}
 
 	#animation-control.gray {
@@ -185,6 +265,13 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		#animation-play-pause-btn > #pause-icon {
 			background-color: #4d4d4d;
 			mask: url(/images/pause.svg) no-repeat center;
+		}
+
+		.bit {
+			background: #4d4d4d65;
+		}
+		.bit-progress {
+			background: #4d4d4d;
 		}
 	}
 
