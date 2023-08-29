@@ -20,11 +20,11 @@ const subtitles = [
 <article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
 	<section id="en-section-0" class="logoSection flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
 		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
-			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
+			<div id="envMeeLogo" class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
 				<Logo />
 			</div>
 			<div class="overflow-hidden">
-				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
+				<p id="meeRestoringText" class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
 			</div>
 			<div id="scrollIndicatorInvision" class="flex flex-col items-center justify-center lg:flex mt-[40px] z-20 animate-fadeIn">
 				<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
@@ -120,6 +120,11 @@ const subtitles = [
 	let isLogoSectionShown = false
 	let currentSectionId = 0
 	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
+	const logoSection = document.getElementById("en-section-0");
+
+	const envMeeLogo = document.getElementById("envMeeLogo");
+	const meeRestoringText = document.getElementById("meeRestoringText");
+	const scrollIndicatorInvision = document.getElementById("scrollIndicatorInvision");
 
 	const options: IntersectionObserverInit = {
 			// root: null,
@@ -129,35 +134,44 @@ const subtitles = [
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					// console.log('intersecting', entry.target);
-					// entry.target.querySelector(".subtitle")?.classList.remove("hidden");
 					entry.target.classList.remove("opacity-0");
 					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
 					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
 					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
 					if (entry.target.id === 'en-section-0') {
 						isLogoSectionShown = true
+						logoSection?.classList.remove("opacity-0");
+
+						envMeeLogo?.classList.add('animate-fadeIn')
+						meeRestoringText?.classList.add('animate-riseIn')
+						scrollIndicatorInvision?.classList.add('animate-fadeIn')
+						envMeeLogo?.classList.remove('animate-fadeOut')
+						scrollIndicatorInvision?.classList.remove('animate-fadeOut')
 					}
 
 					const event = new CustomEvent("envSectionChanged", { detail: entry.target.id });
 					window.dispatchEvent(event)
-					currentSectionId = Number(entry.target.id.slice(-1))
-					changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
+					if (currentSectionId !== Number(entry.target.id.slice(-1))) {
+						currentSectionId = Number(entry.target.id.slice(-1))
+						changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
+					}
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
 					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
-					// console.log('removed', entry.target);
-					// setTimeout(()=> entry.target.querySelector(".subtitle")?.classList.add("hidden"),200);
+
 					entry.target.classList.add("opacity-0");
 
 					if (entry.target.id === 'en-section-0' && isLogoSectionShown) {
-						isLogoSectionShown = false
+						logoSection?.classList.add("opacity-0");
 
-						if (direction === 'up') {
-							const screenHeight = window.screen.height;
-							window.scrollTo(0, window.scrollY - 2 * screenHeight); //fix: show first section with little scroll
-						}
+						envMeeLogo?.classList.remove('animate-fadeIn')
+						meeRestoringText?.classList.remove('animate-riseIn')
+						scrollIndicatorInvision?.classList.remove('animate-fadeIn')
+						envMeeLogo?.classList.add('animate-fadeOut')
+						scrollIndicatorInvision?.classList.add('animate-fadeOut')
+
+						isLogoSectionShown = false
 					}
 				}
 			})
@@ -185,20 +199,54 @@ const subtitles = [
 	const sectionLast = document.getElementById(`en-section-5`);
 
 	let inScrollChangeScreenScrollY = changeScreenScrollY
-	let diff = section1 && -section1.clientHeight / 2 || changeScreenScrollY
+	let diff = changeScreenScrollY
 	let inScrollSectionId = currentSectionId
+	let currSection = 'today'
 
-	window.addEventListener('envSectionShown', () => {
-		updateScrollIndicator()
-	})
-
-
-	function updateScrollIndicator() {
+	const getScreenHeight = () => {
 		let screenHeight = section1 && section1.clientHeight;
 		if (currentSectionId === 5) {
 			const padding = 280
 			screenHeight = sectionLast && sectionLast.clientHeight - padding;
 		}
+
+		return screenHeight
+	}
+
+	window.addEventListener('envSectionShown', () => {
+		currSection = 'env'
+
+		updateScrollIndicator()
+	})
+	window.addEventListener('todaySectionShown', () => {
+		currSection = 'today'
+	})
+
+	window.addEventListener('scrolledTo', (e) => {
+		const params = e.detail
+		if (params.section === 'en-section') {
+			currentSectionId = params.index
+			changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
+			diff = changeScreenScrollY
+			inScrollChangeScreenScrollY = changeScreenScrollY
+			inScrollSectionId = currentSectionId
+
+			if (params.index === 0) {
+				// scroll to show the first slide
+				const scrollIntervalId = setInterval(() => {
+					window.scrollTo(0, window.scrollY + 20);
+				}, 5)
+				setTimeout(() => {
+					clearInterval(scrollIntervalId)
+				}, 500)
+			}
+		}
+	});
+
+	function updateScrollIndicator() {
+		if (currSection === 'today') return
+
+		let screenHeight = getScreenHeight()
 
 		if (!screenHeight) return
 
@@ -230,7 +278,7 @@ const subtitles = [
 
 		const currScroll = winScroll - diff
 		const percent = currScroll * 100 / screenHeight
-		// console.log('f', currentSectionId, Math.round(percent), winScroll, changeScreenScrollY);
+
 		const bitProgress = document.getElementById(`env-bit-progress-${currentSectionId}`);
 		if (bitProgress && percent <= 100) {
 			bitProgress.style.width = percent + '%';

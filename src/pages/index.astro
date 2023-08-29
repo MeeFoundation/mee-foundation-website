@@ -50,7 +50,6 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 </Layout>
 
 <script>
-	// import { scrollIntoView } from "seamless-scroll-polyfill";
 	import scrollIntoView from 'scroll-into-view-if-needed'
 
 	window.onbeforeunload = function () {
@@ -82,9 +81,8 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 			syncStatusBar('section', index)
 			if (currSection === 'env') {
 				currSection = 'today'
-				const event = new CustomEvent("scrollToToday")
+				const event = new CustomEvent("scrollToToday", {detail: index})
 				window.dispatchEvent(event)
-				// make all bits behind unfilled
 
 				setTimeout(() => scrollToSection('section', index)(), 1000)
 			} else {
@@ -109,7 +107,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 			syncStatusBar('en-section', index)
 			if (currSection === 'today') {
 				currSection = 'env'
-				const event = new CustomEvent("scrollToEnv")
+				const event = new CustomEvent("scrollToEnv", {detail: index})
 				window.dispatchEvent(event)
 
 				setTimeout(() => scrollToSection('en-section', index)(), 1000)
@@ -119,10 +117,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		})
 	}
 
-	const scrollToSection = (idPrefix: string, index: number) => () => {
-		const event = new CustomEvent("scrolledTo")
-		window.dispatchEvent(event)
-
+	export const scrollToSection = (idPrefix: string, index: number) => () => {
 		const element = document.getElementById(`${idPrefix}-${index}`)
 
 		element && scrollIntoView(element, {
@@ -133,53 +128,60 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 					el.scrollLeft = left
 				}),
 		})
+
+		const event = new CustomEvent("scrolledTo", {detail: {
+			section: idPrefix,
+			index: index
+		}})
+		window.dispatchEvent(event)
 	}
 
-	window.addEventListener('needSyncStatusBar', (params) => {
-		syncStatusBar(params.idPrefix, params.tgIndex)
+	window.addEventListener('needSyncStatusBar', (e) => {
+		const params = e.detail
+		syncStatusBar(params.section, params.index)
 	})
 
 	const syncStatusBar = (idPrefix: string, tgIndex: number) => {
-		for (let index = 0; index < todayBitsNumber; index++) {
-			const bitProgress = document.getElementById(`today-bit-progress-${index}`);
+		setTimeout(() => {
+			for (let index = 0; index < todayBitsNumber; index++) {
+				const bitProgress = document.getElementById(`today-bit-progress-${index}`);
 
-			if (bitProgress) {
-				if (idPrefix === 'section') {
-					if (tgIndex < index || tgIndex === index) {
-						bitProgress.style.width = '0%';
+				if (bitProgress) {
+					if (idPrefix === 'section') {
+						if (tgIndex <= index) {
+							bitProgress.style.width = '0%';
+						} else {
+							bitProgress.style.width = '100%';
+						}
 					} else {
 						bitProgress.style.width = '100%';
 					}
-				} else {
-					bitProgress.style.width = '100%';
 				}
 			}
-		}
 
-		for (let index = 0; index < invBitsNumber; index++) {
-			const bitProgress = document.getElementById(`env-bit-progress-${index}`);
+			for (let index = 0; index < invBitsNumber; index++) {
+				const bitProgress = document.getElementById(`env-bit-progress-${index}`);
 
-			if (bitProgress) {
-				if (idPrefix === 'en-section') {
-					if (tgIndex < index || tgIndex === index) {
-						bitProgress.style.width = '0%';
+				if (bitProgress) {
+					if (idPrefix === 'en-section') {
+						if (tgIndex <= index) {
+							bitProgress.style.width = '0%';
+						} else {
+							bitProgress.style.width = '100%';
+						}
 					} else {
-						bitProgress.style.width = '100%';
+						bitProgress.style.width = '0%';
 					}
-				} else {
-					bitProgress.style.width = '0%';
 				}
 			}
-		}
+		}, 200)
 	}
 
 	window.addEventListener('envSectionShown', () => {
 		currSection = 'env'
-		console.log('Change section to env');
 	})
 	window.addEventListener('todaySectionShown', () => {
 		currSection = 'today'
-		console.log('Change section to today');
 	})
 
 </script>
