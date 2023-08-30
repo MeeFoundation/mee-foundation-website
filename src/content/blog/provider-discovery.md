@@ -1,5 +1,5 @@
 ---
-title: Provider Discovery, a proposal
+title: Provider Discovery
 published: 2023-08-28
 featured: true
 author: Paul Trevithick
@@ -7,13 +7,11 @@ tags:
     - Identity
 ---
 
-# Provider Discovery, a proposal
+# Provider Discovery
 
-While working on Mee digital wallet use cases (e.g. login with wallet using SIOPv2, OpenID4VC issuance, etc.) we encountered a familiar challenge: the RP/VCissuer/VCverifier needs to know about the person's preferred/actual providers (e.g. OpenIDConnect provider, wallet provider, SIOPv2 provider, age verification provider, etc.) **before** the first screen/page of the RP renders. 
+While working on Mee digital wallet use cases (e.g. log in with wallet using SIOPv2, issuance of VC credentials, etc.) we encountered a familiar challenge: the RP needs to know about the person’s providers (e.g. OpenIDConnect provider, wallet provider, SIOPv2 provider, age verification provider, etc.) so it can display appropriate buttons/choices.
 
-We think that others trying to build human-centric technologies will also run into this challenge. Rather than solve this in a Mee-specific or even wallet-specific way, we came up with a general-purpose spec that can be used for any kind of provider. 
+To solve this, we came up with a lightweight, general-purpose spec that can be used by any RP to learn about, adapt to, and take advantage of many kinds of providers that a person might have. It is at https://providerdiscovery.org. 
 
-The spec is at https://providerdiscovery.org. 
-
-We'd love to get feedback and see if this is something that other human-centric technologies could use. Send us an email at contact@mee.foundation. 
+We'd love to get feedback and see if this is something that others can use. Send us an email at contact@mee.foundation. 
 
