@@ -123,6 +123,7 @@ const subtitles = [
 		}
 		scrollIntervalId = setInterval(() => {
 			window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+			console.log('dF');
 		}, autoscrollSpeedMs)
   }
 
@@ -232,6 +233,7 @@ const subtitles = [
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
+					console.log('1', entry);
 					if(entry.target.id === "animationTrigger" && currBleach <= 0 && !skipExplosion) {
 						title?.classList.add("animate-fadeOut", "titleBleach");
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
@@ -379,7 +381,7 @@ const subtitles = [
 
 		if (sectionId === 0) {
 			mainLogo?.classList.add("logo--contrast");
-			// logoSection?.classList.remove("opacity-0");
+			logoSection?.classList.remove("opacity-0");
 		}
 
 		title?.classList.add("animate-fadeOut", "titleBleach");
@@ -415,13 +417,18 @@ const subtitles = [
 	}
 
 	function scrollToTheEnd() {
-		clearListeners()
-		autoScrollOn = false
-		currBleach = 1
-		document.documentElement.style.setProperty('--bleachProgress', '1');
-		title?.classList.add("animate-fadeOut", "titleBleach");
-		shadow?.classList.add("bg-1");
+		scrollToEnvision(5)
+
 		window.scrollTo(0, document.body.scrollHeight);
+
+		const animationControl = document.getElementById("animation-control");
+		animationControl?.classList.add('opacity-0')
+
+		const event = new CustomEvent("needSyncStatusBar", {detail: {
+			section: 'en-section',
+			index: 5
+		}});
+		window.dispatchEvent(event)
 	}
 
 	window.addEventListener('scrollToEnv', (e) => {

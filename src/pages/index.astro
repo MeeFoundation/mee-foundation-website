@@ -14,8 +14,8 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
 		<div id="animation-control" class="white transition-opacity ease-in-out duration-500 fixed bottom-12 left-15 w-[calc(100%-120px)] z-999" >
-			<div class="flex flex-row justify-between">
-				<div class="cursor-pointer mt-[-7px] mr-4">
+			<div class="flex sm:flex-row justify-between flex-col gap-6 sm:gap-0 items-center sm:items-start">
+				<div class="cursor-pointer sm:mt-[-7px] sm:mr-4">
 					<button id="animation-play-pause-btn" class="pause">
 						<div id="play-icon" class="h-5 w-5"/>
 						<div id="pause-icon" class="h-5 w-5"/>
@@ -24,13 +24,13 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 
 				<div class="w-full cursor-pointer">
 					<div
-						class="progress-nav-bar w-full h-1 flex flex-row justify-between gap-[2px]"
+						class="progress-nav-bar w-full flex flex-row justify-between gap-[2px]"
 						id="scroll-nav-bar"
 					/>
 				</div>
 
-				<div class="cursor-pointer mt-[-17px] ml-4">
-					<div id="sroll-to-end" class="whitespace-nowrap uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
+				<div class="cursor-pointer sm:mt-[-17px] sm:ml-4">
+					<div id="sroll-to-end" class="w-fit whitespace-nowrap uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
 						<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
 						Get the App
 					</div>
@@ -53,22 +53,20 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	}
 	const todayBitsNumber = 5
 	const invBitsNumber = 6
-	const durationAutoscrollMs = 700
 
 	const toPref = 'today'
 	const enPref = 'env'
 	const navBar = document.getElementById("scroll-nav-bar");
-	const enNavBar = document.getElementById("en-scroll-nav-bar");
 	let currSection = 'today'
 
 	for (let index = 0; index < todayBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${toPref}-bit-progress-${index}`
-		bitProgress.className = 'bit-progress rounded-full absolute top-0 left-0 h-[6px]'
+		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px] transition-[width]'
 
 		const bit = document.createElement("div");
 		bit.id = `${toPref}-bit-${index}`
-		bit.className = 'bit relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-[6px]'
+		bit.className = 'bit overflow-hidden relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-6 sm:h-[6px]'
 		bit.append(bitProgress)
 		navBar && navBar.append(bit)
 		const el = document.getElementById(`${toPref}-bit-${index}`);
@@ -90,11 +88,11 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	for (let index = 0; index < invBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${enPref}-bit-progress-${index}`
-		bitProgress.className = 'bit-progress rounded-full absolute top-0 left-0 h-[6px]'
+		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px] transition-[width]'
 
 		const bit = document.createElement("div");
 		bit.id = `${enPref}-bit-${index}`
-		bit.className = 'bit relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-[6px]'
+		bit.className = 'bit overflow-hidden relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-6 sm:h-[6px]'
 		bit.append(bitProgress)
 		navBar && navBar.append(bit)
 		const el = document.getElementById(`${enPref}-bit-${index}`);
