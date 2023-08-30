@@ -18,13 +18,13 @@
 		<meta property="twitter:description" content="We are a nonprofit developing an identity agent app that increases the user’s control over their own personal data">
 		<meta property="twitter:image" content="https://mee.foundation/mee_fav_icon.svg">
 
-		<title>Provider Discovery, a proposal</title>
+		<title>Provider Discovery</title>
 	<link rel="stylesheet" href="/assets/about-2.css" />
-<link rel="stylesheet" href="/assets/posts-_slug_.css" />
-<link rel="stylesheet" href="/assets/posts-_slug_-3.css" />
 <link rel="stylesheet" href="/assets/posts-_slug_-1.css" />
+<link rel="stylesheet" href="/assets/posts-_slug_-3.css" />
 <link rel="stylesheet" href="/assets/posts-_slug_-2.css" />
 <link rel="stylesheet" href="/assets/posts-_slug_-4.css" />
+<link rel="stylesheet" href="/assets/posts-_slug_.css" />
 <link rel="stylesheet" href="/assets/index-1.css" /><script type="module" src="/assets/hoisted.ee572395.js"></script></head>
 	<body>
 		
@@ -58,14 +58,13 @@
       </button>
     </div>
     <main id="main-content" class="astro-A3SGT6T7">
-      <h1 class="post-title astro-A3SGT6T7">Provider Discovery, a proposal</h1>
+      <h1 class="post-title astro-A3SGT6T7">Provider Discovery</h1>
       <div class="flex items-center space-x-2 opacity-80 my-2 astro-A3SGT6T7"><svg xmlns="http://www.w3.org/2000/svg" class="scale-100 inline-block h-6 w-6 fill-skin-blog-base" aria-hidden="true"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg><span class="sr-only">Posted on:</span><span class="italic text-base">August 28, 2023<span aria-hidden="true"> | </span><span class="sr-only"> at </span>12:00 AM</span></div>
       <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl astro-A3SGT6T7">
-        <h1 id="provider-discovery-a-proposal">Provider Discovery, a proposal</h1>
-<p>While working on Mee digital wallet use cases (e.g. login with wallet using SIOPv2, OpenID4VC issuance, etc.) we encountered a familiar challenge: the RP/VCissuer/VCverifier needs to know about the person’s preferred/actual providers (e.g. OpenIDConnect provider, wallet provider, SIOPv2 provider, age verification provider, etc.) <strong>before</strong> the first screen/page of the RP renders.</p>
-<p>We think that others trying to build human-centric technologies will also run into this challenge. Rather than solve this in a Mee-specific or even wallet-specific way, we came up with a general-purpose spec that can be used for any kind of provider.</p>
-<p>The spec is at <a href="https://providerdiscovery.org">https://providerdiscovery.org</a>.</p>
-<p>We’d love to get feedback and see if this is something that other human-centric technologies could use. Send us an email at <a href="mailto:contact@mee.foundation">contact@mee.foundation</a>.</p>
+        <h1 id="provider-discovery">Provider Discovery</h1>
+<p>While working on Mee digital wallet use cases (e.g. log in with wallet using SIOPv2, issuance of VC credentials, etc.) we encountered a familiar challenge: the RP needs to know about the person’s providers (e.g. OpenIDConnect provider, wallet provider, SIOPv2 provider, age verification provider, etc.) so it can display appropriate buttons/choices.</p>
+<p>To solve this, we came up with a lightweight, general-purpose spec that can be used by any RP to learn about, adapt to, and take advantage of many kinds of providers that a person might have. It is at <a href="https://providerdiscovery.org">https://providerdiscovery.org</a>.</p>
+<p>We’d love to get feedback and see if this is something that others can use. Send us an email at <a href="mailto:contact@mee.foundation">contact@mee.foundation</a>.</p>
       </article>
 
       <ul class="tags-container astro-A3SGT6T7">
