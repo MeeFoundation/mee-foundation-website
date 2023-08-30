@@ -36,9 +36,9 @@ const subtitles = [
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 			<div class="down-arrow w-4 h-4 mt-1" />
 		</div>
-		<div id="bleachAnimation" class="flex h-[400vh]">
-			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen"/>
-		</div>
+		<div id="animationTrigger" class="z-100 w-[1px] section flex flex-col items-center section-0 overflow-hidden h-screen"/>
+		<div id="bleachAnimation" class="fixed flex h-[400vh]" />
+
   </section>
 </article>
 
@@ -168,10 +168,6 @@ const subtitles = [
 		window.removeEventListener('keypress', handleAutoscroll)
 		window.removeEventListener('scroll', clearListeners)
 		window.removeEventListener('scroll', ifScrollAtEnd)
-		figures.forEach(el => {
-			const htmlEl = el as HTMLElement
-			htmlEl.style.setProperty('animation-duration', '120s')
-		})
 	}
 
 	const setAutoscrollListeners = () => {
@@ -250,6 +246,7 @@ const subtitles = [
 
 						if (!flashInProgress) {
 							flashInProgress = true
+
 							let bleachIntervalId = setInterval(() => {
 								if (currBleach < 1) {
 									currBleach = currBleach + bleachStep
@@ -276,12 +273,6 @@ const subtitles = [
 
 									const event = new CustomEvent("envSectionShown");
 									window.dispatchEvent(event)
-
-									if (playIsOn) {
-										clearListeners()
-										setAutoscrollListeners()
-										handleAutoscroll()
-									}
 								}
 							}, bleachSpeedMS)
 						}
@@ -502,8 +493,6 @@ const subtitles = [
 		const currScroll = winScroll - diff
 		const percent = currScroll * 100 / screenHeight
 		const bitProgress = document.getElementById(`today-bit-progress-${currentSectionId}`);
-
-		// console.log('s1', winScroll, diff, direction, inScrollSectionId, currentSectionId, percent);
 
 		if (bitProgress && percent <= 100) {
 			bitProgress.style.width = percent + '%';

@@ -17,7 +17,7 @@ const subtitles = [
 	"you can trust that apps and sites will act in your best interest."]
 ---
 
-<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh]">
+<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[0vh]">
 	<section id="en-section-0" class="logoSection flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
 		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
 			<div id="envMeeLogo" class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
@@ -161,8 +161,6 @@ const subtitles = [
 					if (entry.target.id === 'en-section-5') {
 						animationControl?.classList.add('opacity-0')
 					}
-
-
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
@@ -245,14 +243,15 @@ const subtitles = [
 			inScrollChangeScreenScrollY = changeScreenScrollY
 			inScrollSectionId = currentSectionId
 
-			if (params.index === 0) {
-				// scroll to show the first slide
+			if (params.index === 0 || params.index === 5) {
+				const howLongMs = params.index === 0 ? 50 : 250
+
 				const scrollIntervalId = setInterval(() => {
 					window.scrollTo(0, window.scrollY + 20);
 				}, 5)
 				setTimeout(() => {
 					clearInterval(scrollIntervalId)
-				}, 500)
+				}, howLongMs)
 			}
 		}
 	});
@@ -294,6 +293,7 @@ const subtitles = [
 		const percent = currScroll * 100 / screenHeight
 
 		const bitProgress = document.getElementById(`env-bit-progress-${currentSectionId}`);
+
 		if (bitProgress && percent <= 100) {
 			bitProgress.style.width = percent + '%';
 		}
