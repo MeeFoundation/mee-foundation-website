@@ -13,9 +13,9 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
-		<div id="animation-control" class="white fixed bottom-12 left-48 w-[calc(100%-384px)] z-999" >
+		<div id="animation-control" class="white transition-opacity ease-in-out duration-500 fixed bottom-12 left-15 w-[calc(100%-120px)] z-999" >
 			<div class="flex flex-row justify-between">
-				<div class="cursor-pointer absolute top-[-7px] left-[-32px]">
+				<div class="cursor-pointer mt-[-7px] mr-4">
 					<button id="animation-play-pause-btn" class="pause">
 						<div id="play-icon" class="h-5 w-5"/>
 						<div id="pause-icon" class="h-5 w-5"/>
@@ -27,14 +27,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 						class="progress-nav-bar w-full h-1 flex flex-row justify-between gap-[2px]"
 						id="scroll-nav-bar"
 					/>
-					<div
-						class="hidden progress-nav-bar w-full h-1 flex flex-row justify-between gap-[2px]"
-						id="en-scroll-nav-bar"
-					/>
 				</div>
 
-				<div class="cursor-pointer absolute top-[-17px] right-[-160px]">
-					<div id="sroll-to-end" class="uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
+				<div class="cursor-pointer mt-[-17px] ml-4">
+					<div id="sroll-to-end" class="whitespace-nowrap uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
 						<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
 						Get the App
 					</div>
@@ -238,7 +234,9 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		gap: 1rem;
 		padding: 0;
 	}
+</style>
 
+<style is:global>
 	#animation-control.white {
 		#animation-play-pause-btn > #play-icon {
 			background-color: #ffffff;

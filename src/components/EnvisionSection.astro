@@ -126,6 +126,8 @@ const subtitles = [
 	const meeRestoringText = document.getElementById("meeRestoringText");
 	const scrollIndicatorInvision = document.getElementById("scrollIndicatorInvision");
 
+	const animationControl = document.getElementById("animation-control");
+
 	const options: IntersectionObserverInit = {
 			// root: null,
 			threshold: 0,
@@ -155,12 +157,20 @@ const subtitles = [
 						currentSectionId = Number(entry.target.id.slice(-1))
 						changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
 					}
+
+					if (entry.target.id === 'en-section-5') {
+						animationControl?.classList.add('opacity-0')
+					}
+
+
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
 					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
 
-					entry.target.classList.add("opacity-0");
+					if (entry.target.id !== 'en-section-5') {
+						entry.target.classList.add("opacity-0");
+					}
 
 					if (entry.target.id === 'en-section-0' && isLogoSectionShown) {
 						logoSection?.classList.add("opacity-0");
@@ -172,6 +182,10 @@ const subtitles = [
 						scrollIndicatorInvision?.classList.add('animate-fadeOut')
 
 						isLogoSectionShown = false
+					}
+
+					if (entry.target.id === 'en-section-5') {
+						animationControl?.classList.remove('opacity-0')
 					}
 				}
 			})
