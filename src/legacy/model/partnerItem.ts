@@ -13,4 +13,9 @@ export type PartnerItem = {
 export type RequestData = {
   nonce: string,
   client_id: string,
+  redirect_uri: string,
+  client_metadata: {
+    client_name: string,
+    logo_uri: string
+  }
 };

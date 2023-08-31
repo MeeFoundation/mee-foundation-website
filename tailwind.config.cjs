@@ -52,6 +52,7 @@ module.exports = {
       },   
       fontSize: {
         '3xl': ['1.75rem', '1.5'],
+        '3.5xl': ['1.875rem', '1.5rem'],
         '7xl': ['4rem', '1.3'],
         '25xl': '6rem',
         'meeBtn': ['22px', '26px'],
@@ -73,6 +74,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Public Sans', ...defaultTheme.fontFamily.sans],
+        imperial: ['NYT Imperial', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         button: '1px 1px 5px rgba(0, 0, 0, 0.12)',
@@ -101,6 +103,8 @@ module.exports = {
         35.5: '8.875rem',
         44.5: '11.125rem',
         45: '11.25rem',
+        58: '14.5rem',
+        73: '18.25rem',
       },
       width: {
         4.5: '1.125rem',
@@ -194,6 +198,7 @@ module.exports = {
       'about-bg4': '#A5C1C5',
       'about-bg5': '#f5e6b0',
       'how-me-header-bg': '#fde3d1',
+      'primary': '#4F868E',
       black: {
         DEFAULT: '#000',
       },
@@ -206,6 +211,7 @@ module.exports = {
         light: '#767676',
         DEFAULT: '#4D4D4D',
         dark: '#444444',
+        900: '#111827'
       },
       blue: {
         cadet: '#5299A3',
