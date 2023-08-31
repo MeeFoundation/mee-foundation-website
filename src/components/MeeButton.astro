@@ -10,11 +10,11 @@ const {mode} = Astro.props;
 <div class="text-center">
   <a id="meeConnectBtn" href="#" class:list={
     [
-      "connectBtn flex flex-row items-center justify-center text-meeBtn eading-normal font-medium w-[343px] h-[51px] text-center rounded-[10px]",
+      "connectBtn flex flex-row items-center justify-center text-meeBtn eading-normal font-medium px-2 sm:px-10 h-[51px] text-center rounded-[10px]",
       {"text-blue bg-white before:bg-blue": mode === "dark",
       "bg-blue text-white before:bg-white": mode === "light"}
     ]}>
-    <span>Connect with</span>
+    <span class="text-sm sm:text-base">Continue with</span>
     <div
       class:list={[
         'block logo h-[16px] w-[56px] h-5 pt-0 ml-[10px]',
@@ -22,7 +22,9 @@ const {mode} = Astro.props;
       ]}
     >
       <Logo />
+      
     </div>
+    <span class="pl-2 text-sm sm:text-base">Smartwallet</span>
   </a>
   <div
     class:list={[
