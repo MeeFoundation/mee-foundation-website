@@ -199,9 +199,12 @@ import "@styles/base.css";
 	sdkInit(errorConnectCb);
 
 	// outdated with new indicators
-	// window.addEventListener('scroll', updateScrollIndicator);
+	window.addEventListener('scroll', updateScrollIndicator);
+	const todaySection = document.getElementById("today");
 
   function updateScrollIndicator() {
+		if (todaySection) return
+
 		const scrollIndicator = document.getElementById('scroll-indicator');
 
 		if (scrollIndicator) {
@@ -269,37 +272,10 @@ import "@styles/base.css";
 		const bleach = document.documentElement.style.getPropertyValue('--bleachProgress')
 		
 		if (Number(bleach) >= 1 && envision && header) {
-			const animationControl = document.getElementById("animation-control");
-			const srollToEnd = document.getElementById("sroll-to-end");
       if (!envision.getBoundingClientRect().height) {
 				initWinScroll = 0
-
-				if (srollToEnd && animationControl) {
-					//todo: move out side effects
-					// animationControl.classList.add('white')
-					// animationControl.classList.remove('gray')
-
-					// srollToEnd.classList.add('white')
-					// srollToEnd.classList.add('text-white')
-					// srollToEnd.classList.add('border-white')
-					// srollToEnd.classList.remove('gray')
-					// srollToEnd.classList.remove('text-gray')
-					// srollToEnd.classList.remove('border-gray')
-				}
 				return 0;
       } else {
-				if (srollToEnd && animationControl) {
-					// animationControl.classList.add('gray')
-					// animationControl.classList.remove('white')
-
-					// srollToEnd.classList.add('gray')
-					// srollToEnd.classList.add('text-gray')
-					// srollToEnd.classList.add('border-gray')
-					// srollToEnd.classList.remove('white')
-					// srollToEnd.classList.remove('text-white')
-					// srollToEnd.classList.remove('border-white')
-				}
-
 				if (initWinScroll === 0) {
 					initWinScroll = winScroll
 				}

@@ -22,11 +22,11 @@ const subtitles = [
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
 			</div>
     </div>
-		<div id={`section-negative`} class="w-25 border section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
+		<div id={`section-negative`} class="w-25section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
 
 		</div>
 		{subtitles.map((subtitle, index) => (
-			<div id={`section-${index}`} class="w-25 border section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
+			<div id={`section-${index}`} class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
 				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
 					<h2 id={`subtitle-${index}`} class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 				</div>
@@ -36,7 +36,7 @@ const subtitles = [
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
 			<div class="down-arrow w-4 h-4 mt-1" />
 		</div>
-		<div id="animationTrigger" class="z-100 w-[1px] section flex flex-col items-center section-0 overflow-hidden h-screen"/>
+		<div id="animationTrigger" class="w-[10px] section flex flex-col items-center section-0 overflow-hidden h-screen"/>
 		<div id="bleachAnimation" class="fixed flex h-[400vh]" />
 
   </section>
@@ -141,21 +141,23 @@ const subtitles = [
 	}
 
 	function handleAutoscroll() {
-		if (autoScrollOn) {
-			autoScrollOn = false
-			clearInterval(autoscrollId)
-		}
-
-		if(timer !== null) {
-			clearTimeout(timer);
-		}
-
-		timer = setTimeout(function() {
-			if (!autoScrollOn) {
-				autoScrollOn = true
-				autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
+		if (playIsOn) {
+			if (autoScrollOn) {
+				autoScrollOn = false
+				clearInterval(autoscrollId)
 			}
-		}, START_AUTOSCROLL_AFTER_MS);
+
+			if(timer !== null) {
+				clearTimeout(timer);
+			}
+
+			timer = setTimeout(function() {
+				if (!autoScrollOn) {
+					autoScrollOn = true
+					autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
+				}
+			}, START_AUTOSCROLL_AFTER_MS);
+		}
 	}
 
 	function clearListeners() {
@@ -227,13 +229,12 @@ const subtitles = [
 	// autoscroll end
 
 		const options: IntersectionObserverInit = {
-			threshold: 0.5,
-			rootMargin: "-50% 0% 0%"
+			threshold: 0,
+			rootMargin: "-40% 0% -60%"
 		};
 		const observer = new IntersectionObserver((entries, _) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					console.log('1', entry);
 					if(entry.target.id === "animationTrigger" && currBleach <= 0 && !skipExplosion) {
 						title?.classList.add("animate-fadeOut", "titleBleach");
 						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
@@ -338,7 +339,6 @@ const subtitles = [
 						curr?.classList.remove('animate-riseIn')
 						curr?.classList.add('animate-fadeOut')
 					}
-
 				}
 			})
 		}, options);
