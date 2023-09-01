@@ -2,7 +2,7 @@
 title: User-exclusive Data
 published: 2021-10-10
 author: Paul Trevithick
-featured: true
+featured: false
 tags: 
     - Privacy
     - Personal Data

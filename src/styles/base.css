@@ -128,4 +128,25 @@
     font-weight: 100;
     src: url('/src/assets/fonts/PublicSans-ThinItalic.woff2') format('woff2');
   }
+
+  @font-face {
+    font-family: 'NYT Imperial';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/src/assets/fonts/NYTImperial-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'NYT Imperial';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/src/assets/fonts/NYTImperial-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'NYT Imperial';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/src/assets/fonts/NYTImperialSemiBold-Regular.ttf') format('truetype');
+  }
 }
