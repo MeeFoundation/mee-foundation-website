@@ -153,6 +153,7 @@ const subtitles = [
 
 			timer = setTimeout(function() {
 				if (!autoScrollOn) {
+					setPlayOn()
 					autoScrollOn = true
 					autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
 				}
