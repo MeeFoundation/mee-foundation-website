@@ -114,8 +114,6 @@ const subtitles = [
 
 <!-- <script is:inline src="https://unpkg.com/intersection-observer-debugger"></script> -->
 <script>
-	const envision = document.getElementById("envision");
-	const welcomeSection = document.getElementById("welcomeSection");
 	const sections = document.querySelectorAll('.envision .section');
 	let isLogoSectionShown = false
 	let currentSectionId = 0
@@ -127,9 +125,9 @@ const subtitles = [
 	const scrollIndicatorInvision = document.getElementById("scrollIndicatorInvision");
 
 	const animationControl = document.getElementById("animation-control");
+	const header = document.getElementById("header");
 
 	const options: IntersectionObserverInit = {
-			// root: null,
 			threshold: 0,
 			rootMargin: "-40% 0% -60%"
 		};
@@ -144,11 +142,12 @@ const subtitles = [
 						isLogoSectionShown = true
 						logoSection?.classList.remove("opacity-0");
 
+						envMeeLogo?.classList.remove('hidden')
 						envMeeLogo?.classList.add('animate-fadeIn')
+						meeRestoringText?.classList.remove('hidden')
 						meeRestoringText?.classList.add('animate-riseIn')
+						scrollIndicatorInvision?.classList.remove('!hidden')
 						scrollIndicatorInvision?.classList.add('animate-fadeIn')
-						envMeeLogo?.classList.remove('animate-fadeOut')
-						scrollIndicatorInvision?.classList.remove('animate-fadeOut')
 					}
 
 					const event = new CustomEvent("envSectionChanged", { detail: entry.target.id });
@@ -156,10 +155,14 @@ const subtitles = [
 					if (currentSectionId !== Number(entry.target.id.slice(-1))) {
 						currentSectionId = Number(entry.target.id.slice(-1))
 						changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
+
+						const eventTo = new CustomEvent("onCurrentIndexChanged", {detail: currentSectionId});
+						window.dispatchEvent(eventTo)
 					}
 
 					if (entry.target.id === 'en-section-5') {
 						animationControl?.classList.add('opacity-0')
+						header?.classList.add('bg-white', 'lg:bg-transparent')
 					}
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
@@ -174,16 +177,18 @@ const subtitles = [
 						logoSection?.classList.add("opacity-0");
 
 						envMeeLogo?.classList.remove('animate-fadeIn')
+						envMeeLogo?.classList.add('hidden')
 						meeRestoringText?.classList.remove('animate-riseIn')
+						meeRestoringText?.classList.add('hidden')
 						scrollIndicatorInvision?.classList.remove('animate-fadeIn')
-						envMeeLogo?.classList.add('animate-fadeOut')
-						scrollIndicatorInvision?.classList.add('animate-fadeOut')
+						scrollIndicatorInvision?.classList.add('!hidden')
 
 						isLogoSectionShown = false
 					}
 
 					if (entry.target.id === 'en-section-5' && direction === 'up') {
 						animationControl?.classList.remove('opacity-0')
+						header?.classList.remove('bg-white', 'lg:bg-transparent')
 					}
 				}
 			})

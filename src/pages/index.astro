@@ -52,12 +52,62 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		window.scrollTo(0, 0);
 	}
 	const todayBitsNumber = 5
-	const invBitsNumber = 6
+	const envBitsNumber = 6
 
 	const toPref = 'today'
 	const enPref = 'env'
 	const navBar = document.getElementById("scroll-nav-bar");
 	let currSection = 'today'
+	let currIndex = 0
+
+	const getPrefixName = (name: string) => {
+		if (name === 'today') {
+			return 'section'
+		} else {
+			return 'en-section'
+		}
+	}
+
+	const goToSection = (section: string, index: number) => {
+		syncStatusBar(getPrefixName(section), index)
+
+		if (currSection === section) {
+			scrollToSection(getPrefixName(section), index)
+		} else {
+			currSection = section
+			const eventName = section === 'today'
+				? "scrollToToday"
+				: "scrollToEnv"
+
+			const event = new CustomEvent(eventName, {detail: index})
+			window.dispatchEvent(event)
+
+			setTimeout(() => scrollToSection(getPrefixName(section), index), 1000)
+		}
+	}
+
+	document.body.onkeydown = function(e){
+		if (e.code === 'ArrowLeft') {
+			if (currSection === 'env' && currIndex === 0) {
+				goToSection('today', todayBitsNumber - 1)
+				console.log('1', currSection, currIndex);
+			} else if (currIndex > 0) {
+				goToSection(currSection, currIndex - 1)
+				console.log('2', currSection, currIndex);
+			}
+		}
+
+		if (e.code === 'ArrowRight') {
+			if (currSection === 'today' && currIndex === todayBitsNumber - 1) {
+				goToSection('env', 0)
+				console.log('3', currSection, currIndex);
+			} else if ((currIndex < todayBitsNumber - 1 && currSection === 'today')
+				|| (currIndex < envBitsNumber - 1 && currSection === 'env')) {
+				goToSection(currSection, currIndex + 1)
+				console.log('4', currSection, currIndex);
+			}
+		}
+	};
 
 	for (let index = 0; index < todayBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
@@ -71,21 +121,11 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		navBar && navBar.append(bit)
 		const el = document.getElementById(`${toPref}-bit-${index}`);
 		el && el.addEventListener('click', () => {
-
-			syncStatusBar('section', index)
-			if (currSection === 'env') {
-				currSection = 'today'
-				const event = new CustomEvent("scrollToToday", {detail: index})
-				window.dispatchEvent(event)
-
-				setTimeout(() => scrollToSection('section', index)(), 1000)
-			} else {
-				scrollToSection('section', index)()
-			}
+			goToSection('today', index)
 		})
 	}
 
-	for (let index = 0; index < invBitsNumber; index++) {
+	for (let index = 0; index < envBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${enPref}-bit-progress-${index}`
 		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px] transition-[width]'
@@ -97,28 +137,18 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		navBar && navBar.append(bit)
 		const el = document.getElementById(`${enPref}-bit-${index}`);
 		el && el.addEventListener('click', () => {
-
-			syncStatusBar('en-section', index)
-			if (currSection === 'today') {
-				currSection = 'env'
-				const event = new CustomEvent("scrollToEnv", {detail: index})
-				window.dispatchEvent(event)
-
-				setTimeout(() => scrollToSection('en-section', index)(), 1000)
-			} else {
-				scrollToSection('en-section', index)()
-			}
+			goToSection('env', index)
 		})
 	}
 
-	export const scrollToSection = (idPrefix: string, index: number) => () => {
+	export const scrollToSection = (idPrefix: string, index: number) => {
 		const element = document.getElementById(`${idPrefix}-${index}`)
+		currIndex = index
 
 		element && scrollIntoView(element, {
 			behavior: (actions) =>
 				actions.forEach(({ el, top, left }) => {
-					const tg = top - el.clientHeight / 2
-					el.scrollTop = tg + 50 //+50 to be over threshold
+					el.scrollTop = top
 					el.scrollLeft = left
 				}),
 		})
@@ -129,6 +159,11 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		}})
 		window.dispatchEvent(event)
 	}
+
+	window.addEventListener('onCurrentIndexChanged', (e) => {
+		console.log('list', e.detail);
+		currIndex = e.detail
+	})
 
 	window.addEventListener('needSyncStatusBar', (e) => {
 		const params = e.detail
@@ -153,7 +188,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 				}
 			}
 
-			for (let index = 0; index < invBitsNumber; index++) {
+			for (let index = 0; index < envBitsNumber; index++) {
 				const bitProgress = document.getElementById(`env-bit-progress-${index}`);
 
 				if (bitProgress) {
