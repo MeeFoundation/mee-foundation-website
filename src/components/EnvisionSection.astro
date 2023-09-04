@@ -159,11 +159,6 @@ const subtitles = [
 						const eventTo = new CustomEvent("onCurrentIndexChanged", {detail: currentSectionId});
 						window.dispatchEvent(eventTo)
 					}
-
-					if (entry.target.id === 'en-section-5') {
-						animationControl?.classList.add('opacity-0')
-						header?.classList.add('bg-white', 'lg:bg-transparent')
-					}
 				} else {
 					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
 					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
@@ -185,11 +180,6 @@ const subtitles = [
 
 						isLogoSectionShown = false
 					}
-
-					if (entry.target.id === 'en-section-5' && direction === 'up') {
-						animationControl?.classList.remove('opacity-0')
-						header?.classList.remove('bg-white', 'lg:bg-transparent')
-					}
 				}
 			})
 		}, options);
@@ -197,6 +187,25 @@ const subtitles = [
 		sections.forEach((section) => {
 			observer.observe(section)
 		});
+
+		const section1 = document.getElementById(`en-section-1`);
+		const sectionLast = document.getElementById(`en-section-5`);
+
+		const optionsForLast: IntersectionObserverInit = {
+			threshold: 0,
+		};
+		const observerForLast = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					animationControl?.classList.add('opacity-0')
+					header?.classList.add('bg-white', 'lg:bg-transparent')
+				} else {
+					animationControl?.classList.remove('opacity-0')
+					header?.classList.remove('bg-white', 'lg:bg-transparent')
+				}
+			})
+		}, optionsForLast);
+		sectionLast && observerForLast.observe(sectionLast)
 
 		let lastScroll = 0
 		let direction: string
@@ -212,8 +221,6 @@ const subtitles = [
 		})
 
 	window.addEventListener('scroll', updateScrollIndicator);
-	const section1 = document.getElementById(`en-section-1`);
-	const sectionLast = document.getElementById(`en-section-5`);
 
 	let inScrollChangeScreenScrollY = changeScreenScrollY
 	let diff = changeScreenScrollY

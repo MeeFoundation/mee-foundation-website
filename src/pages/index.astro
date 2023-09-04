@@ -90,21 +90,17 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		if (e.code === 'ArrowLeft') {
 			if (currSection === 'env' && currIndex === 0) {
 				goToSection('today', todayBitsNumber - 1)
-				console.log('1', currSection, currIndex);
 			} else if (currIndex > 0) {
 				goToSection(currSection, currIndex - 1)
-				console.log('2', currSection, currIndex);
 			}
 		}
 
 		if (e.code === 'ArrowRight') {
 			if (currSection === 'today' && currIndex === todayBitsNumber - 1) {
 				goToSection('env', 0)
-				console.log('3', currSection, currIndex);
 			} else if ((currIndex < todayBitsNumber - 1 && currSection === 'today')
 				|| (currIndex < envBitsNumber - 1 && currSection === 'env')) {
 				goToSection(currSection, currIndex + 1)
-				console.log('4', currSection, currIndex);
 			}
 		}
 	};
@@ -112,7 +108,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	for (let index = 0; index < todayBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${toPref}-bit-progress-${index}`
-		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px] transition-[width]'
+		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px]'
 
 		const bit = document.createElement("div");
 		bit.id = `${toPref}-bit-${index}`
@@ -128,7 +124,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	for (let index = 0; index < envBitsNumber; index++) {
 		const bitProgress = document.createElement("div");
 		bitProgress.id = `${enPref}-bit-progress-${index}`
-		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px] transition-[width]'
+		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px]'
 
 		const bit = document.createElement("div");
 		bit.id = `${enPref}-bit-${index}`
@@ -148,7 +144,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		element && scrollIntoView(element, {
 			behavior: (actions) =>
 				actions.forEach(({ el, top, left }) => {
-					el.scrollTop = top
+					const _top = (idPrefix === 'section' && index === 0)
+						? top - (screen.height / 2)
+						: top
+					el.scrollTop = _top
 					el.scrollLeft = left
 				}),
 		})
