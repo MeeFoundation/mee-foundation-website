@@ -12,7 +12,7 @@ import {APP_STORE_LINK, GOOGLE_PLAY_LINK, PARTNER_DATA} from '../../constants';
 import exchangeArrowIcon from '../../assets/exchange-arrow.svg';
 import advantageMarkIcon from '../../assets/advantage-mark.svg';
 import qrCodeIcon from '../../assets/qrcode-logo.svg';
-import meeLogo from '../assets/mee_logo.svg';
+import meeLogo from '../../assets/mee-logo-square.svg';
 
 interface AdvantageItemProps {
   text: string;
@@ -41,6 +41,10 @@ export const AboutMeePage: React.FC = () => {
       return undefined;
     }
   }, [partnerData]);
+
+  const isMee = partnerDataUnparsed?.redirect_uri.startsWith(
+    'https://mee.foundation',
+  );
 
   const getData = async () => {
     const nonce = partnerDataUnparsed?.nonce;
@@ -77,14 +81,18 @@ export const AboutMeePage: React.FC = () => {
               Log in with Smartwallet
             </h1>
             <div className="flex flex-row items-center justify-center gap-4 pt-6">
+              {isMee || (
+                <>
+                  <img
+                    alt="Partner Logo"
+                    className="w-12"
+                    src={partnerDataUnparsed?.client_metadata.logo_uri}
+                  />
+                  <img alt="Exchange" src={exchangeArrowIcon.src} />
+                </>
+              )}
               <img
-                alt="Partner Logo"
-                className="h-16 w-16 rounded-full border border-black p-4"
-                src={partnerDataUnparsed?.client_metadata.logo_uri}
-              />
-              <img alt="Exchange" src={exchangeArrowIcon.src} />
-              <img
-                className="h-16 w-16 rounded-full border border-black p-4"
+                className="rounded-full4 w-12"
                 alt="Mee Logo"
                 src={meeLogo.src}
               />
@@ -141,21 +149,28 @@ export const AboutMeePage: React.FC = () => {
               <img className="h-6 w-6" alt="qr code" src={qrCodeIcon.src} />
               <p className="text-base font-semibold">Scan QR</p>
             </button>
-            <a
-              className="mb-6 mt-6 underline"
-              href={partnerDataUnparsed?.redirect_uri}
-            >
-              All login options
-            </a>
+            {isMee || (
+              <a
+                className="mt-6 underline"
+                href={partnerDataUnparsed?.redirect_uri}
+              >
+                All login options
+              </a>
+            )}
           </div>
           <div
             ref={qrCodeRef}
-            className="mx-14 mb-6 flex w-full flex-col items-center justify-start gap-8 rounded-lg border-primary md:ml-0 md:mr-4 md:border md:p-4"
+            className="mx-14 mb-6 mt-6 flex w-full flex-col items-center justify-start gap-8 rounded-lg border-primary md:ml-0 md:mr-4 md:mt-0 md:border md:p-4"
           >
             <QRCodeSVG
               className="h-full w-73 md:w-full"
               value={`https://auth.mee.foundation/authorize?scope=${scope}&request=${partnerData}&respondTo=proxy`}
             />
+            <p className="px-4">
+              Not sure how to scan this QR code? Open the camera on your
+              smartphone and hover it over the QR code to open or download the
+              Mee Smartwallet app.
+            </p>
           </div>
         </div>
       </div>
