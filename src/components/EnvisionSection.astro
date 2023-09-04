@@ -200,8 +200,10 @@ const subtitles = [
 					animationControl?.classList.add('opacity-0')
 					header?.classList.add('bg-white', 'lg:bg-transparent')
 				} else {
-					animationControl?.classList.remove('opacity-0')
-					header?.classList.remove('bg-white', 'lg:bg-transparent')
+					if (direction === 'up') {
+						animationControl?.classList.remove('opacity-0')
+						header?.classList.remove('bg-white', 'lg:bg-transparent')
+					}
 				}
 			})
 		}, optionsForLast);

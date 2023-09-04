@@ -99,6 +99,8 @@ const subtitles = [
 	const EN_SUBTITLES_NUMBER = 5
 	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
 	let skipExplosion = false
+	let currSection = 'today'
+	const animationControl = document.getElementById("animation-control");
 
 	// autoscroll start
 	let currentSectionId = 0
@@ -211,7 +213,7 @@ const subtitles = [
 
 	function ifScrollAtEnd() {
     if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-			if (currBleach >= 1) {
+			if (currSection === 'env') {
 				setPlayOff()
 				clearListeners()
 			}
@@ -240,6 +242,7 @@ const subtitles = [
 
 						if (!flashInProgress) {
 							flashInProgress = true
+							animationControl?.classList.add('opacity-0')
 
 							let bleachIntervalId = setInterval(() => {
 								if (currBleach < 1) {
@@ -260,6 +263,9 @@ const subtitles = [
 											index: 0
 										}});
 										window.dispatchEvent(eventTo)
+										currSection = 'env'
+
+										animationControl?.classList.remove('opacity-0')
 									}, 1000)
 									clearInterval(bleachIntervalId)
 
@@ -281,6 +287,7 @@ const subtitles = [
 
 						if (!flashInProgress) {
 							flashInProgress = true
+							animationControl?.classList.add('opacity-0')
 
 							const event = new CustomEvent("todaySectionShown");
 							window.dispatchEvent(event)
@@ -308,6 +315,8 @@ const subtitles = [
 											}});
 											window.dispatchEvent(eventTo)
 										}
+										animationControl?.classList.remove('opacity-0')
+										currSection = 'today'
 									}, 1000)
 									clearInterval(bleachIntervalId)
 									showTodatSectionTriggerScroll = 0
@@ -388,6 +397,7 @@ const subtitles = [
 
 		const event = new CustomEvent("envSectionShown");
 		window.dispatchEvent(event)
+		currSection = 'env'
 
 		setTimeout(() => {
 			skipExplosion = false
@@ -411,6 +421,7 @@ const subtitles = [
 
 			skipExplosion = false
 		}, 2000)
+		currSection = 'today'
 	}
 
 	function scrollToTheEnd() {
