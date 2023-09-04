@@ -213,6 +213,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"provider-discovery.md": {
+	id: "provider-discovery.md";
+  slug: "provider-discovery";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "smartwallets-digital-wallets-and-authenticators.md": {
 	id: "smartwallets-digital-wallets-and-authenticators.md";
   slug: "smartwallets-digital-wallets-and-authenticators";
