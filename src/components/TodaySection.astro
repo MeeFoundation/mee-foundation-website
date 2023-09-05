@@ -111,13 +111,18 @@ const subtitles = [
 	let playIsOn = false
 	const playPauseBtn = document.getElementById(`animation-play-pause-btn`)
 	let scrollIntervalId = 0
+	let currScrollY = window.scrollY
 
   const smoothScroll = () => {
 		if (scrollIntervalId !== 0) {
 			clearInterval(scrollIntervalId)
 		}
 		scrollIntervalId = setInterval(() => {
-			window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+			// fix for IPhone scroll jerks
+			if (window.scrollY >= currScrollY) {
+				window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
+				currScrollY = window.scrollY
+			}
 		}, autoscrollSpeedMs)
   }
 
@@ -220,6 +225,7 @@ const subtitles = [
     }
 	};
 	// autoscroll end
+	let wentEnvTimestamp: number
 
 		const options: IntersectionObserverInit = {
 			threshold: 0,
@@ -266,6 +272,7 @@ const subtitles = [
 										currSection = 'env'
 
 										animationControl?.classList.remove('opacity-0')
+										wentEnvTimestamp = Date.now()
 									}, 1000)
 									clearInterval(bleachIntervalId)
 
@@ -280,7 +287,14 @@ const subtitles = [
 						}
 					}
 
-					if(entry.target.id === "animationTrigger" && currBleach > 0 && !skipExplosion) {
+					// iphone fix
+					const minMsDiff = 5000
+					const isEnoughtTimeFromSectionChanged = Date.now() - wentEnvTimestamp > minMsDiff
+					if(entry.target.id === "animationTrigger"
+						&& currBleach > 0
+						&& !skipExplosion
+						&& isEnoughtTimeFromSectionChanged) {
+
 						envisionSection?.classList.add("hidden");
 						mainLogo?.classList.remove("logo--contrast");
 						logoSection?.classList.add("opacity-0");
@@ -317,6 +331,7 @@ const subtitles = [
 										}
 										animationControl?.classList.remove('opacity-0')
 										currSection = 'today'
+										currScrollY = window.scrollY
 									}, 1000)
 									clearInterval(bleachIntervalId)
 									showTodatSectionTriggerScroll = 0
@@ -422,6 +437,7 @@ const subtitles = [
 			skipExplosion = false
 		}, 2000)
 		currSection = 'today'
+		currScrollY = window.scrollY
 	}
 
 	function scrollToTheEnd() {
@@ -455,6 +471,7 @@ const subtitles = [
 			diff = changeScreenScrollY
 			inScrollChangeScreenScrollY = changeScreenScrollY
 			inScrollSectionId = currentSectionId
+			currScrollY = window.scrollY
 		}
 	});
 
