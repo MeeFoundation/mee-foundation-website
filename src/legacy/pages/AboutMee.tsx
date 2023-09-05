@@ -99,7 +99,11 @@ export const AboutMeePage: React.FC = () => {
             </div>
 
             <h2 className="w-58 pt-6 text-center text-base font-semibold">
-              {`${partnerDataUnparsed?.client_metadata.client_name} and Mee are committed to`}
+              {`${
+                isMee
+                  ? 'The Mee Foundation'
+                  : partnerDataUnparsed?.client_metadata.client_name
+              } and Mee are committed to`}
             </h2>
             <div className="pt-1.5">
               <AdvantageItem text="surveillance-free interactions" />
