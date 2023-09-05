@@ -209,6 +209,21 @@ const subtitles = [
 		}, optionsForLast);
 		sectionLast && observerForLast.observe(sectionLast)
 
+
+		const optionsForLastForStopScroll: IntersectionObserverInit = {
+			threshold: [0.4],
+			rootMargin: "0% 0% -20%"
+		};
+		const observerForLastForStopScroll = new IntersectionObserver((entries, _) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const event = new CustomEvent("atTheAppLinks");
+					window.dispatchEvent(event)
+				}
+			})
+		}, optionsForLastForStopScroll);
+		sectionLast && observerForLastForStopScroll.observe(sectionLast)
+
 		let lastScroll = 0
 		let direction: string
 		document.addEventListener('scroll', () => {

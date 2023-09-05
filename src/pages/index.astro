@@ -82,7 +82,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 			const event = new CustomEvent(eventName, {detail: index})
 			window.dispatchEvent(event)
 
-			setTimeout(() => scrollToSection(getPrefixName(section), index), 1000)
+			setTimeout(() => {
+				scrollToSection(getPrefixName(section), index)
+				syncStatusBar(getPrefixName(section), index)
+			}, 1000)
 		}
 	}
 
@@ -160,7 +163,6 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 	}
 
 	window.addEventListener('onCurrentIndexChanged', (e) => {
-		console.log('list', e.detail);
 		currIndex = e.detail
 	})
 

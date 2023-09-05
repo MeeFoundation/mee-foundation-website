@@ -168,14 +168,12 @@ const subtitles = [
 		window.removeEventListener('wheel', handleAutoscroll)
 		window.removeEventListener('keypress', handleAutoscroll)
 		window.removeEventListener('scroll', clearListeners)
-		window.removeEventListener('scroll', ifScrollAtEnd)
 	}
 
 	const setAutoscrollListeners = () => {
 		handleAutoscroll()
 		window.addEventListener('wheel', handleAutoscroll);
 		window.addEventListener('keypress', handleAutoscroll);
-		window.addEventListener('scroll', ifScrollAtEnd);
 	}
 	setAutoscrollListeners()
 
@@ -216,14 +214,11 @@ const subtitles = [
 		envCurrentSectionId = currEnvCurrentSectionId
 	});
 
-	function ifScrollAtEnd() {
-    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-			if (currSection === 'env') {
-				setPlayOff()
-				clearListeners()
-			}
-    }
-	};
+	window.addEventListener('atTheAppLinks', () => {
+		setPlayOff()
+		clearListeners()
+	})
+
 	// autoscroll end
 	let wentEnvTimestamp: number
 
