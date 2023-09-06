@@ -108,36 +108,28 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		}
 	};
 
-	for (let index = 0; index < todayBitsNumber; index++) {
+	const addSectionBit = (pref: string, index: number) => {
 		const bitProgress = document.createElement("div");
-		bitProgress.id = `${toPref}-bit-progress-${index}`
+		bitProgress.id = `${pref}-bit-progress-${index}`
 		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px]'
 
 		const bit = document.createElement("div");
-		bit.id = `${toPref}-bit-${index}`
+		bit.id = `${pref}-bit-${index}`
 		bit.className = 'bit overflow-hidden relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-6 sm:h-[6px]'
 		bit.append(bitProgress)
 		navBar && navBar.append(bit)
-		const el = document.getElementById(`${toPref}-bit-${index}`);
+		const el = document.getElementById(`${pref}-bit-${index}`);
 		el && el.addEventListener('click', () => {
-			goToSection('today', index)
+			goToSection(pref, index)
 		})
 	}
 
-	for (let index = 0; index < envBitsNumber; index++) {
-		const bitProgress = document.createElement("div");
-		bitProgress.id = `${enPref}-bit-progress-${index}`
-		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px]'
+	for (let index = 0; index < todayBitsNumber; index++) {
+		addSectionBit(toPref, index)
+	}
 
-		const bit = document.createElement("div");
-		bit.id = `${enPref}-bit-${index}`
-		bit.className = 'bit overflow-hidden relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-6 sm:h-[6px]'
-		bit.append(bitProgress)
-		navBar && navBar.append(bit)
-		const el = document.getElementById(`${enPref}-bit-${index}`);
-		el && el.addEventListener('click', () => {
-			goToSection('env', index)
-		})
+	for (let index = 0; index < envBitsNumber; index++) {
+		addSectionBit(enPref, index)
 	}
 
 	export const scrollToSection = (idPrefix: string, index: number) => {
