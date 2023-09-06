@@ -296,6 +296,7 @@ const subtitles = [
 					// iphone fix
 					const minMsDiff = 5000
 					const isEnoughtTimeFromSectionChanged = Date.now() - wentEnvTimestamp > minMsDiff
+					console.log('g', Date.now() - wentEnvTimestamp);
 					if(entry.target.id === "animationTrigger"
 						&& currBleach > 0
 						&& !skipExplosion
@@ -449,7 +450,8 @@ const subtitles = [
 	function scrollToTheEnd() {
 		scrollToEnvision(5)
 
-		window.scrollTo(0, document.body.scrollHeight);
+		const appsSection = document.getElementById("en-section-5");
+		appsSection && scrollIntoView(appsSection)
 
 		const animationControl = document.getElementById("animation-control");
 		animationControl?.classList.add('opacity-0')
