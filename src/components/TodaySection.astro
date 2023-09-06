@@ -15,7 +15,7 @@ const subtitles = [
 
 <article id="today" class="flex today flex-col items-center">
 	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
-  <section class="relative z-20 flex flex-col items-center text-center w-full md:w-[692px]">
+  <section class="sectionTitle relative z-20 flex flex-col items-center text-center w-full md:w-[692px]">
 		<Background />
     <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
 			<div class="overflow-hidden">
@@ -26,7 +26,7 @@ const subtitles = [
 
 		{subtitles.map((subtitle, index) => (
 			<div id={`section-${index}`} class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
 					<h2 id={`subtitle-${index}`} class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
 				</div>
 			</div>
@@ -74,6 +74,17 @@ const subtitles = [
 		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
 
+</style>
+<style is:global>
+	@media (max-height: 800px) {
+		.sectionTitle {
+			top: -20vh!important;
+		}
+
+		.sectionText {
+			top: 30vh!important;
+		}
+	}
 </style>
 
 <script>
