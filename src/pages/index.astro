@@ -13,12 +13,31 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 <Layout title="Mee Foundation">
 	<Header backgroundColor="bg-transparent"/>
 	<main class="overflow-x-visible bg-white">
-		<div class="fixed bottom-12 right-10 z-999 cursor-pointer">
-			<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white-trans70 border border-white-trans70 rounded-lg">
-				<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
-				Skip intro
+		<div id="animation-control" class="white transition-opacity ease-in-out duration-500 fixed bottom-5 sm:bottom-12 left-5 sm:left-15 w-[calc(100%-40px)] sm:w-[calc(100%-120px)] z-999" >
+			<div class="flex sm:flex-row justify-between flex-col gap-6 sm:gap-0 items-center sm:items-start">
+				<div class="cursor-pointer sm:mt-[-7px] sm:mr-4">
+					<button id="animation-play-pause-btn" class="play">
+						<div id="play-icon" class="h-5 w-5"/>
+						<div id="pause-icon" class="h-5 w-5"/>
+					</button>
+				</div>
+
+				<div class="w-full cursor-pointer">
+					<div
+						class="progress-nav-bar w-full flex flex-row justify-between gap-1 sm:gap-[2px]"
+						id="scroll-nav-bar"
+					/>
+				</div>
+
+				<div class="cursor-pointer sm:mt-[-17px] sm:ml-4">
+					<div id="sroll-to-end" class="w-fit whitespace-nowrap uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full">
+						<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1"/>
+						Get the App
+					</div>
+				</div>
 			</div>
 		</div>
+
 		<TodaySection />
 		<div id="middle-element"/>
 		<EnvisionSection />
@@ -27,11 +46,165 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 </Layout>
 
 <script>
-	import { scrollIntoView } from "seamless-scroll-polyfill";
+	import scrollIntoView from 'scroll-into-view-if-needed'
 
 	window.onbeforeunload = function () {
 		window.scrollTo(0, 0);
 	}
+	const todayBitsNumber = 5
+	const envBitsNumber = 6
+
+	const toPref = 'today'
+	const enPref = 'env'
+	const navBar = document.getElementById("scroll-nav-bar");
+	let currSection = 'today'
+	let currIndex = 0
+
+	const getPrefixName = (name: string) => {
+		if (name === 'today') {
+			return 'section'
+		} else {
+			return 'en-section'
+		}
+	}
+
+	const goToSection = (section: string, index: number) => {
+		syncStatusBar(getPrefixName(section), index)
+
+		if (currSection === section) {
+			scrollToSection(getPrefixName(section), index)
+		} else {
+			currSection = section
+			const eventName = section === 'today'
+				? "scrollToToday"
+				: "scrollToEnv"
+
+			const event = new CustomEvent(eventName, {detail: index})
+			window.dispatchEvent(event)
+
+			setTimeout(() => {
+				scrollToSection(getPrefixName(section), index)
+				syncStatusBar(getPrefixName(section), index)
+			}, 1000)
+		}
+	}
+
+	document.body.onkeydown = function(e){
+		if (e.code === 'ArrowLeft') {
+			if (currSection === 'env' && currIndex === 0) {
+				goToSection('today', todayBitsNumber - 1)
+			} else if (currIndex > 0) {
+				goToSection(currSection, currIndex - 1)
+			}
+		}
+
+		if (e.code === 'ArrowRight') {
+			if (currSection === 'today' && currIndex === todayBitsNumber - 1) {
+				goToSection('env', 0)
+			} else if ((currIndex < todayBitsNumber - 1 && currSection === 'today')
+				|| (currIndex < envBitsNumber - 1 && currSection === 'env')) {
+				goToSection(currSection, currIndex + 1)
+			}
+		}
+	};
+
+	const addSectionBit = (pref: string, index: number) => {
+		const bitProgress = document.createElement("div");
+		bitProgress.id = `${pref}-bit-progress-${index}`
+		bitProgress.className = 'bit-progress absolute top-0 left-0 h-6 sm:h-[6px]'
+
+		const bit = document.createElement("div");
+		bit.id = `${pref}-bit-${index}`
+		bit.className = 'bit overflow-hidden relative w-full first:rounded-l-full last:rounded-r-full nav-bar-bit h-6 sm:h-[6px]'
+		bit.append(bitProgress)
+		navBar && navBar.append(bit)
+		const el = document.getElementById(`${pref}-bit-${index}`);
+		el && el.addEventListener('click', () => {
+			goToSection(pref, index)
+		})
+	}
+
+	for (let index = 0; index < todayBitsNumber; index++) {
+		addSectionBit(toPref, index)
+	}
+
+	for (let index = 0; index < envBitsNumber; index++) {
+		addSectionBit(enPref, index)
+	}
+
+	export const scrollToSection = (idPrefix: string, index: number) => {
+		const element = document.getElementById(`${idPrefix}-${index}`)
+		currIndex = index
+
+		element && scrollIntoView(element, {
+			behavior: (actions) =>
+				actions.forEach(({ el, top, left }) => {
+					const _top = (idPrefix === 'section' && index === 0)
+						? top - (screen.height / 2)
+						: top
+					el.scrollTop = _top
+					el.scrollLeft = left
+				}),
+		})
+
+		const event = new CustomEvent("scrolledTo", {detail: {
+			section: idPrefix,
+			index: index
+		}})
+		window.dispatchEvent(event)
+	}
+
+	window.addEventListener('onCurrentIndexChanged', (e) => {
+		currIndex = e.detail
+	})
+
+	window.addEventListener('needSyncStatusBar', (e) => {
+		const params = e.detail
+		syncStatusBar(params.section, params.index)
+	})
+
+	const syncStatusBar = (idPrefix: string, tgIndex: number) => {
+		setTimeout(() => {
+			for (let index = 0; index < todayBitsNumber; index++) {
+				const bitProgress = document.getElementById(`today-bit-progress-${index}`);
+
+				if (bitProgress) {
+					if (idPrefix === 'section') {
+						if (tgIndex <= index) {
+							bitProgress.style.width = '0%';
+						} else {
+							bitProgress.style.width = '100%';
+						}
+					} else {
+						bitProgress.style.width = '100%';
+					}
+				}
+			}
+
+			for (let index = 0; index < envBitsNumber; index++) {
+				const bitProgress = document.getElementById(`env-bit-progress-${index}`);
+
+				if (bitProgress) {
+					if (idPrefix === 'en-section') {
+						if (tgIndex <= index) {
+							bitProgress.style.width = '0%';
+						} else {
+							bitProgress.style.width = '100%';
+						}
+					} else {
+						bitProgress.style.width = '0%';
+					}
+				}
+			}
+		}, 200)
+	}
+
+	window.addEventListener('envSectionShown', () => {
+		currSection = 'env'
+	})
+	window.addEventListener('todaySectionShown', () => {
+		currSection = 'today'
+	})
 
 </script>
 
@@ -87,9 +260,59 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		gap: 1rem;
 		padding: 0;
 	}
+</style>
 
-	#sroll-to-end-arrow {
-		background-color: #ffffffb3;
+<style is:global>
+	#animation-control.white {
+		#animation-play-pause-btn > #play-icon {
+			background-color: #ffffff;
+			mask: url(/images/play.svg) no-repeat center;
+		}
+
+		#animation-play-pause-btn > #pause-icon {
+			background-color: #ffffff;
+			mask: url(/images/pause.svg) no-repeat center;
+		}
+
+		.bit {
+			background: #FFFFFF40;
+		}
+		.bit-progress {
+			background: #FFFFFF75;
+		}
+	}
+
+	#animation-control.gray {
+		#animation-play-pause-btn > #play-icon {
+			background-color: #4d4d4d;
+			mask: url(/images/play.svg) no-repeat center;
+		}
+
+		#animation-play-pause-btn > #pause-icon {
+			background-color: #4d4d4d;
+			mask: url(/images/pause.svg) no-repeat center;
+		}
+
+		.bit {
+			background: #4d4d4d65;
+		}
+		.bit-progress {
+			background: #4d4d4d;
+		}
+	}
+
+	#animation-play-pause-btn.play > #play-icon {display: block;}
+	#animation-play-pause-btn.play > #pause-icon {display: none;}
+	#animation-play-pause-btn.pause > #play-icon {display: none;}
+	#animation-play-pause-btn.pause > #pause-icon {display: block;}
+
+	#sroll-to-end.white #sroll-to-end-arrow {
+		background-color: #ffffff;
+		mask: url(/images/bottom-arrow.svg) no-repeat center;
+	}
+
+	#sroll-to-end.gray #sroll-to-end-arrow {
+		background-color: #4d4d4d;
 		mask: url(/images/bottom-arrow.svg) no-repeat center;
 	}
 	
