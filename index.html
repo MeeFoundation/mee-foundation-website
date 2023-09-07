@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="/assets/about-2.css" />
 <link rel="stylesheet" href="/assets/about.css" />
 <link rel="stylesheet" href="/assets/index.css" />
-<link rel="stylesheet" href="/assets/index-1.css" /><script type="module" src="/assets/hoisted.78d41fa2.js"></script></head>
+<link rel="stylesheet" href="/assets/index-1.css" /><script type="module" src="/assets/hoisted.7f088a4c.js"></script></head>
 	<body>
 		
 	<header id="header" class="header fixed top-0 z-200 w-full h-[84px] bg-transparent">
@@ -48,15 +48,31 @@
   
 </header>
 	<main class="overflow-x-visible bg-white astro-J7PV25F6">
-		<div class="fixed bottom-12 right-10 z-999 cursor-pointer astro-J7PV25F6">
-			<div id="sroll-to-end" class="flex items-center p-2 text-sm text-white-trans70 border border-white-trans70 rounded-lg astro-J7PV25F6">
-				<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1 astro-J7PV25F6"></div>
-				Skip intro
+		<div id="animation-control" class="white transition-opacity ease-in-out duration-500 fixed bottom-5 sm:bottom-12 left-5 sm:left-15 w-[calc(100%-40px)] sm:w-[calc(100%-120px)] z-999 astro-J7PV25F6">
+			<div class="flex sm:flex-row justify-between flex-col gap-6 sm:gap-0 items-center sm:items-start astro-J7PV25F6">
+				<div class="cursor-pointer sm:mt-[-7px] sm:mr-4 astro-J7PV25F6">
+					<button id="animation-play-pause-btn" class="play astro-J7PV25F6">
+						<div id="play-icon" class="h-5 w-5 astro-J7PV25F6"></div>
+						<div id="pause-icon" class="h-5 w-5 astro-J7PV25F6"></div>
+					</button>
+				</div>
+
+				<div class="w-full cursor-pointer astro-J7PV25F6">
+					<div class="progress-nav-bar w-full flex flex-row justify-between gap-1 sm:gap-[2px] astro-J7PV25F6" id="scroll-nav-bar"></div>
+				</div>
+
+				<div class="cursor-pointer sm:mt-[-17px] sm:ml-4 astro-J7PV25F6">
+					<div id="sroll-to-end" class="w-fit whitespace-nowrap uppercase flex items-center py-2 px-4 text-sm text-white border border-white white rounded-full astro-J7PV25F6">
+						<div id="sroll-to-end-arrow" class="h-4 w-4 mr-1 astro-J7PV25F6"></div>
+						Get the App
+					</div>
+				</div>
 			</div>
 		</div>
+
 		<article id="today" class="flex today flex-col items-center astro-FG5FHEWA">
 	
-  <section class="relative z-20 flex flex-col items-center text-center w-full md:w-[692px] astro-FG5FHEWA">
+  <section class="sectionTitle relative z-20 flex flex-col items-center text-center w-full md:w-[692px] astro-FG5FHEWA">
 		<div class="top-0 fixed h-screen w-screen background astro-Y3SOREGM">
   <div class="body grid animate-fadeIn-long astro-VC5TSDMU">
   <div class="tunnel astro-VC5TSDMU">
@@ -142,41 +158,43 @@
 				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400 astro-FG5FHEWA">In today’s digital world...</h2>
 			</div>
     </div>
-		<div id="section-0" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">there is an online power imbalance.</h2>
+		<div id="section-negative" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[50vh] astro-FG5FHEWA"></div>
+
+		<div id="section-0" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh] astro-FG5FHEWA">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 id="subtitle-0" class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">there is an online power imbalance.</h2>
 				</div>
-			</div><div id="section-1" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">you can’t control who has your data or how they’ll use it.</h2>
+			</div><div id="section-1" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh] astro-FG5FHEWA">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 id="subtitle-1" class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">you can’t control who has your data or how they’ll use it.</h2>
 				</div>
-			</div><div id="section-2" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">data brokers and marketers are buying and selling information about you without your knowledge.</h2>
+			</div><div id="section-2" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh] astro-FG5FHEWA">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 id="subtitle-2" class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">data brokers and marketers are buying and selling information about you without your knowledge.</h2>
 				</div>
-			</div><div id="section-3" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">businesses treat your data as their property.</h2>
+			</div><div id="section-3" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh] astro-FG5FHEWA">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 id="subtitle-3" class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">businesses treat your data as their property.</h2>
 				</div>
-			</div><div id="section-4" class="section flex flex-col items-center section-0 overflow-hidden h-[200vh] astro-FG5FHEWA">
-				<div class="overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
-					<h2 class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">most people navigate this world with mistrust and fear.</h2>
+			</div><div id="section-4" class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh] astro-FG5FHEWA">
+				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px] astro-FG5FHEWA">
+					<h2 id="subtitle-4" class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden astro-FG5FHEWA">most people navigate this world with mistrust and fear.</h2>
 				</div>
 			</div>
 		<div class="scrollIconContainer fixed flex flex-col items-center justify-center h-screen pt-52 z-20 animate-fadeIn-long animation-delay-1000 astro-FG5FHEWA">
 			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden astro-FG5FHEWA"></i>
 			<div class="down-arrow w-4 h-4 mt-1 astro-FG5FHEWA"></div>
 		</div>
-		<div id="bleachAnimation" class="flex h-[400vh] astro-FG5FHEWA">
-			<div id="animationTrigger" class="section flex flex-col items-center section-0 overflow-hidden h-screen astro-FG5FHEWA"></div>
-		</div>
+		<div id="animationTrigger" class="w-[10px] section flex flex-col items-center section-0 overflow-hidden h-screen astro-FG5FHEWA"></div>
+		<div id="bleachAnimation" class="fixed flex h-[400vh] astro-FG5FHEWA"></div>
+
   </section>
 </article>
 		<div id="middle-element" class="astro-J7PV25F6"></div>
-		<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[50vh] astro-6HCXU2SR">
-	<section id="logoSection" class="flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500 astro-6HCXU2SR">
-		<div class="transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100 astro-6HCXU2SR"> 
-			<div class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn astro-6HCXU2SR">
+		<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[0vh] astro-6HCXU2SR">
+	<section id="en-section-0" class="logoSection flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500 astro-6HCXU2SR">
+		<div class="sectionTitle transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100 astro-6HCXU2SR"> 
+			<div id="envMeeLogo" class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn astro-6HCXU2SR">
 				<svg viewBox="0 0 97 28" fill="#fff" xmlns="http://www.w3.org/2000/svg">
   <path d="M55.6357 0.0625C47.8066 0.0625 42.0408 6.01827 42.0408 13.979C42.0408 21.5744 46.8338 27.8934 55.877 27.8934C60.2465 27.8934 64.3748 26.132 66.6812 23.4596C67.1048 22.9725 67.4088 22.4246 67.4088 21.8179C67.4174 21.5053 67.3623 21.1941 67.2466 20.9036C67.1311 20.613 66.9573 20.3492 66.7363 20.1283C66.5153 19.9074 66.2515 19.7339 65.9611 19.6187C65.6707 19.5033 65.3599 19.4486 65.0477 19.4579C64.3201 19.4579 63.6534 19.884 63.167 20.369C61.1646 22.2542 59.2818 23.348 56.1262 23.348C51.0899 23.348 48.2363 20.1864 47.9343 15.9939H66.0793C67.7189 15.9939 68.2641 15.022 68.2641 14.05C68.258 6.26788 63.2825 0.0625 55.6357 0.0625ZM48.0498 11.3653C48.595 7.59905 51.4466 4.62013 55.6357 4.62013C59.7621 4.62013 62.492 7.71873 62.9784 11.3653H48.0498Z"></path>
   <path d="M82.7283 0.0625C75.0817 0.0625 70.1143 6.26788 70.1143 14.0398C70.1143 15.0119 70.6595 15.9838 72.299 15.9838H90.446C90.142 20.1763 87.2884 23.3358 82.2521 23.3358C79.0965 23.3358 77.2137 22.244 75.2114 20.3589C74.7269 19.8739 74.0582 19.4477 73.3306 19.4477C73.017 19.4376 72.7047 19.492 72.4128 19.6074C72.1211 19.723 71.8561 19.8972 71.6342 20.1193C71.4123 20.3415 71.2383 20.6068 71.1229 20.899C71.0076 21.1911 70.9533 21.5039 70.9634 21.8179C70.9634 22.4267 71.2674 22.9725 71.691 23.4596C73.9973 26.132 78.1237 27.8934 82.4953 27.8934C91.5384 27.8934 96.3315 21.5744 96.3315 13.979C96.3234 6.01827 90.5574 0.0625 82.7283 0.0625ZM75.3837 11.3653C75.8701 7.71272 78.6 4.62013 82.7263 4.62013C86.9155 4.62013 89.767 7.59905 90.3142 11.3653H75.3837Z"></path>
@@ -184,7 +202,7 @@
 </svg>
 			</div>
 			<div class="overflow-hidden astro-6HCXU2SR">
-				<p class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn astro-6HCXU2SR">is restoring balance</p>
+				<p id="meeRestoringText" class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn astro-6HCXU2SR">is restoring balance</p>
 			</div>
 			<div id="scrollIndicatorInvision" class="flex flex-col items-center justify-center lg:flex mt-[40px] z-20 animate-fadeIn astro-6HCXU2SR">
 				<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden astro-6HCXU2SR"></i>
@@ -195,31 +213,31 @@
 	<section class="relative flex flex-col items-center justify-center w-screen min-h-[100vh] astro-6HCXU2SR">
 		<div class="bg-1 astro-6HCXU2SR"></div>
 		<div class="section flex flex-col items-center justify-center w-screen opacity-0 astro-6HCXU2SR">
-			<div id="title" class="overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7 astro-6HCXU2SR">
+			<div id="title" class="sectionTitle overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7 astro-6HCXU2SR">
 				<div class="overflow-hidden px-5 astro-6HCXU2SR">
 					<h2 class="uppercase title text-base leading-5 font-bold tracking-wider text-center animate-riseIn text-black/[.6] astro-6HCXU2SR">Mee envisions a world where…</h2>
 				</div>
 			</div>
-			<div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh] astro-6HCXU2SR">
-					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+			<div id="en-section-1" class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] astro-6HCXU2SR">
+					<div class="sectionText fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">your privacy is respected by blocking tracking and the sale of your data.</h2>
 					</div>
-				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh] astro-6HCXU2SR">
-					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+				</div><div id="en-section-2" class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] astro-6HCXU2SR">
+					<div class="sectionText fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">you decide how and when your data is shared, stored, and used.</h2>
 					</div>
-				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh] astro-6HCXU2SR">
-					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+				</div><div id="en-section-3" class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] astro-6HCXU2SR">
+					<div class="sectionText fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">you can easily share information with sites without passwords.</h2>
 					</div>
-				</div><div class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] md:h-[200vh] astro-6HCXU2SR">
-					<div class="fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
+				</div><div id="en-section-4" class="flex section flex-col items-center overflow-hidden w-screen h-[100vh] astro-6HCXU2SR">
+					<div class="sectionText fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px] astro-6HCXU2SR">
 						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center astro-6HCXU2SR">you can trust that apps and sites will act in your best interest.</h2>
 					</div>
 				</div>
 		</div>
 	</section>
-	<section class="bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20 astro-6HCXU2SR">
+	<section id="en-section-5" class="section bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20 astro-6HCXU2SR">
 		<section class="flex flex-col justify-center items-center w-screen px-5 md:max-w-[560px] astro-6HCXU2SR gap-12">
   <h6 class="text-2xl leading-normal font-bold text-center">Download the free Mee smartwallet and take control of your online identity</h6>
   <div class="flex flex-col md:flex-row justify-center items-center gap-12">
@@ -283,4 +301,6 @@
 
 
 </html>
+
+
 
