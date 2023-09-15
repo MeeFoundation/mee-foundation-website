@@ -40,7 +40,7 @@ export const sdkInit = (errorConnectCb: () => void) => {
         typeof data?.data !== 'undefined' &&
         typeof data?.data.name !== 'undefined'
       ) {
-        window.location.href = '/';
+        window.location.href = '/congratulation';
       } else {
         errorConnectCb();
       }
