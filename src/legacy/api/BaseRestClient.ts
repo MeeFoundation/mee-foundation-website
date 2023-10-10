@@ -7,7 +7,7 @@ export class BaseRestClient {
   constructor(config: AxiosRequestConfig) {
     this.axiosInstance = axios.create(config);
 
-    this.axiosInstance.defaults.withCredentials = true;
+    this.axiosInstance.defaults.withCredentials = false;
   }
 
   async apiGet<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
