@@ -7,7 +7,8 @@ const client = new BaseRestClient({
   baseURL: svcUrl,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json; charset=utf8',
+    'Content-Type': 'application/json',
+    
   },
 });
 
