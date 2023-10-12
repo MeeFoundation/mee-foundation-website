@@ -3,7 +3,7 @@ import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
 import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
-import twitterIcon from "../../public/images/twitter-logo.png"
+import twitterIcon from "../../public/images/twitter-logo.svg"
 
 export interface Props {
   mode: "dark" | "light";
@@ -63,6 +63,9 @@ footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundatio
     height: 12px;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <script>
