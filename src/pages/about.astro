@@ -40,7 +40,7 @@ const supportText = "Supporting The Mee Foundation, a nonprofit organization whi
           {textArray.map((text,i) => (
             <div class="overflow-hidden">
               <p class:list={
-                ["aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify ",
+                ["aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center ",
                 {"animation-delay-800": i !== 1},
                 {"animation-delay-800 lg:animation-delay-1000": i === 1}
               ]} set:html={text} />
@@ -58,17 +58,17 @@ const supportText = "Supporting The Mee Foundation, a nonprofit organization whi
         <section class="relative flex flex-col items-center gap-15 md:gap-25 lg:gap-32 xl:gap-32 px-10  w-full max-w-[1094px] animation-delay-800">
             <div class="overflow-hidden flex items-center flex-col">
               <p class:list={
-                ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify"
+                ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center"
               ]} set:html={joinUsText[0]} />
             </div>
             <div class="overflow-hidden flex items-center flex-col">
               <p class:list={
-                ["animation-delay-800 lg:animation-delay-1000 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify "]}
+                ["animation-delay-800 lg:animation-delay-1000 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center "]}
                 set:html={joinUsText[1]} />
             </div>
             <div class="overflow-hidden">
               <p class:list={
-                ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-justify ",
+                ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center ",
               ]} set:html={joinUsText[2]} />
             </div>
         </section>
