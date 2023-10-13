@@ -3,7 +3,7 @@ import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
 import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
-import twitterIcon from "../../public/images/twitter-logo.png"
+import twitterIcon from "../../public/images/twitter-logo.svg"
 
 export interface Props {
   mode: "dark" | "light";
@@ -24,7 +24,7 @@ footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundatio
 
 ---
 
-<footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-100", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
+<footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-200", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
   <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here for Mee updates</h6>
     <MeeButton mode={mode} />
@@ -63,6 +63,9 @@ footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundatio
     height: 12px;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <script>
