@@ -3,7 +3,8 @@ import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
 import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
-import twitterIcon from "../../public/images/twitter-logo.svg"
+import twitterIconWhite from "../../public/images/twitter-logo-white.png"
+import twitterIconBlack from "../../public/images/twitter-logo-black.png"
 
 export interface Props {
   mode: "dark" | "light";
@@ -14,6 +15,7 @@ export interface Props {
 const pathname = new URL(Astro.request.url).pathname;
 
 const {mode,withAppButtons = true, appsBtnsSize = "normal"} = Astro.props;
+const twitterIcon = mode === 'dark' ? twitterIconWhite : twitterIconBlack
 
 // TODO Add bg animation on connect with mee button
 // TODO Add link to connect button
