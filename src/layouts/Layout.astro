@@ -159,14 +159,22 @@ import "@styles/base.css";
 </style>
 
 <script>
-	import { sdkInit } from '../sdkInit';
+  import { sdkInit } from '../sdkInit';
 	const SHOW_ERR_ALERT_FOR_MS = 3000
 
 	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
   			speed = 0.1;
 	if(scrollWrap) {
-		const height = scrollWrap.getBoundingClientRect().height - 1;
-		document.body.style.height = Math.floor(height) + "px";
+    const setHeight = () => {
+      const height = scrollWrap.getBoundingClientRect().height - 1;
+      document.body.style.height = Math.floor(height) + "px";
+    }
+
+    setHeight()
+
+    document.fonts.ready.then(function () {
+      setHeight()
+    });
 	}
 
     
