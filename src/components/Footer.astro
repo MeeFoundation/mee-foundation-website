@@ -3,7 +3,8 @@ import AppButtons from './AppButtons.astro';
 import Logo from './Logo.astro';
 import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
-import twitterIcon from "../../public/images/twitter-logo.svg"
+import twitterIconWhite from "../../public/images/twitter-logo-white.png"
+import twitterIconBlack from "../../public/images/twitter-logo-black.png"
 
 export interface Props {
   mode: "dark" | "light";
@@ -14,6 +15,7 @@ export interface Props {
 const pathname = new URL(Astro.request.url).pathname;
 
 const {mode,withAppButtons = true, appsBtnsSize = "normal"} = Astro.props;
+const twitterIcon = mode === 'dark' ? twitterIconWhite : twitterIconBlack
 
 // TODO Add bg animation on connect with mee button
 // TODO Add link to connect button
@@ -38,7 +40,7 @@ footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundatio
     <div class="flex items-center">
       <a href="/privacy-policy" target="_blank">Privacy Policy</a>
       <a href="https://twitter.com/mee_foundation" class="ml-8" target="_blank">
-        <img src={twitterIcon.src} width="28" height="28" class="w-[28px]" alt="Twitter logo" />
+        <img src={twitterIcon.src} width="20" height="20" class="w-[20px]" alt="Twitter logo" />
       </a>
     </div>
     <span class="inline xl:hidden">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
