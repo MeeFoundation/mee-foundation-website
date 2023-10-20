@@ -1,4 +1,10 @@
-# Mee Foundation Web UI
+# The Mee Foundation Website
+
+Source files for [mee.foundation](https://mee.foundation)
+
+### related
+docs section repo - https://github.com/MeeFoundation/docs
+
 
 ### Install dependencies:
 yarn install
