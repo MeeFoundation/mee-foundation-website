@@ -3,8 +3,14 @@
 Source files for [mee.foundation](https://mee.foundation)
 
 ### related
-docs section repo - https://github.com/MeeFoundation/docs
+[docs section repo](https://github.com/MeeFoundation/docs)\
+[sdk repo](https://github.com/MeeFoundation/mee-js-sdk)
 
+### Tech stack
+Framework - [astro](https://astro.build/)\
+Styles - tailwind\
+There is a legacy part\
+The legacy part framework - React
 
 ### Install dependencies:
 yarn install
