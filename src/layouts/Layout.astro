@@ -175,6 +175,10 @@ import "@styles/base.css";
     document.fonts.ready.then(function () {
       setHeight()
     });
+
+    window.addEventListener("resize", function(event) {
+      setHeight()
+    })
 	}
 
     
