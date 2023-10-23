@@ -3,7 +3,7 @@
 Source files for [mee.foundation](https://mee.foundation)
 
 ### folders
-* lagacy folder - application related logic
+* legacy folder - application related logic
 * astro pages - landing pages
 
 ### related
