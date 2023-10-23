@@ -23,8 +23,8 @@ yarn build
 yarn deploy
 
 #### landing details
-* scroll is custom works via `translateY` look `smoothScroll` fn
-* index page - `EnvisionSection` and `TodaySection`
+* scroll is custom and works via `translateY` look `smoothScroll` fn
+* index page - `EnvisionSection.astro` and `TodaySection.astro`
 
 ## License
 Copyright 2023 The Mee Foundation
