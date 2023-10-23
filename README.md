@@ -2,6 +2,10 @@
 
 Source files for [mee.foundation](https://mee.foundation)
 
+### folders
+* lagacy folder - application related logic
+* astro pages - landing pages
+
 ### related
 docs section repo - https://github.com/MeeFoundation/docs
 
@@ -17,6 +21,10 @@ yarn build
 
 ### Deploy:
 yarn deploy
+
+#### landing details
+* scroll is custom works via `translateY` look `smoothScroll` fn
+* index page - `EnvisionSection` and `TodaySection`
 
 ## License
 Copyright 2023 The Mee Foundation
