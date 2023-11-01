@@ -16,12 +16,11 @@ const textArray = [
 ];
 
 const joinUsText = [
-  "Join the movement! Let’s take back control of our data. To join, just download our smartwallet app.",
-  "Do you share our vision? Would you like to contribute to our mission? Let’s talk! Tap the Connect-with-Mee button to connect with us. Follow us on Twitter.",
-  "We invite online service providers to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites."
+  "Tap the Continue-with-Mee button to connect with us.",
+  "We invite businesses to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites."
 ];
 
-const supportText = "Supporting The Mee Foundation, a nonprofit organization which develops the Mee Smartwallet app, helps to maintain and promote the mission of putting you in control of your online identity."
+const supportText = "Supporting The Mee Foundation, a nonprofit organization which develops the Mee smartwallet, helps to maintain and promote our mission of putting you in control of your online identity."
 
 // TODO Add link to HIL link
 ---
@@ -61,15 +60,10 @@ const supportText = "Supporting The Mee Foundation, a nonprofit organization whi
                 ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center"
               ]} set:html={joinUsText[0]} />
             </div>
-            <div class="overflow-hidden flex items-center flex-col">
-              <p class:list={
-                ["animation-delay-800 lg:animation-delay-1000 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center "]}
-                set:html={joinUsText[1]} />
-            </div>
             <div class="overflow-hidden">
               <p class:list={
                 ["animation-delay-800 aboutText leading text-3xl leading-tight font-thin md:text-5xl lg:text-6xl xl:text-7xl text-center ",
-              ]} set:html={joinUsText[2]} />
+              ]} set:html={joinUsText[1]} />
             </div>
         </section>
       </section>
