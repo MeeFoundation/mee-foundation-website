@@ -3,10 +3,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import TrustIcon from "../components/TrustIcon.astro";
 import Layout from "../layouts/Layout.astro";
-import identityAgentIcon from "@assets/identity-agent-icon.svg"
-import hilIcon from "@assets/hil-icon.svg"
-import meeFoundationIcon from "@assets/mee-foundation-icon.svg"
-import difIcon from "../../public/images/dif-logo.png"
+import difIcon from "../../public/images/dif-logo.png";
 import PatreonIcon from '@components/PatreonIcon.astro';
 
 
@@ -22,7 +19,7 @@ const joinUsText = [
 
 const supportText = "Supporting The Mee Foundation, a nonprofit organization which develops the Mee smartwallet, helps to maintain and promote our mission of putting you in control of your online identity."
 
-// TODO Add link to HIL link
+// TODO Add link to HIL link and make this link flex instead of hidden
 ---
 
 <Layout title="Mee Foundation - About Us">
@@ -108,7 +105,7 @@ const supportText = "Supporting The Mee Foundation, a nonprofit organization whi
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white"><img src="/images/hil-icon.svg"/></span>
             <h6 class="text-xl leading-thick font-bold text-black/[.8]">Human Information License (HIL)</h6>
             <p class="text-base font-medium text-black/[.8] leading-[1.6]">A contract between The Mee Foundation, acting on behalf of you, and an online service provider. The HIL defines what businesses can and can’t do with your data. [Under development]</p>
-            <a class="hidden link relative flex justify-between items-center gap-2 text-base font-extrabold text-black/[.8] leading-[1.6] after:bg-black/[.8] after:-rotate-45" href="#" rel="nofollow" target="_blank">Human Information License (HIL)</a>
+            <a class="hidden link relative justify-between items-center gap-2 text-base font-extrabold text-black/[.8] leading-[1.6] after:bg-black/[.8] after:-rotate-45" href="#" rel="nofollow" target="_blank">Human Information License (HIL)</a>
           </div>
           <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px]">
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white"><img src="/images/mee-foundation-icon.svg"/></span>
@@ -126,7 +123,7 @@ const supportText = "Supporting The Mee Foundation, a nonprofit organization whi
           <img src={difIcon.src} width="165" height="56" class="w-[100px] md:w-[165px]" alt="Decentralized Identity Foundation logo" />
         </div>
       </section>
-      <Footer appsBtnsSize="medium" mode="dark" withAppButtons={true} />
+      <Footer appsBtnsSize="medium" mode="dark" withAppButtons={false} />
     </section>
 	</main>
 </Layout>
