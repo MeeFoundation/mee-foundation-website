@@ -403,16 +403,18 @@ const subtitles = [
 	};
 
 	function scrollToEnvision(sectionId: number) {
-		skipExplosion = true
+		skipExplosion = true;
 
-		const protector = document.querySelector("#flash-protector");
-		protector?.classList.remove("hidden");
-		protector?.classList.add("fixed", "animate-fadeOut");
+		if (animationControl?.classList.contains("white")) {
+			const protector = document.querySelector("#flash-protector");
+			protector?.classList.remove("hidden");
+			protector?.classList.add("fixed", "animate-fadeOut");
 
-		setTimeout(() => {
-			protector?.classList.remove("fixed", "animate-fadeOut");
-			protector?.classList.add("hidden");
-		},400)
+			setTimeout(() => {
+				protector?.classList.remove("fixed", "animate-fadeOut");
+				protector?.classList.add("hidden");
+			},400)
+		}
 
 		envisionSection?.classList.remove("hidden");
 		mainLogo?.classList.add("logo--contrast");
