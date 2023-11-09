@@ -12,7 +12,7 @@ import "@styles/base.css";
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<meta name="theme-color" content="#ffffff">
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -91,6 +91,7 @@ import "@styles/base.css";
     top: 0;
     left: 0;
     overflow: hidden;
+		height: inherit;
   }
 
 	.pause {
@@ -166,7 +167,8 @@ import "@styles/base.css";
   			speed = 0.1;
 	if(scrollWrap) {
     const setHeight = () => {
-      const height = scrollWrap.getBoundingClientRect().height - 1;
+			const containerHeight = scrollWrap.getBoundingClientRect().height;
+      const height = containerHeight < window.innerHeight ? window.innerHeight - 1 : containerHeight - 1;
       document.body.style.height = Math.floor(height) + "px";
     }
 
@@ -186,7 +188,7 @@ import "@styles/base.css";
 
   const smoothScroll = () => {
     // offset += (window.pageYOffset - offset) * speed;
-		offset += Math.floor((window.pageYOffset - offset) * speed);
+		offset += Math.floor((window.scrollY - offset) * speed);
     const scroll = "translateY(-" + offset + "px)";
     scrollWrap.style.transform = scroll;
 
