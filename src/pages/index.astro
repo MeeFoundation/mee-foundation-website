@@ -42,6 +42,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		<div id="middle-element"/>
 		<EnvisionSection />
 		<div id="end-element"/>
+		<div id="flash-protector" class="top-0 hidden h-screen w-screen background z-999"/>
 	</main>
 </Layout>
 
@@ -226,6 +227,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+	}
+
+	.background {
+		background: radial-gradient(#0D070C, #200E1D);
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
