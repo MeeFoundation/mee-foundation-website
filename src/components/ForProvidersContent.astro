@@ -45,23 +45,13 @@ const gives_you = [
       <div class="overflow-hidden"/>
     </div>
 		<div class="bg-1 " />
-    <div class="flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-center gap-16">
+      
       <div
-        class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
-      >
-        <div class="overflow-hidden mb-6">
-          <h2
-          class="text animate-riseIn animation-delay-1000 text-justify text-base font-medium text-black/80 md:text-xl leading-relaxed"
-          >
-          To join, you integrate our Software Development Kit (SDK), sign the Mee license, and add the Continue-with-Mee button to your apps and sites.
-          </h2>
-        </div>
-      </div>
-      <div
-        class="title z-100 w-full overflow-hidden px-6 md:w-160 mb-16"
+        class="title z-100 w-full overflow-hidden px-6 md:w-160"
       >
         <h2
-          class="text animate-riseIn animation-delay-1200 text-center text-base font-extrabold text-black/80 md:text-xl leading-relaxed"
+          class="text animate-riseIn animation-delay-1000 text-center text-base font-extrabold text-black/80 md:text-xl leading-relaxed"
         >
           This gives your organization:
         </h2>
@@ -70,7 +60,7 @@ const gives_you = [
         {
           gives_you.map((items) => (
             <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0 z-10">
-              <div class="animate-riseIn-short animation-delay-1400  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4">
+              <div class="animate-riseIn-short animation-delay-1200  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4">
                 <div class="mr-4">
                   <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
                     <img
@@ -89,6 +79,17 @@ const gives_you = [
             </div>
           ))
         }
+      </div>
+      <div
+        class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
+      >
+        <div class="overflow-hidden mb-6">
+          <h2
+          class="text animate-riseIn animation-delay-2000 text-justify text-base font-medium text-black/80 md:text-xl leading-relaxed"
+          >
+          To join, you integrate our Software Development Kit (SDK), sign the Mee license, and add the Continue-with-Mee button to your apps and sites.
+          </h2>
+        </div>
       </div>
     </div>
   </section>
