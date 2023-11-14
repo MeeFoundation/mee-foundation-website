@@ -15,17 +15,25 @@ const {mode} = Astro.props;
       "bg-blue text-white before:bg-white": mode === "light"}
     ]}>
     <span class="text-sm sm:text-base">Continue with</span>
-    <div
+    <div class:list={[
+      'flex meeLogo h-[16px] w-[55px] pt-0 ml-[10px]',
+      {'bg-white': mode === 'light'},
+      {'bg-blue': mode === 'dark'},
+    ]}/>
+    <!-- <div
       class:list={[
         'block logo h-[16px] w-[56px] h-5 pt-0 ml-[10px]',
         {'logo--contrast': mode === 'dark'},
       ]}
     >
       <Logo />
-      
-    </div>
+    </div> -->
   </a>
 </div> 
 
 <style is:global>
+  .meeLogo {
+    mask-image: url("/images/mee-logo.svg");
+    mask-size: contain;
+  }
 </style>
