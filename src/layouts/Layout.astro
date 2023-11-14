@@ -167,18 +167,20 @@ import "@styles/base.css";
   			speed = 0.1;
 	if(scrollWrap) {
     const setHeight = () => {
-			const containerHeight = scrollWrap.getBoundingClientRect().height;
+			const containerHeight = scrollWrap.scrollHeight;
       const height = containerHeight < window.innerHeight ? window.innerHeight - 1 : containerHeight - 1;
       document.body.style.height = Math.floor(height) + "px";
     }
 
+		
     setHeight()
-
+		
     document.fonts.ready.then(function () {
-      setHeight()
+			setHeight()
     });
-
+		
     window.addEventListener("resize", function() {
+			console.log(scrollWrap.getBoundingClientRect().height, window.innerHeight,window.outerHeight,scrollWrap.scrollHeight)
       setHeight()
     })
 	}
