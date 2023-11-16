@@ -28,18 +28,12 @@ const supportText = "Please support us on Patreon, and help us put you in contro
     <section class="flex flex-col justify-between h-full items-center w-screen gap-28 md:gap-y-36 bg-white transform-gpu pt-25 md:pt-36">
       <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
         <div class="overflow-hidden mb-8">
-          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold">
+          <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold">
             <mark>About</mark> us
-          </h2>
+          </h1>
         </div>
         <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
-          <div class="overflow-hidden">
-            <h1 class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800" set:html={textArray[0]} />
-          </div>
-          <div class="overflow-hidden">
-            <p class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800 lg:animation-delay-1000" set:html={textArray[1]} />
-          </div>
-          <!-- {textArray.map((text,i) => (
+          {textArray.map((text,i) => (
             <div class="overflow-hidden">
               <p class:list={
                 ["aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
@@ -47,7 +41,7 @@ const supportText = "Please support us on Patreon, and help us put you in contro
                 {"animation-delay-800 lg:animation-delay-1000": i === 1}
               ]} set:html={text} />
             </div>
-          ))} -->
+          ))}
         </section>
       </section>
 
