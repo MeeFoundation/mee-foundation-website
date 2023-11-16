@@ -51,24 +51,34 @@
     <section class="flex flex-col justify-between h-full items-center w-screen gap-28 md:gap-y-36 bg-white transform-gpu pt-25 md:pt-36 astro-KH7BTL4R">
       <section class="flex flex-col justify-center items-center w-screen bg-white h-auto astro-KH7BTL4R">
         <div class="overflow-hidden mb-8 astro-KH7BTL4R">
-          <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold astro-KH7BTL4R">
+          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold astro-KH7BTL4R">
             <mark class="astro-KH7BTL4R">About</mark> us
-          </h1>
+          </h2>
         </div>
         <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800 astro-KH7BTL4R">
           <div class="overflow-hidden astro-KH7BTL4R">
-              <p class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800 astro-KH7BTL4R">We are a nonprofit committed to empowering people by putting them in control of their online identity.</p>
-            </div><div class="overflow-hidden astro-KH7BTL4R">
-              <p class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800 lg:animation-delay-1000 astro-KH7BTL4R">We do this by developing and making available a free smartwallet that increases privacy, autonomy, and convenience.</p>
+            <h1 class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800 astro-KH7BTL4R">We are a nonprofit committed to empowering people by putting them in control of their online identity.</h1>
+          </div>
+          <div class="overflow-hidden astro-KH7BTL4R">
+            <p class="aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight animation-delay-800 lg:animation-delay-1000 astro-KH7BTL4R">We do this by developing and making available a free smartwallet that increases privacy, autonomy, and convenience.</p>
+          </div>
+          <!-- {textArray.map((text,i) => (
+            <div class="overflow-hidden">
+              <p class:list={
+                ["aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
+                {"animation-delay-800": i !== 1},
+                {"animation-delay-800 lg:animation-delay-1000": i === 1}
+              ]} set:html={text} />
             </div>
+          ))} -->
         </section>
       </section>
 
       <section class="flex flex-col justify-center items-center w-screen bg-white h-auto astro-KH7BTL4R">
         <div class="overflow-hidden mb-8 astro-KH7BTL4R">
-          <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold astro-KH7BTL4R">
+          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold astro-KH7BTL4R">
             Join us
-          </h1>
+          </h2>
         </div>
         <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800 astro-KH7BTL4R">
             <div class="overflow-hidden flex items-center flex-col astro-KH7BTL4R">
@@ -82,9 +92,9 @@
 
       <section class="flex flex-col justify-center items-center w-screen bg-white h-auto astro-KH7BTL4R">
         <div class="overflow-hidden mb-8 astro-KH7BTL4R">
-          <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold astro-KH7BTL4R">
+          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold astro-KH7BTL4R">
             Support us
-          </h1>
+          </h2>
         </div>
         <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800 astro-KH7BTL4R">
           <div class="flex flex-col items-center astro-KH7BTL4R">
@@ -115,21 +125,21 @@
       <section class="platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw] astro-KH7BTL4R">
         <h2 class="text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold mb-15 md:mb-25 astro-KH7BTL4R">The Mee platform</h2>
         <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 mb-23 px-5 lg:mb-35.5 w-screen astro-KH7BTL4R">
-          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] astro-KH7BTL4R">
+          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[400px] astro-KH7BTL4R">
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white astro-KH7BTL4R"><img src="/images/identity-agent-icon.svg" class="astro-KH7BTL4R"></span>
-            <h6 class="text-xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">Smartwallet</h6>
-            <p class="text-base font-medium text-black/[.8] leading-[1.6] astro-KH7BTL4R">A free, open-source app that puts you in control of your online identity. It retrieves, organizes, and stores your data securely on your device. It represents you at businesses you trust. It enhances your privacy by telling businesses not to track you, and not to sell your information.</p>
+            <h6 class="text-xl md:text-2xl lg:text-3xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">Smartwallet</h6>
+            <p class="text-base md:text-xl font-normal text-black/[.8] leading-[1.6] astro-KH7BTL4R">A free, open-source app that puts you in control of your online identity. It retrieves, organizes, and stores your data securely on your device. It represents you at businesses you trust. It enhances your privacy by telling businesses not to track you, and not to sell your information.</p>
           </div>
-          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] astro-KH7BTL4R">
+          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[400px] astro-KH7BTL4R">
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white astro-KH7BTL4R"><img src="/images/hil-icon.svg" class="astro-KH7BTL4R"></span>
-            <h6 class="text-xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">License</h6>
-            <p class="text-base font-medium text-black/[.8] leading-[1.6] astro-KH7BTL4R">The Mee human information license defines what businesses can and can’t do with your data. It is a contract between The Mee Foundation, acting on behalf of you, and a business.</p>
+            <h6 class="text-xl md:text-2xl lg:text-3xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">License</h6>
+            <p class="text-base md:text-xl font-normal text-black/[.8] leading-[1.6] astro-KH7BTL4R">The Mee human information license defines what businesses can and can’t do with your data. It is a contract between The Mee Foundation, acting on behalf of you, and a business.</p>
             <a class="hidden link relative justify-between items-center gap-2 text-base font-extrabold text-black/[.8] leading-[1.6] after:bg-black/[.8] after:-rotate-45 astro-KH7BTL4R" href="#" rel="nofollow" target="_blank">Human Information License (HIL)</a>
           </div>
-          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[340px] astro-KH7BTL4R">
+          <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[400px] astro-KH7BTL4R">
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white astro-KH7BTL4R"><img src="/images/mee-foundation-icon.svg" class="astro-KH7BTL4R"></span>
-            <h6 class="text-xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">The Mee Foundation, Inc.</h6>
-            <p class="text-base font-medium text-black/[.8] leading-[1.6] astro-KH7BTL4R">A nonprofit organization which develops and makes available the Mee app. In the future we plan to certify businesses, and enforce compliance with the Mee License.</p>
+            <h6 class="text-xl md:text-2xl lg:text-3xl leading-thick font-bold text-black/[.8] astro-KH7BTL4R">The Mee Foundation, Inc.</h6>
+            <p class="text-base md:text-xl font-normal text-black/[.8] leading-[1.6] astro-KH7BTL4R">A nonprofit organization which develops and makes available the Mee app. In the future we plan to certify businesses, and enforce compliance with the Mee License.</p>
           </div>
         </div>
       </section>
