@@ -25,77 +25,76 @@ const supportText = "Please support us on Patreon, and help us put you in contro
 <Layout title="Mee Foundation - About Us">
   <Header logoColor="blue" backgroundColor="backdrop-blur-md"/>
   <main class="scrollContainer transform-gpu ">
-    <section class="flex flex-col justify-between h-full items-center w-screen gap-28 md:gap-y-36 bg-white transform-gpu pt-25 md:pt-36">
-      <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
-        <div class="overflow-hidden mb-8">
-          <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold">
-            <mark>About</mark> us
-          </h1>
-        </div>
-        <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
-          {textArray.map((text,i) => (
-            <div class="overflow-hidden">
-              <p class:list={
-                ["aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
-                {"animation-delay-800": i !== 1},
-                {"animation-delay-800 lg:animation-delay-1000": i === 1}
-              ]} set:html={text} />
-            </div>
-          ))}
-        </section>
-      </section>
-
-      <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
-        <div class="overflow-hidden mb-8">
-          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold">
-            Join us
-          </h2>
-        </div>
-        <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
-            <div class="overflow-hidden flex items-center flex-col">
-              <p class:list={
-                ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight"
-              ]} set:html={joinUsText[0]} />
-            </div>
-            <div class="overflow-hidden">
-              <p class:list={
-                ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
-              ]} set:html={joinUsText[1]} />
-            </div>
-        </section>
-      </section>
-
-      <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
-        <div class="overflow-hidden mb-8">
-          <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold">
-            Support us
-          </h2>
-        </div>
-        <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
-          <div class="flex flex-col items-center">
-            <div class="overflow-hidden flex items-center flex-col">
-              <p class:list={
-                ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight"
-              ]} set:html={supportText} />
-            </div>
-
-            <div class="mt-8">
-              <a href="https://www.patreon.com/TheMeeFoundation" class="px-8 py-3 rounded-[10px] bg-black text-white flex flex-row gap-[10px] items-center">
-                <PatreonIcon />
-                <span class="font-semibold text-[22px] leading-[26px]">Support on Patreon<span>
-              </a>
-            </div>
+    <section class="flex flex-col justify-start h-full items-center w-screen bg-white transform-gpu pt-25 md:pt-36">
+      <article class="flex flex-col gap-12 md:gap-y-20 mb-28">
+        <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
+          <div class="overflow-hidden mb-8">
+            <h1 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-6xl lg:text-7xl font-bold">
+              <mark>About</mark> us
+            </h1>
           </div>
-
-          <div class="-bottom-7.5 lg:bottom-45 z-10">
-            <TrustIcon fill="#447F88"/>
-          </div>
+          <section class="relative flex flex-col items-center gap-8 md:gap-12 lg:gap-16 px-10 w-full max-w-[1094px] animation-delay-800">
+            {textArray.map((text,i) => (
+              <div class="overflow-hidden">
+                <p class:list={
+                  ["aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
+                  {"animation-delay-800": i !== 1},
+                  {"animation-delay-800 lg:animation-delay-1000": i === 1}
+                ]} set:html={text} />
+              </div>
+            ))}
+          </section>
         </section>
-      </section>
+        <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
+          <div class="overflow-hidden mb-8">
+            <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold">
+              Join us
+            </h2>
+          </div>
+          <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
+              <div class="overflow-hidden flex items-center flex-col">
+                <p class:list={
+                  ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight"
+                ]} set:html={joinUsText[0]} />
+              </div>
+              <div class="overflow-hidden">
+                <p class:list={
+                  ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight",
+                ]} set:html={joinUsText[1]} />
+              </div>
+          </section>
+        </section>
+        <section class="flex flex-col justify-center items-center w-screen bg-white h-auto">
+          <div class="overflow-hidden mb-8">
+            <h2 class="marker animate-riseIn mt-[28px] lg:mt-[52px] text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold">
+              Support us
+            </h2>
+          </div>
+          <section class="relative flex flex-col items-center gap-14 md:gap-20 lg:gap-24 px-10  w-full max-w-[1094px] animation-delay-800">
+            <div class="flex flex-col items-center">
+              <div class="overflow-hidden flex items-center flex-col">
+                <p class:list={
+                  ["animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight"
+                ]} set:html={supportText} />
+              </div>
 
+              <div class="mt-8">
+                <a href="https://www.patreon.com/TheMeeFoundation" class="px-8 py-3 rounded-[10px] bg-black text-white flex flex-row gap-[10px] items-center">
+                  <PatreonIcon />
+                  <span class="font-semibold text-[22px] leading-[26px]">Support on Patreon<span>
+                </a>
+              </div>
+            </div>
+
+            <div class="-bottom-7.5 lg:bottom-45 z-10">
+              <TrustIcon fill="#447F88"/>
+            </div>
+          </section>
+        </section>
+      </article> 
       <section class="platform relative flex flex-col items-center text-black/[.8] py-30 md:pt-40 md:pb-45 px-5 w-[400vw] lg:w-[200vw]">
         <h2 class="text-3xl leading-thick md:text-4xl md:leading-normal lg:text-5xl font-bold mb-15 md:mb-25">The Mee platform</h2>
-        <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 mb-23 px-5 lg:mb-35.5 w-screen">
+        <div class="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-18.5 px-5 w-screen">
           <div class="platform__item flex flex-col gap-5 justify-center items-center text-center max-w-[400px]">
             <span class="icon flex justify-center items-center mb-3 lg:mb-10 uppercase text-base text-white"><img src="/images/identity-agent-icon.svg"/></span>
             <h6 class="text-xl md:text-2xl lg:text-3xl leading-thick font-bold text-black/[.8]">Smartwallet</h6>
