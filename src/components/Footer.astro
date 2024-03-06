@@ -1,6 +1,6 @@
 ---
 import AppButtons from './AppButtons.astro';
-import MeeButton from './MeeButton.astro';
+// import MeeButton from './MeeButton.astro';
 import { links } from './Menu.astro';
 import twitterIconWhite from "../../public/images/twitter-logo-white.png"
 import twitterIconBlack from "../../public/images/twitter-logo-black.png"
@@ -12,7 +12,7 @@ export interface Props {
 }
 
 
-const {mode,withAppButtons = true, appsBtnsSize = "normal"} = Astro.props;
+const {mode,withAppButtons = false, appsBtnsSize = "normal"} = Astro.props;
 const twitterIcon = mode === 'dark' ? twitterIconWhite : twitterIconBlack
 
 // TODO Add bg animation on connect with mee button
@@ -26,10 +26,10 @@ footerLinks.shift()
 ---
 
 <footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-200", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
-  <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
+  <!-- <div class="flex flex-col gap-7 mb-12.5 w-screen items-center">
     <h6 class="text-2xl leading-normal font-bold">Click here to get email updates about Mee</h6>
     <MeeButton mode={mode} />
-  </div>
+  </div> -->
   {withAppButtons && <AppButtons btnSize={appsBtnsSize} class="mb-25" />}
   <div class:list={["flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7", {"text-white": mode === "dark", "text-gray": mode === "light"}]}>
     <span class="hidden whitespace-nowrap max-w-[153px] xl:inline">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
