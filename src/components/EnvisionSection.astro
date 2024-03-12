@@ -1,329 +1,205 @@
 ---
-// import AppButtons from './AppButtons.astro';
-// import Features from './Features.astro';
 import Footer from './Footer.astro';
-import Logo from './Logo.astro';
-// import TrustIcon from './TrustIcon.astro';
+import done from '@assets/done.svg';
 
+export interface Props {}
 
-export interface Props {
-}
-
-const {  } = Astro.props;
+const {} = Astro.props;
 const subtitles = [
-	"your privacy is respected by blocking tracking and the sale of your data.",
-	"you decide how and when your data is shared, stored, and used.",
-	"you can easily share information with sites without passwords.",
-	"you can trust that apps and sites will act in your best interest."]
+  'Mee is a free personal data service that holds and manages your personal information.',
+  'It offers a simple, privacy-respecting experience - lets you see and control who has access to your information.',
+  'It puts you in control of what businesses can do with your personal data.',
+  'It’s provided by a non-profit that works on behalf of all Mee users.',
+];
+const apps = [
+  'Never share your information with other companies.',
+  'Log you in automatically without having to remember and type in passwords.',
+  'Present forms that fill in automatically by pulling information from Mee.',
+  'Support surveillance-free, tracking-free private advertising business model.',
+];
 ---
 
-<article id="envision" class="envision flex relative flex-col justify-center items-center w-screen overflow-x-hidden -mt-[0vh]">
-	<section id="en-section-0" class="logoSection flex section items-center justify-center w-screen min-h-screen opacity-0 transition-opacity ease-in-out duration-500">
-		<div class="sectionTitle transition-opacity duration-200 fixed flex flex-col items-center justify-center top-0 h-screen gap-4 md:gap-5 z-100"> 
-			<div id="envMeeLogo" class="logo logo--contrast w-[138px] h-10 md:w-[165px] md:h-12 opacity-0 animate-fadeIn">
-				<Logo />
-			</div>
-			<div class="overflow-hidden">
-				<p id="meeRestoringText" class="text text-xl leading-normal md:text-[1.75rem] text-blue animate-riseIn">is restoring balance</p>
-			</div>
-			<div id="scrollIndicatorInvision" class="flex flex-col items-center justify-center lg:flex mt-[40px] z-20 animate-fadeIn">
-				<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
-				<div class="down-arrow w-4 h-4 mt-1" />
-			</div>
-		</div>
-	</section>
-	<section class="relative flex flex-col items-center justify-center w-screen min-h-[100vh]">
-		<div class="bg-1" />
-		<div class="section flex flex-col items-center justify-center w-screen opacity-0">
-			<div id="title" class="sectionTitle overflow-hidden fixed flex items-center justify-center h-screen w-screen top-0 z-50 pb-20 md:pb-7">
-				<div class="overflow-hidden px-5">
-					<h2 class="uppercase title text-base leading-5 font-bold tracking-wider text-center animate-riseIn text-black/[.6]">Mee envisions a world where…</h2>
-				</div>
-			</div>
-			{subtitles.map((subtitle, index) => (
-				<div id={`en-section-${index+1}`} class="flex section flex-col items-center overflow-hidden w-screen h-[100vh]">
-					<div class="sectionText fixed overflow-hidden z-70 top-[50vh] w-full px-5 md:w-[732px]">
-						<h2 class="text-xl subtitle md:text-3xl font-bold text-gray text-center">{subtitle}</h2>
-					</div>
-				</div>
-			))}
-		</div>
-	</section>
-	<!-- <section id="en-section-5"  class="section bg-2 flex flex-col justify-center items-center top-0 pt-25 pb-45 min-h-[85vh] translate-y-5 md:translate-y-20">
-		<AppButtons btnSize="medium"/>
-	</section> -->
-	<Footer mode="dark" withAppButtons={false}/>
+<article
+  id="envision"
+  class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
+>
+  <section
+    id="en-section-0"
+    class="top-0 z-100 mb-10 mt-32 flex w-screen items-center justify-center md:mt-48"
+  >
+    <div
+      class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
+    >
+      <div id="title" class="section title w-full overflow-hidden md:w-160">
+        <h2
+          class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
+        >
+          Introducing Mee experience:
+        </h2>
+      </div>
+    </div>
+  </section>
+  <section
+    class="relative z-100 flex w-screen flex-col items-center justify-center"
+  >
+    <div class="fixed top-0 h-screen w-screen">
+      <div class="overflow-hidden"></div>
+    </div>
+    <div class="bg-1"></div>
+    <div class="flex flex-col items-center justify-center gap-16">
+      <div class="flex flex-col">
+        {
+          subtitles.map((subtitle, index) => (
+            <div
+              id={`en-section-${index + 1}`}
+              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
+            >
+              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+                <div class="mr-4">
+                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                    <img
+                      src={done.src}
+                      alt=""
+                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                    />
+                  </div>
+                </div>
+
+                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
+                  <span>{subtitle}</span>
+                </h2>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
+        <div class="section overflow-hidden">
+          <h2
+            class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
+          >
+            Mee-compatible apps:
+          </h2>
+        </div>
+      </div>
+      <div class="mb-10 flex flex-col">
+        {
+          apps.map((app, index) => (
+            <div
+              id={`en-section-1${index + 1}`}
+              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
+            >
+              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+                <div class="mr-4">
+                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                    <img
+                      src={done.src}
+                      alt=""
+                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                    />
+                  </div>
+                </div>
+
+                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
+                  <span>{app}</span>
+                </h2>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <Footer mode="dark" withAppButtons={false} />
 </article>
 
 <style>
-	.envision {
-		background: #fff;
-	}
+  .envision {
+    background: #fff;
+  }
 
-	.bg-1 {
-		position: absolute;
-		height: 100%;
-		transform: translate(-10vw, 0);
-		z-index: 70;
-		transform: translateY(150px);
-		background: linear-gradient(to top,rgba(249, 200, 137, 0.4) 75%, rgba(249, 182, 137, 0.4) 100%);
-		filter: blur(100px);
-		border-top-left-radius: 50%;
-		border-top-right-radius: 50%;
-		width: 250vw;
-	}
+  .bg-1 {
+    position: absolute;
+    height: 100%;
+    transform: translate(-10vw, 0);
+    z-index: 70;
+    transform: translateY(150px);
+    background: linear-gradient(
+      to top,
+      rgba(249, 200, 137, 0.4) 75%,
+      rgba(249, 182, 137, 0.4) 100%
+    );
+    filter: blur(100px);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    width: 250vw;
+  }
 
-	.bg-2 {
-		width: 200vw;
-		border-top-left-radius: 50%;
-		border-top-right-radius: 50%;
-		background: #fff;
-		z-index: 100;
-	}
-	.text {
-		-webkit-font-smoothing: antialiased;
-		font-smoothing: antialiased;
-		/* animation-duration: 400ms; */
-		animation-delay: 800ms;  
-	}
+  .bg-2 {
+    width: 200vw;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background: #fff;
+    z-index: 100;
+  }
+  .text {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
 
-	.logo {
-		animation-duration: 800ms;
-		animation-timing-function: ease-in;
-	}
-	.subtitleSection:last-child {
-		height: 100vh;
-	}
+  .logo {
+    animation-duration: 800ms;
+    animation-timing-function: ease-in;
+  }
+  .subtitleSection:last-child {
+    height: 100vh;
+  }
 
-	@keyframes riseBg {
-		0% { transform: translateY(150px);}
-		100% { transform: translateY(-150px);}
-	}
+  @keyframes riseBg {
+    0% {
+      transform: translateY(150px);
+    }
+    100% {
+      transform: translateY(-150px);
+    }
+  }
 
-	#scrollIndicatorInvision .scrollIcon {
-		border: 2px solid #447F88;
-	}
-	#scrollIndicatorInvision .scrollIcon::after {
-		background: #447F88;
-	}
-	#scrollIndicatorInvision .down-arrow {
-		background-color: #447F88;
-		mask: url(/images/bottom-arrow.svg) no-repeat center;
-	}
+  #scrollIndicatorInvision .scrollIcon {
+    border: 2px solid #447f88;
+  }
+  #scrollIndicatorInvision .scrollIcon::after {
+    background: #447f88;
+  }
+  #scrollIndicatorInvision .down-arrow {
+    background-color: #447f88;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
+  }
 </style>
-
-<!-- <script is:inline src="https://unpkg.com/intersection-observer-debugger"></script> -->
 <script>
-	const sections = document.querySelectorAll('.envision .section');
-	let isLogoSectionShown = false
-	let currentSectionId = 0
-	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
-	const logoSection = document.getElementById("en-section-0");
+  const sections = document.querySelectorAll('.envision .section');
 
-	const envMeeLogo = document.getElementById("envMeeLogo");
-	const meeRestoringText = document.getElementById("meeRestoringText");
-	const scrollIndicatorInvision = document.getElementById("scrollIndicatorInvision");
+  const options: IntersectionObserverInit = {
+    threshold: 0.8,
+  };
+  const observer = new IntersectionObserver((entries, _) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0');
+        entry.target
+          .querySelector('.subtitle')
+          ?.classList.remove('animate-fadeOut-short', 'opacity-0');
+        entry.target
+          .querySelector('.subtitle')
+          ?.classList.add('animate-riseIn-short', 'animation-delay-600');
+        entry.target
+          .querySelector('.title')
+          ?.classList.remove('animate-fadeOut', 'opacity-0');
+        entry.target.querySelector('.title')?.classList.add('animate-riseIn');
+      }
+    });
+  }, options);
 
-	const animationControl = document.getElementById("animation-control");
-	const header = document.getElementById("header");
-
-	const options: IntersectionObserverInit = {
-			threshold: 0,
-			rootMargin: "-40% 0% -60%"
-		};
-		const observer = new IntersectionObserver((entries, _) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.remove("opacity-0");
-					entry.target.querySelector(".subtitle")?.classList.remove('animate-fadeOut','hidden');
-					entry.target.querySelector(".subtitle")?.classList.add('animate-riseIn');
-					entry.target.querySelector(".title")?.classList.add("animate-riseIn");
-					if (entry.target.id === 'en-section-0') {
-						isLogoSectionShown = true
-						logoSection?.classList.remove("opacity-0");
-
-						envMeeLogo?.classList.remove('hidden')
-						envMeeLogo?.classList.add('animate-fadeIn')
-						meeRestoringText?.classList.remove('hidden')
-						meeRestoringText?.classList.add('animate-riseIn')
-						scrollIndicatorInvision?.classList.remove('!hidden')
-						scrollIndicatorInvision?.classList.add('animate-fadeIn')
-					}
-
-					const event = new CustomEvent("envSectionChanged", { detail: entry.target.id });
-					window.dispatchEvent(event)
-					if (currentSectionId !== Number(entry.target.id.slice(-1))) {
-						currentSectionId = Number(entry.target.id.slice(-1))
-						changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
-
-						const eventTo = new CustomEvent("onCurrentIndexChanged", {detail: currentSectionId});
-						window.dispatchEvent(eventTo)
-					}
-				} else {
-					entry.target.querySelector(".subtitle")?.classList.remove("animate-riseIn");
-					entry.target.querySelector(".subtitle")?.classList.add("'animate-fadeOut'");
-					entry.target.querySelector(".title")?.classList.remove("animate-riseIn");
-
-					if (entry.target.id !== 'en-section-5') {
-						entry.target.classList.add("opacity-0");
-					}
-
-					if (entry.target.id === 'en-section-0' && isLogoSectionShown) {
-						logoSection?.classList.add("opacity-0");
-
-						envMeeLogo?.classList.remove('animate-fadeIn')
-						envMeeLogo?.classList.add('hidden')
-						meeRestoringText?.classList.remove('animate-riseIn')
-						meeRestoringText?.classList.add('hidden')
-						scrollIndicatorInvision?.classList.remove('animate-fadeIn')
-						scrollIndicatorInvision?.classList.add('!hidden')
-
-						isLogoSectionShown = false
-					}
-				}
-			})
-		}, options);
-
-		sections.forEach((section) => {
-			observer.observe(section)
-		});
-
-		const section1 = document.getElementById(`en-section-1`);
-		const sectionLast = document.getElementById(`en-section-5`);
-
-		const optionsForLast: IntersectionObserverInit = {
-			threshold: 0,
-		};
-		const observerForLast = new IntersectionObserver((entries, _) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					animationControl?.classList.add('opacity-0')
-					header?.classList.add('bg-white', 'lg:bg-transparent')
-				} else {
-					if (direction === 'up') {
-						animationControl?.classList.remove('opacity-0')
-						header?.classList.remove('bg-white', 'lg:bg-transparent')
-					}
-				}
-			})
-		}, optionsForLast);
-		sectionLast && observerForLast.observe(sectionLast)
-
-
-		const optionsForLastForStopScroll: IntersectionObserverInit = {
-			threshold: 0.49,
-		};
-		const observerForLastForStopScroll = new IntersectionObserver((entries, _) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const event = new CustomEvent("atTheAppLinks");
-					window.dispatchEvent(event)
-				}
-			})
-		}, optionsForLastForStopScroll);
-		sectionLast && observerForLastForStopScroll.observe(sectionLast)
-
-		let lastScroll = 0
-		let direction: string
-		document.addEventListener('scroll', () => {
-			const st = window.pageYOffset || document.documentElement.scrollTop;
-
-			if (lastScroll > st) {
-				direction = 'up';
-			} else {
-				direction = 'down';
-			}
-			lastScroll = st
-		})
-
-	window.addEventListener('scroll', updateScrollIndicator);
-
-	let inScrollChangeScreenScrollY = changeScreenScrollY
-	let diff = changeScreenScrollY
-	let inScrollSectionId = currentSectionId
-	let currSection = 'today'
-
-	const getScreenHeight = () => {
-		let screenHeight = section1 && section1.clientHeight;
-		if (currentSectionId === 5) {
-			const padding = 280
-			screenHeight = sectionLast && sectionLast.clientHeight - padding;
-		}
-
-		return screenHeight
-	}
-
-	window.addEventListener('envSectionShown', () => {
-		currSection = 'env'
-
-		updateScrollIndicator()
-	})
-	window.addEventListener('todaySectionShown', () => {
-		currSection = 'today'
-	})
-
-	window.addEventListener('scrolledTo', (e) => {
-		const params = e.detail
-		if (params.section === 'en-section') {
-			currentSectionId = params.index
-			changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
-			diff = changeScreenScrollY
-			inScrollChangeScreenScrollY = changeScreenScrollY
-			inScrollSectionId = currentSectionId
-
-			if (params.index === 0 || params.index === 5) {
-				const howLongMs = params.index === 0 ? 50 : 250
-
-				const scrollIntervalId = setInterval(() => {
-					window.scrollTo(0, window.scrollY + 20);
-				}, 5)
-				setTimeout(() => {
-					clearInterval(scrollIntervalId)
-				}, howLongMs)
-			}
-		}
-	});
-
-	function updateScrollIndicator() {
-		if (currSection === 'today') return
-
-		let screenHeight = getScreenHeight()
-
-		if (!screenHeight) return
-
-		const winScroll =
-			document.body.scrollTop || document.documentElement.scrollTop;
-
-		if (inScrollChangeScreenScrollY !== changeScreenScrollY) {
-			inScrollChangeScreenScrollY = changeScreenScrollY
-			diff = changeScreenScrollY
-
-			if (direction === 'up') {
-				diff = inScrollChangeScreenScrollY - screenHeight
-			}
-		}
-
-		if (inScrollSectionId !== currentSectionId) {
-			const bitProgress = document.getElementById(`env-bit-progress-${inScrollSectionId}`);
-			if (direction === 'down') {
-				if (bitProgress) {
-					bitProgress.style.width = '100%';
-				}
-			} else {
-				if (bitProgress) {
-					bitProgress.style.width = '0%';
-				}
-			}
-			inScrollSectionId = currentSectionId
-		}
-
-		const currScroll = winScroll - diff
-		const percent = currScroll * 100 / screenHeight
-
-		const bitProgress = document.getElementById(`env-bit-progress-${currentSectionId}`);
-
-		if (bitProgress && percent <= 100) {
-			bitProgress.style.width = percent + '%';
-		}
-	}
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
 </script>
