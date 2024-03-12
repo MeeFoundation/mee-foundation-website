@@ -9,7 +9,7 @@ export const Footer: React.FC = () => (
       <div className="w-full px-4 py-5">
         <div className="flex flex-col gap-4 md:flex-row justify-between items-center text-2xs md:text-sm leading-3 text-primary-content">
           <p className="leading-4">
-            <a href="/#/privacy-policy">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
             {' '}
             |
             {' '}

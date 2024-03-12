@@ -18,11 +18,6 @@ const twitterIcon = mode === 'dark' ? twitterIconWhite : twitterIconBlack
 // TODO Add bg animation on connect with mee button
 // TODO Add link to connect button
 
-const footerLinks = [...links]
-footerLinks.shift()
-// Bring this link in the future
-// footerLinks.unshift({name: "How Mee Works", link:"https://docs-dev.mee.foundation/"})
-
 ---
 
 <footer id="footer" class:list={["footer flex flex-col items-center justify-center pt-33 w-[400vw] md:w-[200vw] z-200", {"footer--fill text-white": mode === "dark", "text-blue": mode === "light"}]}>
@@ -34,7 +29,7 @@ footerLinks.shift()
   <div class:list={["flex flex-col xl:flex-row justify-between items-center w-screen px-5 md:px-15 pb-10 text-sm font-medium leading-none tracking-wider gap-7", {"text-white": mode === "dark", "text-gray": mode === "light"}]}>
     <span class="hidden whitespace-nowrap max-w-[153px] xl:inline">© {new Date().getFullYear()} The Mee Foundation, Inc.</span>
     <ul class="flex text-center flex-col md:flex-row gap-7 md:gap-10 mb-13 md:mb-0">
-      {footerLinks.map(link => <li><a href={link.link}>{link.name}</a></li>)}
+      {links.map(link => <li><a href={link.link}>{link.name}</a></li>)}
     </ul>
     <div class="flex items-center">
       <a href="/privacy-policy" target="_blank">Privacy Policy</a>
