@@ -1,22 +1,9 @@
 ---
 import Footer from './Footer.astro';
-import done from '@assets/done.svg';
 
 export interface Props {}
 
 const {} = Astro.props;
-const subtitles = [
-  'Mee is a free personal data service that holds and manages your personal information.',
-  'It offers a simple, privacy-respecting experience - lets you see and control who has access to your information.',
-  'It puts you in control of what businesses can do with your personal data.',
-  'It’s provided by a non-profit that works on behalf of all Mee users.',
-];
-const apps = [
-  'Never share your information with other companies.',
-  'Log you in automatically without having to remember and type in passwords.',
-  'Present forms that fill in automatically by pulling information from Mee.',
-  'Support surveillance-free, tracking-free private advertising business model.',
-];
 ---
 
 <article
@@ -24,89 +11,73 @@ const apps = [
   class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
 >
   <section
-    id="en-section-0"
-    class="top-0 z-100 mb-10 mt-32 flex w-screen items-center justify-center md:mt-48"
+    class="en-section relative flex w-[400vw] flex-col items-center px-5 py-30 text-black/[.8] md:pb-45 md:pt-40 lg:w-[200vw]"
   >
-    <div
-      class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
+    <h2
+      class="z-70 mb-15 text-3xl font-bold leading-thick md:mb-25 md:text-4xl md:leading-normal lg:text-5xl"
     >
-      <div id="title" class="section title w-full overflow-hidden md:w-160">
-        <h2
-          class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
-        >
-          Introducing Mee experience:
-        </h2>
-      </div>
-    </div>
-  </section>
-  <section
-    class="relative z-100 flex w-screen flex-col items-center justify-center"
-  >
+      Introducing Mee experience
+    </h2>
     <div class="fixed top-0 h-screen w-screen">
       <div class="overflow-hidden"></div>
     </div>
     <div class="bg-1"></div>
-    <div class="flex flex-col items-center justify-center gap-16">
-      <div class="flex flex-col">
-        {
-          subtitles.map((subtitle, index) => (
-            <div
-              id={`en-section-${index + 1}`}
-              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
-            >
-              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
-                <div class="mr-4">
-                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
-                    <img
-                      src={done.src}
-                      alt=""
-                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
-                    />
-                  </div>
-                </div>
-
-                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
-                  <span>{subtitle}</span>
-                </h2>
-              </div>
-            </div>
-          ))
-        }
+    <div
+      class="z-70 flex w-screen flex-col items-center justify-center gap-18.5 px-5 lg:flex-row lg:items-start"
+    >
+      <div
+        class="section__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+      >
+        <h6
+          class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+        >
+          Personal Data Service
+        </h6>
+        <p
+          class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
+        >
+          Mee is a free personal data service that holds and manages your
+          personal information. It’s provided by a non-profit organization that
+          works on behalf of all Mee users.
+        </p>
       </div>
-      <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
-        <div class="section overflow-hidden">
-          <h2
-            class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
-          >
-            Mee-compatible apps:
-          </h2>
-        </div>
+      <div
+        class="en-section__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+      >
+        <h6
+          class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+        >
+          Respecting Privacy
+        </h6>
+        <p
+          class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
+        >
+          Mee offers a simple, privacy-respecting experience. It lets you see
+          who has access to your information and puts you in control of what
+          businesses can do with your personal data.
+        </p>
+        <a
+          class="link relative hidden items-center justify-between gap-2 text-base font-extrabold leading-[1.6] text-black/[.8] after:-rotate-45 after:bg-black/[.8]"
+          href="#"
+          rel="nofollow"
+          target="_blank">Human Information License (HIL)</a
+        >
       </div>
-      <div class="mb-10 flex flex-col">
-        {
-          apps.map((app, index) => (
-            <div
-              id={`en-section-1${index + 1}`}
-              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
-            >
-              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
-                <div class="mr-4">
-                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
-                    <img
-                      src={done.src}
-                      alt=""
-                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
-                    />
-                  </div>
-                </div>
-
-                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
-                  <span>{app}</span>
-                </h2>
-              </div>
-            </div>
-          ))
-        }
+      <div
+        class="en-section__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+      >
+        <h6
+          class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+        >
+          Mee-compatible apps
+        </h6>
+        <p
+          class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
+        >
+          Apps never share your information with other companies. You enjoy less
+          form-filling, fewer passwords. The apps support a surveillance-free
+          private advertising business model.
+        </p>
       </div>
     </div>
   </section>
@@ -154,57 +125,11 @@ const apps = [
   .subtitleSection:last-child {
     height: 100vh;
   }
-
-  @keyframes riseBg {
-    0% {
-      transform: translateY(150px);
-    }
-    100% {
-      transform: translateY(-150px);
-    }
-  }
-
-  #scrollIndicatorInvision .scrollIcon {
-    border: 2px solid #447f88;
-  }
-  #scrollIndicatorInvision .scrollIcon::after {
-    background: #447f88;
-  }
-  #scrollIndicatorInvision .down-arrow {
-    background-color: #447f88;
-    mask: url(/images/bottom-arrow.svg) no-repeat center;
-  }
 </style>
 <script>
-  const sections = document.querySelectorAll('.envision .section');
-
-  const options: IntersectionObserverInit = {
-    threshold: 0.8,
-  };
-  const observer = new IntersectionObserver((entries, _) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('opacity-0');
-        entry.target
-          .querySelector('.subtitle')
-          ?.classList.remove('animate-fadeOut-short', 'opacity-0');
-        entry.target
-          .querySelector('.subtitle')
-          ?.classList.add('animate-riseIn-short', 'animation-delay-600');
-        entry.target
-          .querySelector('.title')
-          ?.classList.remove('animate-fadeOut', 'opacity-0');
-        entry.target.querySelector('.title')?.classList.add('animate-riseIn');
-      }
-    });
-  }, options);
-
-  sections.forEach((section) => {
-    observer.observe(section);
-  });
   const optionsForStopScroll: IntersectionObserverInit = {
     threshold: 0,
-    rootMargin: '-15%',
+    rootMargin: '0px 0px -100% 0px',
   };
   const observerStopScroll = new IntersectionObserver((entries, _) => {
     entries.forEach((entry) => {
@@ -214,6 +139,21 @@ const apps = [
       }
     });
   }, optionsForStopScroll);
-  const sectionForStopScroll = document.getElementById(`en-section-4`);
+  const sectionForStopScroll = document.querySelector('.en-section');
   sectionForStopScroll && observerStopScroll.observe(sectionForStopScroll);
+
+  const sectionItems = document.querySelectorAll('.en-section__item');
+  const observerSection = new IntersectionObserver(
+    (entries, _) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-moveCard');
+        }
+      });
+    },
+    {threshold: 0.1},
+  );
+  sectionItems.forEach((sectionItem) => {
+    observerSection.observe(sectionItem);
+  });
 </script>
