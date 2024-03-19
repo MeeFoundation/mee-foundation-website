@@ -1,561 +1,413 @@
 ---
 import Background from './Background.astro';
 
-export interface Props {
-}
+export interface Props {}
 
-const {  } = Astro.props;
+const {} = Astro.props;
 const subtitles = [
-	"you can’t control who has your data or how they’ll use it.",
-	"businesses treat your data as their property.",
-	"data brokers buy and sell information about you without your knowledge",
-	"most people navigate this world with mistrust."]
+  'you can’t control who has your data or how they’ll use it.',
+  'businesses treat your data as their property.',
+  'data brokers buy and sell information about you without your knowledge',
+  'most people navigate this world with mistrust.',
+];
 ---
 
-<article id="today" class="flex today flex-col items-center">
-	{/* <img id="linesImage" class="lines animate-fadeIn" src="/images/lines.svg" /> */}
-  <section class="sectionTitle relative z-20 flex flex-col items-center text-center w-full md:w-[692px]">
-		<Background />
-    <div id="title" class="title overflow-hidden fixed z-100 flex items-center justify-center h-screen pb-7">
-			<div class="overflow-hidden">
-				<h2 class="text text-base leading-5 font-bold tracking-wider uppercase text-purple animate-riseIn animation-delay-400">In today’s digital world...</h2>
-			</div>
+<div class="slider-container">
+  <Background />
+  <div
+    id="title"
+    class="title fixed z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7"
+  >
+    <div class="overflow-hidden">
+      <h2
+        class="text animate-riseIn text-base font-bold uppercase leading-5 tracking-wider text-purple animation-delay-400"
+      >
+        In today’s digital world...
+      </h2>
     </div>
-		<div id={`section-negative`} class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[50vh]" />
-
-		{subtitles.map((subtitle, index) => (
-			<div id={`section-${index}`} class="w-25 section flex flex-col items-center section-0 overflow-hidden h-[100vh]">
-				<div class="sectionText overflow-hidden fixed z-20 top-[50vh] w-full px-5 md:w-[692px]">
-					<h2 id={`subtitle-${index}`} class="text subtitle text-xl md:text-3xl font-bold text-white/[.85] hidden">{subtitle}</h2>
-				</div>
-			</div>
-		))}
-		<div class="scrollIconContainer fixed flex flex-col items-center justify-center h-screen pt-56 z-20 animate-fadeIn-long animation-delay-1000">
-			<i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
-			<div class="down-arrow w-4 h-4 mt-1" />
-		</div>
-		<div id="animationTrigger" class="w-[10px] section flex flex-col items-center section-0 overflow-hidden h-screen"/>
-		<div id="bleachAnimation" class="fixed flex h-[400vh]" />
-
-  </section>
-</article>
+  </div>
+  {
+    subtitles.map((subtitle, index) => (
+      <div class={`slide slide${index}`}>
+        <div class="slide-part">
+          <div class="absolute top-0 flex h-full w-[100vw] items-center justify-center overflow-hidden">
+            <div class="slide-content">
+              <p class="slide-subtitle px-5 text-xl opacity-0 md:w-[692px] md:text-3xl">
+                {subtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+  <div
+    class="scrollIconContainer fixed z-20 flex h-screen w-screen animate-fadeIn-long flex-col items-center justify-center pt-56 animation-delay-1000"
+  >
+    <i
+      class="scrollIcon relative flex h-6 w-4 overflow-hidden py-1 transition-opacity duration-100 ease-linear md:h-7 md:w-4.5 md:py-2"
+    ></i>
+    <div class="down-arrow mt-1 h-4 w-4"></div>
+  </div>
+  <div
+    id="animationTrigger"
+    class="section section-0 flex h-screen w-[10px] flex-col items-center overflow-hidden"
+  >
+  </div>
+  <div id="bleachAnimation" class="fixed flex h-[400vh]"></div>
+</div>
 
 <style>
-	.text {
-		-webkit-font-smoothing: antialiased;
-		font-smoothing: antialiased;  
-	}
-	.logo {
-		animation-duration: 800ms;
-		opacity: 0;
-	}
-	.title {
-		animation-duration: 300ms;
-	}
-	.subtitle {
-		transition: opacity 300ms;
-	}
+  .slider-container {
+    position: relative;
+    height: 100vh;
+    min-width: 320px;
+    overflow: hidden;
+  }
 
-	.titleBleach {
-		animation-delay: calc(var(--bleachProgress) * 10 * -400ms);
-		animation-play-state: paused;
-		animation-fill-mode: both;
-    backface-visibility: hidden; 
-	}
-	.figuresBleach {
-		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
-		animation-play-state: paused;
-		animation-fill-mode: both;
-    backface-visibility: hidden; 
-	}
-	.down-arrow {
-		background-color: #ffffffb3;
-		mask: url(/images/bottom-arrow.svg) no-repeat center;
-	}
+  .slide-part {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    transition: transform 1s;
+    transform: translateY(100%);
+    transition: transform 1s;
+  }
+  .slide-part .active {
+    transform: translateY(0);
+  }
 
+  .scrolling_active .slide-part {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+
+  .slide-content {
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    color: #ffffff;
+    font-size: 3vh;
+    text-align: center;
+  }
+
+  .slide-title {
+    font-size: 6vh;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+  }
+  .down-arrow {
+    background-color: #ffffffb3;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
+  }
 </style>
 <style is:global>
-	@media (max-height: 800px) {
-		.sectionTitle {
-			top: -20vh!important;
-		}
+  @media (max-height: 800px) {
+    .sectionTitle {
+      top: -20vh !important;
+    }
 
-		.sectionText {
-			top: 30vh!important;
-		}
-	}
+    .sectionText {
+      top: 30vh !important;
+    }
+  }
 </style>
 
 <script>
-	import scrollIntoView from 'scroll-into-view-if-needed'
-  const sections = document.querySelectorAll('.today .section');
-	const scrollIconContainer = document.querySelector(".scrollIconContainer");
-	const shadow = document.querySelector(".shadow");
-	const title = document.getElementById("title");
-	const figuresContainer = document.querySelector('.figuresContainer') as HTMLElement;
-	const grid = document.querySelector('.grid');
-	const gradients = document.querySelectorAll('.floatGradient');
-	const mainLogo = document.getElementById("mainLogo");
-	const envisionSection = document.getElementById("envision");
-	const bleachSection = document.getElementById("bleachAnimation");
-	let currBleach = 0
-	const logoSection = document.getElementById("en-section-0");
-	let showTodatSectionTriggerScroll = 0
-	const bleachSpeedMS = 100
-	const bleachStep = 0.02
-	let flashInProgress = false
-	let scrollIconContainerHidden = false
-	const TO_SUBTITLES_NUMBER = 5
-	const EN_SUBTITLES_NUMBER = 5
-	let changeScreenScrollY: number = document.body.scrollTop || document.documentElement.scrollTop
-	let skipExplosion = false
-	let currSection = 'today'
-	const animationControl = document.getElementById("animation-control");
+  const fromEnvision = window.location.hash === '#from-envision';
+  const sliderContainer = document.querySelector('.slider-container');
+  const slides = document.querySelectorAll('.slide');
+  const subtitles = document.querySelectorAll('.slide-subtitle');
+  const scrollIconContainer = document.querySelector('.scrollIconContainer');
+  let activeSlideIndex = 0;
+  let scrollCount = 0;
+  let countForScroll = 0;
+  let flashInProgress = false;
 
-	// autoscroll start
-	let currentSectionId = 0
-	let envCurrentSectionId = 0
-	let scrollToEnvisionIntervalId: number
-	const autoscrollSpeedPx = 5
-	const autoscrollSpeedMs = 15
-	let playIsOn = false
-	const playPauseBtn = document.getElementById(`animation-play-pause-btn`)
-	let scrollIntervalId = 0
-	let currScrollY = window.scrollY
+  sliderContainer?.classList.add('slider-locked');
 
-  const smoothScroll = () => {
-		if (scrollIntervalId !== 0) {
-			clearInterval(scrollIntervalId)
-		}
-		scrollIntervalId = setInterval(() => {
-			// fix for IPhone scroll jerks
-			if (window.scrollY >= currScrollY) {
-				window.scrollTo(0, window.scrollY + autoscrollSpeedPx);
-				currScrollY = window.scrollY
-			}
-		}, autoscrollSpeedMs)
+  let currBleach = 0;
+  const grid = document.querySelector('.grid');
+  const figuresContainer = document.querySelector(
+    '.figuresContainer',
+  ) as HTMLElement;
+  const gradients = document.querySelectorAll('.floatGradient');
+  const shadow = document.querySelector('.shadow');
+  const title = document.getElementById('title');
+  const bleachSpeedMS = 70;
+  const bleachStep = 0.02;
+  const bleachStepDouble = 0.04;
+  const START_AUTOSCROLL_AFTER_MS = 3000;
+  const AUTOSCROLL_SPEED_MS = 5000;
+  let timer: number | undefined = undefined;
+  let autoscrollId: number;
+  let autoScrollOn = false;
+
+  const autoScroll = () => {
+    if (autoScrollOn) {
+      moveToSlide(1);
+    }
+  };
+  const stopAutoScroll = () => {
+    if (autoScrollOn) {
+      autoScrollOn = false;
+      autoscrollId && clearInterval(autoscrollId);
+    }
+  };
+
+  const handleAutoscroll = () => {
+    if (autoScrollOn) {
+      autoScrollOn = false;
+      clearInterval(autoscrollId);
+    }
+
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(function () {
+      if (!autoScrollOn) {
+        autoScrollOn = true;
+        autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS);
+      }
+    }, START_AUTOSCROLL_AFTER_MS);
+  };
+
+  const onDragEndAnimation = (swap: number, activeSlide: number) => {
+    let iterationCount = 0;
+
+    let dragAnimationId = setInterval(() => {
+      if (iterationCount < 100 && !(!activeSlide && swap === -1)) {
+        iterationCount++;
+        scrollCount = scrollCount + swap * 0.0001 * (99 - iterationCount);
+        document.documentElement.style.setProperty(
+          '--scroll',
+          scrollCount.toString(),
+        );
+      } else {
+        clearInterval(dragAnimationId);
+      }
+    }, 7);
+  };
+
+  const startBleachAnimation = () => {
+    flashInProgress = true;
+    title?.classList.add('animate-fadeOut', 'titleBleach');
+    subtitles.forEach((subtitle) => {
+      subtitle.classList.add('animate-fadeOut', 'titleBleach');
+    });
+    grid?.classList.add('animate-fadeOut', 'figuresBleach');
+    figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
+    gradients.forEach((gradient) => {
+      gradient.removeAttribute('style');
+      gradient.classList.add('animate-fadeOut', 'figuresBleach');
+    });
+    shadow?.classList.add('bg-1');
+
+    let bleachIntervalId = setInterval(() => {
+      if (currBleach < 1) {
+        const step = currBleach > 0.6 ? bleachStepDouble : bleachStep;
+        currBleach = currBleach + step;
+        if (currBleach > 1) {
+          currBleach = 1;
+        }
+        document.documentElement.style.setProperty(
+          '--bleachProgress',
+          currBleach.toString(),
+        );
+      } else {
+        setTimeout(() => {
+          flashInProgress = false;
+          window.location.href = '/envision';
+        }, 1000);
+        clearInterval(bleachIntervalId);
+      }
+    }, bleachSpeedMS);
+  };
+  const startBleachFromEndAnimation = () => {
+    flashInProgress = true;
+    title?.classList.add('opacity-0');
+    grid?.classList.add('animate-fadeIn', 'figuresBleach');
+    figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
+    gradients.forEach((gradient) => {
+      gradient.removeAttribute('style');
+      gradient.classList.add('animate-fadeIn', 'figuresBleach');
+    });
+    shadow?.classList.add('bg-1');
+
+    let bleachIntervalId = setInterval(() => {
+      if (currBleach > 0) {
+        const step = currBleach > 0.6 ? bleachStepDouble : bleachStep;
+        currBleach = currBleach - step;
+        if (currBleach < 0) {
+          currBleach = 0;
+        }
+
+        document.documentElement.style.setProperty(
+          '--bleachProgress',
+          currBleach.toString(),
+        );
+      } else {
+        flashInProgress = false;
+        title?.classList.add('animate-fadeIn');
+        title?.classList.remove('opacity-0');
+        setActiveSlide();
+        clearInterval(bleachIntervalId);
+      }
+    }, bleachSpeedMS);
+  };
+
+  const setActiveSlide = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeSlideIndex;
+      const subtitle = slide.querySelector('.slide-subtitle');
+
+      if (slide.classList.contains('scrolling_active')) {
+        subtitle?.classList.add('animate-fadeOut', 'opacity-0');
+        subtitle?.classList.remove('animate-riseIn');
+      } else if (isActive) {
+        subtitle?.classList.remove('opacity-0', 'animate-fadeOut');
+        subtitle?.classList.add('animate-riseIn');
+      }
+
+      setTimeout(() => {
+        slide.classList.toggle('scrolling_active', isActive);
+      }, 300);
+    });
+  };
+
+  const moveToSlide = (swap: number) => {
+    if (sliderContainer?.classList.contains('slider-locked') || flashInProgress)
+      return;
+
+    onDragEndAnimation(swap, activeSlideIndex);
+
+    const potentialNextSlide = activeSlideIndex + swap;
+
+    if (activeSlideIndex === 0 && swap === 1) {
+      scrollIconContainer?.classList.add('opacity-0');
+      setTimeout(() => {
+        scrollIconContainer?.classList.add('hidden');
+      }, 100);
+    }
+
+    if (potentialNextSlide < 0 && swap === -1) {
+      return;
+    }
+
+    activeSlideIndex = potentialNextSlide;
+
+    sliderContainer?.classList.add('slider-locked');
+    setActiveSlide();
+
+    if (potentialNextSlide > slides.length - 1 && swap === 1) {
+      startBleachAnimation();
+      return;
+    }
+  };
+
+  const onTransitionEnd = () => {
+    sliderContainer?.classList.remove('slider-locked');
+  };
+
+  const onScroll = (event: WheelEvent) => {
+    stopAutoScroll();
+    const swap = Math.sign(event.deltaY);
+    const locked = sliderContainer?.classList.contains('slider-locked');
+
+    if (!(activeSlideIndex === 0 && event.deltaY < 0) && !locked) {
+      scrollCount = scrollCount + event.deltaY * 0.0001;
+
+      document.documentElement.style.setProperty(
+        '--scroll',
+        scrollCount.toString(),
+      );
+    }
+
+    countForScroll = countForScroll + event.deltaY;
+
+    if (countForScroll > 1000 || countForScroll < -1000) {
+      moveToSlide(swap);
+      countForScroll = 0;
+    }
+  };
+
+  let startY = 0;
+  let endY = 0;
+
+  const onDragStart = (event: TouchEvent) => {
+    stopAutoScroll();
+    startY = event.touches[0]?.clientY ?? 0;
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    endY = event.touches[0]?.clientY ?? 0;
+    const changeScroll = startY - endY;
+
+    if (!(!activeSlideIndex && changeScroll < 0)) {
+      scrollCount = scrollCount + changeScroll * 0.00005;
+      if (scrollCount < 0) {
+        scrollCount = 0;
+      }
+
+      document.documentElement.style.setProperty(
+        '--scroll',
+        scrollCount.toString(),
+      );
+    }
+  };
+
+  const onDragEnd = () => {
+    const swap = startY > endY ? 1 : -1;
+    moveToSlide(swap);
+  };
+
+  document.addEventListener('wheel', onScroll);
+  sliderContainer?.addEventListener('transitionend', onTransitionEnd);
+
+  document.body.onkeydown = function (e) {
+    if (e.code === 'ArrowDown') {
+      stopAutoScroll();
+      moveToSlide(1);
+    }
+
+    if (e.code === 'ArrowUp') {
+      stopAutoScroll();
+      moveToSlide(-1);
+    }
+  };
+
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
+
+  if (fromEnvision) {
+    window.history.replaceState(null, document.title, '/');
+    activeSlideIndex = slides.length - 1;
+    scrollCount = 2;
+    document.documentElement.style.setProperty(
+      '--scroll',
+      scrollCount.toString(),
+    );
+    scrollIconContainer?.classList.add('hidden');
+    currBleach = 1;
+    startBleachFromEndAnimation();
+  } else {
+    setActiveSlide();
+    handleAutoscroll();
   }
-
-	const START_AUTOSCROLL_AFTER_MS = 3000
-	const AUTOSCROLL_SPEED_MS = 5000
-	let timer: number | undefined = undefined;
-	let autoscrollId: number
-	let autoScrollOn = false
-	handleAutoscroll()
-
-	function autoScroll() {
-		if (autoScrollOn) {
-			smoothScroll()
-		}
-	}
-
-	function handleAutoscroll() {
-		if (autoScrollOn) {
-			autoScrollOn = false
-			clearInterval(autoscrollId)
-		}
-
-		if(timer !== null) {
-			clearTimeout(timer);
-		}
-
-		timer = setTimeout(function() {
-			if (!autoScrollOn) {
-				setPlayOn()
-				autoScrollOn = true
-				autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS)
-			}
-		}, START_AUTOSCROLL_AFTER_MS);
-	}
-
-	function clearListeners() {
-		clearTimeout(timer);
-		clearInterval(scrollToEnvisionIntervalId)
-		scrollToEnvisionIntervalId = 0
-		clearInterval(scrollIntervalId)
-		scrollIntervalId = 0
-		clearInterval(autoscrollId)
-		window.removeEventListener('wheel', handleAutoscroll)
-		window.removeEventListener('keypress', handleAutoscroll)
-		window.removeEventListener('scroll', clearListeners)
-	}
-
-	const setAutoscrollListeners = () => {
-		handleAutoscroll()
-		window.addEventListener('wheel', handleAutoscroll);
-		window.addEventListener('keypress', handleAutoscroll);
-	}
-	setAutoscrollListeners()
-
-	const setPlayOff = () => {
-		if (playPauseBtn) {
-			playPauseBtn.classList.remove('pause')
-			playPauseBtn.classList.add('play')
-			playIsOn = false
-		}
-	}
-
-	const setPlayOn = () => {
-		if (playPauseBtn) {
-			playPauseBtn.classList.add('pause')
-			playPauseBtn.classList.remove('play')
-			playIsOn = true
-			smoothScroll()
-		}
-	}
-
-	playPauseBtn?.addEventListener('click', () => {
-		if (playIsOn) {
-			setPlayOff()
-			clearListeners()
-		} else {
-			setPlayOn()
-			setAutoscrollListeners()
-		}
-	})
-
-	window.addEventListener('envSectionChanged', (e) => {
-		const id = e.detail
-		const currEnvCurrentSectionId = Number(id.slice(-1))
-
-		if (playIsOn && currEnvCurrentSectionId === EN_SUBTITLES_NUMBER - 1 && envCurrentSectionId === 0) {
-			setAutoscrollListeners()
-		}
-		envCurrentSectionId = currEnvCurrentSectionId
-	});
-
-	window.addEventListener('atTheStopScroll', () => {
-		setPlayOff()
-		clearListeners()
-	})
-
-	// autoscroll end
-	let wentEnvTimestamp: number
-
-		const options: IntersectionObserverInit = {
-			threshold: 0,
-			rootMargin: "-40% 0% -60%"
-		};
-		const observer = new IntersectionObserver((entries, _) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					if(entry.target.id === "animationTrigger" && currBleach <= 0 && !skipExplosion) {
-						title?.classList.add("animate-fadeOut", "titleBleach");
-						entry.target.querySelector('.subtitle')?.classList.add("animate-fadeOut", "titleBleach");
-						grid?.classList.add("animate-fadeOut", "figuresBleach");
-						figuresContainer?.classList.add("animate-collapse3d", "figuresBleach");
-						gradients.forEach(gradient => {
-							gradient.removeAttribute('style');
-							gradient.classList.add("animate-fadeOut", "figuresBleach")
-						})
-						shadow?.classList.add("bg-1");
-						showTodatSectionTriggerScroll = window.scrollY
-
-						if (!flashInProgress) {
-							flashInProgress = true
-							animationControl?.classList.add('opacity-0')
-
-							let bleachIntervalId = setInterval(() => {
-								if (currBleach < 1) {
-									currBleach = currBleach + bleachStep
-									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-								} else {
-									setTimeout(() => {
-										flashInProgress = false
-
-										const event = new CustomEvent("needSyncStatusBar", {detail: {
-											section: 'en-section',
-											index: 0
-										}});
-										window.dispatchEvent(event)
-
-										const eventTo = new CustomEvent("scrolledTo", {detail: {
-											section: 'en-section',
-											index: 0
-										}});
-										window.dispatchEvent(eventTo)
-										currSection = 'env'
-
-										animationControl?.classList.remove('opacity-0')
-										wentEnvTimestamp = Date.now()
-									}, 1000)
-									clearInterval(bleachIntervalId)
-
-									scrollToEnvision(0)
-									const eventIndexChanged = new CustomEvent("onCurrentIndexChanged", {detail: 0});
-									window.dispatchEvent(eventIndexChanged)
-
-									const event = new CustomEvent("envSectionShown");
-									window.dispatchEvent(event)
-								}
-							}, bleachSpeedMS)
-						}
-					}
-
-					// iphone fix
-					const minMsDiff = 5000
-					const isEnoughtTimeFromSectionChanged = Date.now() - wentEnvTimestamp > minMsDiff
-					console.log('g', Date.now() - wentEnvTimestamp);
-					if(entry.target.id === "animationTrigger"
-						&& currBleach > 0
-						&& !skipExplosion
-						&& isEnoughtTimeFromSectionChanged) {
-
-						envisionSection?.classList.add("hidden");
-						mainLogo?.classList.remove("logo--contrast");
-						logoSection?.classList.add("opacity-0");
-
-						if (!flashInProgress) {
-							flashInProgress = true
-							animationControl?.classList.add('opacity-0')
-
-							const event = new CustomEvent("todaySectionShown");
-							window.dispatchEvent(event)
-
-							let bleachIntervalId = setInterval(() => {
-								if (currBleach > 0) {
-									currBleach = currBleach - bleachStep
-									document.documentElement.style.setProperty('--bleachProgress', currBleach.toString());
-								} else {
-									setTimeout(() => {
-										flashInProgress = false
-										const lastSection = document.getElementById("section-4");
-
-										if (lastSection && !currentSectionId) {
-											scrollIntoView(lastSection)
-
-											const event = new CustomEvent("needSyncStatusBar", {detail: {
-												section: 'section',
-												index: 4
-											}});
-											window.dispatchEvent(event)
-											const eventTo = new CustomEvent("scrolledTo", {detail: {
-												section: 'section',
-												index: 4
-											}});
-											window.dispatchEvent(eventTo)
-										}
-										animationControl?.classList.remove('opacity-0')
-										currSection = 'today'
-										currScrollY = window.scrollY
-									}, 1000)
-									clearInterval(bleachIntervalId)
-									showTodatSectionTriggerScroll = 0
-
-									autoScrollOn = false
-								}
-							}, bleachSpeedMS)
-						}
-					}
-
-					if (entry.target.id !== 'section-negative') {
-						currentSectionId = Number(entry.target.id.slice(-1))
-
-						const eventIndexChanged = new CustomEvent("onCurrentIndexChanged", {detail: currentSectionId});
-						window.dispatchEvent(eventIndexChanged)
-					}
-					changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
-				}
-
-				for (let index = 0; index < TO_SUBTITLES_NUMBER; index++) {
-					const curr = document.getElementById(`subtitle-${index}`);
-					if (currentSectionId === index) {
-						curr?.classList.remove('animate-fadeOut', 'hidden')
-						curr?.classList.add('animate-riseIn')
-					} else {
-						curr?.classList.remove('animate-riseIn')
-						curr?.classList.add('animate-fadeOut')
-					}
-				}
-			})
-		}, options);
-
-		sections.forEach((section) => {
-			observer.observe(section)
-		});
-
-		document.addEventListener('scroll', () => {
-			if (!flashInProgress) {
-				requestAnimationFrame(storeScroll)
-			}
-
-			if(bleachSection) {
-				if(currBleach === 0) {
-					envisionSection?.classList.add("hidden");
-					mainLogo?.classList.remove("logo--contrast");
-				}
-			}
-
-			if(!scrollIconContainerHidden && window.scrollY > 400) {
-				scrollIconContainer?.classList.add("opacity-0");
-				scrollIconContainerHidden = true
-				setTimeout(()=>{
-					scrollIconContainer?.classList.add("hidden");
-				}, 400)
-			}
-		}, {passive: true})
-
-	const storeScroll = () => {
-		document.documentElement.style.setProperty('--scroll',
-		(window.scrollY /
-		(document.body.offsetHeight - window.innerHeight)).toString())
-	};
-
-	function scrollToEnvision(sectionId: number) {
-		skipExplosion = true;
-
-		if (animationControl?.classList.contains("white")) {
-			const protector = document.querySelector("#flash-protector");
-			protector?.classList.remove("hidden");
-			protector?.classList.add("fixed", "animate-fadeOut");
-
-			setTimeout(() => {
-				protector?.classList.remove("fixed", "animate-fadeOut");
-				protector?.classList.add("hidden");
-			},400)
-		}
-
-		envisionSection?.classList.remove("hidden");
-		mainLogo?.classList.add("logo--contrast");
-
-		if (sectionId === 0) {
-			logoSection?.classList.remove("opacity-0");
-		}
-
-		title?.classList.add("animate-fadeOut", "titleBleach");
-		shadow?.classList.add("bg-1");
-		currBleach = 1
-		document.documentElement.style.setProperty('--bleachProgress', '1');
-
-		const event = new CustomEvent("envSectionShown");
-		window.dispatchEvent(event)
-		currSection = 'env'
-
-		setTimeout(() => {
-			skipExplosion = false
-		}, 2000)
-	}
-
-	function scrollToToday(sectionId: number) {
-		skipExplosion = true
-		title?.classList.remove("animate-fadeOut", "titleBleach");
-		shadow?.classList.remove("bg-1");
-		envisionSection?.classList.add("hidden");
-		currBleach = 0
-		document.documentElement.style.setProperty('--bleachProgress', '0');
-
-		const event = new CustomEvent("todaySectionShown");
-		window.dispatchEvent(event)
-
-		setTimeout(() => {
-			changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
-			diff = changeScreenScrollY
-
-			skipExplosion = false
-		}, 2000)
-		currSection = 'today'
-		currScrollY = window.scrollY
-	}
-
-	function scrollToTheEnd() {
-		scrollToEnvision(5)
-
-		const appsSection = document.getElementById("en-section-5");
-		appsSection && scrollIntoView(appsSection)
-
-		const animationControl = document.getElementById("animation-control");
-		animationControl?.classList.add('opacity-0')
-
-		const event = new CustomEvent("needSyncStatusBar", {detail: {
-			section: 'en-section',
-			index: 5
-		}});
-		window.dispatchEvent(event)
-	}
-
-	window.addEventListener('scrollToEnv', (e) => {
-		scrollToEnvision(e.detail)
-	})
-
-	window.addEventListener('scrollToToday', (e) => {
-		scrollToToday(e.detail)
-	})
-
-	window.addEventListener('scrolledTo', (e) => {
-		const params = e.detail
-		if (params.section === 'section') {
-			currentSectionId = params.index
-			changeScreenScrollY = document.body.scrollTop || document.documentElement.scrollTop
-			diff = changeScreenScrollY
-			inScrollChangeScreenScrollY = changeScreenScrollY
-			inScrollSectionId = currentSectionId
-		}
-		currScrollY = window.scrollY
-	});
-
-	const srollToEnd = document.getElementById("sroll-to-end");
-	srollToEnd?.addEventListener("click", scrollToTheEnd);
-
-	//set progress
-	window.addEventListener('scroll', updateScrollIndicator);
-	const sectionZero = document.getElementById(`section-0`);
-	let inScrollChangeScreenScrollY = changeScreenScrollY
-	let diff = changeScreenScrollY
-	let inScrollSectionId = currentSectionId
-	let lastScrollTop = 0;
-	let direction = 'down'
-
-	updateScrollIndicator()
-
-	function updateScrollIndicator() {
-		if (currBleach >= 1) return
-
-		const screenHeight = sectionZero && sectionZero.clientHeight;
-
-		if (!screenHeight) return
-
-		const winScroll =
-			document.body.scrollTop || document.documentElement.scrollTop;
-
-		if (inScrollChangeScreenScrollY !== changeScreenScrollY && inScrollSectionId !== currentSectionId) {
-			inScrollChangeScreenScrollY = changeScreenScrollY
-			diff = changeScreenScrollY
-
-			if (direction === 'up') {
-				diff = inScrollChangeScreenScrollY - screenHeight
-			}
-		}
-
-		if (inScrollSectionId !== currentSectionId) {
-			const bitProgress = document.getElementById(`today-bit-progress-${inScrollSectionId}`);
-			if (direction === 'down') {
-				if (bitProgress) {
-					bitProgress.style.width = '100%';
-				}
-			} else {
-				if (bitProgress) {
-					bitProgress.style.width = '0%';
-				}
-			}
-			inScrollSectionId = currentSectionId
-		}
-
-		const currScroll = winScroll - diff
-		const percent = currScroll * 100 / screenHeight
-		const bitProgress = document.getElementById(`today-bit-progress-${currentSectionId}`);
-
-		if (bitProgress && percent <= 100) {
-			bitProgress.style.width = percent + '%';
-		}
-	}
-
-	window.addEventListener("scroll", function(){
-		let st = window.pageYOffset || document.documentElement.scrollTop;
-		if (st > lastScrollTop) {
-			direction = 'down';
-		} else if (st < lastScrollTop) {
-			direction = 'up';
-		}
-		lastScrollTop = st <= 0 ? 0 : st;
-	}, false);
 </script>

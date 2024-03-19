@@ -30,7 +30,10 @@ const apps = [
     <div
       class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
     >
-      <div id="title" class="section title w-full overflow-hidden md:w-160">
+      <div
+        id="title"
+        class="section title w-full animate-riseIn overflow-hidden md:w-160"
+      >
         <h2
           class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
         >
@@ -194,7 +197,6 @@ const apps = [
         entry.target
           .querySelector('.title')
           ?.classList.remove('animate-fadeOut', 'opacity-0');
-        entry.target.querySelector('.title')?.classList.add('animate-riseIn');
       }
     });
   }, options);
@@ -202,18 +204,44 @@ const apps = [
   sections.forEach((section) => {
     observer.observe(section);
   });
-  const optionsForStopScroll: IntersectionObserverInit = {
-    threshold: 0,
-    rootMargin: '-15%',
+
+  let countForScroll = 0;
+  const onScroll = (event: WheelEvent) => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (winScroll > 0) {
+      countForScroll = 0;
+    } else {
+      countForScroll = countForScroll + event.deltaY;
+    }
+
+    if (countForScroll < -1000) {
+      window.location.href = '/#from-envision';
+    }
   };
-  const observerStopScroll = new IntersectionObserver((entries, _) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const event = new CustomEvent('atTheStopScroll');
-        window.dispatchEvent(event);
-      }
-    });
-  }, optionsForStopScroll);
-  const sectionForStopScroll = document.getElementById(`en-section-4`);
-  sectionForStopScroll && observerStopScroll.observe(sectionForStopScroll);
+
+  document.addEventListener('wheel', onScroll);
+
+  let startY = 0;
+  let endY = 0;
+  const onDragStart = (event: TouchEvent) => {
+    startY = event.touches[0]?.clientY ?? 0;
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    endY = event.touches[0]?.clientY ?? 0;
+  };
+
+  const onDragEnd = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    if (startY < endY && winScroll === 0) {
+      window.location.href = '/#from-envision';
+    }
+  };
+
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
 </script>

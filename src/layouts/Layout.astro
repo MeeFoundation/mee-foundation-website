@@ -237,50 +237,6 @@ import "@styles/base.css";
   }
 	let initWinScroll = 0;
 
-	const animationControl = document.getElementById("animation-control");
-	const srollToEnd = document.getElementById("sroll-to-end");
-	function setControlsWhite() {
-		if (srollToEnd && animationControl) {
-			animationControl.classList.add('white')
-			animationControl.classList.remove('gray')
-
-			srollToEnd.classList.add('white')
-			srollToEnd.classList.add('text-white')
-			srollToEnd.classList.add('border-white')
-			srollToEnd.classList.remove('gray')
-			srollToEnd.classList.remove('text-gray')
-			srollToEnd.classList.remove('border-gray')
-		}
-	}
-
-	function setControlsGray() {
-		if (srollToEnd && animationControl) {
-			animationControl.classList.add('gray')
-			animationControl.classList.remove('white')
-
-			srollToEnd.classList.add('gray')
-			srollToEnd.classList.add('text-gray')
-			srollToEnd.classList.add('border-gray')
-			srollToEnd.classList.remove('white')
-			srollToEnd.classList.remove('text-white')
-			srollToEnd.classList.remove('border-white')
-		}
-	}
-
-	window.addEventListener('scrollToEnv', () => {
-		setControlsGray()
-	})
-	window.addEventListener('envSectionShown', () => {
-		setControlsGray()
-	})
-
-	window.addEventListener('scrollToToday', () => {
-		setControlsWhite()
-	})
-	window.addEventListener('todaySectionShown', () => {
-		setControlsWhite()
-	})
-
 	function getScrolledPercent(winScroll: number, height: number): number {
     const envision = document.getElementById('envision');
     const today = document.getElementById('today');
