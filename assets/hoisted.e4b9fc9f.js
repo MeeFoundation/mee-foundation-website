@@ -1,0 +1,1 @@
+import"./Header.astro_astro_type_script_index_0_lang.8b84e16d.js";import{a as n}from"./mee-js-sdk.es.4908cffa.js";const e=document.getElementById("meeConnectBtn");e&&e.addEventListener("click",t=>{t.preventDefault(),n()});
