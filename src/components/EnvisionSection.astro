@@ -57,7 +57,7 @@ const apps = [
               id={`en-section-${index + 1}`}
               class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
             >
-              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+              <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
                 <div class="mr-4">
                   <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
                     <img
@@ -79,7 +79,7 @@ const apps = [
       <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
         <div class="section overflow-hidden">
           <h2
-            class="title text marker animate-fadeOut text-center text-3xl font-bold lg:text-7xl"
+            class="title text marker animate-riseIn text-center text-3xl font-bold lg:text-7xl"
           >
             Mee-compatible apps:
           </h2>
@@ -92,7 +92,7 @@ const apps = [
               id={`en-section-1${index + 1}`}
               class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
             >
-              <div class="subtitle flex w-full animate-fadeOut-short items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+              <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
                 <div class="mr-4">
                   <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
                     <img
@@ -188,9 +188,7 @@ const apps = [
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.remove('opacity-0');
-        entry.target
-          .querySelector('.subtitle')
-          ?.classList.remove('animate-fadeOut-short', 'opacity-0');
+        entry.target.querySelector('.subtitle')?.classList.remove('opacity-0');
         entry.target
           .querySelector('.subtitle')
           ?.classList.add('animate-riseIn-short', 'animation-delay-600');
@@ -214,7 +212,7 @@ const apps = [
     }
 
     if (countForScroll < -1000) {
-      window.location.href = '/#from-envision';
+      window.location.href = '/from-envision';
     }
   };
 
@@ -234,7 +232,7 @@ const apps = [
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     if (startY < endY && winScroll === 0) {
-      window.location.href = '/#from-envision';
+      window.location.href = '/from-envision';
     }
   };
 

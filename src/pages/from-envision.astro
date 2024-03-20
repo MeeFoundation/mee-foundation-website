@@ -7,7 +7,9 @@ import TodaySection from '../components/TodaySection.astro';
 <Layout title="Mee Foundation">
   <Header withoutProgress={true} />
   <main class="w-full overflow-x-visible">
-    <TodaySection />
+    <div id="flash-protector" class="fixed bg-white h-screen w-screen z-999"></div>
+    </div>
+    <TodaySection fromEnvision={true}/>
   </main>
 </Layout>
 
@@ -18,6 +20,7 @@ import TodaySection from '../components/TodaySection.astro';
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overscroll-behavior: none;
+    --bleachProgress: 1;
   }
   body {
     display: flex;

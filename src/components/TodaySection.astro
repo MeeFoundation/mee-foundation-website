@@ -1,9 +1,10 @@
 ---
 import Background from './Background.astro';
 
-export interface Props {}
-
-const {} = Astro.props;
+export interface Props {
+  fromEnvision?: boolean;
+}
+const {fromEnvision = false} = Astro.props;
 const subtitles = [
   'you can’t control who has your data or how they’ll use it.',
   'businesses treat your data as their property.',
@@ -13,10 +14,13 @@ const subtitles = [
 ---
 
 <div class="slider-container">
-  <Background />
+  <Background fromEnvision={fromEnvision} />
   <div
     id="title"
-    class="title fixed z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7"
+    class:list={[
+      'title fixed z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7',
+      fromEnvision ? 'opacity-0' : '',
+    ]}
   >
     <div class="overflow-hidden">
       <h2
@@ -105,7 +109,7 @@ const subtitles = [
 </style>
 
 <script>
-  const fromEnvision = window.location.hash === '#from-envision';
+  const fromEnvision = window.location.pathname === '/from-envision';
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
   const subtitles = document.querySelectorAll('.slide-subtitle');
@@ -114,7 +118,8 @@ const subtitles = [
   let scrollCount = 0;
   let countForScroll = 0;
   let flashInProgress = false;
-
+  let dragAnimationId: ReturnType<typeof setInterval>;
+  const flashProtector = document.getElementById('flash-protector');
   sliderContainer?.classList.add('slider-locked');
 
   let currBleach = 0;
@@ -165,7 +170,7 @@ const subtitles = [
   const onDragEndAnimation = (swap: number, activeSlide: number) => {
     let iterationCount = 0;
 
-    let dragAnimationId = setInterval(() => {
+    dragAnimationId = setInterval(() => {
       if (iterationCount < 100 && !(!activeSlide && swap === -1)) {
         iterationCount++;
         scrollCount = scrollCount + swap * 0.0001 * (99 - iterationCount);
@@ -173,8 +178,6 @@ const subtitles = [
           '--scroll',
           scrollCount.toString(),
         );
-      } else {
-        clearInterval(dragAnimationId);
       }
     }, 7);
   };
@@ -215,14 +218,8 @@ const subtitles = [
   };
   const startBleachFromEndAnimation = () => {
     flashInProgress = true;
-    title?.classList.add('opacity-0');
     grid?.classList.add('animate-fadeOut', 'figuresBleach');
     figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
-    gradients.forEach((gradient) => {
-      gradient.removeAttribute('style');
-      gradient.classList.add('animate-fadeIn', 'figuresBleach');
-    });
-    shadow?.classList.add('bg-1');
 
     let bleachIntervalId = setInterval(() => {
       if (currBleach > 0) {
@@ -237,12 +234,13 @@ const subtitles = [
           currBleach.toString(),
         );
       } else {
+        clearInterval(bleachIntervalId);
         flashInProgress = false;
         title?.classList.add('animate-fadeIn');
         grid?.classList.remove('animate-fadeOut', 'figuresBleach');
         title?.classList.remove('opacity-0');
+        shadow?.classList.remove('bg-1');
         setActiveSlide();
-        clearInterval(bleachIntervalId);
       }
     }, bleachSpeedMS);
   };
@@ -297,6 +295,7 @@ const subtitles = [
   };
 
   const onTransitionEnd = () => {
+    dragAnimationId && clearInterval(dragAnimationId);
     sliderContainer?.classList.remove('slider-locked');
   };
 
@@ -371,19 +370,22 @@ const subtitles = [
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);
 
-  if (fromEnvision) {
-    window.history.replaceState(null, document.title, '/');
-    activeSlideIndex = slides.length - 1;
-    scrollCount = 2;
-    document.documentElement.style.setProperty(
-      '--scroll',
-      scrollCount.toString(),
-    );
-    scrollIconContainer?.classList.add('hidden');
-    currBleach = 1;
-    startBleachFromEndAnimation();
-  } else {
-    setActiveSlide();
-    handleAutoscroll();
-  }
+  window.onload = () => {
+    if (fromEnvision) {
+      window.history.replaceState(null, document.title, '/');
+      flashProtector?.classList.add('hidden');
+      activeSlideIndex = slides.length - 1;
+      scrollCount = 2;
+      scrollIconContainer?.classList.add('hidden');
+      currBleach = 1;
+      document.documentElement.style.setProperty(
+        '--scroll',
+        scrollCount.toString(),
+      );
+      startBleachFromEndAnimation();
+    } else {
+      setActiveSlide();
+      handleAutoscroll();
+    }
+  };
 </script>

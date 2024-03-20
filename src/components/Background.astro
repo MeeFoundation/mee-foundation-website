@@ -3,16 +3,18 @@ import FloatingFigures from './FloatingFigures.astro';
 import Grid from './Grid.astro';
 
 export interface Props {
-
+  fromEnvision?: boolean;
 }
-
-const { } = Astro.props;
+const {fromEnvision = false} = Astro.props;
 ---
 
 <div class="top-0 fixed h-screen w-screen background">
   <Grid />
 	<FloatingFigures />
-	<div class="shadow"/>
+	<div class:list={[
+		'shadow',
+		fromEnvision ? 'bg-1' : '',
+	  ]} />
 </div>
 <style>
 	.background {
