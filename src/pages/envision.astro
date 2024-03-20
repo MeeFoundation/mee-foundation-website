@@ -5,9 +5,19 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 ---
 
 <Layout title="Mee Foundation">
-  <Header backgroundColor="backdrop-blur-md" logoColor="blue" withoutProgress={true} />
+  <Header
+    backgroundColor="backdrop-blur-md"
+    logoColor="blue"
+    withoutProgress={true}
+  />
   <main class="h-screen w-screen overflow-x-visible">
     <EnvisionSection />
     <div id="end-element"></div>
   </main>
 </Layout>
+<style>
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+</style>

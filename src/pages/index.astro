@@ -5,47 +5,46 @@ import TodaySection from '../components/TodaySection.astro';
 ---
 
 <Layout title="Mee Foundation">
-	<Header/>
-	<main class="overflow-x-visible w-screen h-screen">
-	  <div id="flash-protector" class="top-0 hidden h-screen w-screen background z-999"/>
-	  <TodaySection />
-	</main>
-  </Layout>
-
-<script>
-	window.onbeforeunload = function () {
-		window.scrollTo(0, 0);
-	}
-</script>
+  <Header withoutProgress={true} />
+  <main class="w-full overflow-x-visible">
+    <div
+      id="flash-protector"
+      class="background top-0 z-999 hidden h-screen w-screen"
+    >
+    </div>
+    <TodaySection />
+  </main>
+</Layout>
 
 <style>
-	html {
-		-webkit-font-smoothing: antialiased;
-		font-smoothing: antialiased;    
-		-webkit-backface-visibility: hidden; 
-		backface-visibility: hidden;
-		/* height: -webkit-fill-available;  */
-	}
-	body {
-		display: flex;
+  html {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overscroll-behavior: none;
+  }
+  body {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
+    overscroll-behavior: none;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
 
-	.background {
-		background: radial-gradient(#0D070C, #200E1D);
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
+  .background {
+    background: radial-gradient(#0d070c, #200e1d);
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
 </style>
