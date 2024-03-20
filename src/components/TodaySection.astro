@@ -109,7 +109,7 @@ const subtitles = [
 </style>
 
 <script>
-  const fromEnvision = window.location.pathname === '/from-envision';
+  const fromEnvision = window.location.pathname.includes('from-envision');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
   const subtitles = document.querySelectorAll('.slide-subtitle');

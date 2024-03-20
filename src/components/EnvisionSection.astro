@@ -180,6 +180,14 @@ const apps = [
 </style>
 <script>
   const sections = document.querySelectorAll('.envision .section');
+  let startRedirect = false;
+
+  const redirectToMain = () => {
+    if (!startRedirect) {
+      startRedirect = true;
+      window.location.href = '/from-envision';
+    }
+  };
 
   const options: IntersectionObserverInit = {
     threshold: 0.8,
@@ -212,7 +220,7 @@ const apps = [
     }
 
     if (countForScroll < -1000) {
-      window.location.href = '/from-envision';
+      redirectToMain();
     }
   };
 
@@ -232,7 +240,7 @@ const apps = [
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     if (startY < endY && winScroll === 0) {
-      window.location.href = '/from-envision';
+      redirectToMain();
     }
   };
 
