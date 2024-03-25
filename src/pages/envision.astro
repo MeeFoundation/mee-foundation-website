@@ -21,3 +21,9 @@ import EnvisionSection from '../components/EnvisionSection.astro';
     overscroll-behavior: none;
   }
 </style>
+
+<script>
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
+</script>

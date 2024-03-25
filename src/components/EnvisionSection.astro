@@ -1,21 +1,23 @@
 ---
 import Footer from './Footer.astro';
 import done from '@assets/done.svg';
+import Logo from './Logo.astro';
 
 export interface Props {}
 
 const {} = Astro.props;
 const subtitles = [
-  'Mee is a free personal data service that holds and manages your personal information.',
-  'It offers a simple, privacy-respecting experience - lets you see and control who has access to your information.',
-  'It puts you in control of what businesses can do with your personal data.',
-  'It’s provided by a non-profit that works on behalf of all Mee users.',
+  'you don’t have to remember passwords',
+  'you don’t have to fill in forms ',
+  'your personal data is managed by Mee',
+  'your data is never shared or sold by anyone',
+  'your activities remain private–no more tracking, no more spying on you',
 ];
 const apps = [
   'Never share your information with other companies.',
-  'Log you in automatically without having to remember and type in passwords.',
-  'Present forms that fill in automatically by pulling information from Mee.',
-  'Support surveillance-free, tracking-free private advertising business model.',
+  'Request information from your Mee personal data service.',
+  'Treat you with fairness and respect your privacy.',
+  'Agree to a legal agreement that ensures that you retain rights to your personal info.',
 ];
 ---
 
@@ -24,72 +26,110 @@ const apps = [
   class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
 >
   <section
-    id="en-section-0"
-    class="top-0 z-100 mb-10 mt-32 flex w-screen items-center justify-center md:mt-48"
-  >
-    <div
-      class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
-    >
-      <div
-        id="title"
-        class="section title w-full animate-riseIn overflow-hidden md:w-160"
-      >
-        <h2
-          class="title text marker text-center text-3xl font-bold lg:text-7xl"
-        >
-          Introducing Mee experience:
-        </h2>
-      </div>
-    </div>
-  </section>
-  <section
     class="relative z-100 flex w-screen flex-col items-center justify-center"
   >
     <div class="fixed top-0 h-screen w-screen">
       <div class="overflow-hidden"></div>
     </div>
     <div class="bg-1"></div>
-    <div class="flex flex-col items-center justify-center gap-16">
-      <div class="flex flex-col">
-        {
-          subtitles.map((subtitle, index) => (
-            <div
-              id={`en-section-${index + 1}`}
-              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
-            >
-              <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
-                <div class="mr-4">
-                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
-                    <img
-                      src={done.src}
-                      alt=""
-                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
-                    />
-                  </div>
-                </div>
-
-                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
-                  <span>{subtitle}</span>
-                </h2>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
-        <div class="section overflow-hidden">
+    <div class="z-300 h-screen w-full" id="slides-section">
+      <div
+        id="title"
+        class="title absolute z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7"
+      >
+        <div class="overflow-hidden">
           <h2
-            class="title text marker animate-riseIn text-center text-3xl font-bold lg:text-7xl"
+            class="text text-base font-bold uppercase leading-5 tracking-wider text-black/[.6] opacity-0 animation-delay-300"
           >
-            Mee-compatible apps:
+            In the Mee experience…
           </h2>
         </div>
       </div>
+      <div
+        class="slide slide0 sectionTitle top-0 z-100 flex h-screen flex-col items-center justify-center gap-4 transition-opacity duration-200 md:gap-5"
+      >
+        <div class="slide-part overflow-hidden">
+          <div
+            id="logo-section"
+            class="logoSection flex min-h-screen w-screen items-center justify-center opacity-0 transition-opacity duration-500 ease-in-out"
+          >
+            <div
+              class="absolute left-0 top-1/3 flex h-full w-full flex-col items-center bg-cover text-center"
+            >
+              <div
+                class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 px-5 text-black opacity-0"
+              >
+                <div
+                  id="envMeeLogo"
+                  class="logo logo--contrast h-10 w-[138px] animate-fadeIn opacity-0 md:h-12 md:w-[165px]"
+                >
+                  <Logo />
+                </div>
+                <div class="overflow-hidden">
+                  <p
+                    id="meeRestoringText"
+                    class="text animate-riseIn text-center text-xl leading-normal text-blue md:text-[1.75rem]"
+                  >
+                    Introducing a human-centered user experience for the
+                    internet
+                  </p>
+                </div>
+                <div
+                  id="scrollIndicatorInvision"
+                  class="z-20 flex animate-fadeIn flex-col items-center justify-center lg:flex"
+                >
+                  <i
+                    class="scrollIcon relative flex h-6 w-4 overflow-hidden py-1 transition-opacity duration-100 ease-linear md:h-7 md:w-4.5 md:py-2"
+                  ></i>
+                  <div class="down-arrow mt-1 h-4 w-4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {
+        subtitles.map((subtitle, index) => (
+          <div class={`slide slide${index + 1}`}>
+            <div class="slide-part">
+              <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
+                <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
+                  <p class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-[692px] md:text-3xl">
+                    {subtitle}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="z-100 mb-10 mt-32 flex w-screen items-center justify-center overflow-hidden md:mt-48"
+    >
+      <div
+        class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
+      >
+        <div
+          class="section title w-full animate-riseIn overflow-hidden md:w-160"
+        >
+          <h2
+            class="title text marker text-center text-3xl font-bold lg:text-7xl"
+          >
+            Apps offering the Mee experience:
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center gap-16">
       <div class="mb-10 flex flex-col">
+        <div id="middle"></div>
         {
           apps.map((app, index) => (
             <div
-              id={`en-section-1${index + 1}`}
+              id={`en-section-${index + 1}`}
               class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
             >
               <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
@@ -117,6 +157,29 @@ const apps = [
 </article>
 
 <style>
+  .slide-part {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    transition: transform 1s;
+    transform: translateY(100%);
+  }
+  .slide-part .active {
+    transform: translateY(0);
+  }
+
+  .scrolling_active .slide-part {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+  }
+
   .envision {
     background: #fff;
   }
@@ -124,9 +187,8 @@ const apps = [
   .bg-1 {
     position: absolute;
     height: 100%;
-    transform: translate(-10vw, 0);
+    transform: translateY(calc(100vh - var(--bg-offset)));
     z-index: 70;
-    transform: translateY(150px);
     background: linear-gradient(
       to top,
       rgba(249, 200, 137, 0.4) 75%,
@@ -179,8 +241,22 @@ const apps = [
   }
 </style>
 <script>
+  import scrollIntoView from 'scroll-into-view-if-needed';
   const sections = document.querySelectorAll('.envision .section');
+  const logoSection = document.getElementById('logo-section');
+  const slidesSection = document.getElementById('slides-section');
+  const slides = document.querySelectorAll('.slide');
+  const envMeeLogo = document.getElementById('envMeeLogo');
+  const title = document.getElementById('title');
+  const middleElement = document.getElementById('middle');
+  const meeRestoringText = document.getElementById('meeRestoringText');
+  let isSlidesSectionShow = true;
+  const scrollIndicatorInvision = document.getElementById(
+    'scrollIndicatorInvision',
+  );
   let startRedirect = false;
+  let activeSlideIndex = 0;
+  let activeListeners = false;
 
   const redirectToMain = () => {
     if (!startRedirect) {
@@ -208,43 +284,194 @@ const apps = [
     observer.observe(section);
   });
 
-  let countForScroll = 0;
-  const onScroll = (event: WheelEvent) => {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
+  let dragAnimationId: ReturnType<typeof setInterval>;
+  let scrollCount = 0;
+  const onDragEndAnimation = (swap: number, activeSlide: number) => {
+    let iterationCount = 0;
+    dragAnimationId = setInterval(() => {
+      if (
+        iterationCount < 100 &&
+        scrollCount <= 100 &&
+        scrollCount >= 0 &&
+        activeSlide <= 2
+      ) {
+        iterationCount++;
+        scrollCount = scrollCount + swap * 0.01 * iterationCount;
+        if (scrollCount < 0) {
+          scrollCount = 0;
+        } else if (scrollCount > 100) {
+          scrollCount = 100;
+        }
+        document.documentElement.style.setProperty(
+          '--bg-offset',
+          scrollCount.toString() + 'vh',
+        );
+      } else {
+        iterationCount = 0;
+        dragAnimationId && clearInterval(dragAnimationId);
+      }
+    }, 7);
+  };
 
-    if (winScroll > 0) {
-      countForScroll = 0;
-    } else {
-      countForScroll = countForScroll + event.deltaY;
-    }
+  let wheelCount = 0;
 
-    if (countForScroll < -1000) {
-      redirectToMain();
+  const onSlidesWheel = (event: WheelEvent) => {
+    if (isSlidesSectionShow) {
+      const swap = Math.sign(event.deltaY);
+      event.preventDefault();
+      wheelCount = wheelCount + event.deltaY;
+
+      if (wheelCount > 500 || wheelCount < -500) {
+        moveToSlide(swap);
+        wheelCount = 0;
+      }
     }
   };
 
-  document.addEventListener('wheel', onScroll);
+  let startSlideY = 0;
+  let endSlideY = 0;
 
-  let startY = 0;
-  let endY = 0;
+  const isHeaderTouch = (event: TouchEvent) => {
+    const element = event.target as HTMLElement;
+    const header = element.closest('#header');
+    return !!header;
+  };
+
   const onDragStart = (event: TouchEvent) => {
-    startY = event.touches[0]?.clientY ?? 0;
+    if (isSlidesSectionShow && !isHeaderTouch(event)) {
+      event.preventDefault();
+      event.stopPropagation();
+      startSlideY = event.touches[0]?.clientY ?? 0;
+    }
   };
 
   const onDragMove = (event: TouchEvent) => {
-    endY = event.touches[0]?.clientY ?? 0;
-  };
-
-  const onDragEnd = () => {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    if (startY < endY && winScroll === 0) {
-      redirectToMain();
+    if (isSlidesSectionShow) {
+      endSlideY = event.touches[0]?.clientY ?? 0;
     }
   };
 
-  document?.addEventListener('touchstart', onDragStart);
-  document?.addEventListener('touchmove', onDragMove);
-  document?.addEventListener('touchend', onDragEnd);
+  const onDragEnd = (event: TouchEvent) => {
+    if (isSlidesSectionShow && !isHeaderTouch(event)) {
+      event.preventDefault();
+      event.stopPropagation();
+      const swap = startSlideY > endSlideY ? 1 : -1;
+      moveToSlide(swap);
+    }
+  };
+  const onScroll = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    if (winScroll === 0 && !isSlidesSectionShow) {
+      isSlidesSectionShow = true;
+    }
+    if (winScroll === 0 && !activeListeners) {
+      addEventListeners();
+    }
+  };
+  const onTransitionEnd = () => {
+    slidesSection?.classList.remove('slider-locked');
+  };
+
+  document.addEventListener('scroll', onScroll);
+
+  const addEventListeners = () => {
+    document.addEventListener('wheel', onSlidesWheel, {passive: false});
+    document?.addEventListener('touchstart', onDragStart, {
+      passive: false,
+    });
+    document?.addEventListener('touchmove', onDragMove);
+    document?.addEventListener('touchend', onDragEnd, {passive: false});
+    slidesSection?.addEventListener('transitionend', onTransitionEnd);
+    activeListeners = true;
+  };
+
+  const removeEventListeners = () => {
+    document.removeEventListener('wheel', onSlidesWheel);
+    document?.removeEventListener('touchstart', onDragStart);
+    document?.removeEventListener('touchmove', onDragMove);
+    document?.removeEventListener('touchend', onDragEnd);
+    slidesSection?.removeEventListener('transitionend', onTransitionEnd);
+    activeListeners = false;
+  };
+
+  let scrollToBottom = false;
+
+  const moveToSlide = (swap: number) => {
+    if (slidesSection?.classList.contains('slider-locked') || scrollToBottom)
+      return;
+    slidesSection?.classList.add('slider-locked');
+    const potentialNextSlide = activeSlideIndex + swap;
+    if (potentialNextSlide < 0 && swap === -1) {
+      redirectToMain();
+      isSlidesSectionShow = false;
+      return;
+    }
+    if (potentialNextSlide > slides.length - 1 && swap === 1) {
+      scrollToBottom = true;
+      setTimeout(() => {
+        isSlidesSectionShow = false;
+        scrollToBottom = false;
+        removeEventListeners();
+      }, 1000);
+
+      middleElement &&
+        scrollIntoView(middleElement, {
+          behavior: 'smooth',
+          scrollMode: 'if-needed',
+        });
+      slidesSection?.classList.remove('slider-locked');
+      return;
+    }
+    onDragEndAnimation(swap, activeSlideIndex);
+    activeSlideIndex = potentialNextSlide;
+
+    if (
+      activeSlideIndex > 0 &&
+      title?.querySelector('.text')?.classList.contains('opacity-0')
+    ) {
+      title?.querySelector('.text')?.classList.remove('opacity-0');
+      title?.querySelector('.text')?.classList.add('animate-riseIn');
+    } else if (
+      activeSlideIndex === 0 &&
+      !title?.classList.contains('opacity-0')
+    ) {
+      title?.querySelector('.text')?.classList.add('opacity-0');
+      title?.querySelector('.text')?.classList.remove('animate-riseIn');
+    }
+
+    setActiveSlide();
+  };
+
+  const setActiveSlide = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeSlideIndex;
+      const subtitle = slide.querySelector('.slide-subtitle');
+
+      if (isActive && index === 0) {
+        logoSection?.classList.remove('opacity-0');
+        envMeeLogo?.classList.remove('hidden');
+        envMeeLogo?.classList.add('animate-fadeIn');
+        meeRestoringText?.classList.remove('hidden');
+        meeRestoringText?.classList.add('animate-riseIn');
+        scrollIndicatorInvision?.classList.remove('!hidden');
+        scrollIndicatorInvision?.classList.add('animate-fadeIn');
+      }
+
+      if (slide.classList.contains('scrolling_active')) {
+        subtitle?.classList.add('animate-fadeOut', 'opacity-0');
+        subtitle?.classList.remove('animate-riseIn');
+      } else if (isActive) {
+        subtitle?.classList.remove('opacity-0', 'animate-fadeOut');
+        subtitle?.classList.add('animate-riseIn');
+      }
+      setTimeout(() => {
+        slide.classList.toggle('scrolling_active', isActive);
+      }, 300);
+    });
+  };
+  window.onload = () => {
+    addEventListeners();
+    setActiveSlide();
+  };
 </script>

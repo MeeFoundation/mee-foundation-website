@@ -1,141 +1,192 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
-const { title } = Astro.props;
+const {title} = Astro.props;
 
-import "@styles/base.css";
+import '@styles/base.css';
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-		<meta name="theme-color" content="#ffffff">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
 
-		<meta name="description"
-			content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity.">
-		<meta property="og:title" content="Identity agents to restore the internet balance of power" />
-		<meta property="og:description"
-			content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity." />
-		<meta property="og:image" content="https://mee.foundation/mee_fav_icon.svg" />
-		<meta property="twitter:title" content="Identity agents to restore the internet balance of power" />
-		<meta property="twitter:description"
-			content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity." />
-		<meta property="twitter:image" content="https://mee.foundation/mee_fav_icon.svg" />
+    <meta
+      name="description"
+      content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity."
+    />
+    <meta
+      property="og:title"
+      content="Identity agents to restore the internet balance of power"
+    />
+    <meta
+      property="og:description"
+      content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity."
+    />
+    <meta
+      property="og:image"
+      content="https://mee.foundation/mee_fav_icon.svg"
+    />
+    <meta
+      property="twitter:title"
+      content="Identity agents to restore the internet balance of power"
+    />
+    <meta
+      property="twitter:description"
+      content="Putting you in control of your online identity. We are a nonprofit committed to empowering people with smartwallet software that puts them in control of their online identity."
+    />
+    <meta
+      property="twitter:image"
+      content="https://mee.foundation/mee_fav_icon.svg"
+    />
 
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 
-	{(
-		<div id="connectionErrAlert" class="hidden z-100 mt-16 toast toast-top toast-end">
-			<div class="alert alert-error"><span>Connection attempt was unsuccessful</span></div>
-		</div>
-	)}
+  {
+    (
+      <div
+        id="connectionErrAlert"
+        class="toast toast-end toast-top z-100 mt-16 hidden"
+      >
+        <div class="alert alert-error">
+          <span>Connection attempt was unsuccessful</span>
+        </div>
+      </div>
+    )
+  }
 </html>
 
-
 <style is:global>
-	:root {
-		
-	}
-	html {
-		background-color: #F6F6F6;
-		-ms-overflow-style: none; 
-    scrollbar-width: none; 
-		--scroll: 0;
-		--bleachProgress: 0;
-		transition: left 1s;
-	}
-	html::-webkit-scrollbar { 
+  :root {
+  }
+  html {
+    background-color: #f6f6f6;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    --scroll: 0;
+    --bleachProgress: 0;
+    --bg-offset: 0vh;
+    transition: left 1s;
+  }
+  html::-webkit-scrollbar {
     display: none;
-	}
+  }
 
-	strong {
-		font-weight: 800;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-	.marker > mark {
+  strong {
+    font-weight: 800;
+  }
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+  .marker > mark {
     position: relative;
     background: none;
     color: inherit;
   }
   .marker > mark::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: 10%;
-    height: 0.15em;;
+    height: 0.15em;
     border-radius: 2px;
-    background-color: #F9DF89;
+    background-color: #f9df89;
     z-index: -1;
-		animation: drawUnderline 200ms both;
-		animation-delay: 800ms;
+    animation: drawUnderline 200ms both;
+    animation-delay: 800ms;
   }
 
-	.scrollContainer {
+  .scrollContainer {
     position: fixed;
     top: 0;
     left: 0;
     overflow: hidden;
-		height: inherit;
+    height: inherit;
   }
 
-	.pause {
-     animation-play-state: paused;
-   }
-
-	 .play {
-		animation-play-state: running;
-	 }
-
-	@keyframes drawUnderline {
-  	0% { width: 0% }
-    100% { width: 100% }
+  .pause {
+    animation-play-state: paused;
   }
 
-	.scrollIcon {
-    border: 2px solid rgba(255,255,255,0.7);
+  .play {
+    animation-play-state: running;
+  }
+
+  @keyframes drawUnderline {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .scrollIcon {
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 12px;
-	}
+  }
   .scrollIcon::after {
     position: relative;
-    left:calc(50% - 1px);
+    left: calc(50% - 1px);
     width: 2px;
     height: 50%;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 1px;
-    content:"";
-		align-self: flex-start;
+    content: '';
+    align-self: flex-start;
     animation-name: scroll;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-delay: 2s;
   }
-	@keyframes scroll {
-		0% { opacity: 1; height: 50%;}
-		20% { opacity: 1; height: 50%;}
-		30% { height: 100%; align-self: flex-start;}
-		40% { opacity: 1; align-self: flex-end;}
-		80% {  opacity: 0; height: 0%; align-self: flex-end;}
-		81% {  opacity: 0; height: 50%; align-self: flex-start;}
-		100% { opacity: 1; height: 50%;}
-	}
+  @keyframes scroll {
+    0% {
+      opacity: 1;
+      height: 50%;
+    }
+    20% {
+      opacity: 1;
+      height: 50%;
+    }
+    30% {
+      height: 100%;
+      align-self: flex-start;
+    }
+    40% {
+      opacity: 1;
+      align-self: flex-end;
+    }
+    80% {
+      opacity: 0;
+      height: 0%;
+      align-self: flex-end;
+    }
+    81% {
+      opacity: 0;
+      height: 50%;
+      align-self: flex-start;
+    }
+    100% {
+      opacity: 1;
+      height: 50%;
+    }
+  }
 
-	.logo > svg {
+  .logo > svg {
     fill: white;
     transition: all;
     /* transition-delay: 2.9s; */
@@ -153,115 +204,92 @@ import "@styles/base.css";
 
   .progress-bar {
     height: 4px;
-    background: #559FAA;
+    background: #559faa;
     width: 0%;
     border-radius: 12px;
   }
 </style>
 
 <script>
-  import { sdkInit } from '../sdkInit';
-	const SHOW_ERR_ALERT_FOR_MS = 3000
+  import {sdkInit} from '../sdkInit';
+  const SHOW_ERR_ALERT_FOR_MS = 3000;
 
-	const scrollWrap = document.querySelector(".scrollContainer") as HTMLElement,
-  			speed = 0.1;
-	if(scrollWrap) {
+  const scrollWrap = document.querySelector('.scrollContainer') as HTMLElement,
+    speed = 0.1;
+  if (scrollWrap) {
     const setHeight = () => {
-			const containerHeight = scrollWrap.scrollHeight;
-      const height = containerHeight < window.innerHeight ? window.innerHeight - 1 : containerHeight - 1;
-      document.body.style.height = Math.floor(height) + "px";
-    }
+      const containerHeight = scrollWrap.scrollHeight;
+      const height =
+        containerHeight < window.innerHeight
+          ? window.innerHeight - 1
+          : containerHeight - 1;
+      document.body.style.height = Math.floor(height) + 'px';
+    };
 
-		
-    setHeight()
-		
+    setHeight();
+
     document.fonts.ready.then(function () {
-			setHeight()
+      setHeight();
     });
-		
-    window.addEventListener("resize", function() {
-			console.log(scrollWrap.getBoundingClientRect().height, window.innerHeight,window.outerHeight,scrollWrap.scrollHeight)
-      setHeight()
-    })
-	}
 
-    
+    window.addEventListener('resize', function () {
+      console.log(
+        scrollWrap.getBoundingClientRect().height,
+        window.innerHeight,
+        window.outerHeight,
+        scrollWrap.scrollHeight,
+      );
+      setHeight();
+    });
+  }
+
   let offset = 0;
 
   const smoothScroll = () => {
-    // offset += (window.pageYOffset - offset) * speed;
-		offset += Math.floor((window.scrollY - offset) * speed);
-    const scroll = "translateY(-" + offset + "px)";
+    offset += Math.floor((window.scrollY - offset) * speed);
+    const scroll = 'translateY(-' + offset + 'px)';
     scrollWrap.style.transform = scroll;
 
     requestAnimationFrame(smoothScroll);
-  }
-	
-  if(scrollWrap) requestAnimationFrame(smoothScroll);
+  };
 
-	const connectionErrAlert = document.getElementById("connectionErrAlert");
-	const errorConnectCb = () => {
-		if (connectionErrAlert) {
-			connectionErrAlert.classList.remove('hidden')
-		}
+  if (scrollWrap) requestAnimationFrame(smoothScroll);
 
-		setTimeout(() => {
-			if (connectionErrAlert) {
-				connectionErrAlert.classList.add('hidden')
-			}
-		}, SHOW_ERR_ALERT_FOR_MS);
-	}
+  const connectionErrAlert = document.getElementById('connectionErrAlert');
+  const errorConnectCb = () => {
+    if (connectionErrAlert) {
+      connectionErrAlert.classList.remove('hidden');
+    }
 
-	sdkInit(errorConnectCb);
+    setTimeout(() => {
+      if (connectionErrAlert) {
+        connectionErrAlert.classList.add('hidden');
+      }
+    }, SHOW_ERR_ALERT_FOR_MS);
+  };
 
-	// outdated with new indicators
-	window.addEventListener('scroll', updateScrollIndicator);
-	const todaySection = document.getElementById("today");
+  sdkInit(errorConnectCb);
+
+  // outdated with new indicators
+  window.addEventListener('scroll', updateScrollIndicator);
+  const todaySection = document.getElementById('today');
+  const envisionSection = document.getElementById('envision');
 
   function updateScrollIndicator() {
-		if (todaySection) return
+    if (todaySection || envisionSection) return;
 
-		const scrollIndicator = document.getElementById('scroll-indicator');
+    const scrollIndicator = document.getElementById('scroll-indicator');
 
-		if (scrollIndicator) {
-			const winScroll =
-				document.body.scrollTop || document.documentElement.scrollTop;
-			let height =
-				document.documentElement.scrollHeight -
-				document.documentElement.clientHeight;
+    if (scrollIndicator) {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      let height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
 
-			const percent = getScrolledPercent(winScroll, height);
+      const percent = (winScroll / height) * 100;
 
       scrollIndicator.style.width = percent + '%';
     }
   }
-	let initWinScroll = 0;
-
-	function getScrolledPercent(winScroll: number, height: number): number {
-    const envision = document.getElementById('envision');
-    const today = document.getElementById('today');
-    const header = document.getElementById('header');
-		const bleach = document.documentElement.style.getPropertyValue('--bleachProgress')
-		
-		if (Number(bleach) >= 1 && envision && header) {
-      if (!envision.getBoundingClientRect().height) {
-				initWinScroll = 0
-				return 0;
-      } else {
-				if (initWinScroll === 0) {
-					initWinScroll = winScroll
-				}
-				const screenHeight = window.screen.height;
-				const CF = 2 // today section is 200vh
-				const todayHeight = today?.getBoundingClientRect().height! - CF * screenHeight || 0
-
-				const scrolled = ((winScroll - todayHeight) / (height - todayHeight)) * 100;
-
-				return scrolled > 0 ? scrolled : 0;
-      }
-    }
-
-    return (winScroll / height) * 100;
-  }
-
 </script>
