@@ -11,7 +11,10 @@ import EnvisionSection from '../components/EnvisionSection.astro';
     withoutProgress={true}
   />
   <main class="h-screen w-screen overflow-x-visible">
-    <EnvisionSection />
+    <div class="relative">
+      <div class="fixed" id="envision-container"><EnvisionSection /></div>
+    </div>
+
     <div id="end-element"></div>
   </main>
 </Layout>
@@ -23,7 +26,7 @@ import EnvisionSection from '../components/EnvisionSection.astro';
 </style>
 
 <script>
-	window.onbeforeunload = function () {
-		window.scrollTo(0, 0);
-	}
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
 </script>

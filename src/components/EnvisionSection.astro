@@ -26,11 +26,8 @@ const apps = [
   class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
 >
   <section
-    class="relative z-100 flex w-screen flex-col items-center justify-center"
+    class="relative z-100 flex w-screen flex-col items-center justify-center overflow-hidden"
   >
-    <div class="fixed top-0 h-screen w-screen">
-      <div class="overflow-hidden"></div>
-    </div>
     <div class="bg-1"></div>
     <div class="z-300 h-screen w-full" id="slides-section">
       <div
@@ -49,25 +46,20 @@ const apps = [
         class="slide slide0 sectionTitle top-0 z-100 flex h-screen flex-col items-center justify-center gap-4 transition-opacity duration-200 md:gap-5"
       >
         <div class="slide-part overflow-hidden">
-          <div
-            id="logo-section"
-            class="logoSection flex min-h-screen w-screen items-center justify-center opacity-0 transition-opacity duration-500 ease-in-out"
-          >
+          <div class="flex min-h-screen w-screen items-center justify-center">
             <div
               class="absolute left-0 top-1/3 flex h-full w-full flex-col items-center bg-cover text-center"
             >
               <div
-                class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 px-5 text-black opacity-0"
+                class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0"
               >
                 <div
-                  id="envMeeLogo"
                   class="logo logo--contrast h-10 w-[138px] animate-fadeIn opacity-0 md:h-12 md:w-[165px]"
                 >
                   <Logo />
                 </div>
                 <div class="overflow-hidden">
                   <p
-                    id="meeRestoringText"
                     class="text animate-riseIn text-center text-xl leading-normal text-blue md:text-[1.75rem]"
                   >
                     Introducing a human-centered user experience for the
@@ -185,8 +177,9 @@ const apps = [
   }
 
   .bg-1 {
-    position: absolute;
-    height: 100%;
+    position: fixed;
+    height: 120vh;
+    top: 0;
     transform: translateY(calc(100vh - var(--bg-offset)));
     z-index: 70;
     background: linear-gradient(
@@ -243,20 +236,14 @@ const apps = [
 <script>
   import scrollIntoView from 'scroll-into-view-if-needed';
   const sections = document.querySelectorAll('.envision .section');
-  const logoSection = document.getElementById('logo-section');
   const slidesSection = document.getElementById('slides-section');
   const slides = document.querySelectorAll('.slide');
-  const envMeeLogo = document.getElementById('envMeeLogo');
   const title = document.getElementById('title');
   const middleElement = document.getElementById('middle');
-  const meeRestoringText = document.getElementById('meeRestoringText');
+  const envisionContainer = document.getElementById('envision-container');
   let isSlidesSectionShow = true;
-  const scrollIndicatorInvision = document.getElementById(
-    'scrollIndicatorInvision',
-  );
   let startRedirect = false;
   let activeSlideIndex = 0;
-  let activeListeners = false;
 
   const redirectToMain = () => {
     if (!startRedirect) {
@@ -293,10 +280,10 @@ const apps = [
         iterationCount < 100 &&
         scrollCount <= 100 &&
         scrollCount >= 0 &&
-        activeSlide <= 2
+        ((activeSlide <= 3 && swap === 1) || (activeSlide <= 4 && swap === -1))
       ) {
         iterationCount++;
-        scrollCount = scrollCount + swap * 0.01 * iterationCount;
+        scrollCount = scrollCount + swap * 0.005 * iterationCount;
         if (scrollCount < 0) {
           scrollCount = 0;
         } else if (scrollCount > 100) {
@@ -318,7 +305,6 @@ const apps = [
   const onSlidesWheel = (event: WheelEvent) => {
     if (isSlidesSectionShow) {
       const swap = Math.sign(event.deltaY);
-      event.preventDefault();
       wheelCount = wheelCount + event.deltaY;
 
       if (wheelCount > 500 || wheelCount < -500) {
@@ -339,8 +325,6 @@ const apps = [
 
   const onDragStart = (event: TouchEvent) => {
     if (isSlidesSectionShow && !isHeaderTouch(event)) {
-      event.preventDefault();
-      event.stopPropagation();
       startSlideY = event.touches[0]?.clientY ?? 0;
     }
   };
@@ -353,8 +337,6 @@ const apps = [
 
   const onDragEnd = (event: TouchEvent) => {
     if (isSlidesSectionShow && !isHeaderTouch(event)) {
-      event.preventDefault();
-      event.stopPropagation();
       const swap = startSlideY > endSlideY ? 1 : -1;
       moveToSlide(swap);
     }
@@ -364,35 +346,11 @@ const apps = [
       document.body.scrollTop || document.documentElement.scrollTop;
     if (winScroll === 0 && !isSlidesSectionShow) {
       isSlidesSectionShow = true;
-    }
-    if (winScroll === 0 && !activeListeners) {
-      addEventListeners();
+      envisionContainer?.classList.add('fixed');
     }
   };
   const onTransitionEnd = () => {
     slidesSection?.classList.remove('slider-locked');
-  };
-
-  document.addEventListener('scroll', onScroll);
-
-  const addEventListeners = () => {
-    document.addEventListener('wheel', onSlidesWheel, {passive: false});
-    document?.addEventListener('touchstart', onDragStart, {
-      passive: false,
-    });
-    document?.addEventListener('touchmove', onDragMove);
-    document?.addEventListener('touchend', onDragEnd, {passive: false});
-    slidesSection?.addEventListener('transitionend', onTransitionEnd);
-    activeListeners = true;
-  };
-
-  const removeEventListeners = () => {
-    document.removeEventListener('wheel', onSlidesWheel);
-    document?.removeEventListener('touchstart', onDragStart);
-    document?.removeEventListener('touchmove', onDragMove);
-    document?.removeEventListener('touchend', onDragEnd);
-    slidesSection?.removeEventListener('transitionend', onTransitionEnd);
-    activeListeners = false;
   };
 
   let scrollToBottom = false;
@@ -412,15 +370,15 @@ const apps = [
       setTimeout(() => {
         isSlidesSectionShow = false;
         scrollToBottom = false;
-        removeEventListeners();
+        envisionContainer?.classList.remove('fixed');
+        middleElement &&
+          scrollIntoView(middleElement, {
+            behavior: 'smooth',
+            scrollMode: 'if-needed',
+          });
       }, 1000);
-
-      middleElement &&
-        scrollIntoView(middleElement, {
-          behavior: 'smooth',
-          scrollMode: 'if-needed',
-        });
       slidesSection?.classList.remove('slider-locked');
+
       return;
     }
     onDragEndAnimation(swap, activeSlideIndex);
@@ -448,16 +406,6 @@ const apps = [
       const isActive = index === activeSlideIndex;
       const subtitle = slide.querySelector('.slide-subtitle');
 
-      if (isActive && index === 0) {
-        logoSection?.classList.remove('opacity-0');
-        envMeeLogo?.classList.remove('hidden');
-        envMeeLogo?.classList.add('animate-fadeIn');
-        meeRestoringText?.classList.remove('hidden');
-        meeRestoringText?.classList.add('animate-riseIn');
-        scrollIndicatorInvision?.classList.remove('!hidden');
-        scrollIndicatorInvision?.classList.add('animate-fadeIn');
-      }
-
       if (slide.classList.contains('scrolling_active')) {
         subtitle?.classList.add('animate-fadeOut', 'opacity-0');
         subtitle?.classList.remove('animate-riseIn');
@@ -471,7 +419,12 @@ const apps = [
     });
   };
   window.onload = () => {
-    addEventListeners();
     setActiveSlide();
   };
+  document.addEventListener('scroll', onScroll);
+  document.addEventListener('wheel', onSlidesWheel);
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
+  slidesSection?.addEventListener('transitionend', onTransitionEnd);
 </script>
