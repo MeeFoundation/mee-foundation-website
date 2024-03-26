@@ -26,7 +26,7 @@ const apps = [
   class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
 >
   <section
-    class="relative z-100 flex w-screen flex-col items-center justify-center overflow-hidden"
+    class="relative z-100 flex max-h-screen w-screen h-screen flex-col items-center justify-center overflow-hidden"
   >
     <div class="bg-1"></div>
     <div class="z-300 h-screen w-full" id="slides-section">
@@ -43,7 +43,7 @@ const apps = [
         </div>
       </div>
       <div
-        class="slide slide0 sectionTitle top-0 z-100 flex h-screen flex-col items-center justify-center gap-4 transition-opacity duration-200 md:gap-5"
+        class="slide sectionTitle top-0 z-100 flex h-screen flex-col items-center justify-center gap-4 transition-opacity duration-200 md:gap-5"
       >
         <div class="slide-part overflow-hidden">
           <div class="flex min-h-screen w-screen items-center justify-center">
@@ -82,8 +82,8 @@ const apps = [
       </div>
 
       {
-        subtitles.map((subtitle, index) => (
-          <div class={`slide slide${index + 1}`}>
+        subtitles.map((subtitle) => (
+          <div class="slide">
             <div class="slide-part">
               <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
                 <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
@@ -96,52 +96,54 @@ const apps = [
           </div>
         ))
       }
-    </div>
-
-    <div
-      class="z-100 mb-10 mt-32 flex w-screen items-center justify-center overflow-hidden md:mt-48"
-    >
-      <div
-        class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
-      >
-        <div
-          class="section title w-full animate-riseIn overflow-hidden md:w-160"
-        >
-          <h2
-            class="title text marker text-center text-3xl font-bold lg:text-7xl"
+      <div class="slide">
+        <div class="slide-part">
+          <div
+            class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden"
           >
-            Apps offering the Mee experience:
-          </h2>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-col items-center justify-center gap-16">
-      <div class="mb-10 flex flex-col">
-        <div id="middle"></div>
-        {
-          apps.map((app, index) => (
             <div
-              id={`en-section-${index + 1}`}
-              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
+              class="absolute left-0 top-[128px] flex h-full w-full flex-col items-center bg-cover text-center md:top-[192px]"
             >
-              <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
-                <div class="mr-4">
-                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
-                    <img
-                      src={done.src}
-                      alt=""
-                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
-                    />
+              <div
+                class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-[692px] md:text-3xl"
+              >
+                <h2
+                  class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-3xl font-bold transition-opacity duration-500 md:w-160 md:p-0 lg:text-7xl"
+                >
+                  Apps offering the Mee experience
+                </h2>
+                <div class="flex flex-col items-center justify-center gap-16">
+                  <div class="mb-10 flex flex-col">
+                    {
+                      apps.map((app, index) => (
+                        <div
+                          id={`en-section-${index + 1}`}
+                          class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0 "
+                        >
+                          <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+                            <div class="mr-4">
+                              <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                                <img
+                                  src={done.src}
+                                  alt=""
+                                  class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                                />
+                              </div>
+                            </div>
+
+                            <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black text-left">
+                              <span>{app}</span>
+                            </h2>
+                          </div>
+                        </div>
+                      ))
+                    }
                   </div>
                 </div>
-
-                <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
-                  <span>{app}</span>
-                </h2>
               </div>
             </div>
-          ))
-        }
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -234,12 +236,10 @@ const apps = [
   }
 </style>
 <script>
-  import scrollIntoView from 'scroll-into-view-if-needed';
   const sections = document.querySelectorAll('.envision .section');
   const slidesSection = document.getElementById('slides-section');
   const slides = document.querySelectorAll('.slide');
   const title = document.getElementById('title');
-  const middleElement = document.getElementById('middle');
   const envisionContainer = document.getElementById('envision-container');
   let isSlidesSectionShow = true;
   let startRedirect = false;
@@ -346,18 +346,14 @@ const apps = [
       document.body.scrollTop || document.documentElement.scrollTop;
     if (winScroll === 0 && !isSlidesSectionShow) {
       isSlidesSectionShow = true;
-      envisionContainer?.classList.add('fixed');
     }
   };
   const onTransitionEnd = () => {
     slidesSection?.classList.remove('slider-locked');
   };
 
-  let scrollToBottom = false;
-
   const moveToSlide = (swap: number) => {
-    if (slidesSection?.classList.contains('slider-locked') || scrollToBottom)
-      return;
+    if (slidesSection?.classList.contains('slider-locked')) return;
     slidesSection?.classList.add('slider-locked');
     const potentialNextSlide = activeSlideIndex + swap;
     if (potentialNextSlide < 0 && swap === -1) {
@@ -365,33 +361,35 @@ const apps = [
       isSlidesSectionShow = false;
       return;
     }
+    if (
+      activeSlideIndex === slides.length - 1 &&
+      potentialNextSlide === slides.length - 2
+    ) {
+      envisionContainer?.classList.add('fixed');
+    }
     if (potentialNextSlide > slides.length - 1 && swap === 1) {
-      scrollToBottom = true;
-      setTimeout(() => {
-        isSlidesSectionShow = false;
-        scrollToBottom = false;
-        envisionContainer?.classList.remove('fixed');
-        middleElement &&
-          scrollIntoView(middleElement, {
-            behavior: 'smooth',
-            scrollMode: 'if-needed',
-          });
-      }, 1000);
       slidesSection?.classList.remove('slider-locked');
-
+      isSlidesSectionShow = false;
       return;
+    }
+    if (potentialNextSlide === slides.length - 1 && swap === 1) {
+      setTimeout(() => {
+        envisionContainer?.classList.remove('fixed');
+      }, 1000);
+      isSlidesSectionShow = false;
+      slidesSection?.classList.remove('slider-locked');
     }
     onDragEndAnimation(swap, activeSlideIndex);
     activeSlideIndex = potentialNextSlide;
 
     if (
-      activeSlideIndex > 0 &&
+      (activeSlideIndex > 0 || activeSlideIndex < slides.length - 1) &&
       title?.querySelector('.text')?.classList.contains('opacity-0')
     ) {
       title?.querySelector('.text')?.classList.remove('opacity-0');
       title?.querySelector('.text')?.classList.add('animate-riseIn');
     } else if (
-      activeSlideIndex === 0 &&
+      (activeSlideIndex === 0 || activeSlideIndex === slides.length - 1) &&
       !title?.classList.contains('opacity-0')
     ) {
       title?.querySelector('.text')?.classList.add('opacity-0');
