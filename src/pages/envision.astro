@@ -10,9 +10,8 @@ import EnvisionSection from '../components/EnvisionSection.astro';
     logoColor="blue"
     withoutProgress={true}
   />
-  <main class="h-screen w-screen overflow-x-visible">
+  <main class="relative w-screen overflow-x-visible">
     <EnvisionSection />
-    <div id="end-element"></div>
   </main>
 </Layout>
 <style>
@@ -21,3 +20,9 @@ import EnvisionSection from '../components/EnvisionSection.astro';
     overscroll-behavior: none;
   }
 </style>
+
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+</script>

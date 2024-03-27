@@ -62,13 +62,6 @@ const subtitles = [
 </div>
 
 <style>
-  .slider-container {
-    position: relative;
-    height: 100vh;
-    min-width: 320px;
-    overflow: hidden;
-  }
-
   .slide-part {
     position: fixed;
     top: 0;
@@ -321,34 +314,46 @@ const subtitles = [
     }
   };
 
+  const isHeaderTouch = (event: TouchEvent) => {
+    const element = event.target as HTMLElement;
+    const header = element.closest('#header');
+    return !!header;
+  };
+
   let startY = 0;
   let endY = 0;
 
   const onDragStart = (event: TouchEvent) => {
-    stopAutoScroll();
-    startY = event.touches[0]?.clientY ?? 0;
-  };
-
-  const onDragMove = (event: TouchEvent) => {
-    endY = event.touches[0]?.clientY ?? 0;
-    const changeScroll = startY - endY;
-
-    if (!(!activeSlideIndex && changeScroll < 0)) {
-      scrollCount = scrollCount + changeScroll * 0.00005;
-      if (scrollCount < 0) {
-        scrollCount = 0;
-      }
-
-      document.documentElement.style.setProperty(
-        '--scroll',
-        scrollCount.toString(),
-      );
+    if (!isHeaderTouch(event)) {
+      stopAutoScroll();
+      startY = event.touches[0]?.clientY ?? 0;
     }
   };
 
-  const onDragEnd = () => {
-    const swap = startY > endY ? 1 : -1;
-    moveToSlide(swap);
+  const onDragMove = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      endY = event.touches[0]?.clientY ?? 0;
+      const changeScroll = startY - endY;
+
+      if (!(!activeSlideIndex && changeScroll < 0)) {
+        scrollCount = scrollCount + changeScroll * 0.00005;
+        if (scrollCount < 0) {
+          scrollCount = 0;
+        }
+
+        document.documentElement.style.setProperty(
+          '--scroll',
+          scrollCount.toString(),
+        );
+      }
+    }
+  };
+
+  const onDragEnd = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      const swap = startY > endY ? 1 : -1;
+      moveToSlide(swap);
+    }
   };
 
   document.addEventListener('wheel', onScroll);
