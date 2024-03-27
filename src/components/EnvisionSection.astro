@@ -8,7 +8,7 @@ export interface Props {}
 const {} = Astro.props;
 const subtitles = [
   'you don’t have to remember passwords',
-  'you don’t have to fill in forms ',
+  'you don’t have to fill in forms',
   'your personal data is managed by Mee',
   'your data is never shared or sold by anyone',
   'your activities remain private–no more tracking, no more spying on you',
@@ -23,10 +23,10 @@ const apps = [
 
 <article
   id="envision"
-  class="envision relative -mt-[0vh] flex w-screen flex-col items-center justify-center overflow-x-hidden"
+  class="envision fixed flex w-screen flex-col items-center justify-center overflow-hidden"
 >
   <section
-    class="relative z-100 flex max-h-screen w-screen h-screen flex-col items-center justify-center overflow-hidden"
+    class="relative z-100 flex h-screen max-h-screen w-screen flex-col items-center justify-center overflow-hidden"
   >
     <div class="bg-1"></div>
     <div class="z-300 h-screen w-full" id="slides-section">
@@ -240,7 +240,7 @@ const apps = [
   const slidesSection = document.getElementById('slides-section');
   const slides = document.querySelectorAll('.slide');
   const title = document.getElementById('title');
-  const envisionContainer = document.getElementById('envision-container');
+  const envisionContainer = document.getElementById('envision');
   let isSlidesSectionShow = true;
   let startRedirect = false;
   let activeSlideIndex = 0;
@@ -272,37 +272,47 @@ const apps = [
   });
 
   let dragAnimationId: ReturnType<typeof setInterval>;
-  let scrollCount = 0;
+
   const onDragEndAnimation = (swap: number, activeSlide: number) => {
-    let iterationCount = 0;
+    let scrollCount = activeSlide * 30;
+    let maxCount = (activeSlide + swap) * 30;
+    if (maxCount > 100) {
+      maxCount = 100;
+    } else if (maxCount < 0) {
+      maxCount = 0;
+    }
+    if (scrollCount > 100) {
+      scrollCount = 100;
+    } else if (scrollCount < 0) {
+      scrollCount = 0;
+    }
+    dragAnimationId && clearInterval(dragAnimationId);
+    document.documentElement.style.setProperty(
+      '--bg-offset',
+      scrollCount.toString() + 'vh',
+    );
+    let i = 0;
     dragAnimationId = setInterval(() => {
+      i++;
       if (
-        iterationCount < 100 &&
-        scrollCount <= 100 &&
-        scrollCount >= 0 &&
-        ((activeSlide <= 3 && swap === 1) || (activeSlide <= 4 && swap === -1))
+        (scrollCount < maxCount && swap === 1) ||
+        (scrollCount > maxCount && swap === -1)
       ) {
-        iterationCount++;
-        scrollCount = scrollCount + swap * 0.005 * iterationCount;
-        if (scrollCount < 0) {
-          scrollCount = 0;
-        } else if (scrollCount > 100) {
-          scrollCount = 100;
-        }
+        scrollCount = scrollCount + i * swap * 0.005;
         document.documentElement.style.setProperty(
           '--bg-offset',
           scrollCount.toString() + 'vh',
         );
       } else {
-        iterationCount = 0;
         dragAnimationId && clearInterval(dragAnimationId);
       }
-    }, 7);
+    }, 10);
   };
 
   let wheelCount = 0;
 
   const onSlidesWheel = (event: WheelEvent) => {
+    checkIsSlidesSectionShow();
     if (isSlidesSectionShow) {
       const swap = Math.sign(event.deltaY);
       wheelCount = wheelCount + event.deltaY;
@@ -324,30 +334,34 @@ const apps = [
   };
 
   const onDragStart = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
     if (isSlidesSectionShow && !isHeaderTouch(event)) {
       startSlideY = event.touches[0]?.clientY ?? 0;
     }
   };
 
   const onDragMove = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
     if (isSlidesSectionShow) {
       endSlideY = event.touches[0]?.clientY ?? 0;
     }
   };
 
   const onDragEnd = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
     if (isSlidesSectionShow && !isHeaderTouch(event)) {
       const swap = startSlideY > endSlideY ? 1 : -1;
       moveToSlide(swap);
     }
   };
-  const onScroll = () => {
+  const checkIsSlidesSectionShow = () => {
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     if (winScroll === 0 && !isSlidesSectionShow) {
       isSlidesSectionShow = true;
     }
   };
+
   const onTransitionEnd = () => {
     slidesSection?.classList.remove('slider-locked');
   };
@@ -419,7 +433,6 @@ const apps = [
   window.onload = () => {
     setActiveSlide();
   };
-  document.addEventListener('scroll', onScroll);
   document.addEventListener('wheel', onSlidesWheel);
   document?.addEventListener('touchstart', onDragStart);
   document?.addEventListener('touchmove', onDragMove);

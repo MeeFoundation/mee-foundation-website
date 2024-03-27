@@ -10,12 +10,8 @@ import EnvisionSection from '../components/EnvisionSection.astro';
     logoColor="blue"
     withoutProgress={true}
   />
-  <main class="h-screen w-screen overflow-x-visible">
-    <div class="relative">
-      <div class="fixed" id="envision-container"><EnvisionSection /></div>
-    </div>
-
-    <div id="end-element"></div>
+  <main class="relative w-screen overflow-x-visible">
+    <EnvisionSection />
   </main>
 </Layout>
 <style>
