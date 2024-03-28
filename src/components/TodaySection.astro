@@ -114,6 +114,7 @@ const subtitles = [
   let dragAnimationId: ReturnType<typeof setInterval>;
   const flashProtector = document.getElementById('flash-protector');
   sliderContainer?.classList.add('slider-locked');
+  const srollToEnd = document.getElementById('sroll-to-end');
 
   let currBleach = 0;
   const grid = document.querySelector('.grid');
@@ -370,10 +371,14 @@ const subtitles = [
       moveToSlide(-1);
     }
   };
+  const scrollToTheEnd = () => {
+    window.location.href = '/envision/#app';
+  };
 
   document?.addEventListener('touchstart', onDragStart);
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);
+  srollToEnd?.addEventListener('click', scrollToTheEnd);
 
   window.onload = () => {
     if (fromEnvision) {

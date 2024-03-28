@@ -21,46 +21,37 @@ const gives_you = [
 ---
 
 <article
-  class="relative flex w-screen flex-col items-center justify-between overflow-hidden h-full"
+  class="relative flex h-full w-screen flex-col items-center justify-between overflow-hidden"
 >
   <section
-    class="section top-0 mt-32 flex w-screen items-center justify-center md:mt-48 mb-10"
+    class="section top-0 mb-10 mt-32 flex w-screen items-center justify-center md:mt-48"
   >
     <div
       class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
     >
       <div id="title" class="title w-full overflow-hidden md:w-160">
         <h2
-          class="text marker animate-riseIn text-center text-3xl lg:text-7xl font-bold"
+          class="text marker animate-riseIn text-center text-3xl font-bold lg:text-7xl"
         >
-          Why <mark>your</mark> business should offer the Mee experience to your customers
+          Why <mark>your</mark> business should offer the Mee experience to your
+          customers
         </h2>
       </div>
     </div>
   </section>
-  <section 
+  <section
     class="section relative flex w-screen flex-col items-center justify-center pb-20"
   >
-    <div class="fixed h-screen w-screen top-0">
-      <div class="overflow-hidden"/>
+    <div class="fixed top-0 h-screen w-screen">
+      <div class="overflow-hidden"></div>
     </div>
-		<div class="bg-1 " />
+    <div class="bg-1"></div>
     <div class="flex flex-col items-center justify-center gap-16">
-      
-      <!-- <div
-        class="title z-100 w-full overflow-hidden px-6 md:w-160"
-      >
-        <h2
-          class="text animate-riseIn animation-delay-1000 text-center text-base font-extrabold text-black/80 md:text-xl leading-relaxed"
-        >
-          This gives your organization:
-        </h2>
-      </div> -->
       <div class="flex flex-col">
         {
           gives_you.map((items) => (
-            <div class="givesItem section-0 md:w-160 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:p-0 z-10">
-              <div class="animate-riseIn-short animation-delay-1000  bg-orange-lighter flex rounded-lg px-2 pt-2 pb-4 w-full">
+            <div class="givesItem section-0 z-10 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:w-160 md:p-0">
+              <div class="flex w-full  animate-riseIn-short rounded-lg bg-orange-lighter px-2 pb-4 pt-2 animation-delay-1000">
                 <div class="mr-4">
                   <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
                     <img
@@ -70,7 +61,7 @@ const gives_you = [
                     />
                   </div>
                 </div>
-  
+
                 <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
                   <span class="font-extrabold">{items[0]}</span>
                   <span>{items[1]}</span>
@@ -80,14 +71,14 @@ const gives_you = [
           ))
         }
       </div>
-      <div
-        class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0"
-      >
-        <div class="overflow-hidden mb-6">
+      <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
+        <div class="mb-6 overflow-hidden">
           <h2
-          class="text animate-riseIn animation-delay-2000 text-justify text-base font-medium text-black/80 md:text-xl leading-relaxed"
+            class="text animate-riseIn text-justify text-base font-medium leading-relaxed text-black/80 animation-delay-2000 md:text-xl"
           >
-          To incorporate the Mee experience into your websites and apps, integrate our Wallet Software Development Kit (SDK) and agree to the terms of the Mee License.
+            To incorporate the Mee experience into your websites and apps,
+            integrate our Wallet Software Development Kit (SDK) or Wallet
+            Service and agree to the terms of the Mee License.
           </h2>
         </div>
       </div>
@@ -118,7 +109,7 @@ const gives_you = [
     filter: blur(100px);
     transform: translate3d(0, 0, 0);
     z-index: 1;
-	}
+  }
   .givesItem:nth-child(1) > div {
     animation-delay: 1400ms;
   }
