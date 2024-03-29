@@ -5,34 +5,65 @@ const {} = Astro.props;
 
 export const links = [
   // {name: "For You", link:"/how-mee-works"},
-  {name: "Businesses",footerName: "Become a Mee service provider", link:"/for-providers"},
-  {name: "Developers", link:"https://docs.mee.foundation"},
+  {
+    name: 'Businesses',
+    footerName: 'Become a Mee service provider',
+    link: '/for-providers',
+  },
+  {name: 'Developers', link: 'https://docs.mee.foundation'},
   // {name: "Blog", link:"/blog"},
-  {name: "About Us", footerName:"Learn more about the Mee Foundation", link:"/about"},
-  ]
+  {
+    name: 'About Us',
+    footerName: 'Learn more about the Mee Foundation',
+    link: '/about',
+  },
+];
 ---
 
-<section class="flex font-extrabold gap-5 flex-col lg:flex-row-reverse items-end">
-  <button id="menuToggle" class="menu__item flex flex-row min-h-[34px] md:min-h-[28px] justify-center py-2.5 px-3.5 md:py-[7px] md:px-[13px] overflow-hidden z-10"><span class="">Menu</span></button>
-  <ul id="nav" class="nav absolute lg:static top-17.5 lg:top-0 flex flex-col items-end max-lg:h-0 lg:w-0 lg:h-auto lg:flex-row gap-5 max-lg:overflow-y-hidden lg:overflow-hidden z-10">
-    {links.map(link => (
+<section
+  class="flex flex-col items-end gap-5 font-extrabold lg:flex-row-reverse"
+>
+  <button
+    id="menuToggle"
+    class="menu__item z-10 flex min-h-[34px] flex-row justify-center overflow-hidden px-3.5 py-2.5 md:min-h-[28px] md:px-[13px] md:py-[7px]"
+    ><span class="">Menu</span></button
+  >
+  <ul
+    id="nav"
+    class="nav absolute top-17.5 z-10 flex flex-col items-end gap-5 max-lg:h-0 max-lg:overflow-y-hidden lg:static lg:top-0 lg:h-auto lg:w-0 lg:flex-row lg:overflow-hidden"
+  >
+    {
+      links.map((link) => (
         <li
           class:list={[
-            "text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer",
-            {"border-2 border-primary": Astro.url.pathname.startsWith(link.link)},
+            'text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer',
+            {
+              'border-2 border-primary': Astro.url.pathname.startsWith(
+                link.link,
+              ),
+            },
           ]}
-        ><a href={link.link} class="flex flex-row overflow-hidden">{link.name}</a></li>
-      ))}
+        >
+          <a href={link.link} class="flex flex-row overflow-hidden">
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
   </ul>
-  <div id="backdrop" class="absolute h-screen max-h-0  z-0 top-0 left-0 opacity-0 bg-gray-dark w-full transition-all duration-500 ease-linear md:hidden"/>
+  <div
+    id="backdrop"
+    class="absolute left-0 top-0 z-0 h-screen max-h-0 w-full bg-gray-dark opacity-0 transition-all duration-500 ease-linear lg:hidden"
+  >
+  </div>
 </section>
 
 <style is:global>
   .text {
-		-webkit-font-smoothing: antialiased;
-		font-smoothing: antialiased;  
-		backface-visibility: hidden;
-	}
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    backface-visibility: hidden;
+  }
   .nav {
     margin-block-start: 0;
     margin-block-end: 0;
@@ -64,9 +95,10 @@ export const links = [
     width: fit-content;
     min-width: 78px;
     text-align: center;
-    transition: transform 0.44s ease, background-color 0.5s ease-in, opacity 0.1s ease 0.44s;
+    transition: transform 0.44s ease, background-color 0.5s ease-in,
+      opacity 0.1s ease 0.44s;
     backface-visibility: hidden;
-    -webkit-transform:translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-transform-style: preserve-3d;
   }
   .menu__item:first-child {
@@ -92,7 +124,7 @@ export const links = [
     display: block;
     backface-visibility: hidden;
     white-space: pre;
-    -webkit-transform:translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-transform-style: preserve-3d;
     transition: transform 0.44s ease, opacity 0.25s ease-in;
   }
