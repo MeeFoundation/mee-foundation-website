@@ -438,6 +438,17 @@ const apps = [
   window.onload = () => {
     setActiveSlide();
   };
+
+  document.body.onkeydown = function (e) {
+    if (e.code === 'ArrowDown') {
+      moveToSlide(1);
+    }
+
+    if (e.code === 'ArrowUp') {
+      moveToSlide(-1);
+    }
+  };
+
   document.addEventListener('wheel', onSlidesWheel);
   document?.addEventListener('touchstart', onDragStart);
   document?.addEventListener('touchmove', onDragMove);
