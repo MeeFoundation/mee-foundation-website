@@ -7,12 +7,39 @@ import difIcon from '../../public/images/dif-logo.png';
 import PatreonIcon from '@components/PatreonIcon.astro';
 
 const textArray = [
-  'We are a 501(3)(c) nonprofit with a mission to offer the Mee human-centered user experience for the internet.',
+  'We are a nonprofit with a mission to offer the Mee human-centered user experience for the internet.',
 ];
 
 const joinUsText = [
-  'We invite businesses to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites.',
-  'Would you like to contribute to our mission? Let’s talk!',
+  'We’re looking for coders, app developers, usability experts, translators, and more. If you’d like to join us, email us at <a href="mailto:hello@mee.foundation" class="decoration-yellow-light underline">hello@mee.foundation<a>',
+  'We also invite businesses to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites.',
+];
+
+const contributors = [
+  [
+    'Alex Slobodeniuk',
+    'Alex Yuhimenko',
+    'Alex Cavalli',
+    'Anthony Ivanov',
+    'Anton Matveev',
+    'Bogdan Hutuleac',
+  ],
+  [
+    'Dalkis Muir',
+    'Kirill Khalitov',
+    'Maria Vasyutenko',
+    'Paul Trevithick',
+    'Pavel Gusev',
+    'Raman Siliuk',
+  ],
+  [
+    'Rick Lerner',
+    'Sergey Kucherenko',
+    'Susan Trevithick',
+    'Valeska O’Leary',
+    'Wendy Seltzer',
+    'Xenia Shatalova',
+  ],
 ];
 
 const supportText = 'Please support us on Patreon.';
@@ -148,7 +175,7 @@ const supportText = 'Please support us on Patreon.';
             <h6
               class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
             >
-              Personal Data Agents
+              Personal Data <br class="hidden lg:inline"/>Agents
             </h6>
             <p
               class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
@@ -268,6 +295,37 @@ const supportText = 'Please support us on Patreon.';
             class="w-[100px] md:w-[165px]"
             alt="Decentralized Identity Foundation logo"
           />
+        </div>
+      </section>
+      <section
+        class="relative flex w-full flex-col items-center gap-8 px-10 pb-8 animation-delay-800 md:gap-12 lg:gap-16 md:pb-8 lg:pb-16"
+      >
+        <h2
+          class="text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+        >
+          Contributors
+        </h2>
+        <div class="flex w-full flex-col flex-wrap items-center justify-center">
+          <p
+            class="aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight"
+          >
+            Coders, admins, writers, legal experts, and more
+          </p>
+        </div>
+        <div
+          class="flex w-full flex-col flex-wrap items-center justify-evenly gap-6 px-5 lg:flex-row lg:gap-14"
+        >
+          {
+            contributors.map((column) => (
+              <div class="aboutText flex flex-col items-center justify-center gap-6 animation-delay-800 lg:gap-14">
+                {column.map((subtitle) => (
+                  <p class="leading flex-auto text-center text-base font-thin leading-tight md:text-2xl lg:text-3xl xl:text-4xl xl:leading-tight">
+                    {subtitle}
+                  </p>
+                ))}
+              </div>
+            ))
+          }
         </div>
       </section>
       <Footer appsBtnsSize="medium" mode="dark" withAppButtons={false} />
