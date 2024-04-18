@@ -84,13 +84,6 @@ const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
 
 const partnerList: PartnerItem[] = [
   {
-    partnerName: 'Mee Foundation',
-    partnerUrl: 'https://mee.foundation',
-    partnerDisplayedUrl: 'mee.foundation',
-    partnerImageUrl: 'https://mee.foundation/mee_fav_icon.svg',
-    isCertified: true,
-  },
-  {
     partnerName: 'The Olde York Times',
     partnerUrl: 'https://oldeyorktimes.com',
     partnerDisplayedUrl: 'oldeyorktimes.com',
@@ -129,7 +122,11 @@ const PartnerListItem: React.FC<PartnerListItemProps> = ({partner}) => {
             <p className="text-base">{partner.partnerName}</p>
             <img
               className="w-5"
-              src={partner.isCertified ? MeeCertifiedIcon.src : MeeCompatibleIcon.src}
+              src={
+                partner.isCertified
+                  ? MeeCertifiedIcon.src
+                  : MeeCompatibleIcon.src
+              }
               alt={partner.isCertified ? 'Mee certified' : 'Mee compatible'}
             />
           </div>
