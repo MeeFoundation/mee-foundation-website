@@ -7,21 +7,6 @@ import TodaySection from '../components/TodaySection.astro';
 <Layout title="Mee Foundation">
   <Header withoutProgress={true} />
   <main class="w-full overflow-x-visible">
-    <div
-      class="white fixed bottom-5 left-5 z-300 w-[calc(100%-40px)] transition-opacity duration-500 ease-in-out sm:bottom-12 sm:left-15 sm:w-[calc(100%-120px)]"
-    >
-      <div class="flex items-center justify-end">
-        <div class="cursor-pointer sm:ml-4 sm:mt-[-17px]">
-          <div
-            id="sroll-to-end"
-            class="white flex w-fit items-center whitespace-nowrap rounded-full border border-white px-4 py-2 text-sm uppercase text-white"
-          >
-            <div id="sroll-to-end-arrow" class="mr-1 h-4 w-4"></div>
-            Get the App
-          </div>
-        </div>
-      </div>
-    </div>
     <TodaySection />
   </main>
 </Layout>
@@ -56,14 +41,5 @@ import TodaySection from '../components/TodaySection.astro';
     -webkit-text-fill-color: transparent;
     background-size: 400%;
     background-position: 0%;
-  }
-  #sroll-to-end.white #sroll-to-end-arrow {
-    background-color: #ffffff;
-    mask: url(/images/bottom-arrow.svg) no-repeat center;
-  }
-
-  #sroll-to-end.gray #sroll-to-end-arrow {
-    background-color: #4d4d4d;
-    mask: url(/images/bottom-arrow.svg) no-repeat center;
   }
 </style>

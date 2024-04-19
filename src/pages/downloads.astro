@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import AppButtons from '../components/AppButtons.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Mee Foundation - Get the app">
+  <Header
+    backgroundColor="backdrop-blur-md"
+    logoColor="blue"
+    withoutProgress={true}
+  />
+  <main class="scrollContainer transform-gpu">
+    <article
+      class="relative flex h-full min-h-screen w-screen flex-col items-center justify-between gap-10 overflow-hidden pt-25 md:pt-36"
+    >
+      <div
+        class="relative z-100 mb-25 flex h-auto w-screen max-w-2xl flex-1 flex-col items-center justify-center gap-10 md:mb-30"
+      >
+        <div class="bg-1"></div>
+        <section
+          class="section top-0 z-100 flex w-screen items-center justify-center mb-3.5"
+        >
+          <div
+            class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
+          >
+            <div class="overflow-hidden">
+              <h1
+                class="marker mt-[28px] animate-riseIn text-3xl font-bold md:text-4xl lg:mt-[52px] lg:text-6xl"
+              >
+                The <mark>Mee app</mark>
+              </h1>
+            </div>
+          </div>
+        </section>
+        <section class="z-100 overflow-hidden">
+          <h2
+            class="text animate-riseIn px-6 text-center text-base leading-relaxed text-black/80 animation-delay-800 md:text-xl"
+          >
+            We are on our journey towards a big vision of a human-centered user
+            experience for the internet.
+          </h2>
+        </section>
+        <section class="z-100 overflow-hidden">
+          <h2
+            class="text animate-riseIn px-6 text-center text-base leading-relaxed text-black/80 animation-delay-800 md:text-xl"
+          >
+            Meanwhile, we built the experimental smartwallets, which support the
+            following functions: signing in/up to apps/sites without passwords,
+            retrieving user information from their Google Account, sending GPC
+            signal to indicate user privacy preferences.
+          </h2>
+        </section>
+        <AppButtons btnSize="normal" noDescription={true} class="z-100" />
+      </div>
+      <Footer mode="dark" withAppButtons={false} />
+    </article>
+  </main>
+</Layout>
+<style>
+  .bg-1 {
+    content: '';
+    position: absolute;
+    width: 150vw;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    top: 40%;
+    height: 100vh;
+    background: linear-gradient(
+      to top,
+      rgba(249, 200, 137, 0.4) 75%,
+      rgba(249, 182, 137, 0.4) 100%
+    );
+    filter: blur(100px);
+    transform: translate3d(0, 0, 0);
+    z-index: 1;
+  }
+</style>
+
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+</script>

@@ -8,9 +8,9 @@ export interface Props {
 
 const {class: className,btnSize = "normal", noDescription = false} = Astro.props;
 ---
-<section id="app-buttons" class:list={["flex flex-col justify-center items-center w-screen px-5 md:max-w-[560px]", className, , {"gap-16": btnSize === "big"}, {"gap-12": btnSize === "medium"}, {"gap-5 md:gap-10": btnSize === "normal"}]}>
+<section id="app-buttons" class:list={["flex flex-col justify-center items-center w-screen px-5 md:max-w-[560px]", className, , {"gap-16": btnSize === "big"}, {"gap-12": btnSize === "medium"}, {"gap-6": btnSize === "normal"}]}>
   {!noDescription && <h6 class="text-2xl leading-normal font-bold text-center">Download the free Mee app and control what businesses can do with your data</h6>}
-  <div class:list={["flex flex-col md:flex-row justify-center items-center", {"gap-16": btnSize === "big"}, {"gap-12": btnSize === "medium"}, {"gap-5 md:gap-10": btnSize === "normal"}]}>
+  <div class:list={["flex flex-row flex-wrap justify-center items-center", {"gap-16": btnSize === "big"}, {"gap-12": btnSize === "medium"}, {"gap-6": btnSize === "normal"}]}>
     <a class="transition-transform duration-400 ease-out" href="https://apps.apple.com/us/app/mee-identity-agent/id1673110845?itsct=apps_box_badge&amp;itscg=30200" target="_blank" rel="nofollow">
       <img src="/images/download-apple-btn.svg" class:list={["max-w-[284px]", {"h-21": btnSize === "big"},{"h-16": btnSize === "medium"},{"h-10.5": btnSize === "normal"}]} alt="Link to Mee application on AppStore">
     </a>

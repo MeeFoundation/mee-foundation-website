@@ -143,7 +143,7 @@ const apps = [
       </div>
     </div>
   </section>
-  <Footer mode="dark" withAppButtons={true} />
+  <Footer mode="dark" />
 </article>
 
 <style>
@@ -224,31 +224,14 @@ const apps = [
   }
 </style>
 <script>
-  import scrollIntoView from 'scroll-into-view-if-needed';
-  const scrollToApp = window.location.hash === '#app';
   const sections = document.querySelectorAll('.envision .section');
   const slidesSection = document.getElementById('slides-section');
   const slides = document.querySelectorAll('.slide');
   const title = document.getElementById('title');
-  const appButtons = document.getElementById('app-buttons');
   const envisionContainer = document.getElementById('envision');
   let isSlidesSectionShow = true;
   let startRedirect = false;
-  let activeSlideIndex = scrollToApp ? slides.length - 1 : 0;
-  if (scrollToApp) {
-    setTimeout(() => {
-      envisionContainer?.classList.remove('fixed');
-      appButtons &&
-        scrollIntoView(appButtons, {
-          behavior: 'smooth',
-          scrollMode: 'if-needed',
-        });
-    }, 1000);
-    window.history.replaceState(null, document.title, '/envision/');
-    document.documentElement.style.setProperty('--bg-offset', '100vh');
-    isSlidesSectionShow = false;
-    slidesSection?.classList.remove('slider-locked');
-  }
+  let activeSlideIndex = 0;
 
   const redirectToMain = () => {
     if (!startRedirect) {
