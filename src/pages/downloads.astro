@@ -16,11 +16,11 @@ import Footer from '../components/Footer.astro';
       class="relative flex h-full min-h-[101vh] w-screen flex-col items-center justify-between gap-10 overflow-hidden pt-25 md:pt-36"
     >
       <div
-        class="relative z-100 mb-25 flex h-auto w-screen max-w-2xl flex-1 flex-col items-center justify-center gap-10 md:mb-30"
+        class="relative z-100 mb-10 flex h-auto w-screen max-w-4xl flex-1 flex-col items-center justify-center gap-10"
       >
         <div class="bg-1"></div>
         <section
-          class="section top-0 z-100 flex w-screen items-center justify-center mb-3.5"
+          class="section top-0 z-100 mb-3.5 flex w-screen items-center justify-center"
         >
           <div
             class="flex flex-col items-center justify-center px-6 transition-opacity duration-500 md:p-0"
@@ -29,28 +29,45 @@ import Footer from '../components/Footer.astro';
               <h1
                 class="marker mt-[28px] animate-riseIn text-3xl font-bold md:text-4xl lg:mt-[52px] lg:text-6xl"
               >
-                The <mark>Mee app</mark>
+                <mark>Downloads</mark>
               </h1>
             </div>
           </div>
         </section>
         <section class="z-100 overflow-hidden">
-          <h2
+          <h3
             class="text animate-riseIn px-6 text-center text-base leading-relaxed text-black/80 animation-delay-800 md:text-xl"
           >
-            We are on our journey towards a big vision of a human-centered user
+            We are on a journey towards our vision of a human-centered user
             experience for the internet.
-          </h2>
+          </h3>
+        </section>
+        <section
+          class="section top-0 z-100 flex w-screen items-center justify-center"
+        >
+          <div
+            class="flex flex-col items-center justify-center px-6 transition-opacity duration-500"
+          >
+            <div class="overflow-hidden">
+              <h2
+                class="animate-riseIn text-center text-2xl font-bold md:text-2xl lg:text-4xl"
+              >
+                Experimental smartwallet
+              </h2>
+            </div>
+          </div>
         </section>
         <section class="z-100 overflow-hidden">
-          <h2
+          <h3
             class="text animate-riseIn px-6 text-center text-base leading-relaxed text-black/80 animation-delay-800 md:text-xl"
           >
-            Meanwhile, we built the experimental smartwallets, which support the
-            following functions: signing in/up to apps/sites without passwords,
-            retrieving user information from their Google Account, sending GPC
-            signal to indicate user privacy preferences.
-          </h2>
+            As a first step, we have developed an experimental “smartwallet”
+            mobile app. It currently supports the following functions: logging
+            in to OpenID SIOP-compatible apps/sites (without passwords),
+            retrieving user information from your Google Account, and sending
+            the GPC signal to indicate your privacy preference not to share/sell
+            your personal information.
+          </h3>
         </section>
         <AppButtons btnSize="normal" noDescription={true} class="z-100" />
       </div>
