@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import TrustIcon from '../components/TrustIcon.astro';
 import Layout from '../layouts/Layout.astro';
 import difIcon from '../../public/images/dif-logo.png';
+import githubLogo from '../../public/images/github-logo.svg';
+import linkedinLogo from '../../public/images/linkedin-logo.svg';
 import PatreonIcon from '@components/PatreonIcon.astro';
 
 const textArray = [
@@ -16,30 +18,64 @@ const joinUsText = [
 ];
 
 const contributors = [
-  [
-    'Alex Slobodeniuk',
-    'Alex Yuhimenko',
-    'Alex Cavalli',
-    'Anthony Ivanov',
-    'Anton Matveev',
-    'Bogdan Hutuleac',
-  ],
-  [
-    'Dalkis Muir',
-    'Kirill Khalitov',
-    'Maria Vasyutenko',
-    'Paul Trevithick',
-    'Pavel Gusev',
-    'Raman Siliuk',
-  ],
-  [
-    'Rick Lerner',
-    'Sergey Kucherenko',
-    'Susan Trevithick',
-    'Valeska O’Leary',
-    'Wendy Seltzer',
-    'Xenia Shatalova',
-  ],
+  {
+    name: 'Alex Slobodeniuk',
+    link: 'https://github.com/AlexSlo-Dev',
+    icon: githubLogo,
+  },
+  {
+    name: 'Alex Yuhimenko',
+    link: 'https://github.com/alex-swift',
+    icon: githubLogo,
+  },
+  {name: 'Alex Cavalli', link: null, icon: null},
+  {
+    name: 'Anthony Ivanov',
+    link: 'https://github.com/Silenthunt0',
+    icon: githubLogo,
+  },
+  {
+    name: 'Anton Matveev',
+    link: 'https://github.com/Asfarus1',
+    icon: githubLogo,
+  },
+  {
+    name: 'Bogdan Hutuleac',
+    link: 'https://www.linkedin.com/in/bogdanhutuleac',
+    icon: linkedinLogo,
+  },
+  {
+    name: 'Dalkis Muir',
+    link: 'https://www.linkedin.com/in/dalkis-muir-a07380a',
+    icon: linkedinLogo,
+  },
+  {
+    name: 'Kirill Khalitov',
+    link: 'https://github.com/Voronar',
+    icon: githubLogo,
+  },
+  {name: 'Maria Vasyutenko', link: null, icon: null},
+  {
+    name: 'Paul Trevithick',
+    link: 'https://www.linkedin.com/in/paultrevithick',
+    icon: linkedinLogo,
+  },
+  {name: 'Pavel Gusev', link: 'https://github.com/GusevP', icon: githubLogo},
+  {name: 'Raman Siliuk', link: 'https://github.com/siluk007', icon: githubLogo},
+  {name: 'Rick Lerner', link: null, icon: null},
+  {
+    name: 'Sergey Kucherenko',
+    link: 'https://github.com/skchrnko',
+    icon: githubLogo,
+  },
+  {name: 'Susan Trevithick', link: null, icon: null},
+  {name: 'Valeska O’Leary', link: null, icon: null},
+  {name: 'Wendy Seltzer', link: null, icon: null},
+  {
+    name: 'Xenia Shatalova',
+    link: 'https://github.com/ksurmel',
+    icon: githubLogo,
+  },
 ];
 
 const supportText = 'Please support us on Patreon.';
@@ -84,9 +120,64 @@ const supportText = 'Please support us on Patreon.';
           </section>
         </section>
         <section
+          class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800"
+        >
+          <div class="overflow-hidden">
+            <h2
+              class="marker mt-[28px] animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-[52px] lg:text-5xl"
+            >
+              Contributors
+            </h2>
+          </div>
+          <div
+            class="flex w-full flex-col flex-wrap items-center justify-center overflow-hidden"
+          >
+            <p
+              class="aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight"
+            >
+              Coders, admins, writers, legal experts, and more
+            </p>
+          </div>
+          <div class="flex w-full max-w-[1094px] items-center overflow-hidden">
+            <div
+              class="flex animate-riseIn flex-wrap items-center justify-center gap-4 overflow-hidden animation-delay-1000 xl:gap-6"
+            >
+              {
+                contributors.map((contributor) => {
+                  if (!contributor.link) {
+                    return (
+                      <div class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-[#CBD5E1] px-4 text-center text-base font-semibold leading-tight text-[#1E293B] sm:w-56 xl:h-12 xl:w-60 xl:text-lg">
+                        <p>{contributor.name}</p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <a
+                      class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-[#CBD5E1] px-4 text-center text-base font-semibold leading-tight text-[#1E293B] sm:w-56 xl:h-12 xl:w-60 xl:text-lg"
+                      href={contributor.link}
+                      target="_blank"
+                    >
+                      <p>{contributor.name}</p>
+                      {contributor.icon && (
+                        <img
+                          src={contributor.icon.src}
+                          width="24"
+                          height="24"
+                          class=" h-6 w-6 xl:h-7 xl:w-7"
+                          alt="Decentralized Identity Foundation logo"
+                        />
+                      )}
+                    </a>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </section>
+        <section
           class="flex h-auto w-screen flex-col items-center justify-center bg-white"
         >
-          <div class="mb-8 overflow-hidden">
+          <div class="mb-8 max-w-[1094px] overflow-hidden">
             <h2
               class="marker mt-[28px] animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-[52px] lg:text-5xl"
             >
@@ -175,7 +266,7 @@ const supportText = 'Please support us on Patreon.';
             <h6
               class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
             >
-              Personal Data <br class="hidden lg:inline" />Agents
+              Identity Agents
             </h6>
             <p
               class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
@@ -194,13 +285,12 @@ const supportText = 'Please support us on Patreon.';
             <h6
               class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
             >
-              Apps and Browser Extensions
+              Browser Extensions
             </h6>
             <p
               class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
             >
-              Mobile apps and browser extensions that work with compatible
-              wallets and personal data agents.
+              Browser extensions that work with Mee-compatible identity agents.
             </p>
           </div>
           <div
@@ -218,8 +308,8 @@ const supportText = 'Please support us on Patreon.';
             <p
               class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
             >
-              The Mee human information license defines what businesses can and
-              can’t do with your data.
+              The Mee Data Network License defines what businesses can and can’t
+              do with your data.
             </p>
             <a
               class="link relative hidden items-center justify-between gap-2 text-base font-extrabold leading-[1.6] text-black/[.8] after:-rotate-45 after:bg-black/[.8]"
@@ -296,37 +386,6 @@ const supportText = 'Please support us on Patreon.';
             class="w-[100px] md:w-[165px]"
             alt="Decentralized Identity Foundation logo"
           />
-        </div>
-      </section>
-      <section
-        class="relative flex w-full flex-col items-center gap-8 px-10 pb-8 animation-delay-800 md:gap-12 md:pb-8 lg:gap-16 lg:pb-16"
-      >
-        <h2
-          class="text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
-        >
-          Contributors
-        </h2>
-        <div class="flex w-full flex-col flex-wrap items-center justify-center">
-          <p
-            class="aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight"
-          >
-            Coders, admins, writers, legal experts, and more
-          </p>
-        </div>
-        <div
-          class="flex w-full flex-col flex-wrap items-center justify-evenly gap-6 px-5 lg:flex-row lg:gap-14"
-        >
-          {
-            contributors.map((column) => (
-              <div class="aboutText flex flex-col items-center justify-center gap-6 animation-delay-800 lg:gap-14">
-                {column.map((subtitle) => (
-                  <p class="leading flex-auto text-center text-base font-thin leading-tight md:text-2xl lg:text-3xl xl:text-4xl xl:leading-tight">
-                    {subtitle}
-                  </p>
-                ))}
-              </div>
-            ))
-          }
         </div>
       </section>
       <Footer appsBtnsSize="medium" mode="dark" withAppButtons={false} />
