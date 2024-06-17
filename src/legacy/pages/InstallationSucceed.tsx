@@ -155,10 +155,9 @@ const ContextDoesNotExist: React.FC = () => (
                     Let’s set up your first connection!
                   </h1>
                   <p className="pt-2 text-center text-sm text-primary">
-                    It is your first time setting up Mee! By creating a
-                    connection I mean establishing a way for Mee to talk to
-                    apps/sites you would like to sign in/up. Choose who you want
-                    me to start talking with.
+                    Create a connection to establish a digital relationship with
+                    an app/site. Choose who you want Mee me to start to connect
+                    with.
                   </p>
                 </div>
               </div>
