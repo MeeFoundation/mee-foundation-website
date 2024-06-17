@@ -51,10 +51,12 @@ const ContextExists: React.FC<ContextExistsProps> = ({partnerData}) => {
       </h1>
 
       <p className="pb-8 text-lg font-medium text-black">
-        Allow Mee to establish a way to talk to the site you’ve just chosen to
-        interact with.
+        Create a connection to establish a digital relationship with an
+        app/site.
       </p>
-      <p className="text-lg font-medium text-black">Connect to </p>
+      <p className="text-lg font-medium text-black">
+        Click Next to connect to{' '}
+      </p>
       <p className="text-alt-color-8 text-3xl font-bold text-black">
         {partnerDataUnparsed.partnerName ||
           partnerDataUnparsed.client_metadata?.client_name}
@@ -150,7 +152,7 @@ const ContextDoesNotExist: React.FC = () => (
                 <img className="" src={cloud.src} alt="cloud" />
                 <div className="absolute bottom-0 left-0 right-0 top-0 flex flex-col items-center justify-center px-8 pt-2">
                   <h1 className="xs:text-3xl px-2 text-center text-xl font-normal text-primary">
-                    Let’s set up your first connection
+                    Let’s set up your first connection!
                   </h1>
                   <p className="pt-2 text-center text-sm text-primary">
                     It is your first time setting up Mee! By creating a
