@@ -16,6 +16,20 @@ const joinUsText = [
   'We’re looking for coders, app developers, usability experts, translators, and more. If you’d like to join us, email us at <a href="mailto:hello@mee.foundation" class="decoration-yellow-light underline">hello@mee.foundation</a>',
   'We also invite businesses to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites.',
 ];
+const principles = [
+  '<b>Human Centered Design</b>. The Foundation follows an architectural pattern for the internet which places individuals and their user agents at the center of personal data flows. Flows of personal data should always be mediated by a user agent. No personal data should flow directly from one app/site to another.',
+  '<b>User Control and Privacy</b>. The Foundation seeks to shift as much control as possible over their personal data to the individual while complying with applicable law. The individual must explicitly opt-in to any processing and the individual must have the ability to delegate rights over their data to other individuals.',
+  "<b>Data Rights and Portability</b>. Where personal data must be collected by entities, the Foundation promotes the individual's ability to access, edit, and delete their data regardless of what entity collects it. These rights enable the individual's user agents to move it freely from one entity to another within the Mee Data Network, as well as to download a copy of their data.",
+  '<b>Agency</b>. The Foundation promotes the development of personal, trusted, identity agent technology to empower individuals and work entirely on their behalf.',
+  '<b>Autonomy</b>. The Foundation believes that individuals should have digital embodiments of themselves (identity agents) that are as independent of administrative authorities as possible.',
+  '<b>Decentralization</b>. The Foundation promotes a decentralized architecture where power and control are distributed rather than centralized in a few entities or platforms.',
+  '<b>Openness and Transparency</b>. The Foundation believes in open practices, transparency, and accountability. This principle extends to our organizational practices, governance, and the software we develop, all of which is published on GitHub.',
+  '<b>Loyalty</b>. The Foundation is a non-profit that works on behalf of individuals and has no incentive to make money from their personal data.',
+  "<b>Private Advertising</b>. The Foundation enables apps/sites whose service providers earn revenues from advertizing, to continue to do so. However, in contrast to prevailing adtech that relies on tracking individuals across the web, the Foundation fosters the development of private advertising technology which allows ad personalization based on a person's membership in cohorts with similar interests, but does not rely on tracking.",
+  "<b>Authorization</b>. The Foundation requires that all service providers' apps/sites that exchange data on the Mee Data Network be authorized. They must comply with the Foundation's UX guidelines and execute a MDN License that constrains how they manage the individual's personal data so as to maximize privacy. For example, service providers may not share/sell personal information without explicit consent of the individual. The Foundation maintains a public registry of authorized service providers' apps/sites that are certified to display the Mee trust mark. It enforces this license on behalf of Mee users.",
+  '<b>Security</b>. The Foundation prioritizes the security of internet users, employing the best security practices in software development and operations.',
+  '<b>Inclusivity</b>. The Foundation offers its services for free to individuals to ensure that everyone has access to, and can participate in, the benefits of control over their personal information regardless of geographic location, socioeconomic status, or preferred technology platform.',
+];
 
 const contributors = [
   {
@@ -61,7 +75,11 @@ const contributors = [
     icon: linkedinLogo,
   },
   {name: 'Pavel Gusev', link: 'https://github.com/GusevP', icon: githubLogo},
-  {name: 'Raman Siliuk', link: 'https://github.com/siluk007', icon: githubLogo},
+  {
+    name: 'Raman Siliuk',
+    link: 'https://github.com/siluk007',
+    icon: githubLogo,
+  },
   {name: 'Rick Lerner', link: null, icon: null},
   {
     name: 'Sergey Kucherenko',
@@ -108,9 +126,11 @@ const supportText = 'Please support us on Patreon.';
                 <div class="overflow-hidden">
                   <p
                     class:list={[
-                      'aboutText text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight',
+                      'aboutText text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                       {'animation-delay-800': i !== 1},
-                      {'animation-delay-800 lg:animation-delay-1000': i === 1},
+                      {
+                        'animation-delay-800 lg:animation-delay-1000': i === 1,
+                      },
                     ]}
                     set:html={text}
                   />
@@ -163,7 +183,7 @@ const supportText = 'Please support us on Patreon.';
                           src={contributor.icon.src}
                           width="24"
                           height="24"
-                          class=" h-6 w-6 xl:h-7 xl:w-7"
+                          class="h-6 w-6 xl:h-7 xl:w-7"
                           alt="Decentralized Identity Foundation logo"
                         />
                       )}
@@ -190,7 +210,7 @@ const supportText = 'Please support us on Patreon.';
             <div class="flex flex-col items-center overflow-hidden">
               <p
                 class:list={[
-                  'animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight',
+                  'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                 ]}
                 set:html={joinUsText[0]}
               />
@@ -198,7 +218,7 @@ const supportText = 'Please support us on Patreon.';
             <div class="overflow-hidden">
               <p
                 class:list={[
-                  'animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight',
+                  'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                 ]}
                 set:html={joinUsText[1]}
               />
@@ -222,7 +242,7 @@ const supportText = 'Please support us on Patreon.';
               <div class="flex flex-col items-center overflow-hidden">
                 <p
                   class:list={[
-                    'animation-delay-800 aboutText leading text-xl leading-tight font-thin md:text-3xl lg:text-4xl xl:text-5xl text-center xl:leading-tight',
+                    'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                   ]}
                   set:html={supportText}
                 />
@@ -341,8 +361,45 @@ const supportText = 'Please support us on Patreon.';
         </div>
       </section>
       <section
-        class="flex w-[400vw] -translate-y-25 flex-col items-center rounded-t-1/2 bg-white pb-12 pt-25 md:pt-40 lg:w-[200vw]"
+        class="flex w-[500vw] -translate-y-25 flex-col items-center rounded-t-1/2 bg-white pt-25 md:pt-40"
       >
+        <h2
+          class="mb-12 max-w-[1094px] text-3xl font-bold leading-thick md:mb-21 md:text-4xl md:leading-normal lg:text-5xl"
+        >
+          Our Principles
+        </h2>
+        <section
+          class="relative flex w-screen max-w-[1094px] flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
+        >
+          <div class="flex flex-col items-center overflow-hidden">
+            <p
+              class:list={[
+                'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
+              ]}
+            >
+              The Mee Foundation operates based on several core principles that
+              guide its mission and activities. Here are the key principles of
+              The Mee Foundation:
+            </p>
+          </div>
+          <ul class="flex flex-col gap-6 md:gap-8 lg:gap-14">
+            {
+              principles.map((principle, index) => (
+                <li class="overflow-hidden">
+                  <p
+                    class:list={[
+                      'animation-delay-800 aboutText leading text-justify text-xl font-thin leading-tight md:text-2xl lg:text-3xl xl:text-4xl xl:leading-tight',
+                    ]}
+                  >
+                    {index + 1}. <span set:html={principle} />
+                  </p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </section>
+      <section class="flex flex-col items-center bg-white pb-12">
         <h2
           class="mb-12 text-3xl font-bold leading-thick md:mb-21 md:text-4xl md:leading-normal lg:text-5xl"
         >

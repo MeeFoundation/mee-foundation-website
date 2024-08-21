@@ -9,7 +9,8 @@ export const Footer: React.FC = () => (
       <div className="w-full px-4 py-5">
         <div className="text-2xs flex flex-col items-center justify-between gap-4 leading-3 text-primary-content md:flex-row md:text-sm">
           <p className="leading-4">
-            <a href="/privacy-policy">Privacy Policy</a> |{' '}
+            <a href="/privacy-policy">Privacy Policy</a> 
+            {/* |{' '} */}
             {/* <a href="https://docs.mee.foundation/">Docs</a> |{' '} */}
             {/* <Link to="/support">Support</Link> */}
           </p>
