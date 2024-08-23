@@ -240,6 +240,14 @@ import '@styles/base.css';
       setHeight();
       updateScrollIndicator();
     });
+
+    const showPrinciples = document.getElementById('show-principles');
+    showPrinciples?.addEventListener('click', () => {
+      setTimeout(() => {
+        setHeight();
+        updateScrollIndicator();
+      }, 100);
+    });
   }
 
   let offset = 0;
