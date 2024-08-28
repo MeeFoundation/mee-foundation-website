@@ -1,33 +1,35 @@
-name: Deploy to GitHub Pages
+name: dev-ci
 
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2
-        with:
-          path: .
-          node-version: 20 
-          package-manager: yarn@latest 
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "yarn"
+          cache-dependency-path: ./yarn.lock
+      - run: yarn install --frozen-lockfile
+      - run: yarn tsc --noEmit
+      - run: yarn build
+
+      - name: configure gcp credentials
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/1043231896197/locations/global/workloadIdentityPools/github-actions-pool/providers/github"
+          service_account: "github-actions@the-mee-foundation.iam.gserviceaccount.com"
+
+      - name: deploy to bucket
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        run: |
+          gcloud storage rsync --recursive ./dist gs://mee-foundation-bucket
+          gcloud storage objects update --content-type="text/html" --cache-control="public, max-age=60" --content-disposition="" gs://mee-foundation-bucket/*.html
+          gcloud compute url-maps invalidate-cdn-cache prod-url-map --project the-mee-foundation --path "/index.html" --host "mee.foundation" --async 
