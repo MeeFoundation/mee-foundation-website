@@ -22,11 +22,11 @@ The resulting loss of privacy and lack of a sense of ownership of our personal d
 
 Human/user/personal⁷ data is collected and stored by organizations as users interact with their “apps” (e.g., mobile apps, websites, etc.). We call this *app-held* data. It’s also held by third parties (e.g. data brokers) with whom users have no interactions at all. The resulting data economy with its dominance of app-held and 3rd-party-held data is shown at the left below.
 
-![where-is-personal-data-stored](~/assets/blog/F1_location.png)
+![where-is-personal-data-stored](../../assets/blog/F1_location.png)
 
 Although still rare in practice, theoretically there is another place where human data can live. It can be held by the user in a *personal data store* (PDS).⁸ ⁹ We call this *user-held* data. A PDS stores the user’s data in the cloud or on an edge device (phone, tablet, laptopc, etc.) or a combination of the two.
 
-![personal-data-locations](~/assets/blog/F2_app-held_user-held_3rd.png)
+![personal-data-locations](../../assets/blog/F2_app-held_user-held_3rd.png)
 
 ## **Data sharing**
 
@@ -34,13 +34,13 @@ The right-hand dotted line in the diagram above shows data sharing between an or
 
 Data sharing also happens between user-held data (in a PDS) and app-held data (in an app) shown in the left-hand dotted line. Data sharing of this kind can happen in both directions. In the first, the user (via their PDS) shares data with an app; we call this data *user-shared.* After sharing, the app typically retains a copy. As an example, the PDS user could decide to share a copy of their fitness data with a fitness-analytics app. Going the other direction, when the app shares data with the user’s PDS we call this *app-shared* data. After sharing, the user’s PDS would typically retain a copy. As an example of this direction, a medical lab might share test results with the user. We have added these two types of shared data on the bottom row below:
 
-![data-sharing-flows](~/assets/blog/F3_data_sharing_flows.png)
+![data-sharing-flows](../../assets/blog/F3_data_sharing_flows.png)
 
 ## **Replication**
 
 Data sharing can also happen in both directions between the user (the user’s PDS) and an app in what would be called data replication. We show this more nuanced, bi-directional kind of sharing in Figure 4 below.
 
-![img](~/assets/blog/F4_data_replication_flows.png)
+![img](../../assets/blog/F4_data_replication_flows.png)
 
 ## Exclusivity
 
@@ -50,7 +50,7 @@ There are two kinds of exclusive data. When app-held data is exclusive we call i
 
 The second kind of exclusive data, called *user-exclusive,* is user-held data that is exclusive. Before we dive more deeply into the details of user-exclusive data, here’s a visual summary of all of the terms we’ve introduced so far:
 
-![F5_locations_exclusive_and_replicated](~/assets/blog/F5_locations_exclusive_and_replicated.png)
+![F5_locations_exclusive_and_replicated](../../assets/blog/F5_locations_exclusive_and_replicated.png)
 
 ## User-exclusive personal data
 
@@ -60,7 +60,7 @@ We must rely on governance to enforce the “no copy” restriction on this disc
 
 With user-exclusive data, a sense of ownership¹⁵ ¹⁶ emerges.¹⁷ ¹⁸ ¹⁹ Privacy increases too because there’s nothing for attackers to steal and nothing that can be shared with 3rd parties who may be working against the user’s interests. After an interactive session ends, the user’s personal data disappears from the recipient like footprints in the sand.
 
-![img](~/assets/blog/footprints.jpg)
+![img](../../assets/blog/footprints.jpg)
 
 Photo by [Khadeeja Yasser](https://unsplash.com/@k_yasser?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&utm_medium=referral)
 

@@ -73,7 +73,7 @@ export const footer = {
       link: '/downloads',
       name: 'Downloads',
       id: 'downloads',
-    },    
+    },
     {
       name: 'About us',
       link: '/about',
@@ -88,7 +88,7 @@ export const footer = {
       id: 'privacy-policy',
     },
     {
-      link: "https://x.com/mee_foundation",
+      link: 'https://x.com/mee_foundation',
       icon: 'twitter-x',
       target: '_blank',
       id: 'twitter',
@@ -102,9 +102,6 @@ export default defineConfig({
   integrations: [tailwind(), react(), mdx()],
   build: {
     assets: 'assets',
-  },
-  experimental: {
-    assets: true,
   },
   output: 'static',
   vite: {

@@ -13,4 +13,4 @@ Inspired by the Linux Foundation’s [announcement](https://www.linuxfoundation.
 
 Starting at the bottom we have a simple an authenticator app (e.g. [Microsoft Authenticator](https://www.microsoft.com/en-us/security/mobile-authenticator-app)) that authenticates the individual. Next we have a digital wallet that adds the ability to import, store, and present credentials, digital assets and useful items such as tickets and keys to other apps. Finally, at the top we have a smartwallet that adds (i) privacy policy expression (e.g. [https://globalprivacycontrol.org](https://globalprivacycontrol.org/)) and (ii) bi-directional “private sharing” of data between the wallet and an app/site under a legal regime wherein the person remains in control of their data.
 
-![three layer cake](~/assets/blog/smartwallet.webp)
+![three layer cake](../../assets/blog/smartwallet.webp)

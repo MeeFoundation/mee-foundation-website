@@ -12,13 +12,13 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^0.19.7",
-		"@astrojs/react": "^2.1.1",
-		"astro": "^2.9.6",
-		"autoprefixer": "^10.4.15",
+		"@astrojs/mdx": "^3.1.8",
+		"@astrojs/react": "^3.6.2",
+		"astro": "^4.16.0",
+		"autoprefixer": "^10.4.20",
 		"axios": "^1.4.0",
 		"bootstrap-icons": "1.11.3",
-		"clsx": "^1.2.1",
+		"clsx": "^2.1.1",
 		"daisyui": "^3.2.1",
 		"github-slugger": "^2.0.0",
 		"jose": "^4.14.4",
