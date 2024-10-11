@@ -2,9 +2,6 @@ import {defineConfig} from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
-// https://astro.build/config
-import mdx from '@astrojs/mdx';
-
 export const discord =
   'https://discord.com/channels/1275848491964436491/1275848492413223025';
 export const header = {
@@ -98,7 +95,7 @@ export const footer = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mee.foundation',
-  integrations: [tailwind(), react(), mdx()],
+  integrations: [tailwind(), react()],
   build: {
     assets: 'assets',
   },
