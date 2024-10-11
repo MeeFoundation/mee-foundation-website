@@ -27,7 +27,7 @@ export const links = [
 >
   <button
     id="menuToggle"
-    class="menu__item z-10 flex min-h-[34px] flex-row justify-center overflow-hidden px-3.5 py-2.5 md:min-h-[28px] md:px-[13px] md:py-[7px]"
+    class="menu__item z-10 flex min-h-8.5 flex-row justify-center overflow-hidden px-3.5 py-2.5 md:min-h-7 md:px-3.25 md:py-1.75"
     ><span class="">Menu</span></button
   >
   <ul
@@ -38,7 +38,7 @@ export const links = [
       links.map((link) => (
         <li
           class:list={[
-            'text menu__item min-h-[34px] md:min-h-[28px] py-2.5 px-3.5 md:py-[7px] md:px-[13px] cursor-pointer',
+            'text menu__item min-h-8.5 md:min-h-7 py-2.5 px-3.5 md:py-1.75 md:px-3.25 cursor-pointer',
             {
               'border-2 border-primary': Astro.url.pathname.startsWith(
                 link.link,

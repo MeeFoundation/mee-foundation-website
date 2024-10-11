@@ -1,20 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import {Header, Footer} from 'mee-components';
+import {header, footer} from '../../astro.config.mjs';
 ---
 
 <Layout title="Mee Foundation - Privacy Policy">
-  <Header logoColor="blue" backgroundColor="backdrop-blur-md" />
-  <main class="scrollContainer transform-gpu">
+  <main class="w-screen overflow-hidden">
+    <Header header={header} activePage="privacy-policy" />
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25"
     >
       <div class="bg-primary-content">
-        <div class="mx-auto min-w-[320px] max-w-5xl">
+        <div class="mx-auto min-w-80 max-w-7xl">
           <div class="text-alt-color-8" data-theme="meeTheme">
             <div
-              class="max-w-256 mx-auto px-5 pb-20 pt-10 text-base text-[#111827]"
+              class="mx-auto max-w-7xl px-5 pb-20 pt-10 text-base text-gray-800"
             >
               <h1 class="text-4xl font-medium text-primary">Privacy Policy</h1>
               <p class="pt-10">
@@ -167,7 +167,7 @@ import Header from '../components/Header.astro';
           </div>
         </div>
       </div>
-      <Footer appsBtnsSize="medium" mode="dark" withAppButtons={false} />
+      <Footer footer={footer} mode="dark" />
     </section>
   </main>
 </Layout>

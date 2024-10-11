@@ -1,5 +1,6 @@
 ---
-import Footer from './Footer.astro';
+import {Footer} from 'mee-components';
+import {footer} from '../../astro.config.mjs';
 import done from '@assets/done.svg';
 export interface Props {}
 
@@ -53,25 +54,23 @@ const gives_you = [
             <div class="givesItem section-0 z-10 mb-2 flex w-full flex-col items-center overflow-hidden px-6 md:mb-4 md:w-160 md:p-0">
               <div class="flex w-full  animate-riseIn-short rounded-lg bg-orange-lighter px-2 pb-4 pt-2 animation-delay-1000">
                 <div class="mr-4">
-                  <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                  <div class="relative m-2 h-6 w-6 rounded border-1.5 border-white md:h-8 md:w-8">
                     <img
                       src={done.src}
                       alt=""
-                      class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                      class="absolute bottom-1.75 left-1.25 md:bottom-2.5 md:left-1.75"
                     />
                   </div>
                 </div>
-
                 <h2 class="text ms:text-xl mt-2 pr-2 text-base text-black">
-                  <span class="font-extrabold">{items[0]}</span>
-                  <span>{items[1]}</span>
+                  <span>{items[0]}</span>
                 </h2>
               </div>
             </div>
           ))
         }
       </div>
-      <div class="title z-100 w-full overflow-hidden px-6 md:w-160 md:p-0">
+      <div class="title z-70 w-full overflow-hidden px-6 md:w-160 md:p-0">
         <div class="mb-6 overflow-hidden">
           <h2
             class="text animate-riseIn text-justify text-base font-medium leading-relaxed text-black/80 animation-delay-2000 md:text-xl"
@@ -84,7 +83,7 @@ const gives_you = [
       </div>
     </div>
   </section>
-  <Footer mode="light" withAppButtons={false} />
+  <Footer footer={footer} mode="dark" />
 </article>
 
 <style>

@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import {Header} from 'mee-components';
+import {header} from '../../astro.config.mjs';
 import ForProvidersContent from '../components/ForProvidersContent.astro';
 ---
 
 <Layout title="Mee Foundation - Businesses">
-	<Header logoColor="blue" backgroundColor="backdrop-blur-md"/>
-	<main class="scrollContainer transform-gpu">
-		<ForProvidersContent />
-	</main>
+  <Header header={header} activePage="business" />
+  <main class="w-screen overflow-hidden">
+    <ForProvidersContent />
+  </main>
 </Layout>

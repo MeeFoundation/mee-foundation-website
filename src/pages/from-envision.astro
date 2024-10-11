@@ -1,11 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import {Header} from 'mee-components';
+import {header} from '../../astro.config.mjs';
 import TodaySection from '../components/TodaySection.astro';
 ---
 
 <Layout title="Mee Foundation">
-  <Header withoutProgress={true} />
+  <Header header={header} type="dark" className="hidden" />
   <main class="w-full overflow-x-visible">
     <TodaySection fromEnvision={true} />
   </main>

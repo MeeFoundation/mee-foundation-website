@@ -1,6 +1,6 @@
 ---
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import {Header, Footer} from 'mee-components';
+import {header, footer} from '../../astro.config.mjs';
 import TrustIcon from '../components/TrustIcon.astro';
 import Layout from '../layouts/Layout.astro';
 import difIcon from '../../public/images/dif-logo.png';
@@ -150,8 +150,8 @@ const supportText = 'Please support us on Patreon.';
 ---
 
 <Layout title="Mee Foundation - About Us">
-  <Header logoColor="blue" backgroundColor="backdrop-blur-md" />
-  <main class="scrollContainer transform-gpu">
+  <Header header={header} activePage="about"/>
+  <main class="w-screen overflow-hidden">
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
     >
@@ -161,13 +161,13 @@ const supportText = 'Please support us on Patreon.';
         >
           <div class="mb-8 overflow-hidden">
             <h1
-              class="marker mt-[28px] animate-riseIn text-6xl font-bold lg:mt-[52px] lg:text-7xl"
+              class="marker mt-13 animate-riseIn text-6xl font-bold lg:mt-13 lg:text-7xl"
             >
               <mark>About</mark> us
             </h1>
           </div>
           <section
-            class="relative flex w-full max-w-[1094px] flex-col items-center gap-8 px-10 animation-delay-800 md:gap-12 lg:gap-16"
+            class="relative flex w-full max-w-273.5 flex-col items-center gap-8 px-10 animation-delay-800 md:gap-12 lg:gap-16"
           >
             {
               textArray.map((text, i) => (
@@ -192,7 +192,7 @@ const supportText = 'Please support us on Patreon.';
         >
           <div class="overflow-hidden">
             <h2
-              class="marker mt-[28px] animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-[52px] lg:text-5xl"
+              class="marker mt-13 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
             >
               Contributors
             </h2>
@@ -206,7 +206,7 @@ const supportText = 'Please support us on Patreon.';
               Coders, admins, writers, legal experts, and more
             </p>
           </div>
-          <div class="flex w-full max-w-[1094px] items-center overflow-hidden">
+          <div class="flex w-full max-w-273.5 items-center overflow-hidden">
             <div
               class="flex animate-riseIn flex-wrap items-center justify-center gap-4 overflow-hidden animation-delay-1000 xl:gap-6"
             >
@@ -214,14 +214,14 @@ const supportText = 'Please support us on Patreon.';
                 contributors.map((contributor) => {
                   if (!contributor.link) {
                     return (
-                      <div class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-[#CBD5E1] px-4 text-center text-base font-semibold leading-tight text-[#1E293B] sm:w-56 xl:h-12 xl:w-60 xl:text-lg">
+                      <div class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 xl:text-lg">
                         <p>{contributor.name}</p>
                       </div>
                     );
                   }
                   return (
                     <a
-                      class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-[#CBD5E1] px-4 text-center text-base font-semibold leading-tight text-[#1E293B] sm:w-56 xl:h-12 xl:w-60 xl:text-lg"
+                      class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 xl:text-lg"
                       href={contributor.link}
                       target="_blank"
                     >
@@ -245,15 +245,15 @@ const supportText = 'Please support us on Patreon.';
         <section
           class="flex h-auto w-screen flex-col items-center justify-center bg-white"
         >
-          <div class="mb-8 max-w-[1094px] overflow-hidden">
+          <div class="mb-8 max-w-273.5 overflow-hidden">
             <h2
-              class="marker mt-[28px] animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-[52px] lg:text-5xl"
+              class="marker mt-13 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
             >
               Join us
             </h2>
           </div>
           <section
-            class="relative flex w-full max-w-[1094px] flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
+            class="relative flex w-full max-w-273.5 flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
           >
             <div class="flex flex-col items-center overflow-hidden">
               <p
@@ -278,13 +278,13 @@ const supportText = 'Please support us on Patreon.';
         >
           <div class="mb-8 overflow-hidden">
             <h2
-              class="marker mt-[28px] animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-[52px] lg:text-5xl"
+              class="marker mt-7 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
             >
               Support us
             </h2>
           </div>
           <section
-            class="relative flex w-full max-w-[1094px] flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
+            class="relative flex w-full max-w-273.5 flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
           >
             <div class="flex flex-col items-center">
               <div class="flex flex-col items-center overflow-hidden">
@@ -298,7 +298,7 @@ const supportText = 'Please support us on Patreon.';
               <div class="mt-8">
                 <a
                   href="https://www.patreon.com/TheMeeFoundation"
-                  class="flex flex-row items-center gap-[10px] rounded-[10px] bg-black px-8 py-3 text-white"
+                  class="flex flex-row items-center gap-2.5 rounded-[10px] bg-black px-8 py-3 text-white"
                 >
                   <PatreonIcon />
                   <span class="text-[22px] font-semibold leading-[26px]"
@@ -314,21 +314,21 @@ const supportText = 'Please support us on Patreon.';
         </section>
       </article>
       <section
-        class="principles-section principles-section-collapse relative mb-28 flex flex-col items-center bg-white gap-16"
+        class="principles-section principles-section-collapse relative mb-28 flex flex-col items-center gap-16 bg-white"
       >
         <button
           id="show-principles"
-          class="absolute bottom-4 z-10 flex flex-row items-center justify-center rounded-xl border border-solid border-[#CBD5E1] px-4 py-2.5 text-base font-semibold leading-6 tracking-[0.005em] text-[#334155]"
+          class="absolute bottom-4 z-10 flex flex-row items-center justify-center rounded-xl border border-solid border-grey-300 px-4 py-2.5 text-base font-semibold tracking-0.02 text-grey-700"
         >
           Show all principles
         </button>
         <h2
-          class=" max-w-[1094px] text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+          class="max-w-273.5 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
         >
           Our Principles
         </h2>
         <section
-          class="relative flex w-screen max-w-[1094px] flex-col items-center gap-16 px-10 animation-delay-800 "
+          class="relative flex w-screen max-w-273.5 flex-col items-center gap-16 px-10 animation-delay-800"
         >
           <div class="flex flex-col items-center overflow-hidden">
             <p
@@ -345,16 +345,16 @@ const supportText = 'Please support us on Patreon.';
                 <div class:list={['overflow-hidden ', principle.class]}>
                   <div
                     class:list={[
-                      'principle animation-delay-800 h-full flex flex-col items-start border p-8 rounded-2xl border-solid border-[#C3DCDE] gap-6',
+                      'principle animation-delay-800 h-full flex flex-col items-start border p-8 rounded-2xl border-solid border-brand-200 gap-6',
                     ]}
                   >
                     <>
-                      <div class="text-2xl font-semibold not-italic leading-8 tracking-[0.005em] text-[#314248]">
+                      <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
                         {principle.title}
                       </div>
                       <div
                         set:html={principle.text}
-                        class="text-base font-normal not-italic leading-6 tracking-[0.005em] text-[#3B5B63]"
+                        class="text-base font-normal not-italic  tracking-0.02 text-brand-700"
                       />
                     </>
                   </div>
@@ -365,7 +365,7 @@ const supportText = 'Please support us on Patreon.';
         </section>
       </section>
       <section
-        class="platform relative flex w-[400vw] flex-col items-center px-5 py-30 text-black/[.8] md:pb-45 md:pt-40 lg:w-[200vw]"
+        class="platform relative flex w-screen-4 flex-col items-center px-5 py-30 text-black md:pb-45 md:pt-40 lg:w-screen-2"
       >
         <h2
           class="mb-15 text-3xl font-bold leading-thick md:mb-25 md:text-4xl md:leading-normal lg:text-5xl"
@@ -376,62 +376,56 @@ const supportText = 'Please support us on Patreon.';
           class="flex w-screen flex-col items-center justify-center gap-18.5 px-5 lg:flex-row lg:items-start"
         >
           <div
-            class="platform__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
           >
             <span
               class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
               ><img src="/images/personal-data-agents.svg" /></span
             >
             <h6
-              class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
             >
               Identity Agents
             </h6>
-            <p
-              class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
-            >
+            <p class="text-base font-normal text-black md:text-xl">
               Manage and control your personal information on Mee-compatible
               websites and applications.
             </p>
           </div>
           <div
-            class="platform__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
           >
             <span
               class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
               ><img src="/images/identity-agent-icon.svg" /></span
             >
             <h6
-              class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
             >
               Browser Extensions
             </h6>
-            <p
-              class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
-            >
+            <p class="text-base font-normal text-black md:text-xl">
               Browser extensions that work with Mee-compatible identity agents.
             </p>
           </div>
           <div
-            class="platform__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
           >
             <span
               class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
               ><img src="/images/hil-icon.svg" /></span
             >
             <h6
-              class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
             >
               Legal Agreement for Businesses
             </h6>
-            <p
-              class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
-            >
+            <p class="text-base font-normal text-black md:text-xl">
               The Mee Data Network License defines what businesses can and can’t
               do with your data.
             </p>
             <a
-              class="link relative hidden items-center justify-between gap-2 text-base font-extrabold leading-[1.6] text-black/[.8] after:-rotate-45 after:bg-black/[.8]"
+              class="link relative hidden items-center justify-between gap-2 text-base font-extrabold text-black after:-rotate-45 after:bg-black"
               href="#"
               rel="nofollow"
               target="_blank"
@@ -439,20 +433,18 @@ const supportText = 'Please support us on Patreon.';
             </a>
           </div>
           <div
-            class="platform__item flex max-w-[400px] flex-col items-center justify-center gap-5 text-center"
+            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
           >
             <span
               class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
               ><img src="/images/mee-foundation-icon.svg" /></span
             >
             <h6
-              class="text-xl font-bold leading-thick text-black/[.8] md:text-2xl lg:text-3xl"
+              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
             >
               The Mee Foundation, Inc.
             </h6>
-            <p
-              class="text-base font-normal leading-[1.6] text-black/[.8] md:text-xl"
-            >
+            <p class="text-base font-normal text-black md:text-xl">
               Our mission is to provide the Mee experience – a human-centered
               user experience for the internet.
             </p>
@@ -460,7 +452,7 @@ const supportText = 'Please support us on Patreon.';
         </div>
       </section>
       <section
-        class="flex w-[400vw] -translate-y-25 flex-col items-center rounded-t-1/2 bg-white pb-12 pt-25 md:pt-40 lg:w-[200vw]"
+        class="flex w-screen-4 -translate-y-25 flex-col items-center rounded-t-1/2 bg-white pb-12 pt-25 md:pt-40 lg:w-screen-2"
       >
         <h2
           class="mb-12 text-3xl font-bold leading-thick md:mb-21 md:text-4xl md:leading-normal lg:text-5xl"
@@ -474,40 +466,40 @@ const supportText = 'Please support us on Patreon.';
             src="/images/linux-foundation-logo.svg"
             width="179"
             height="60"
-            class="w-[94px] md:w-[179px]"
+            class="w-23.5 md:w-44.75"
             alt="Linux foundation logo"
           />
           <img
             src="/images/openid-logo.svg"
             width="249"
             height="99"
-            class="w-[130px] md:w-[249px]"
+            class="w-32.5 md:w-62.25"
             alt="OpenID logo"
           />
           <img
             src="/images/open-wallet-logo.svg"
             width="262"
             height="99"
-            class="w-[138px] md:w-[262px]"
+            class="w-34.5 md:w-65.5"
             alt="OpenWallet foundation logo"
           />
           <img
             src="/images/mydata-org-logo.png"
             width="262"
             height="99"
-            class="w-[138px] md:w-[262px]"
+            class="w-34.5 md:w-65.5"
             alt="MyData.org logo"
           />
           <img
             src={difIcon.src}
             width="165"
             height="56"
-            class="w-[100px] md:w-[165px]"
+            class="w-25 md:w-41.25"
             alt="Decentralized Identity Foundation logo"
           />
         </div>
       </section>
-      <Footer appsBtnsSize="medium" mode="dark" withAppButtons={false} />
+      <Footer footer={footer} mode="dark" />
     </section>
   </main>
 </Layout>
@@ -579,12 +571,13 @@ const supportText = 'Please support us on Patreon.';
   const platform = document.querySelector('.platform');
   const platformItems = document.querySelectorAll('.platform__item');
   const platformSubtitle = document.querySelector('.platform__subtitle');
-  const principlesSection = document.querySelector('.principles-section')as HTMLElement;
+  const principlesSection = document.querySelector(
+    '.principles-section',
+  ) as HTMLElement;
   const showPrinciples = document.getElementById('show-principles');
   showPrinciples?.addEventListener('click', () => {
     showPrinciples.classList.add('hidden');
-    principlesSection?.classList.remove('principles-section-collapse')
-    
+    principlesSection?.classList.remove('principles-section-collapse');
   });
   const options: IntersectionObserverInit = {
     // root: null,

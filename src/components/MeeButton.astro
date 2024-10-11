@@ -1,5 +1,4 @@
 ---
-import Logo from './Logo.astro';
 
 export interface Props {
   mode: "dark" | "light";
@@ -16,13 +15,13 @@ const {mode} = Astro.props;
     ]}>
     <span class="text-sm sm:text-base">Continue with</span>
     <div class:list={[
-      'flex meeLogo h-[16px] w-[55px] pt-0 ml-[10px]',
+      'flex meeLogo h-4 w-[55px] pt-0 ml-2.5',
       {'bg-white': mode === 'light'},
       {'bg-blue': mode === 'dark'},
     ]}/>
     <!-- <div
       class:list={[
-        'block logo h-[16px] w-[56px] h-5 pt-0 ml-[10px]',
+        'block logo h-4 w-14 h-5 pt-0 ml-2.5',
         {'logo--contrast': mode === 'dark'},
       ]}
     >

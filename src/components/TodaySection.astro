@@ -36,7 +36,7 @@ const subtitles = [
         <div class="slide-part">
           <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
             <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
-              <p class="slide-subtitle px-5 text-xl text-white opacity-0 md:w-[692px] md:text-3xl">
+              <p class="slide-subtitle px-5 text-xl text-white opacity-0 md:w-173 md:text-3xl">
                 {subtitle}
               </p>
             </div>
@@ -55,10 +55,10 @@ const subtitles = [
   </div>
   <div
     id="animationTrigger"
-    class="section section-0 flex h-screen w-[10px] flex-col items-center overflow-hidden"
+    class="section section-0 flex h-screen w-2.5 flex-col items-center overflow-hidden"
   >
   </div>
-  <div id="bleachAnimation" class="fixed flex h-[400vh]"></div>
+  <div id="bleachAnimation" class="fixed flex h-screen-4"></div>
 </div>
 
 <style>
@@ -105,6 +105,7 @@ const subtitles = [
   const fromEnvision = window.location.pathname.includes('from-envision');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
+  const header = document.querySelectorAll(".header");
   const subtitles = document.querySelectorAll('.slide-subtitle');
   const scrollIconContainer = document.querySelector('.scrollIconContainer');
   let activeSlideIndex = 0;
@@ -177,6 +178,7 @@ const subtitles = [
 
   const startBleachAnimation = () => {
     flashInProgress = true;
+    header[0]?.classList.add("hidden")
     title?.classList.add('animate-fadeOut', 'titleBleach');
     subtitles.forEach((subtitle) => {
       subtitle.classList.add('animate-fadeOut', 'titleBleach');
@@ -211,6 +213,7 @@ const subtitles = [
   };
   const startBleachFromEndAnimation = () => {
     flashInProgress = true;
+    
     grid?.classList.add('animate-fadeOut', 'figuresBleach');
     figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
 
@@ -233,6 +236,7 @@ const subtitles = [
         grid?.classList.remove('animate-fadeOut', 'figuresBleach');
         title?.classList.remove('opacity-0');
         shadow?.classList.remove('bg-1');
+        header[0]?.classList.remove("hidden")
         setActiveSlide();
       }
     }, bleachSpeedMS);

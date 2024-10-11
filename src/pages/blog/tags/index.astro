@@ -13,7 +13,7 @@ let tags = getUniqueTags(posts);
 ---
 <BlogLayout title="Tags">
     <Header logoColor="blue" backgroundColor="backdrop-blur-md" />
-    <div class="mt-[84px]">
+    <div class="mt-21">
         <Main pageTitle="Tags" pageDesc="All the tags used in posts.">
             <ul>
                 {tags.map(tag => <Tag name={tag} size="lg" />)}

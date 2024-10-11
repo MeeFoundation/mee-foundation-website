@@ -166,7 +166,7 @@ const ContextDoesNotExist: React.FC = () => (
                 className="h-19 relative -mt-2
                flex w-full flex-col items-center justify-center overflow-hidden"
               >
-                <div className="absolute bottom-0 top-0 h-[200vh] w-[200vh] rounded-t-[50%] border-t bg-white">
+                <div className="absolute bottom-0 top-0 h-screen-2 w-screen-2 rounded-t-1/2 border-t bg-white">
                   <h2 className="pt-11 text-center text-xl font-medium text-primary">
                     Sites to connect to
                   </h2>

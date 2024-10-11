@@ -1,0 +1,206 @@
+---
+// import Footer from '../components/Footer.astro';
+import {Header, Footer} from 'mee-components';
+import {header, footer} from '../../astro.config.mjs';
+import Layout from '../layouts/Layout.astro';
+import meeBrowserProduct from '../../public/images/products/mee-browser.svg';
+import privateAdvertisingProduct from '../../public/images/products/private-advertising.svg';
+import smartwalletProduct from '../../public/images/products/smartwallet.svg';
+import virtualAgentProduct from '../../public/images/products/virtual-agent.svg';
+import providerWalletProduct from '../../public/images/products/provider-wallet.png';
+import providerWalletMobiProduct from '../../public/images/products/provider-wallet-mobi.svg';
+
+const products = [
+  {
+    image: smartwalletProduct,
+    title: 'Mee Smartwallet',
+    subtitle: 'mobile app',
+    description:
+      'Local Identity Agent that acts as a digital wallet as well as a “remote control” for the user’s personal data.',
+    comingSoon: false,
+    linkTitle: 'Discover the smartwallet',
+    link: 'https://smartwallet.mee.foundation',
+    docsLink: 'https://smartwallet.mee.foundation',
+  },
+  {
+    image: privateAdvertisingProduct,
+    title: 'Private Advertising',
+    subtitle: 'Browser extension',
+    description:
+      'Enable internet advertising that is tailored to the user’s interests while eliminating the surveillance.',
+    comingSoon: false,
+    linkTitle: 'Learn more',
+    link: 'https://private-advertising.mee.foundation',
+    docsLink: 'https://private-advertising.mee.foundation',
+  },
+  {
+    image: meeBrowserProduct,
+    title: 'Mee Browser',
+    subtitle: 'Privacy forever',
+    description:
+      'Interact with websites without having to sign in/up, fill in forms, or provide any personally identifying information.',
+    comingSoon: true,
+    linkTitle: 'Get the browser',
+    link: 'https://browser.mee.foundation',
+    docsLink: 'https://browser.mee.foundation',
+  },
+  {
+    image: virtualAgentProduct,
+    title: 'Virtual Agent',
+    subtitle: 'Mee Data Network',
+    description:
+      'Control your personal data held by digital service providers using “virtual” Mee Identity Agent.',
+    comingSoon: false,
+    linkTitle: 'Sign up',
+    link: 'https://mdn.mee.foundation',
+    docsLink: 'https://mdn.mee.foundation',
+  },
+  {
+    image: providerWalletMobiProduct,
+    imageMobi: providerWalletMobiProduct,
+    title: 'Provider Wallet',
+    subtitle: 'Mee Data Network',
+    description:
+      'Internet protocols and an SDK for digital service providers’ apps/sites that will allow the user to control their own personal data.',
+    comingSoon: true,
+    linkTitle: 'View wallet docs',
+    link: 'https://mdn.mee.foundation',
+    docsLink: 'https://mdn.mee.foundation',
+  },
+];
+
+const providerWallet = {
+  image: providerWalletProduct,
+  title: 'Provider Wallet',
+  subtitle: 'Mee Data Network',
+  description:
+    'Internet protocols and an SDK for digital service providers’ apps/sites that will allow the user to control their own personal data.',
+  comingSoon: true,
+  linkTitle: 'View wallet docs',
+  link: 'https://mdn.mee.foundation',
+  docsLink: 'https://mdn.mee.foundation',
+};
+---
+
+<Layout title="Mee Foundation - Products">
+
+  <main class="w-screen overflow-hidden">
+    <Header header={header} activePage="products" />
+    <section
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
+    >
+      <article
+        class="mb-28 flex max-w-273.5 flex-col items-center justify-center gap-4"
+      >
+        <section
+          class="flex h-auto w-screen flex-col items-center justify-center bg-white"
+        >
+          <div class="mb-8 overflow-hidden">
+            <h1
+              class="marker mt-13 animate-riseIn text-center text-4xl font-bold lg:mt-13 lg:text-7xl"
+            >
+              <mark>Human-centered</mark> products
+            </h1>
+          </div>
+          <section
+            class="relative flex w-full flex-col items-center px-10 animation-delay-800"
+          >
+            <div class="overflow-hidden">
+              <p
+                class="animate-riseIn-short text-center text-xl text-grey-800 animation-delay-800"
+              >
+                We’re working on a human-centered user experience for the
+                internet.
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <section
+          class="flex h-auto flex-col items-center justify-center bg-white"
+        >
+          <div class="overflow-hidden">
+            <div class="animate-riseIn">
+              <div class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2">
+                {
+                  products.map((product) => (
+                    <a
+                      class=" rounded-2xl border border-grey-300 pb-8 last:lg:hidden max-w-125"
+                      href={product.docsLink}
+                      target="_blank"
+                    >
+                      <img src={product.image.src} class="w-full" />
+                      <div class="flex flex-col gap-2 p-8 pb-4">
+                        <div class=" text-xs font-semibold uppercase text-grey-500">
+                          {product.subtitle}
+                        </div>
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                          {product.title}
+                          {product.comingSoon && (
+                            <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base ">
+                              Coming soon
+                            </span>
+                          )}
+                        </div>
+                        <div class=" text-sm text-grey-800 lg:text-base text-balance">
+                          {product.description}
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700">
+                        <span class="underline">{product.linkTitle}</span>
+                        <i class="bi bi-arrow-right" />
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+              <a
+                class="mx-8 hidden rounded-2xl border border-grey-300 lg:flex"
+                href={providerWallet.docsLink}
+                target="_blank"
+              >
+                <div class="relative -z-1 w-full">
+                  <img
+                    src={providerWallet.image.src}
+                    class="h-full w-full pt-2 lg:pt-0"
+                  />
+                  <div
+                    class="absolute left-4 top-4 flex w-100 flex-col gap-2 p-4"
+                  >
+                    <div
+                      class="w-full text-xs font-semibold uppercase text-grey-500"
+                    >
+                      {providerWallet.subtitle}
+                    </div>
+                    <div
+                      class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl"
+                    >
+                      {providerWallet.title}
+                      {
+                        providerWallet.comingSoon && (
+                          <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
+                            Coming soon
+                          </span>
+                        )
+                      }
+                    </div>
+                    <div class="w-full text-sm text-grey-800 lg:text-base text-balance">
+                      {providerWallet.description}
+                    </div>
+                    <div
+                      class="flex items-center gap-2.5 text-brand-700 lg:pt-4"
+                    >
+                      <span class="underline">{providerWallet.linkTitle}</span>
+                      <i class="bi bi-arrow-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+      <Footer footer={footer} mode="dark" />
+    </section>
+  </main>
+</Layout>

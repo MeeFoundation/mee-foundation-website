@@ -1,17 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import {Header, Footer} from 'mee-components';
+import {header, footer} from '../../astro.config.mjs';
 import AppButtons from '../components/AppButtons.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Mee Foundation - Get the app">
-  <Header
-    backgroundColor="backdrop-blur-md"
-    logoColor="blue"
-    withoutProgress={true}
-  />
-  <main class="scrollContainer transform-gpu">
+  <main class="w-screen overflow-hidden">
+    <Header header={header} activePage="downloads" />
     <article
       class="relative flex h-full min-h-[101vh] w-screen flex-col items-center justify-between gap-10 overflow-hidden pt-25 md:pt-36"
     >
@@ -27,7 +23,7 @@ import Footer from '../components/Footer.astro';
           >
             <div class="overflow-hidden">
               <h1
-                class="marker mt-[28px] animate-riseIn text-3xl font-bold md:text-4xl lg:mt-[52px] lg:text-6xl"
+                class="marker mt-7 animate-riseIn text-3xl font-bold md:text-4xl lg:mt-13 lg:text-6xl"
               >
                 <mark>Downloads</mark>
               </h1>
@@ -74,7 +70,7 @@ import Footer from '../components/Footer.astro';
         </section>
         <AppButtons btnSize="normal" noDescription={true} class="z-100" />
       </div>
-      <Footer mode="dark" withAppButtons={false} />
+      <Footer footer={footer} mode="dark" />
     </article>
   </main>
 </Layout>

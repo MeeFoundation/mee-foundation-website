@@ -1,5 +1,6 @@
 ---
-import Footer from './Footer.astro';
+import {Footer} from 'mee-components';
+import {footer} from '../../astro.config.mjs';
 import done from '@assets/done.svg';
 import Logo from './Logo.astro';
 
@@ -51,7 +52,7 @@ const apps = [
                 class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0"
               >
                 <div
-                  class="logo logo--contrast h-10 w-[138px] animate-fadeIn opacity-0 md:h-12 md:w-[165px]"
+                  class="logo logo--contrast h-10 w-34.5 animate-fadeIn opacity-0 md:h-12 md:w-41.25"
                 >
                   <Logo />
                 </div>
@@ -83,7 +84,7 @@ const apps = [
             <div class="slide-part">
               <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
                 <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
-                  <p class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-[692px] md:text-3xl">
+                  <p class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl">
                     {subtitle}
                   </p>
                 </div>
@@ -95,13 +96,13 @@ const apps = [
       <div class="slide">
         <div class="slide-part">
           <div
-            class="absolute left-0 top-[128px] flex h-screen w-screen items-center justify-center overflow-hidden md:top-[192px]"
+            class="absolute left-0 top-32 flex h-screen w-screen items-center justify-center overflow-hidden md:top-48"
           >
             <div
               class="flex h-full w-full flex-col items-center bg-cover text-center"
             >
               <div
-                class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-[692px] md:text-3xl"
+                class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl"
               >
                 <h2
                   class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-3xl font-bold transition-opacity duration-500 md:w-160 md:p-0 lg:text-7xl"
@@ -118,11 +119,11 @@ const apps = [
                         >
                           <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
                             <div class="mr-4">
-                              <div class="relative m-2 h-6 w-6 rounded border-[1.5px] border-white md:h-8 md:w-8">
+                              <div class="relative m-2 h-6 w-6 rounded border-1.5 border-white md:h-8 md:w-8">
                                 <img
                                   src={done.src}
                                   alt=""
-                                  class="absolute bottom-[7px] left-[5px] md:bottom-[10px] md:left-[7px]"
+                                  class="absolute bottom-1.75 left-1.25 md:bottom-2.5 md:left-1.75"
                                 />
                               </div>
                             </div>
@@ -143,7 +144,7 @@ const apps = [
       </div>
     </div>
   </section>
-  <Footer mode="dark" />
+  <Footer footer={footer} mode="dark" />
 </article>
 
 <style>

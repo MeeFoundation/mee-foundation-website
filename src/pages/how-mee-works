@@ -27,11 +27,11 @@ import collects8 from '@assets/phoneScreens/collects-8.png';
     <div class="wrapper w-screen hmw-bg">
       <article class="flex flex-col items-center">
         <section class="flex items-center flex-col">
-          <h1 id="mainHeader" class="marker animate-none lg:animate-riseIn mt-[128px] lg:mt-[200px] text-3xl lg:text-7xl font-bold">
+          <h1 id="mainHeader" class="marker animate-none lg:animate-riseIn mt-32 lg:mt-[200px] text-3xl lg:text-7xl font-bold">
             What Mee can do for <mark>You</mark>
           </h1>
 
-          <div id="scrollIndicator" class="flex flex-col items-center justify-center lg:flex mt-[40px] z-20 animate-fadeIn">
+          <div id="scrollIndicator" class="flex flex-col items-center justify-center lg:flex mt-10 z-20 animate-fadeIn">
             <i class="scrollIcon flex relative w-4 h-6 md:w-4.5 md:h-7 py-1 md:py-2 transition-opacity ease-linear duration-100 overflow-hidden"/>
             <div class="down-arrow w-4 h-4 mt-1" />
           </div>

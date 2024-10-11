@@ -19,7 +19,7 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 
 <BlogLayout title="">
     <Header logoColor="blue" backgroundColor="backdrop-blur-md" />    
-    <div class="mt-[84px]">
+    <div class="mt-21">
         <main id="main-content">
             <section id="hero" class="pb-6 pt-8 mx-auto max-w-3xl px-4">
                 <h1 class="my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl">All About Mee</h1>

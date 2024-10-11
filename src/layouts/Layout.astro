@@ -111,14 +111,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
     animation-delay: 800ms;
   }
 
-  .scrollContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    height: inherit;
-  }
-
   .pause {
     animation-play-state: paused;
   }
@@ -188,14 +180,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
   }
 
   .logo > svg {
-    fill: white;
+    fill: #447f88;
     transition: all;
-    /* transition-delay: 2.9s; */
     transition-duration: 200ms;
     transition-timing-function: linear;
-  }
-  .logo--contrast > svg {
-    fill: #447f88;
   }
 
   .progress-container {
@@ -214,53 +202,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 <script>
   import {sdkInit} from '../sdkInit';
   const SHOW_ERR_ALERT_FOR_MS = 3000;
-
-  const scrollWrap = document.querySelector('.scrollContainer') as HTMLElement,
-    speed = 0.1;
-
-  if (scrollWrap) {
-    const setHeight = () => {
-      scrollWrap.style.position = 'relative';
-      document.body.style.height = 'auto';
-      const containerHeight = scrollWrap.scrollHeight;
-      const height =
-        containerHeight < window.innerHeight
-          ? window.innerHeight - 1
-          : containerHeight - 1;
-      document.body.style.height = Math.floor(height) + 'px';
-      scrollWrap.style.position = 'fixed';
-    };
-
-    setHeight();
-
-    document.fonts.ready.then(function () {
-      setHeight();
-    });
-
-    window.addEventListener('resize', function () {
-      setHeight();
-      updateScrollIndicator();
-    });
-
-    const showPrinciples = document.getElementById('show-principles');
-    showPrinciples?.addEventListener('click', () => {
-      setTimeout(() => {
-        setHeight();
-        updateScrollIndicator();
-      }, 100);
-    });
-  }
-
-  let offset = 0;
-
-  const smoothScroll = () => {
-    offset += Math.floor((window.scrollY - offset) * speed);
-    const scroll = 'translateY(-' + offset + 'px)';
-    scrollWrap.style.transform = scroll;
-    requestAnimationFrame(smoothScroll);
-  };
-
-  if (scrollWrap) requestAnimationFrame(smoothScroll);
 
   const connectionErrAlert = document.getElementById('connectionErrAlert');
   const errorConnectCb = () => {
