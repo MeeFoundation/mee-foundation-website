@@ -1,10 +1,10 @@
 import {defineConfig} from 'astro/config';
 import react from '@astrojs/react';
-
+import path from 'path';
 import tailwind from '@astrojs/tailwind';
-
 // https://astro.build/config
 import mdx from '@astrojs/mdx';
+const __dirname = path.dirname(__filename);
 
 export const discord =
   'https://discord.com/channels/1275848491964436491/1275848492413223025';
@@ -104,5 +104,14 @@ export default defineConfig({
     assets: 'assets',
   },
   output: 'static',
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]',
+        },
+      },
+    },
+  },
   scopedStyleStrategy: 'class',
 });
