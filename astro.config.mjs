@@ -40,56 +40,44 @@ export const header = {
       target: '_blank',
       id: 'privacy-policy',
     },
-    {
-      link: 'https://docs.mee.foundation',
-      name: 'Docs',
-      target: '_blank',
-      id: 'docs',
-    },
-    {
-      link: '/downloads',
-      name: 'Downloads',
-      // target: '_blank',
-      id: 'downloads',
-    },
   ],
 };
 export const footer = {
   links: [
+    {
+      link: 'https://x.com/mee_foundation',
+      icon: 'twitter-x',
+      target: '_blank',
+      id: 'twitter',
+    },
+    {
+      link: discord,
+      icon: 'discord',
+      target: '_blank',
+      id: 'discord',
+    },
+  ],
+  rightLinks: [
+    {
+      name: 'Products',
+      link: '/products',
+      id: 'products',
+    },
     {
       name: 'Business',
       link: '/for-providers',
       id: 'business',
     },
     {
-      link: 'https://docs.mee.foundation',
-      name: 'Developers',
-      target: '_blank',
-      id: 'docs',
-    },
-    {
-      link: '/downloads',
-      name: 'Downloads',
-      id: 'downloads',
-    },
-    {
       name: 'About us',
       link: '/about',
       id: 'about',
     },
-  ],
-  rightLinks: [
     {
       link: '/privacy-policy',
-      name: 'Privacy Policy',
+      name: 'Privacy',
       target: '_blank',
       id: 'privacy-policy',
-    },
-    {
-      link: 'https://x.com/mee_foundation',
-      icon: 'twitter-x',
-      target: '_blank',
-      id: 'twitter',
     },
   ],
 };
