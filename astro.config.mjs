@@ -97,6 +97,7 @@ export default defineConfig({
         output: {
           assetFileNames: 'assets/[name][extname]',
         },
+        external: ['fsevents']
       },
     },
   },
