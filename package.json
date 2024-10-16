@@ -15,7 +15,7 @@
 		"@astrojs/mdx": "^3.1.8",
 		"@astrojs/node": "^8.3.4",
 		"@astrojs/react": "^3.6.2",
-		"astro": "^4.16.0",
+		"astro": "^4.16.5",
 		"autoprefixer": "^10.4.20",
 		"axios": "^1.7.7",
 		"bootstrap-icons": "1.11.3",
