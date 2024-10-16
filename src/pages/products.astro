@@ -83,7 +83,6 @@ const providerWallet = {
 ---
 
 <Layout title="Mee Foundation - Products">
-
   <main class="w-screen overflow-hidden">
     <Header header={header} activePage="products" />
     <section
@@ -121,28 +120,29 @@ const providerWallet = {
         >
           <div class="overflow-hidden">
             <div class="animate-riseIn">
-              <div class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2">
+              <div
+                class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2"
+              >
                 {
                   products.map((product) => (
                     <a
-                      class=" rounded-2xl border border-grey-300 pb-8 last:lg:hidden max-w-125"
+                      class="max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden"
                       href={product.docsLink}
-                      target="_blank"
                     >
                       <img src={product.image.src} class="w-full" />
                       <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class=" text-xs font-semibold uppercase text-grey-500">
+                        <div class="text-xs font-semibold uppercase text-grey-500">
                           {product.subtitle}
                         </div>
                         <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
                           {product.title}
                           {product.comingSoon && (
-                            <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base ">
+                            <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
                               Coming soon
                             </span>
                           )}
                         </div>
-                        <div class=" text-sm text-grey-800 lg:text-base text-balance">
+                        <div class="text-balance text-sm text-grey-800 lg:text-base">
                           {product.description}
                         </div>
                       </div>
@@ -157,7 +157,6 @@ const providerWallet = {
               <a
                 class="mx-8 hidden rounded-2xl border border-grey-300 lg:flex"
                 href={providerWallet.docsLink}
-                target="_blank"
               >
                 <div class="relative -z-1 w-full">
                   <img
@@ -184,7 +183,9 @@ const providerWallet = {
                         )
                       }
                     </div>
-                    <div class="w-full text-sm text-grey-800 lg:text-base text-balance">
+                    <div
+                      class="w-full text-balance text-sm text-grey-800 lg:text-base"
+                    >
                       {providerWallet.description}
                     </div>
                     <div

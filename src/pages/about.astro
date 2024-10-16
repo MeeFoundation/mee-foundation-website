@@ -150,7 +150,7 @@ const supportText = 'Please support us on Patreon.';
 ---
 
 <Layout title="Mee Foundation - About Us">
-  <Header header={header} activePage="about"/>
+  <Header header={header} activePage="about" />
   <main class="w-screen overflow-hidden">
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
@@ -258,7 +258,7 @@ const supportText = 'Please support us on Patreon.';
             <div class="flex flex-col items-center overflow-hidden">
               <p
                 class:list={[
-                  'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
+                  'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                 ]}
                 set:html={joinUsText[0]}
               />
@@ -266,7 +266,7 @@ const supportText = 'Please support us on Patreon.';
             <div class="overflow-hidden">
               <p
                 class:list={[
-                  'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
+                  'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                 ]}
                 set:html={joinUsText[1]}
               />
@@ -290,7 +290,7 @@ const supportText = 'Please support us on Patreon.';
               <div class="flex flex-col items-center overflow-hidden">
                 <p
                   class:list={[
-                    'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
+                    'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
                   ]}
                   set:html={supportText}
                 />
@@ -333,7 +333,7 @@ const supportText = 'Please support us on Patreon.';
           <div class="flex flex-col items-center overflow-hidden">
             <p
               class:list={[
-                'animation-delay-800 aboutText leading text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
+                'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
               ]}
             >
               Here’s what we live by.
@@ -342,21 +342,19 @@ const supportText = 'Please support us on Patreon.';
           <div class="flex flex-col gap-6 lg:grid lg:grid-cols-12">
             {
               principles.map((principle) => (
-                <div class:list={['overflow-hidden ', principle.class]}>
+                <div class:list={['overflow-hidden', principle.class]}>
                   <div
                     class:list={[
-                      'principle animation-delay-800 h-full flex flex-col items-start border p-8 rounded-2xl border-solid border-brand-200 gap-6',
+                      'principle flex h-full flex-col items-start gap-6 rounded-2xl border border-solid border-brand-200 p-8 animation-delay-800',
                     ]}
                   >
-                    <>
-                      <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
-                        {principle.title}
-                      </div>
-                      <div
-                        set:html={principle.text}
-                        class="text-base font-normal not-italic  tracking-0.02 text-brand-700"
-                      />
-                    </>
+                    <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
+                      {principle.title}
+                    </div>
+                    <div
+                      set:html={principle.text}
+                      class="text-base font-normal not-italic tracking-0.02 text-brand-700"
+                    />
                   </div>
                 </div>
               ))
