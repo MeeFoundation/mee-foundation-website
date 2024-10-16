@@ -37,7 +37,6 @@ export const header = {
     {
       link: '/privacy-policy',
       name: 'Privacy',
-      target: '_blank',
       id: 'privacy-policy',
     },
   ],
@@ -76,7 +75,6 @@ export const footer = {
     {
       link: '/privacy-policy',
       name: 'Privacy',
-      target: '_blank',
       id: 'privacy-policy',
     },
   ],
