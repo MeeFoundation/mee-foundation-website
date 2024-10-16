@@ -96,7 +96,8 @@ export default defineConfig({
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name][extname]',
-        }
+        },
+        external: ['fsevents']
       },
     },
   },
