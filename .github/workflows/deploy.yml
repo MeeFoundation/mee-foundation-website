@@ -12,12 +12,14 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
-          path: .
-          node-version: 22 
-          package-manager: yarn@latest 
+          node-version: 22
+      - name: Install dependencies
+        run: yarn install
+      - name: Build with Astro
+        run: yarn run build
 
       - name: configure gcp credentials
         if: ${{ github.ref == 'refs/heads/develop' }}
