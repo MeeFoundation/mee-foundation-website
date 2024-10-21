@@ -1,0 +1,392 @@
+---
+import Background from './Background.astro';
+
+export interface Props {
+  fromEnvision?: boolean;
+}
+const {fromEnvision = false} = Astro.props;
+const subtitles = [
+  'you can’t control who has your data or how they’ll use it.',
+  'businesses treat your data as their property.',
+  'data brokers buy and sell information about you without your knowledge',
+  'most people navigate this world with mistrust.',
+];
+---
+
+<div class="slider-container">
+  <Background fromEnvision={fromEnvision} />
+  <div
+    id="title"
+    class:list={[
+      'title fixed z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7',
+      fromEnvision ? 'opacity-0' : '',
+    ]}
+  >
+    <div class="overflow-hidden">
+      <h2
+        class="text animate-riseIn text-base font-bold uppercase leading-5 tracking-wider text-purple animation-delay-400"
+      >
+        In today’s digital world...
+      </h2>
+    </div>
+  </div>
+  {
+    subtitles.map((subtitle, index) => (
+      <div class={`slide slide${index}`}>
+        <div class="slide-part">
+          <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
+            <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
+              <p class="slide-subtitle px-5 text-xl text-white opacity-0 md:w-173 md:text-3xl">
+                {subtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+  <div
+    id="animationTrigger"
+    class="section section-0 flex h-screen w-2.5 flex-col items-center overflow-hidden"
+  >
+  </div>
+  <div id="bleachAnimation" class="fixed flex h-screen-4"></div>
+</div>
+
+<style>
+  .slide-part {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    transition: transform 1s;
+    transform: translateY(100%);
+  }
+  .slide-part .active {
+    transform: translateY(0);
+  }
+
+  .scrolling_active .slide-part {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+  }
+  .down-arrow {
+    background-color: #ffffffb3;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
+  }
+</style>
+<style is:global>
+  @media (max-height: 800px) {
+    .sectionTitle {
+      top: -20vh !important;
+    }
+
+    .sectionText {
+      top: 30vh !important;
+    }
+  }
+</style>
+
+<script>
+  const fromEnvision = window.location.pathname.includes('from-envision-clean');
+  const sliderContainer = document.querySelector('.slider-container');
+  const slides = document.querySelectorAll('.slide');
+  const header = document.querySelectorAll(".header");
+  const subtitles = document.querySelectorAll('.slide-subtitle');
+  const scrollIconContainer = document.querySelector('.scrollIconContainer');
+  let activeSlideIndex = 0;
+  let scrollCount = 0;
+  let countForScroll = 0;
+  let flashInProgress = false;
+  let dragAnimationId: ReturnType<typeof setInterval>;
+  const flashProtector = document.getElementById('flash-protector');
+  sliderContainer?.classList.add('slider-locked');
+
+  let currBleach = 0;
+  const grid = document.querySelector('.grid');
+  const figuresContainer = document.querySelector(
+    '.figuresContainer',
+  ) as HTMLElement;
+  const gradients = document.querySelectorAll('.floatGradient');
+  const shadow = document.querySelector('.shadow');
+  const title = document.getElementById('title');
+  const bleachSpeedMS = 70;
+  const bleachStep = 0.02;
+  const bleachStepDouble = 0.04;
+  const START_AUTOSCROLL_AFTER_MS = 3000;
+  const AUTOSCROLL_SPEED_MS = 5000;
+  let timer: number | undefined = undefined;
+  let autoscrollId: number;
+  let autoScrollOn = false;
+
+  const autoScroll = () => {
+    if (autoScrollOn) {
+      moveToSlide(1);
+    }
+  };
+  const stopAutoScroll = () => {
+    if (autoScrollOn) {
+      autoScrollOn = false;
+      autoscrollId && clearInterval(autoscrollId);
+    }
+  };
+
+  const handleAutoscroll = () => {
+    if (autoScrollOn) {
+      autoScrollOn = false;
+      clearInterval(autoscrollId);
+    }
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      if (!autoScrollOn) {
+        autoScrollOn = true;
+        autoscrollId = setInterval(autoScroll, AUTOSCROLL_SPEED_MS);
+      }
+    }, START_AUTOSCROLL_AFTER_MS);
+  };
+
+  const onDragEndAnimation = (swap: number, activeSlide: number) => {
+    let iterationCount = 0;
+
+    dragAnimationId = setInterval(() => {
+      if (iterationCount < 100 && !(!activeSlide && swap === -1)) {
+        iterationCount++;
+        scrollCount = scrollCount + swap * 0.0001 * (99 - iterationCount);
+        document.documentElement.style.setProperty(
+          '--scroll',
+          scrollCount.toString(),
+        );
+      }
+    }, 7);
+  };
+
+  const startBleachAnimation = () => {
+    flashInProgress = true;
+    header[0]?.classList.add("hidden")
+    title?.classList.add('animate-fadeOut', 'titleBleach');
+    subtitles.forEach((subtitle) => {
+      subtitle.classList.add('animate-fadeOut', 'titleBleach');
+    });
+    grid?.classList.add('animate-fadeOut', 'figuresBleach');
+    figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
+    gradients.forEach((gradient) => {
+      gradient.removeAttribute('style');
+      gradient.classList.add('animate-fadeOut', 'figuresBleach');
+    });
+    shadow?.classList.add('bg-1');
+
+    let bleachIntervalId = setInterval(() => {
+      if (currBleach < 1) {
+        const step = currBleach > 0.6 ? bleachStepDouble : bleachStep;
+        currBleach = currBleach + step;
+        if (currBleach > 1) {
+          currBleach = 1;
+        }
+        document.documentElement.style.setProperty(
+          '--bleachProgress',
+          currBleach.toString(),
+        );
+      } else {
+        setTimeout(() => {
+          flashInProgress = false;
+          window.location.href = '/envision-clean';
+        }, 1000);
+        clearInterval(bleachIntervalId);
+      }
+    }, bleachSpeedMS);
+  };
+  const startBleachFromEndAnimation = () => {
+    flashInProgress = true;
+    
+    grid?.classList.add('animate-fadeOut', 'figuresBleach');
+    figuresContainer?.classList.add('animate-collapse3d', 'figuresBleach');
+
+    let bleachIntervalId = setInterval(() => {
+      if (currBleach > 0) {
+        const step = currBleach > 0.6 ? bleachStepDouble : bleachStep;
+        currBleach = currBleach - step;
+        if (currBleach < 0) {
+          currBleach = 0;
+        }
+
+        document.documentElement.style.setProperty(
+          '--bleachProgress',
+          currBleach.toString(),
+        );
+      } else {
+        clearInterval(bleachIntervalId);
+        flashInProgress = false;
+        title?.classList.add('animate-fadeIn');
+        grid?.classList.remove('animate-fadeOut', 'figuresBleach');
+        title?.classList.remove('opacity-0');
+        shadow?.classList.remove('bg-1');
+        header[0]?.classList.remove("hidden")
+        setActiveSlide();
+      }
+    }, bleachSpeedMS);
+  };
+
+  const setActiveSlide = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeSlideIndex;
+      const subtitle = slide.querySelector('.slide-subtitle');
+
+      if (slide.classList.contains('scrolling_active')) {
+        subtitle?.classList.add('animate-fadeOut', 'opacity-0');
+        subtitle?.classList.remove('animate-riseIn');
+      } else if (isActive) {
+        subtitle?.classList.remove('opacity-0', 'animate-fadeOut');
+        subtitle?.classList.add('animate-riseIn');
+      }
+
+      setTimeout(() => {
+        slide.classList.toggle('scrolling_active', isActive);
+      }, 300);
+    });
+  };
+
+  const moveToSlide = (swap: number) => {
+    if (sliderContainer?.classList.contains('slider-locked') || flashInProgress)
+      return;
+
+    onDragEndAnimation(swap, activeSlideIndex);
+
+    const potentialNextSlide = activeSlideIndex + swap;
+
+    if (activeSlideIndex === 0 && swap === 1) {
+      scrollIconContainer?.classList.add('opacity-0');
+      setTimeout(() => {
+        scrollIconContainer?.classList.add('hidden');
+      }, 100);
+    }
+
+    if (potentialNextSlide < 0 && swap === -1) {
+      return;
+    }
+
+    activeSlideIndex = potentialNextSlide;
+
+    sliderContainer?.classList.add('slider-locked');
+    setActiveSlide();
+
+    if (potentialNextSlide > slides.length - 1 && swap === 1) {
+      startBleachAnimation();
+      return;
+    }
+  };
+
+  const onTransitionEnd = () => {
+    dragAnimationId && clearInterval(dragAnimationId);
+    sliderContainer?.classList.remove('slider-locked');
+  };
+
+  const onScroll = (event: WheelEvent) => {
+    stopAutoScroll();
+    const swap = Math.sign(event.deltaY);
+    const locked = sliderContainer?.classList.contains('slider-locked');
+
+    if (!(activeSlideIndex === 0 && event.deltaY < 0) && !locked) {
+      scrollCount = scrollCount + event.deltaY * 0.0001;
+
+      document.documentElement.style.setProperty(
+        '--scroll',
+        scrollCount.toString(),
+      );
+    }
+
+    countForScroll = countForScroll + event.deltaY;
+
+    if (countForScroll > 1000 || countForScroll < -1000) {
+      moveToSlide(swap);
+      countForScroll = 0;
+    }
+  };
+
+  const isHeaderTouch = (event: TouchEvent) => {
+    const element = event.target as HTMLElement;
+    const header = element.closest('#header');
+    return !!header;
+  };
+
+  let startY = 0;
+  let endY = 0;
+
+  const onDragStart = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      stopAutoScroll();
+      startY = event.touches[0]?.clientY ?? 0;
+    }
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      endY = event.touches[0]?.clientY ?? 0;
+      const changeScroll = startY - endY;
+
+      if (!(!activeSlideIndex && changeScroll < 0)) {
+        scrollCount = scrollCount + changeScroll * 0.00005;
+        if (scrollCount < 0) {
+          scrollCount = 0;
+        }
+
+        document.documentElement.style.setProperty(
+          '--scroll',
+          scrollCount.toString(),
+        );
+      }
+    }
+  };
+
+  const onDragEnd = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      const swap = startY > endY ? 1 : -1;
+      moveToSlide(swap);
+    }
+  };
+
+  document.addEventListener('wheel', onScroll);
+  sliderContainer?.addEventListener('transitionend', onTransitionEnd);
+
+  document.body.onkeydown = function (e) {
+    if (e.code === 'ArrowDown') {
+      stopAutoScroll();
+      moveToSlide(1);
+    }
+
+    if (e.code === 'ArrowUp') {
+      stopAutoScroll();
+      moveToSlide(-1);
+    }
+  };
+
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
+
+  window.onload = () => {
+    if (fromEnvision) {
+      window.history.replaceState(null, document.title, '/index-clean');
+      flashProtector?.classList.add('hidden');
+      activeSlideIndex = slides.length - 1;
+      scrollCount = 2;
+      scrollIconContainer?.classList.add('hidden');
+      currBleach = 1;
+      document.documentElement.style.setProperty(
+        '--scroll',
+        scrollCount.toString(),
+      );
+      startBleachFromEndAnimation();
+    } else {
+      setActiveSlide();
+      handleAutoscroll();
+    }
+  };
+</script>

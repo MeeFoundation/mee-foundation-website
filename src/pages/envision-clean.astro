@@ -1,0 +1,445 @@
+---
+import Layout from '../layouts/Layout.astro';
+import done from '@assets/done.svg';
+import Logo from '@components/Logo.astro';
+export interface Props {}
+
+const {} = Astro.props;
+const subtitles = [
+  'you don’t have to fill in forms—passwords, names and more',
+  'your data is never shared or sold by anyone',
+  'your legal right to control your own data is enforced',
+  'your activities remain private—no more tracking or spying on you',
+];
+const apps = [
+  'Never share your information with other companies',
+  'Request information from your Mee agent',
+  'Treat you with fairness and respect your privacy',
+  'Agree to a legal contract that ensures that you retain control over your personal information',
+];
+---
+
+<Layout title="Mee Foundation">
+  <main class="relative w-screen overflow-x-visible">
+    <article
+      id="envision"
+      class="envision fixed flex w-screen flex-col items-center justify-center overflow-hidden"
+    >
+      <section
+        class="relative z-100 flex h-screen max-h-screen w-screen flex-col items-center justify-center overflow-hidden"
+      >
+        <div class="bg-1"></div>
+        <div class="z-300 h-screen w-full" id="slides-section">
+          <div
+            id="title"
+            class="title absolute z-100 flex h-screen w-full items-center justify-center overflow-hidden pb-7"
+          >
+            <div class="overflow-hidden">
+              <h2
+                class="text text-base font-bold uppercase leading-5 tracking-wider text-black/[.6] opacity-0 animation-delay-300"
+              >
+                In the Mee experience…
+              </h2>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-part overflow-hidden">
+              <div
+                class="flex min-h-screen w-screen items-center justify-center"
+              >
+                <div
+                  class="absolute left-0 top-1/3 flex h-full w-full flex-col items-center bg-cover text-center"
+                >
+                  <div
+                    class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0"
+                  >
+                    <div
+                      class="logo logo--contrast h-10 w-34.5 animate-fadeIn opacity-0 md:h-12 md:w-41.25"
+                    >
+                      <Logo />
+                    </div>
+                    <div class="overflow-hidden">
+                      <p
+                        class="text animate-riseIn text-center text-xl leading-normal text-blue md:text-[1.75rem]"
+                      >
+                        A human-centered user experience for the internet
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {
+            subtitles.map((subtitle) => (
+              <div class="slide">
+                <div class="slide-part">
+                  <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
+                    <div class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center">
+                      <p class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl">
+                        {subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+          <div class="slide">
+            <div class="slide-part">
+              <div
+                class="absolute left-0 top-32 flex h-screen w-screen items-center justify-center overflow-hidden md:top-48"
+              >
+                <div
+                  class="flex h-full w-full flex-col items-center bg-cover text-center"
+                >
+                  <div
+                    class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl"
+                  >
+                    <h2
+                      class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-3xl font-bold transition-opacity duration-500 md:w-160 md:p-0 lg:text-7xl"
+                    >
+                      Apps offering the Mee experience
+                    </h2>
+                    <div
+                      class="flex flex-col items-center justify-center gap-16"
+                    >
+                      <div class="mb-10 flex flex-col">
+                        {
+                          apps.map((app, index) => (
+                            <div
+                              id={`en-section-${index + 1}`}
+                              class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0"
+                            >
+                              <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
+                                <div class="mr-4">
+                                  <div class="relative m-2 h-6 w-6 rounded border-1.5 border-white md:h-8 md:w-8">
+                                    <img
+                                      src={done.src}
+                                      alt=""
+                                      class="absolute bottom-1.75 left-1.25 md:bottom-2.5 md:left-1.75"
+                                    />
+                                  </div>
+                                </div>
+
+                                <h2 class="text ms:text-xl mt-2 pr-2 text-left text-base text-black">
+                                  <span>{app}</span>
+                                </h2>
+                              </div>
+                            </div>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+  .slide-part {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    transition: transform 1s;
+    transform: translateY(100%);
+  }
+  .slide-part .active {
+    transform: translateY(0);
+  }
+
+  .scrolling_active .slide-part {
+    transform: translateX(0) translateY(0) translateZ(0);
+  }
+
+  .envision {
+    background: #fff;
+  }
+
+  .bg-1 {
+    position: fixed;
+    height: 120vh;
+    top: 0;
+    transform: translateY(calc(100vh - var(--bg-offset)));
+    z-index: 70;
+    background: linear-gradient(
+      to top,
+      rgba(249, 200, 137, 0.4) 75%,
+      rgba(249, 182, 137, 0.4) 100%
+    );
+    filter: blur(100px);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    width: 250vw;
+  }
+
+  .bg-2 {
+    width: 200vw;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background: #fff;
+    z-index: 100;
+  }
+  .text {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+  }
+
+  .logo {
+    animation-duration: 800ms;
+    animation-timing-function: ease-in;
+  }
+  .subtitleSection:last-child {
+    height: 100vh;
+  }
+
+  @keyframes riseBg {
+    0% {
+      transform: translateY(150px);
+    }
+    100% {
+      transform: translateY(-150px);
+    }
+  }
+
+  #scrollIndicatorInvision .scrollIcon {
+    border: 2px solid #447f88;
+  }
+  #scrollIndicatorInvision .scrollIcon::after {
+    background: #447f88;
+  }
+  #scrollIndicatorInvision .down-arrow {
+    background-color: #447f88;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
+  }
+</style>
+
+<script>
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+  const sections = document.querySelectorAll('.envision .section');
+  const slidesSection = document.getElementById('slides-section');
+  const slides = document.querySelectorAll('.slide');
+  const title = document.getElementById('title');
+  const envisionContainer = document.getElementById('envision');
+  let isSlidesSectionShow = true;
+  let startRedirect = false;
+  let activeSlideIndex = 0;
+
+  const redirectToMain = () => {
+    if (!startRedirect) {
+      startRedirect = true;
+      window.location.href = '/from-envision-clean';
+    }
+  };
+
+  const options: IntersectionObserverInit = {
+    threshold: 0.8,
+  };
+  const observer = new IntersectionObserver((entries, _) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0');
+        entry.target.querySelector('.subtitle')?.classList.remove('opacity-0');
+        entry.target
+          .querySelector('.subtitle')
+          ?.classList.add('animate-riseIn-short', 'animation-delay-600');
+      }
+    });
+  }, options);
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+
+  let dragAnimationId: ReturnType<typeof setInterval>;
+
+  const onDragEndAnimation = (swap: number, activeSlide: number) => {
+    let scrollCount = activeSlide * 30;
+    let maxCount = (activeSlide + swap) * 30;
+    if (maxCount > 100) {
+      maxCount = 100;
+    } else if (maxCount < 0) {
+      maxCount = 0;
+    }
+    if (scrollCount > 100) {
+      scrollCount = 100;
+    } else if (scrollCount < 0) {
+      scrollCount = 0;
+    }
+    dragAnimationId && clearInterval(dragAnimationId);
+    document.documentElement.style.setProperty(
+      '--bg-offset',
+      scrollCount.toString() + 'vh',
+    );
+    let i = 0;
+    dragAnimationId = setInterval(() => {
+      i++;
+      if (
+        (scrollCount < maxCount && swap === 1) ||
+        (scrollCount > maxCount && swap === -1)
+      ) {
+        scrollCount = scrollCount + i * swap * 0.005;
+        document.documentElement.style.setProperty(
+          '--bg-offset',
+          scrollCount.toString() + 'vh',
+        );
+      } else {
+        dragAnimationId && clearInterval(dragAnimationId);
+      }
+    }, 10);
+  };
+
+  let wheelCount = 0;
+
+  const onSlidesWheel = (event: WheelEvent) => {
+    checkIsSlidesSectionShow();
+    if (isSlidesSectionShow) {
+      const swap = Math.sign(event.deltaY);
+      wheelCount = wheelCount + event.deltaY;
+
+      if (wheelCount > 500 || wheelCount < -500) {
+        moveToSlide(swap);
+        wheelCount = 0;
+      }
+    }
+  };
+
+  let startSlideY = 0;
+  let endSlideY = 0;
+
+  const isHeaderTouch = (event: TouchEvent) => {
+    const element = event.target as HTMLElement;
+    const header = element.closest('#header');
+    return !!header;
+  };
+
+  const onDragStart = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
+    if (isSlidesSectionShow && !isHeaderTouch(event)) {
+      startSlideY = event.touches[0]?.clientY ?? 0;
+    }
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
+    if (isSlidesSectionShow) {
+      endSlideY = event.touches[0]?.clientY ?? 0;
+    }
+  };
+
+  const onDragEnd = (event: TouchEvent) => {
+    checkIsSlidesSectionShow();
+    if (isSlidesSectionShow && !isHeaderTouch(event)) {
+      const swap = startSlideY > endSlideY ? 1 : -1;
+      moveToSlide(swap);
+    }
+  };
+  const checkIsSlidesSectionShow = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    if (winScroll === 0 && !isSlidesSectionShow) {
+      isSlidesSectionShow = true;
+    }
+  };
+
+  const onTransitionEnd = () => {
+    slidesSection?.classList.remove('slider-locked');
+  };
+
+  const moveToSlide = (swap: number) => {
+    if (slidesSection?.classList.contains('slider-locked')) return;
+    slidesSection?.classList.add('slider-locked');
+    const potentialNextSlide = activeSlideIndex + swap;
+    if (potentialNextSlide < 0 && swap === -1) {
+      redirectToMain();
+      isSlidesSectionShow = false;
+      return;
+    }
+    if (
+      activeSlideIndex === slides.length - 1 &&
+      potentialNextSlide === slides.length - 2
+    ) {
+      envisionContainer?.classList.add('fixed');
+    }
+    if (potentialNextSlide > slides.length - 1 && swap === 1) {
+      slidesSection?.classList.remove('slider-locked');
+      isSlidesSectionShow = false;
+      return;
+    }
+    if (potentialNextSlide === slides.length - 1 && swap === 1) {
+      setTimeout(() => {
+        envisionContainer?.classList.remove('fixed');
+      }, 1000);
+      isSlidesSectionShow = false;
+      slidesSection?.classList.remove('slider-locked');
+    }
+    onDragEndAnimation(swap, activeSlideIndex);
+    activeSlideIndex = potentialNextSlide;
+
+    if (
+      (activeSlideIndex > 0 || activeSlideIndex < slides.length - 1) &&
+      title?.querySelector('.text')?.classList.contains('opacity-0')
+    ) {
+      title?.querySelector('.text')?.classList.remove('opacity-0');
+      title?.querySelector('.text')?.classList.add('animate-riseIn');
+    } else if (
+      (activeSlideIndex === 0 || activeSlideIndex === slides.length - 1) &&
+      !title?.classList.contains('opacity-0')
+    ) {
+      title?.querySelector('.text')?.classList.add('opacity-0');
+      title?.querySelector('.text')?.classList.remove('animate-riseIn');
+    }
+
+    setActiveSlide();
+  };
+
+  const setActiveSlide = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeSlideIndex;
+      const subtitle = slide.querySelector('.slide-subtitle');
+
+      if (slide.classList.contains('scrolling_active')) {
+        subtitle?.classList.add('animate-fadeOut', 'opacity-0');
+        subtitle?.classList.remove('animate-riseIn');
+      } else if (isActive) {
+        subtitle?.classList.remove('opacity-0', 'animate-fadeOut');
+        subtitle?.classList.add('animate-riseIn');
+      }
+      setTimeout(() => {
+        slide.classList.toggle('scrolling_active', isActive);
+      }, 300);
+    });
+  };
+  window.onload = () => {
+    setActiveSlide();
+  };
+
+  document.body.onkeydown = function (e) {
+    if (e.code === 'ArrowDown') {
+      moveToSlide(1);
+    }
+
+    if (e.code === 'ArrowUp') {
+      moveToSlide(-1);
+    }
+  };
+
+  document.addEventListener('wheel', onSlidesWheel);
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
+  slidesSection?.addEventListener('transitionend', onTransitionEnd);
+</script>

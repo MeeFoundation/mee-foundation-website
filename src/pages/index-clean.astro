@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TodaySection from '../components/TodaySection2.astro';
+---
+
+<Layout title="Mee Foundation">
+  <main class="w-full overflow-x-visible">
+    <TodaySection />
+  </main>
+</Layout>
+
+<style>
+  html {
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overscroll-behavior: none;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overscroll-behavior: none;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .background {
+    background: radial-gradient(#0d070c, #200e1d);
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+
+  .scrollIconContainer {
+    display: none !important;
+  }
+</style>
