@@ -44,14 +44,12 @@ const apps = [
           </div>
           <div class="slide">
             <div class="slide-part overflow-hidden">
-              <div
-                class="flex h-screen w-screen items-center justify-center"
-              >
+              <div class="flex h-screen w-screen items-center justify-center">
                 <div
                   class="absolute left-0 top-2/4 flex h-full w-full flex-col items-center bg-cover text-center"
                 >
                   <div
-                    class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0 -mt-16"
+                    class="slide-subtitle z-100 -mt-16 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0"
                   >
                     <div
                       class="logo logo--contrast h-10 w-34.5 animate-fadeIn opacity-0 md:h-12 md:w-41.25"
@@ -89,10 +87,10 @@ const apps = [
           <div class="slide">
             <div class="slide-part">
               <div
-                class="absolute left-0 top-32 flex h-screen w-screen items-center justify-center overflow-hidden md:top-48"
+                class="absolute left-0 top-0 flex h-screen w-screen items-center justify-center overflow-hidden"
               >
                 <div
-                  class="flex h-full w-full flex-col items-center bg-cover text-center"
+                  class="flex h-full w-full flex-col items-center justify-center bg-cover text-center"
                 >
                   <div
                     class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl"
@@ -105,7 +103,7 @@ const apps = [
                     <div
                       class="flex flex-col items-center justify-center gap-16"
                     >
-                      <div class="mb-10 flex flex-col">
+                      <div class="flex flex-col">
                         {
                           apps.map((app, index) => (
                             <div
