@@ -86,6 +86,7 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
+  redirects: {'/products': '/projects'},
   integrations: [tailwind(), react(), mdx()],
   build: {
     assets: 'assets',
@@ -97,7 +98,7 @@ export default defineConfig({
         output: {
           assetFileNames: 'assets/[name][extname]',
         },
-        external: ['fsevents']
+        external: ['fsevents'],
       },
     },
   },
