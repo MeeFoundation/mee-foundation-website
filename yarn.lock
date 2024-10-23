@@ -37,9 +37,9 @@
   integrity sha512-bMf9jFihO8YP940uD70SI/RDzIhUHJAolWVcO1v5PUivxGKvfLZTLTVVxEYzGYyPsA3ivdLNqMnL5VgmQySa+g==
 
 "@astrojs/language-server@^2.10.0":
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/language-server/-/language-server-2.15.0.tgz#e284518914a22aba320d3c4a6321875862855c8a"
-  integrity sha512-wJHSjGApm5X8Rg1GvkevoatZBfvaFizY4kCPvuSYgs3jGCobuY3KstJGKC1yNLsRJlDweHruP+J54iKn9vEKoA==
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/@astrojs/language-server/-/language-server-2.15.3.tgz#090e844cc0b0b885832293a5012fa9a5c01ce564"
+  integrity sha512-2qYkHkiqduB2F6OY+zAikd2hZP1xq5LqB0RqLCMoT7KLbfspnx6qtxOueF2n1P4+YUXRHUJVfLA4FoJCEfoMDg==
   dependencies:
     "@astrojs/compiler" "^2.10.3"
     "@astrojs/yaml2ts" "^0.2.1"
@@ -1107,7 +1107,7 @@ acorn-jsx@^5.0.0:
   resolved "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
   integrity sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==
 
-acorn@^8.0.0, acorn@^8.12.1:
+acorn@^8.0.0, acorn@^8.12.1, acorn@^8.13.0:
   version "8.13.0"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.13.0.tgz#2a30d670818ad16ddd6a35d3842dacec9e5d7ca3"
   integrity sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==
@@ -1203,7 +1203,77 @@ astring@^1.8.0:
   resolved "https://registry.npmjs.org/astring/-/astring-1.9.0.tgz#cc73e6062a7eb03e7d19c22d8b0b3451fd9bfeef"
   integrity sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==
 
-astro@^4.11.5, astro@^4.16.5:
+astro@^4.11.5:
+  version "4.16.7"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.16.7.tgz#7896148d638dab4e7f0e5eec8816a446c1178e3e"
+  integrity sha512-nON+8MUEkWTFwXbS4zsQIq4t0Fs42eulM4x236AL+qNnWfqNAOOqAnFxO1dxfJ1q+XopIBbbT9Mtev+0zH47PQ==
+  dependencies:
+    "@astrojs/compiler" "^2.10.3"
+    "@astrojs/internal-helpers" "0.4.1"
+    "@astrojs/markdown-remark" "5.3.0"
+    "@astrojs/telemetry" "3.1.0"
+    "@babel/core" "^7.25.8"
+    "@babel/plugin-transform-react-jsx" "^7.25.7"
+    "@babel/types" "^7.25.8"
+    "@oslojs/encoding" "^1.1.0"
+    "@rollup/pluginutils" "^5.1.2"
+    "@types/babel__core" "^7.20.5"
+    "@types/cookie" "^0.6.0"
+    acorn "^8.13.0"
+    aria-query "^5.3.2"
+    axobject-query "^4.1.0"
+    boxen "8.0.1"
+    ci-info "^4.0.0"
+    clsx "^2.1.1"
+    common-ancestor-path "^1.0.1"
+    cookie "^0.7.2"
+    cssesc "^3.0.0"
+    debug "^4.3.7"
+    deterministic-object-hash "^2.0.2"
+    devalue "^5.1.1"
+    diff "^5.2.0"
+    dlv "^1.1.3"
+    dset "^3.1.4"
+    es-module-lexer "^1.5.4"
+    esbuild "^0.21.5"
+    estree-walker "^3.0.3"
+    fast-glob "^3.3.2"
+    flattie "^1.1.1"
+    github-slugger "^2.0.0"
+    gray-matter "^4.0.3"
+    html-escaper "^3.0.3"
+    http-cache-semantics "^4.1.1"
+    js-yaml "^4.1.0"
+    kleur "^4.1.5"
+    magic-string "^0.30.12"
+    magicast "^0.3.5"
+    micromatch "^4.0.8"
+    mrmime "^2.0.0"
+    neotraverse "^0.6.18"
+    ora "^8.1.0"
+    p-limit "^6.1.0"
+    p-queue "^8.0.1"
+    preferred-pm "^4.0.0"
+    prompts "^2.4.2"
+    rehype "^13.0.2"
+    semver "^7.6.3"
+    shiki "^1.22.0"
+    tinyexec "^0.3.1"
+    tsconfck "^3.1.4"
+    unist-util-visit "^5.0.0"
+    vfile "^6.0.3"
+    vite "^5.4.9"
+    vitefu "^1.0.3"
+    which-pm "^3.0.0"
+    xxhash-wasm "^1.0.2"
+    yargs-parser "^21.1.1"
+    zod "^3.23.8"
+    zod-to-json-schema "^3.23.3"
+    zod-to-ts "^1.2.0"
+  optionalDependencies:
+    sharp "^0.33.3"
+
+astro@^4.16.5:
   version "4.16.5"
   resolved "https://registry.npmjs.org/astro/-/astro-4.16.5.tgz#074c1418c123b39d5235a88f513ce5c5b891eb7f"
   integrity sha512-v8mKWcEPN7hkfyVsMFWV0F8UgL4GUJKT172KTB7dePO3yJb64HBwCckC0QnA60QQh3jK6+2xwyWEc5QvCeqjtg==
@@ -2781,10 +2851,10 @@ mdast-util-to-string@^4.0.0:
   dependencies:
     "@types/mdast" "^4.0.0"
 
-mee-components@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.12.tgz#999705b460464298074a90ab143c0e349d019806"
-  integrity sha512-80VgFCEnBLQCFfVEDjeQVCXHVFnF2gJkXJg1sxsk9qqRlVe/2EnBzTLH5cieXrEUSVT76722KbRsiNt6bbCg5A==
+mee-components@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.15.tgz#2a441449b54bd110325e5120332712d49b2d0497"
+  integrity sha512-0U4S6jZR0O76kdQzL0BNB+dKUpD1OSu/hHPxumQRUx+DlyN+lMupidR8djzPs6oNSCEUfQllmh5HcHbqiu9TJw==
   dependencies:
     "@astrojs/check" "^0.7.0"
     "@astrojs/node" "^8.3.2"
@@ -4036,7 +4106,16 @@ stdin-discarder@^0.2.2:
   resolved "https://registry.npmjs.org/stdin-discarder/-/stdin-discarder-0.2.2.tgz#390037f44c4ae1a1ae535c5fe38dc3aba8d997be"
   integrity sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==
 
-"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -4071,7 +4150,14 @@ stringify-entities@^4.0.0:
     character-entities-html4 "^2.0.0"
     character-entities-legacy "^3.0.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -4193,7 +4279,7 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
-tinyexec@^0.3.0:
+tinyexec@^0.3.0, tinyexec@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npmjs.org/tinyexec/-/tinyexec-0.3.1.tgz#0ab0daf93b43e2c211212396bdb836b468c97c98"
   integrity sha512-WiCJLEECkO18gwqIp6+hJg0//p23HXp4S+gGtAKu3mI2F2/sXC4FvHvXvB0zJVVaTPhx1/tOwdbRsa1sOBIKqQ==

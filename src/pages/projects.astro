@@ -3,14 +3,14 @@
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import meeBrowserProduct from '../../public/images/products/mee-browser.svg';
-import privateAdvertisingProduct from '../../public/images/products/private-advertising.svg';
-import smartwalletProduct from '../../public/images/products/smartwallet.svg';
-import virtualAgentProduct from '../../public/images/products/virtual-agent.svg';
-import providerWalletProduct from '../../public/images/products/provider-wallet.png';
-import providerWalletMobiProduct from '../../public/images/products/provider-wallet-mobi.svg';
+import meeBrowserProduct from '../../public/images/projects/mee-browser.svg';
+import privateAdvertisingProduct from '../../public/images/projects/private-advertising.svg';
+import smartwalletProduct from '../../public/images/projects/smartwallet.svg';
+import virtualAgentProduct from '../../public/images/projects/virtual-agent.svg';
+import providerWalletProduct from '../../public/images/projects/provider-wallet.png';
+import providerWalletMobiProduct from '../../public/images/projects/provider-wallet-mobi.svg';
 
-const products = [
+const projects = [
   {
     image: smartwalletProduct,
     title: 'Mee Smartwallet',
@@ -82,9 +82,9 @@ const providerWallet = {
 };
 ---
 
-<Layout title="Mee Foundation - Products">
+<Layout title="Mee Foundation - Projects">
   <main class="w-screen overflow-hidden">
-    <Header header={header} activePage="products" />
+    <Header header={header} activePage="projects" location="Projects" />
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
     >
@@ -98,7 +98,7 @@ const providerWallet = {
             <h1
               class="marker mt-13 animate-riseIn text-center text-4xl font-bold lg:mt-13 lg:text-7xl"
             >
-              <mark>Human-centered</mark> products
+              <mark>Human-centered</mark> projects
             </h1>
           </div>
           <section
@@ -124,30 +124,30 @@ const providerWallet = {
                 class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2"
               >
                 {
-                  products.map((product) => (
+                  projects.map((project) => (
                     <a
                       class="max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden"
-                      href={product.docsLink}
+                      href={project.docsLink}
                     >
-                      <img src={product.image.src} class="w-full" />
+                      <img src={project.image.src} class="w-full" />
                       <div class="flex flex-col gap-2 p-8 pb-4">
                         <div class="text-xs font-semibold uppercase text-grey-500">
-                          {product.subtitle}
+                          {project.subtitle}
                         </div>
                         <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
-                          {product.title}
-                          {product.comingSoon && (
+                          {project.title}
+                          {project.comingSoon && (
                             <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
                               Coming soon
                             </span>
                           )}
                         </div>
                         <div class="text-balance text-sm text-grey-800 lg:text-base">
-                          {product.description}
+                          {project.description}
                         </div>
                       </div>
                       <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700">
-                        <span class="underline">{product.linkTitle}</span>
+                        <span class="underline">{project.linkTitle}</span>
                         <i class="bi bi-arrow-right" />
                       </div>
                     </a>

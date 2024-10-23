@@ -9,9 +9,9 @@ export const discord =
 export const header = {
   links: [
     {
-      name: 'Products',
-      link: '/products',
-      id: 'products',
+      name: 'Projects',
+      link: '/projects',
+      id: 'projects',
     },
     {
       name: 'Business',
@@ -58,9 +58,9 @@ export const footer = {
   ],
   rightLinks: [
     {
-      name: 'Products',
-      link: '/products',
-      id: 'products',
+      name: 'Projects',
+      link: '/projects',
+      id: 'projects',
     },
     {
       name: 'Business',
