@@ -38,7 +38,7 @@ const projects = [
     title: 'Mee Browser',
     subtitle: 'A browser for the private web',
     description:
-      'A browser for both traditional websites as well as meesites where you don\'t have to create accounts, login, or provide any personally identifying information.',
+      "A browser for both traditional websites as well as meesites where you don't have to create accounts, login, or provide any personally identifying information.",
     comingSoon: true,
     linkTitle: 'Learn more',
     link: 'https://browser.mee.foundation',
@@ -108,8 +108,8 @@ const providerWallet = {
               <p
                 class="animate-riseIn-short text-center text-xl text-grey-800 animation-delay-800"
               >
-                Projects we're working on to create a human-centered user experience for the
-                internet.
+                Projects we're working on to create a human-centered user
+                experience for the internet.
               </p>
             </div>
           </section>
@@ -124,34 +124,49 @@ const providerWallet = {
                 class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2"
               >
                 {
-                  projects.map((project) => (
-                    <a
-                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden"
-                      href={project.docsLink}
-                    >
-                      <img src={project.image.src} class="w-full" />
-                      <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class="text-xs font-semibold uppercase text-grey-500">
-                          {project.subtitle}
-                        </div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
-                          {project.title}
-                          {project.comingSoon && (
+                  projects.map((project) =>
+                    project.comingSoon ? (
+                      <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden">
+                        <img src={project.image.src} class="w-full" />
+                        <div class="flex flex-col gap-2 p-8 pb-4">
+                          <div class="text-xs font-semibold uppercase text-grey-500">
+                            {project.subtitle}
+                          </div>
+                          <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                            {project.title}
                             <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
                               Coming soon
                             </span>
-                          )}
-                        </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base">
-                          {project.description}
+                          </div>
+                          <div class="text-balance text-sm text-grey-800 lg:text-base">
+                            {project.description}
+                          </div>
                         </div>
                       </div>
-                      <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700">
-                        <span class="underline">{project.linkTitle}</span>
-                        <i class="bi bi-arrow-right" />
-                      </div>
-                    </a>
-                  ))
+                    ) : (
+                      <a
+                        class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden"
+                        href={project.docsLink}
+                      >
+                        <img src={project.image.src} class="w-full" />
+                        <div class="flex flex-col gap-2 p-8 pb-4">
+                          <div class="text-xs font-semibold uppercase text-grey-500">
+                            {project.subtitle}
+                          </div>
+                          <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                            {project.title}
+                          </div>
+                          <div class="text-balance text-sm text-grey-800 lg:text-base">
+                            {project.description}
+                          </div>
+                        </div>
+                        <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700">
+                          <span class="underline">{project.linkTitle}</span>
+                          <i class="bi bi-arrow-right" />
+                        </div>
+                      </a>
+                    ),
+                  )
                 }
               </div>
               <a
