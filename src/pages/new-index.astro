@@ -230,7 +230,7 @@ const futures = [
     console.log('window.innerWidth', window.innerWidth, video);
     if (window.innerWidth < 600) {
       video.classList.remove('hidden');
-      video.classList.add('h-0.5', 'opacity-0');
+      video.classList.add('absolute', 'opacity-0', '-z-1');
       video.play();
       makeFullScreen(video);
       video.controls = true;
