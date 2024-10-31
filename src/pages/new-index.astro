@@ -1,0 +1,303 @@
+---
+import Layout from '@layouts/Layout.astro';
+import {Header, Footer} from 'mee-components';
+import {header, footer} from '../../astro.config.mjs';
+import remoteControl from '../../public/images/index/remote-control.svg';
+import privacyAndSecurity from '../../public/images/index/privacy-and-security.svg';
+import privateSharing from '../../public/images/index/private-sharing.svg';
+import yourDigitalTwin from '../../public/images/index/your-digital-twin.svg';
+import playButton from '../../public/images/index/play-button.svg';
+import Background from '@components/Background.astro';
+
+const futures = [
+  {
+    image: remoteControl,
+    title: 'Seamless form-free experience',
+    description: 'You don’t have to fill in forms–passwords, names and more',
+    class: 'col-span-2',
+  },
+  {
+    image: yourDigitalTwin,
+    title: 'Your data, your terms',
+    description: 'Your data is never shared or sold by anyone',
+    class: 'col-span-1',
+  },
+  {
+    image: privateSharing,
+    title: 'Empowered data control',
+    description: 'Your legal right to control your own data is',
+    class: 'col-span-1',
+  },
+  {
+    image: privacyAndSecurity,
+    title: 'Complete privacy, zero tracking',
+    description:
+      'Your activities remain private–no more tracking or spying on you',
+    class: 'col-span-2',
+  },
+];
+---
+
+<Layout title="Mee Foundation">
+  <Header header={header} type="dark" />
+
+  <main class="h-screen overflow-hidden" id="main">
+    <div
+      id="background-container"
+      class="relative z-200 transition-all duration-800"
+    >
+      <Background />
+      <div
+        id="title"
+        class:list={[
+          'title fixed z-70 flex h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden px-10 pb-7',
+        ]}
+      >
+        <div class="overflow-hidden">
+          <h1
+            class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
+          >
+            Introducing a human-centered user experience for the internet
+          </h1>
+        </div>
+        <div class="max-w-3xl overflow-hidden">
+          <h3
+            class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
+          >
+            Bringing the Mee experience to internet advertising, featuring a
+            front-end component and back-end services
+          </h3>
+        </div>
+      </div>
+    </div>
+    <article
+      id="content-container"
+      class="relative -z-10 mt-27 flex h-full w-screen flex-col items-center justify-between gap-8 overflow-hidden pt-16 md:gap-16"
+    >
+      <section class="relative flex max-w-7xl flex-col items-center px-6">
+        <!-- <img src=""/> -->
+        <div
+          class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
+        >
+          <img
+            src={playButton.src}
+            alt="Play"
+            class="cursor-pointer"
+            id="play"
+          />
+        </div>
+        <img
+          src="/images/index/video-preview.svg"
+          alt="video"
+          class="mx-4 w-full rounded-3xl"
+          id="video-preview"
+        />
+        <video id="video" class="mx-4 hidden w-full rounded-3xl">
+          <source
+            src="/videos/Mee-Foundation.webm"
+            type="video/webm"
+            media="(min-width: 600px)"
+          />
+          <source
+            src="/videos/Mee-Foundation-mobi.webm"
+            type="video/webm"
+            media="(max-width: 599px)"
+          />
+        </video>
+      </section>
+      <section
+        class="section top-0 z-70 mt-10 flex h-full w-screen items-center justify-center md:mt-20"
+      >
+        <div
+          class="flex max-w-3xl flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
+        >
+          <div class="flex flex-col items-center gap-1 overflow-hidden">
+            <h1
+              class="marker animate-riseIn text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
+            >
+              Mee experience values and principles
+            </h1>
+          </div>
+
+          <div class="overflow-hidden">
+            <h3
+              class="text animate-riseIn text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl"
+            >
+              Bringing the Mee experience to internet, featuring a front-end
+              component and back-end services
+            </h3>
+          </div>
+        </div>
+      </section>
+      <section
+        class="flex h-auto max-w-7xl flex-col items-center justify-center px-6"
+      >
+        <div class="overflow-hidden">
+          <div class="animate-riseIn">
+            <div
+              class="flex max-w-96 flex-wrap items-center justify-center gap-8 md:grid md:max-w-max md:grid-cols-2 lg:grid-cols-3"
+            >
+              {
+                futures.map((future) => (
+                  <div
+                    class:list={[
+                      'h-full rounded-2xl border border-grey-300',
+                      future.class,
+                    ]}
+                  >
+                    <img
+                      src={future.image.src}
+                      class="w-full"
+                      alt={`${future.title}`}
+                    />
+                    <div class="flex flex-col gap-2 p-8 pt-0">
+                      <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                        {future.title}
+                      </div>
+                      <div class="text-sm text-grey-800 lg:text-base">
+                        {future.description}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="z-70 mb-20 flex h-full w-screen max-w-7xl flex-col items-center justify-center gap-10 md:gap-20"
+      >
+        <div
+          class="flex flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
+        >
+          <div class="overflow-hidden">
+            <a
+              class="block w-full animate-riseIn px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl"
+              href="/projects"
+            >
+              Check our human-centered projects <i class="bi bi-arrow-right"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </section>
+      <Footer footer={footer} mode="dark" />
+    </article>
+  </main>
+</Layout>
+
+<script>
+  const backgroundContainer = document.getElementById('background-container');
+  const contentContainer = document.getElementById('content-container');
+  const header = document.getElementById('header');
+  const main = document.getElementById('main');
+  interface NewHTMLVideoElement extends HTMLVideoElement {
+    webkitRequestFullscreen(): Promise<void>;
+    webkitEnterFullScreen(): Promise<void>;
+    mozRequestFullScreen(): Promise<void>;
+    msRequestFullscreen(): Promise<void>;
+  }
+  const video = document.getElementById('video') as NewHTMLVideoElement & {
+    webkitRequestFullscreen(): Promise<void>;
+    webkitEnterFullScreen(): Promise<void>;
+  };
+  const play = document.getElementById('play');
+  const videoPreview = document.getElementById('video-preview');
+  const makeFullScreen = (
+    element: NewHTMLVideoElement & {
+      webkitRequestFullscreen(): Promise<void>;
+      webkitEnterFullScreen(): Promise<void>;
+      mozRequestFullScreen(): Promise<void>;
+      msRequestFullscreen(): Promise<void>;
+    },
+  ) => {
+    if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.webkitEnterFullScreen) {
+      element.webkitEnterFullScreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    } else {
+      element.requestFullscreen();
+    }
+  };
+
+  play?.addEventListener('click', () => {
+    console.log('click play');
+    console.log('window.innerWidth', window.innerWidth, video);
+    if (window.innerWidth < 600) {
+      video.classList.remove('hidden');
+      video.classList.add('h-0.5', 'opacity-0');
+      video.play();
+      makeFullScreen(video);
+      video.controls = true;
+    } else {
+      videoPreview?.classList.add('hidden');
+      play.parentElement?.classList.add('hidden');
+
+      video.classList.remove('hidden');
+      video.play();
+      video.controls = true;
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      video.pause();
+    }
+  });
+
+  const hideBackgroundContainer = () => {
+    const isContentHidden = contentContainer?.classList.contains('-z-10');
+    if (isContentHidden) {
+      backgroundContainer?.classList.add(
+        'scale-50',
+        'md:scale-60',
+        'opacity-0',
+        'md:top-24',
+        'translate-y-40',
+        'md:translate-y-64',
+        'rounded-lg',
+      );
+      contentContainer?.classList.remove('-z-10');
+      header?.parentElement?.classList.remove('type-dark');
+      header?.parentElement?.classList.add('type-default');
+      header?.setAttribute('data-type', 'default');
+      setTimeout(() => {
+        main?.classList.remove('h-screen');
+        backgroundContainer?.classList.add('hidden');
+      }, 700);
+    }
+  };
+
+  const onScroll = (event: WheelEvent) => {
+    const swap = Math.sign(event.deltaY);
+
+    if (swap === 1) {
+      hideBackgroundContainer();
+    }
+  };
+
+  let startY = 0;
+  let endY = 0;
+
+  const onDragStart = (event: TouchEvent) => {
+    startY = event.touches[0]?.clientY ?? 0;
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    endY = event.touches[0]?.clientY ?? 0;
+  };
+
+  const onDragEnd = () => {
+    const swap = startY > endY ? 1 : -1;
+    if (swap === 1) hideBackgroundContainer();
+  };
+
+  document?.addEventListener('touchstart', onDragStart);
+  document?.addEventListener('touchmove', onDragMove);
+  document?.addEventListener('touchend', onDragEnd);
+  document.addEventListener('wheel', onScroll);
+</script>
