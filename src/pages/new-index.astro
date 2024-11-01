@@ -50,23 +50,27 @@ const futures = [
       <div
         id="title"
         class:list={[
-          'title fixed z-70 flex h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden px-10 pb-7',
+          'title fixed z-70 flex h-screen w-full items-center justify-center overflow-hidden px-10 pb-7',
         ]}
       >
-        <div class="overflow-hidden">
-          <h1
-            class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
-          >
-            Introducing a human-centered user experience for the internet
-          </h1>
-        </div>
-        <div class="max-w-3xl overflow-hidden">
-          <h3
-            class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
-          >
-            Bringing the Mee experience to internet advertising, featuring a
-            front-end component and back-end services
-          </h3>
+        <div
+          class="flex w-full max-w-7xl flex-col items-center justify-center gap-4"
+        >
+          <div class="overflow-hidden">
+            <h1
+              class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
+            >
+              Introducing a human-centered user experience for the internet
+            </h1>
+          </div>
+          <div class="max-w-3xl overflow-hidden">
+            <h3
+              class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
+            >
+              Bringing the Mee experience to internet advertising, featuring a
+              front-end component and back-end services
+            </h3>
+          </div>
         </div>
       </div>
     </div>
@@ -74,35 +78,38 @@ const futures = [
       id="content-container"
       class="relative -z-10 mt-27 flex h-full w-screen flex-col items-center justify-between gap-8 overflow-hidden pt-16 md:gap-16"
     >
-      <section class="relative flex max-w-7xl flex-col items-center px-6">
-        <!-- <img src=""/> -->
-        <div
-          class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
-        >
+      <section class="flex max-w-7xl flex-col items-center px-6">
+        <div class="relative flex items-center w-full ">
           <img
-            src={playButton.src}
-            alt="Play"
-            class="cursor-pointer"
-            id="play"
+            src="/images/index/video-preview.svg"
+            alt="video"
+            class="w-full rounded-3xl"
+            id="video-preview"
           />
+          <div
+            class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
+          >
+            <img
+              src={playButton.src}
+              alt="Play"
+              class="cursor-pointer"
+              id="play"
+            />
+          </div>
         </div>
-        <img
-          src="/images/index/video-preview.svg"
-          alt="video"
-          class="mx-4 w-full rounded-3xl"
-          id="video-preview"
-        />
-        <video id="video" class="mx-4 hidden w-full rounded-3xl">
+
+        <video
+          id="video"
+          class="w-full rounded-3xl absolute opacity-0 -z-1"
+          poster="/images/index/video-preview.svg"
+          controls
+        >
           <source
             src="/videos/Mee-Foundation.webm"
             type="video/webm"
             media="(min-width: 600px)"
           />
-          <source
-            src="/videos/Mee-Foundation-mobi.webm"
-            type="video/webm"
-            media="(max-width: 599px)"
-          />
+          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
         </video>
       </section>
       <section
@@ -230,7 +237,6 @@ const futures = [
     console.log('window.innerWidth', window.innerWidth, video);
     if (window.innerWidth < 600) {
       video.classList.remove('hidden');
-      video.classList.add('absolute', 'opacity-0', '-z-1');
       video.play();
       makeFullScreen(video);
       video.controls = true;
@@ -238,7 +244,7 @@ const futures = [
       videoPreview?.classList.add('hidden');
       play.parentElement?.classList.add('hidden');
 
-      video.classList.remove('hidden');
+      video.classList.remove('absolute', 'opacity-0', '-z-1');
       video.play();
       video.controls = true;
     }
@@ -280,20 +286,33 @@ const futures = [
     }
   };
 
+  const isHeaderTouch = (event: TouchEvent) => {
+    const element = event.target as HTMLElement;
+    const header = element.closest('#header');
+    const mobileHeader = element.closest('#mobile-header');
+    return !!header || !!mobileHeader;
+  };
+
   let startY = 0;
   let endY = 0;
 
   const onDragStart = (event: TouchEvent) => {
-    startY = event.touches[0]?.clientY ?? 0;
+    if (!isHeaderTouch(event)) {
+      startY = event.touches[0]?.clientY ?? 0;
+    }
   };
 
   const onDragMove = (event: TouchEvent) => {
-    endY = event.touches[0]?.clientY ?? 0;
+    if (!isHeaderTouch(event)) {
+      endY = event.touches[0]?.clientY ?? 0;
+    }
   };
 
-  const onDragEnd = () => {
-    const swap = startY > endY ? 1 : -1;
-    if (swap === 1) hideBackgroundContainer();
+  const onDragEnd = (event: TouchEvent) => {
+    if (!isHeaderTouch(event)) {
+      const swap = startY > endY ? 1 : -1;
+      if (swap === 1) hideBackgroundContainer();
+    }
   };
 
   document?.addEventListener('touchstart', onDragStart);
