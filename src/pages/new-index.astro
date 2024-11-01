@@ -42,34 +42,36 @@ const futures = [
   <Header header={header} type="dark" />
 
   <main class="h-screen overflow-hidden" id="main">
-    <div
-      id="background-container"
-      class="relative z-200 transition-all duration-800"
-    >
-      <Background />
+    <div class="relative h-0">
       <div
-        id="title"
-        class:list={[
-          'title fixed z-70 flex h-screen w-full items-center justify-center overflow-hidden px-10 pb-7',
-        ]}
+        id="background-container"
+        class="relative z-200 transition-all duration-800"
       >
+        <Background />
         <div
-          class="flex w-full max-w-7xl flex-col items-center justify-center gap-4"
+          id="title"
+          class:list={[
+            'title fixed z-70 flex h-screen w-full items-center justify-center overflow-hidden px-10 pb-7',
+          ]}
         >
-          <div class="overflow-hidden">
-            <h1
-              class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
-            >
-              Introducing a human-centered user experience for the internet
-            </h1>
-          </div>
-          <div class="max-w-3xl overflow-hidden">
-            <h3
-              class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
-            >
-              Bringing the Mee experience to internet advertising, featuring a
-              front-end component and back-end services
-            </h3>
+          <div
+            class="flex w-full max-w-7xl flex-col items-center justify-center gap-4"
+          >
+            <div class="overflow-hidden">
+              <h1
+                class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
+              >
+                Introducing a human-centered user experience for the internet
+              </h1>
+            </div>
+            <div class="max-w-3xl overflow-hidden">
+              <h3
+                class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
+              >
+                Bringing the Mee experience to internet advertising, featuring a
+                front-end component and back-end services
+              </h3>
+            </div>
           </div>
         </div>
       </div>
@@ -79,7 +81,7 @@ const futures = [
       class="relative -z-10 mt-27 flex h-full w-screen flex-col items-center justify-between gap-8 overflow-hidden pt-16 md:gap-16"
     >
       <section class="flex max-w-7xl flex-col items-center px-6">
-        <div class="relative flex items-center w-full ">
+        <div class="relative flex w-full items-center">
           <img
             src="/images/index/video-preview.svg"
             alt="video"
@@ -100,7 +102,7 @@ const futures = [
 
         <video
           id="video"
-          class="w-full rounded-3xl absolute opacity-0 -z-1"
+          class="absolute -z-1 w-full rounded-3xl opacity-0"
           poster="/images/index/video-preview.svg"
           controls
         >
@@ -196,9 +198,11 @@ const futures = [
 
 <script>
   const backgroundContainer = document.getElementById('background-container');
+  const background = document.getElementById('background');
   const contentContainer = document.getElementById('content-container');
   const header = document.getElementById('header');
   const main = document.getElementById('main');
+  const title = document.getElementById('title');
   interface NewHTMLVideoElement extends HTMLVideoElement {
     webkitRequestFullscreen(): Promise<void>;
     webkitEnterFullScreen(): Promise<void>;
@@ -211,6 +215,16 @@ const futures = [
   };
   const play = document.getElementById('play');
   const videoPreview = document.getElementById('video-preview');
+  const setBGPositions = () => {
+    const positionbackgroundContainer = background?.getBoundingClientRect();
+    if (backgroundContainer) {
+      backgroundContainer.style.left = '0px';
+      backgroundContainer.style.height =
+        positionbackgroundContainer?.height + 'px';
+      backgroundContainer.style.width =
+        positionbackgroundContainer?.width + 'px';
+    }
+  };
   const makeFullScreen = (
     element: NewHTMLVideoElement & {
       webkitRequestFullscreen(): Promise<void>;
@@ -258,31 +272,80 @@ const futures = [
   const hideBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
     if (isContentHidden) {
-      backgroundContainer?.classList.add(
-        'scale-50',
-        'md:scale-60',
-        'opacity-0',
-        'md:top-24',
-        'translate-y-40',
-        'md:translate-y-64',
-        'rounded-lg',
+      const positionInfo = videoPreview?.getBoundingClientRect();
+      const height = positionInfo?.height;
+      const width = positionInfo?.width;
+      const left = positionInfo?.left;
+
+      background?.classList.remove('h-screen', 'w-screen');
+      background?.classList.add(
+        'rounded-3xl',
+        'overflow-hidden',
+        'w-full',
+        'h-full',
+        'absolute',
       );
+      title?.classList.add('scale-50');
+      backgroundContainer?.classList.add('fixed', 'translate-y-44');
+      backgroundContainer?.classList.remove('opacity-100');
+      if (backgroundContainer) {
+        backgroundContainer.style.height = height + 'px';
+        backgroundContainer.style.width = width + 'px';
+        backgroundContainer.style.left = left + 'px';
+      }
       contentContainer?.classList.remove('-z-10');
-      header?.parentElement?.classList.remove('type-dark');
-      header?.parentElement?.classList.add('type-default');
-      header?.setAttribute('data-type', 'default');
+
+      setTimeout(() => {
+        backgroundContainer?.classList.add('opacity-0');
+        header?.parentElement?.classList.remove('type-dark');
+        header?.parentElement?.classList.add('type-default');
+        header?.setAttribute('data-type', 'default');
+      }, 400);
       setTimeout(() => {
         main?.classList.remove('h-screen');
         backgroundContainer?.classList.add('hidden');
       }, 700);
     }
   };
+  const showBackgroundContainer = () => {
+    const isContentHidden = contentContainer?.classList.contains('-z-10');
+
+    if (!isContentHidden) {
+      background?.classList.add('h-screen', 'w-screen');
+      background?.classList.remove(
+        'rounded-3xl',
+        'overflow-hidden',
+        'w-full',
+        'h-full',
+        'absolute',
+      );
+      title?.classList.remove('scale-50');
+      backgroundContainer?.classList.remove('fixed', 'translate-y-44');
+      backgroundContainer?.classList.add('opacity-100');
+      if (backgroundContainer) {
+        backgroundContainer.style.height = '';
+        backgroundContainer.style.width = '';
+        backgroundContainer.style.left = '';
+      }
+      contentContainer?.classList.add('-z-10');
+      backgroundContainer?.classList.remove('opacity-0');
+      header?.parentElement?.classList.add('type-dark');
+      header?.parentElement?.classList.remove('type-default');
+      header?.setAttribute('data-type', 'dark');
+      main?.classList.add('h-screen');
+      backgroundContainer?.classList.remove('hidden');
+      setTimeout(() => {
+        setBGPositions();
+      }, 1000);
+    }
+  };
 
   const onScroll = (event: WheelEvent) => {
     const swap = Math.sign(event.deltaY);
-
     if (swap === 1) {
       hideBackgroundContainer();
+    } else if (!window.scrollY && swap === -1) {
+      showBackgroundContainer();
     }
   };
 
@@ -315,8 +378,10 @@ const futures = [
     }
   };
 
+  setBGPositions();
   document?.addEventListener('touchstart', onDragStart);
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);
   document.addEventListener('wheel', onScroll);
+  addEventListener('resize', setBGPositions);
 </script>
