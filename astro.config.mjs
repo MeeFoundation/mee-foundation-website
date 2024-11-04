@@ -4,8 +4,7 @@ import node from '@astrojs/node';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 
-export const discord =
-  'https://discord.com/channels/1275848491964436491/1275848492413223025';
+export const discord = 'https://discord.gg/V4vC5zsZ';
 export const header = {
   links: [
     {
