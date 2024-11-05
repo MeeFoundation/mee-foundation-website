@@ -8,7 +8,7 @@ export interface Props {
 const {fromEnvision = false} = Astro.props;
 ---
 
-<div class="top-0 fixed h-screen w-screen background" id="background">
+<div class="top-0 fixed h-screen w-screen background overflow-hidden" id="background">
   <Grid />
 	<FloatingFigures />
 	<div class:list={[

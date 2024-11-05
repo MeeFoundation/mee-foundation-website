@@ -41,17 +41,17 @@ const futures = [
 <Layout title="Mee Foundation">
   <Header header={header} type="dark" />
 
-  <main class="h-screen transform-gpu overflow-hidden" id="main">
+  <main class="h-screen overflow-hidden" id="main">
     <div class="relative h-0">
       <div
         id="background-container"
-        class="relative z-200 transition-all duration-800"
+        class="relative z-200 transform-gpu transition-all duration-800"
       >
         <Background />
         <div
           id="title"
           class:list={[
-            'title fixed z-70 flex h-screen w-full items-center justify-center overflow-hidden px-10 pb-7',
+            'title fixed z-70 flex h-screen w-full translate-x-0 transform-gpu items-center justify-center overflow-hidden px-10 pb-7 transition-all duration-800',
           ]}
         >
           <div
@@ -105,6 +105,8 @@ const futures = [
           class="absolute -z-1 w-full rounded-3xl opacity-0"
           poster="/images/index/video-preview.svg"
           controls
+          muted
+          preload="metadata"
         >
           <source
             src="/videos/Mee-Foundation.webm"
@@ -116,7 +118,13 @@ const futures = [
             type="video/webm"
             media="(max-width: 599px)"
           />
-          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
+          <source
+            src="/videos/Mee-Foundation-mobi.mp4"
+            type="video/mp4"
+            media="(max-width: 599px)"
+          />
+          <source src="/videos/Mee-Foundation.webm" type="video/webm" />
+          Video not supported.
         </video>
       </section>
       <section
@@ -196,41 +204,6 @@ const futures = [
           </div>
         </div>
       </section>
-      <section class="flex max-w-7xl flex-col items-center gap-4 px-6">
-        <video
-          class="w-full rounded-3xl"
-          poster="/images/index/video-preview.svg"
-          controls
-        >
-          <source
-            src="/videos/Mee-Foundation.webm"
-            type="video/webm"
-            media="(min-width: 600px)"
-          />
-          <source
-            src="/videos/Mee-Foundation-mobi.webm"
-            type="video/webm"
-            media="(max-width: 599px)"
-          />
-          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
-        </video>
-        <video class="w-full rounded-3xl" controls>
-          <source
-            src="/videos/Mee-Foundation.webm"
-            type="video/webm"
-            media="(min-width: 600px)"
-          />
-          <source
-            src="/videos/Mee-Foundation-mobi.webm"
-            type="video/webm"
-            media="(max-width: 599px)"
-          />
-          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
-        </video>
-        <video class="w-full rounded-3xl" controls>
-          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
-        </video>
-      </section>
       <Footer footer={footer} mode="dark" />
     </article>
   </main>
@@ -266,14 +239,33 @@ const futures = [
 
   const play = document.getElementById('play');
   const videoPreview = document.getElementById('video-preview');
-  const setBGPositions = () => {
+  const setBGPositions = (forceMax = false) => {
     const positionbackgroundContainer = background?.getBoundingClientRect();
+    const isContentHidden = contentContainer?.classList.contains('-z-10');
     if (backgroundContainer) {
-      backgroundContainer.style.left = '0px';
-      backgroundContainer.style.height =
-        positionbackgroundContainer?.height + 'px';
-      backgroundContainer.style.width =
-        positionbackgroundContainer?.width + 'px';
+      if (isContentHidden || forceMax) {
+        backgroundContainer.style.left = '0px';
+        backgroundContainer.style.height =
+          positionbackgroundContainer?.height + 'px';
+        backgroundContainer.style.width =
+          positionbackgroundContainer?.width + 'px';
+      } else {
+        const videoPreviewInfo = videoPreview?.getBoundingClientRect();
+        const videoInfo = video?.getBoundingClientRect();
+
+        const height = videoPreviewInfo?.height
+          ? videoPreviewInfo?.height
+          : videoInfo.height;
+        const width = videoPreviewInfo?.width
+          ? videoPreviewInfo?.width
+          : videoInfo.width;
+        const left = videoPreviewInfo?.left
+          ? videoPreviewInfo?.left
+          : videoInfo.left;
+        backgroundContainer.style.height = height + 'px';
+        backgroundContainer.style.width = width + 'px';
+        backgroundContainer.style.left = left + 'px';
+      }
     }
   };
   const makeFullScreen = (
@@ -284,12 +276,6 @@ const futures = [
       msRequestFullscreen(): Promise<void>;
     },
   ) => {
-    console.log(
-      'fullscreenElement',
-      document.fullscreenElement,
-      'fullscreenDisabled',
-      fullscreenDisabled,
-    );
     if (!fullscreenDisabled) {
       if (element.mozRequestFullScreen) {
         element.mozRequestFullScreen();
@@ -329,19 +315,21 @@ const futures = [
   const hideBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
     if (isContentHidden) {
-      const positionInfo = videoPreview?.getBoundingClientRect();
-      const height = positionInfo?.height;
-      const width = positionInfo?.width;
-      const left = positionInfo?.left;
+      const videoPreviewInfo = videoPreview?.getBoundingClientRect();
+      const videoInfo = video?.getBoundingClientRect();
+
+      const height = videoPreviewInfo?.height
+        ? videoPreviewInfo?.height
+        : videoInfo.height;
+      const width = videoPreviewInfo?.width
+        ? videoPreviewInfo?.width
+        : videoInfo.width;
+      const left = videoPreviewInfo?.left
+        ? videoPreviewInfo?.left
+        : videoInfo.left;
 
       background?.classList.remove('h-screen', 'w-screen');
-      background?.classList.add(
-        'rounded-3xl',
-        'overflow-hidden',
-        'w-full',
-        'h-full',
-        'absolute',
-      );
+      background?.classList.add('rounded-3xl', 'w-full', 'h-full', 'absolute');
       title?.classList.add('scale-50');
       backgroundContainer?.classList.remove('opacity-100', 'translate-y-0');
       backgroundContainer?.classList.add('fixed', 'translate-y-44');
@@ -358,31 +346,24 @@ const futures = [
         header?.parentElement?.classList.add('type-default');
         header?.setAttribute('data-type', 'default');
       }, 400);
+
       setTimeout(() => {
         main?.classList.remove('h-screen');
         backgroundContainer?.classList.remove('z-200');
         backgroundContainer?.classList.add('-z-1');
-        if (backgroundContainer) {
-          backgroundContainer.style.left = '0px';
-        }
-      }, 700);
+      }, 1000);
     }
   };
   const showBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
 
     if (!isContentHidden) {
+      video.pause();
       background?.classList.add('h-screen', 'w-screen');
-      background?.classList.remove(
-        'overflow-hidden',
-        'w-full',
-        'h-full',
-        'absolute',
-      );
+      background?.classList.remove('w-full', 'h-full', 'absolute');
       title?.classList.remove('scale-50');
       title?.classList.add('scale-100');
       backgroundContainer?.classList.remove(
-        // 'fixed',
         'translate-y-44',
         'opacity-0',
         '-z-1',
@@ -393,24 +374,16 @@ const futures = [
         'translate-y-0',
         'z-200',
       );
-      if (backgroundContainer) {
-        backgroundContainer.style.height = window.innerHeight + 'px';
-        backgroundContainer.style.width = window.innerWidth + 'px';
-        backgroundContainer.style.left = '0px';
-      }
+      setBGPositions(true);
       contentContainer?.classList.add('-z-10');
       header?.parentElement?.classList.add('type-dark');
       header?.parentElement?.classList.remove('type-default');
       header?.setAttribute('data-type', 'dark');
+      main?.classList.add('h-screen');
 
       setTimeout(() => {
-        main?.classList.add('h-screen');
         background?.classList.remove('rounded-3xl');
       }, 700);
-
-      setTimeout(() => {
-        setBGPositions();
-      }, 1000);
     }
   };
 
@@ -462,5 +435,5 @@ const futures = [
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);
   document.addEventListener('wheel', onScroll);
-  addEventListener('resize', setBGPositions);
+  addEventListener('resize', () => setBGPositions());
 </script>
