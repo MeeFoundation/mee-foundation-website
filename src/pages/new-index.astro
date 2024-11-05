@@ -41,11 +41,11 @@ const futures = [
 <Layout title="Mee Foundation">
   <Header header={header} type="dark" />
 
-  <main class="h-screen overflow-hidden transform-gpu" id="main">
+  <main class="h-screen transform-gpu overflow-hidden" id="main">
     <div class="relative h-0">
       <div
         id="background-container"
-        class="relative z-200 transition-all duration-800 transform-gpu"
+        class="relative z-200 transition-all duration-800"
       >
         <Background />
         <div
@@ -110,6 +110,11 @@ const futures = [
             src="/videos/Mee-Foundation.webm"
             type="video/webm"
             media="(min-width: 600px)"
+          />
+          <source
+            src="/videos/Mee-Foundation-mobi.webm"
+            type="video/webm"
+            media="(max-width: 599px)"
           />
           <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
         </video>
@@ -191,12 +196,48 @@ const futures = [
           </div>
         </div>
       </section>
+      <section class="flex max-w-7xl flex-col items-center gap-4 px-6">
+        <video
+          class="w-full rounded-3xl"
+          poster="/images/index/video-preview.svg"
+          controls
+        >
+          <source
+            src="/videos/Mee-Foundation.webm"
+            type="video/webm"
+            media="(min-width: 600px)"
+          />
+          <source
+            src="/videos/Mee-Foundation-mobi.webm"
+            type="video/webm"
+            media="(max-width: 599px)"
+          />
+          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
+        </video>
+        <video class="w-full rounded-3xl" controls>
+          <source
+            src="/videos/Mee-Foundation.webm"
+            type="video/webm"
+            media="(min-width: 600px)"
+          />
+          <source
+            src="/videos/Mee-Foundation-mobi.webm"
+            type="video/webm"
+            media="(max-width: 599px)"
+          />
+          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
+        </video>
+        <video class="w-full rounded-3xl" controls>
+          <source src="/videos/Mee-Foundation-mobi.webm" type="video/webm" />
+        </video>
+      </section>
       <Footer footer={footer} mode="dark" />
     </article>
   </main>
 </Layout>
 
 <script>
+  let fullscreenDisabled = true;
   const backgroundContainer = document.getElementById('background-container');
   const background = document.getElementById('background');
   const contentContainer = document.getElementById('content-container');
@@ -213,6 +254,16 @@ const futures = [
     webkitRequestFullscreen(): Promise<void>;
     webkitEnterFullScreen(): Promise<void>;
   };
+
+  video.addEventListener(
+    'loadedmetadata',
+    function (e) {
+      console.log('loadedmetadata', e);
+      fullscreenDisabled = false;
+    },
+    false,
+  );
+
   const play = document.getElementById('play');
   const videoPreview = document.getElementById('video-preview');
   const setBGPositions = () => {
@@ -233,16 +284,24 @@ const futures = [
       msRequestFullscreen(): Promise<void>;
     },
   ) => {
-    if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if (element.webkitEnterFullScreen) {
-      element.webkitEnterFullScreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
-    } else {
-      element.requestFullscreen();
+    console.log(
+      'fullscreenElement',
+      document.fullscreenElement,
+      'fullscreenDisabled',
+      fullscreenDisabled,
+    );
+    if (!fullscreenDisabled) {
+      if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.webkitEnterFullScreen) {
+        element.webkitEnterFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      } else {
+        element.requestFullscreen();
+      }
     }
   };
 
@@ -252,15 +311,13 @@ const futures = [
     if (window.innerWidth < 600) {
       video.classList.remove('hidden');
       video.play();
-      makeFullScreen(video);
-      video.controls = true;
+      setTimeout(() => makeFullScreen(video), 100);
     } else {
       videoPreview?.classList.add('hidden');
       play.parentElement?.classList.add('hidden');
 
       video.classList.remove('absolute', 'opacity-0', '-z-1');
       video.play();
-      video.controls = true;
     }
   });
   document.addEventListener('fullscreenchange', () => {
@@ -286,8 +343,8 @@ const futures = [
         'absolute',
       );
       title?.classList.add('scale-50');
+      backgroundContainer?.classList.remove('opacity-100', 'translate-y-0');
       backgroundContainer?.classList.add('fixed', 'translate-y-44');
-      backgroundContainer?.classList.remove('opacity-100');
       if (backgroundContainer) {
         backgroundContainer.style.height = height + 'px';
         backgroundContainer.style.width = width + 'px';
@@ -303,7 +360,11 @@ const futures = [
       }, 400);
       setTimeout(() => {
         main?.classList.remove('h-screen');
-        backgroundContainer?.classList.add('hidden');
+        backgroundContainer?.classList.remove('z-200');
+        backgroundContainer?.classList.add('-z-1');
+        if (backgroundContainer) {
+          backgroundContainer.style.left = '0px';
+        }
       }, 700);
     }
   };
@@ -313,27 +374,40 @@ const futures = [
     if (!isContentHidden) {
       background?.classList.add('h-screen', 'w-screen');
       background?.classList.remove(
-        'rounded-3xl',
         'overflow-hidden',
         'w-full',
         'h-full',
         'absolute',
       );
       title?.classList.remove('scale-50');
-      backgroundContainer?.classList.remove('fixed', 'translate-y-44');
-      backgroundContainer?.classList.add('opacity-100');
+      title?.classList.add('scale-100');
+      backgroundContainer?.classList.remove(
+        // 'fixed',
+        'translate-y-44',
+        'opacity-0',
+        '-z-1',
+      );
+
+      backgroundContainer?.classList.add(
+        'opacity-100',
+        'translate-y-0',
+        'z-200',
+      );
       if (backgroundContainer) {
-        backgroundContainer.style.height = '';
-        backgroundContainer.style.width = '';
-        backgroundContainer.style.left = '';
+        backgroundContainer.style.height = window.innerHeight + 'px';
+        backgroundContainer.style.width = window.innerWidth + 'px';
+        backgroundContainer.style.left = '0px';
       }
       contentContainer?.classList.add('-z-10');
-      backgroundContainer?.classList.remove('opacity-0');
       header?.parentElement?.classList.add('type-dark');
       header?.parentElement?.classList.remove('type-default');
       header?.setAttribute('data-type', 'dark');
-      main?.classList.add('h-screen');
-      backgroundContainer?.classList.remove('hidden');
+
+      setTimeout(() => {
+        main?.classList.add('h-screen');
+        background?.classList.remove('rounded-3xl');
+      }, 700);
+
       setTimeout(() => {
         setBGPositions();
       }, 1000);
@@ -374,7 +448,12 @@ const futures = [
   const onDragEnd = (event: TouchEvent) => {
     if (!isHeaderTouch(event)) {
       const swap = startY > endY ? 1 : -1;
-      if (swap === 1) hideBackgroundContainer();
+      console.log(startY, endY);
+      if (swap === 1) {
+        hideBackgroundContainer();
+      } else if (!window.scrollY && swap === -1) {
+        showBackgroundContainer();
+      }
     }
   };
 
