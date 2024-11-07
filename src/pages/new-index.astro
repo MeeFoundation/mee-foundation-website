@@ -669,12 +669,13 @@ const futures = [
   document.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        if (lastKnownScrollPosition > 0 && window.scrollY === 0) {
+        if (lastKnownScrollPosition > 0 && window.scrollY <= 0) {
           showBackgroundContainer();
           lastKnownScrollPosition = 0;
         } else {
           lastKnownScrollPosition = window.scrollY;
         }
+        console.log('lastKnownScrollPosition', lastKnownScrollPosition);
         ticking = false;
       });
 
