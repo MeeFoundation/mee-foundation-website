@@ -72,6 +72,16 @@ const futures = [
                 front-end component and back-end services
               </h3>
             </div>
+            <div class="h-10 md:h-11">
+              <div
+                class="scrollIconContainer z-20 flex w-screen animate-fadeIn-long flex-col items-center justify-center animation-delay-1000"
+              >
+                <i
+                  class="scrollIcon relative flex h-6 w-4 overflow-hidden py-1 transition-opacity duration-100 ease-linear animation-delay-1000 md:h-7 md:w-4.5 md:py-2"
+                ></i>
+                <div class="down-arrow mt-1 h-4 w-4"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -277,6 +287,16 @@ const futures = [
     animation: scaleBack 0.8s forwards;
   }
 
+  .down-arrow {
+    background-color: #ffffffb3;
+    mask: url(/images/bottom-arrow.svg) no-repeat center;
+  }
+
+  .background-container-hide .scrollIconContainer,
+  .background-container-hide .scrollIconContainer {
+    display: none;
+  }
+
   @-webkit-keyframes slide {
     100% {
       left: var(--left-position);
@@ -397,17 +417,29 @@ const futures = [
 
   @-webkit-keyframes scale {
     0% {
+      opacity: 100%;
       transform: scale(1);
     }
+    50% {
+      opacity: 0%;
+      transform: scale(0.75);
+    }
     100% {
+      opacity: 0%;
       transform: scale(0.5);
     }
   }
   @keyframes scale {
     0% {
+      opacity: 100%;
       transform: scale(1);
     }
+    50% {
+      opacity: 0%;
+      transform: scale(0.75);
+    }
     100% {
+      opacity: 0%;
       transform: scale(0.5);
     }
   }
@@ -431,6 +463,10 @@ const futures = [
 
 <script>
   let fullscreenDisabled = true;
+  let isHideBackgroundContainer = false;
+  let isShowBackgroundContainer = false;
+  let lastKnownScrollPosition = 0;
+  let ticking = false;
   const backgroundContainer = document.getElementById('background-container');
   const contentContainer = document.getElementById('content-container');
   const header = document.getElementById('header');
@@ -527,7 +563,8 @@ const futures = [
 
   const hideBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
-    if (isContentHidden) {
+    if (isContentHidden && !isHideBackgroundContainer) {
+      isHideBackgroundContainer = true;
       setBGPositions();
       backgroundContainer?.classList.remove('background-container-show');
       backgroundContainer?.classList.add('background-container-hide');
@@ -544,6 +581,7 @@ const futures = [
           backgroundContainer?.classList.add('-z-1');
           header?.parentElement?.classList.remove('type-dark', 'opacity-0');
           header?.setAttribute('data-type', 'default');
+          isHideBackgroundContainer = false;
         }
       });
     }
@@ -551,7 +589,8 @@ const futures = [
   const showBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
 
-    if (!isContentHidden) {
+    if (!isContentHidden && !isShowBackgroundContainer) {
+      isShowBackgroundContainer = true;
       video.pause();
       setBGPositions();
       contentContainer?.classList.add('-z-10');
@@ -575,6 +614,7 @@ const futures = [
           header?.setAttribute('data-type', 'dark');
           header?.parentElement?.classList.add('type-dark');
           header?.parentElement?.classList.remove('opacity-0');
+          isShowBackgroundContainer = false;
         }
       });
     }
@@ -626,5 +666,20 @@ const futures = [
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);
   document.addEventListener('wheel', onScroll);
+  document.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (lastKnownScrollPosition > 0 && window.scrollY === 0) {
+          showBackgroundContainer();
+          lastKnownScrollPosition = 0;
+        } else {
+          lastKnownScrollPosition = window.scrollY;
+        }
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
   addEventListener('resize', () => setBGPositions());
 </script>
