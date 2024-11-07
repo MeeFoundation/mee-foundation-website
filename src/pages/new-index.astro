@@ -532,12 +532,7 @@ const futures = [
       backgroundContainer?.classList.remove('background-container-show');
       backgroundContainer?.classList.add('background-container-hide');
       contentContainer?.classList.remove('-z-10');
-
-      setTimeout(() => {
-        header?.parentElement?.classList.remove('type-dark');
-        header?.parentElement?.classList.add('type-default');
-        header?.setAttribute('data-type', 'default');
-      }, 300);
+      header?.parentElement?.classList.add('opacity-0', 'type-default');
 
       backgroundContainer?.addEventListener('animationend', () => {
         const backgroundContainerHide = document.querySelector(
@@ -547,6 +542,8 @@ const futures = [
           main?.classList.remove('h-screen');
           backgroundContainer?.classList.remove('z-200');
           backgroundContainer?.classList.add('-z-1');
+          header?.parentElement?.classList.remove('type-dark', 'opacity-0');
+          header?.setAttribute('data-type', 'default');
         }
       });
     }
@@ -563,9 +560,11 @@ const futures = [
       backgroundContainer?.classList.remove('background-container-hide');
       backgroundContainer?.classList.add('background-container-show');
       main?.classList.add('h-screen');
-      header?.setAttribute('data-type', 'dark');
-      header?.parentElement?.classList.add('type-dark');
-      header?.parentElement?.classList.remove('type-default');
+      header?.parentElement?.classList.add('opacity-0');
+
+      setTimeout(() => {
+        header?.parentElement?.classList.remove('type-default');
+      }, 100);
 
       backgroundContainer?.addEventListener('animationend', () => {
         const backgroundContainerShow = document.querySelector(
@@ -573,6 +572,9 @@ const futures = [
         );
         if (backgroundContainerShow) {
           backgroundContainer?.classList.remove('background-container-show');
+          header?.setAttribute('data-type', 'dark');
+          header?.parentElement?.classList.add('type-dark');
+          header?.parentElement?.classList.remove('opacity-0');
         }
       });
     }
