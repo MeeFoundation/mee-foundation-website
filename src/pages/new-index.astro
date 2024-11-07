@@ -45,13 +45,13 @@ const futures = [
     <div class="relative h-0">
       <div
         id="background-container"
-        class="relative z-200 transform-gpu transition-all duration-800"
+        class="relative z-200 flex transform-gpu items-center transition-all duration-800"
       >
         <Background />
         <div
           id="title"
           class:list={[
-            'title fixed z-70 flex h-screen w-full translate-x-0 transform-gpu items-center justify-center overflow-hidden px-10 pb-7 transition-all duration-800',
+            'title top-0 z-70 flex h-screen w-full translate-x-0 transform-gpu items-center justify-center overflow-hidden px-10 pb-7 transition-all duration-800',
           ]}
         >
           <div
@@ -135,7 +135,7 @@ const futures = [
         >
           <div class="flex flex-col items-center gap-1 overflow-hidden">
             <h1
-              class="marker animate-riseIn text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
+              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
             >
               Mee experience values and principles
             </h1>
@@ -143,7 +143,7 @@ const futures = [
 
           <div class="overflow-hidden">
             <h3
-              class="text animate-riseIn text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl"
+              class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl"
             >
               Bringing the Mee experience to internet, featuring a front-end
               component and back-end services
@@ -155,7 +155,7 @@ const futures = [
         class="flex h-auto max-w-7xl flex-col items-center justify-center px-6"
       >
         <div class="overflow-hidden">
-          <div class="animate-riseIn">
+          <div class="">
             <div
               class="flex max-w-96 flex-wrap items-center justify-center gap-8 md:grid md:max-w-max md:grid-cols-2 lg:grid-cols-3"
             >
@@ -195,7 +195,7 @@ const futures = [
         >
           <div class="overflow-hidden">
             <a
-              class="block w-full animate-riseIn px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl"
+              class="block w-full px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl"
               href="/projects"
             >
               Check our human-centered projects <i class="bi bi-arrow-right"
@@ -208,21 +208,240 @@ const futures = [
     </article>
   </main>
 </Layout>
+<style is:global>
+  .background {
+    background: radial-gradient(#0d070c, #200e1d);
+  }
+  .shadow {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(#0f080e 20%, transparent 60%) center no-repeat;
+    backface-visibility: hidden;
+    transition: all 2s linear;
+  }
+  .background-container-hide {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    -webkit-animation:
+      slide 0.8s forwards,
+      opacity 0.8s forwards;
+    animation:
+      slide 0.8s forwards,
+      opacity 0.8s forwards;
+    border-radius: 0px;
+    opacity: 100%;
+  }
+  .background-container-show {
+    position: absolute;
+    left: var(--left-position);
+    right: var(--left-position);
+    width: var(--width-position);
+    height: var(--height-position);
+    top: 172px;
+    overflow: hidden;
+    -webkit-animation:
+      slideBack 0.8s forwards,
+      opacityBack 0.8s forwards,
+      radiusBack 0.8s forwards;
+    animation:
+      slideBack 0.8s forwards,
+      opacityBack 0.8s forwards,
+      radiusBack 0.8s forwards;
+    border-radius: 24px;
+    opacity: 0%;
+  }
+  .background-container-hide .tunnel,
+  .background-container-hide .figuresContainer {
+    display: none;
+  }
+  .background-container-show .tunnel,
+  .background-container-show .figuresContainer {
+    display: none;
+  }
+  .background-container-hide #title {
+    -webkit-animation: scale 0.8s forwards;
+    animation: scale 0.8s forwards;
+  }
+  .background-container-show #title {
+    -webkit-animation: scaleBack 0.8s forwards;
+    animation: scaleBack 0.8s forwards;
+  }
+
+  @-webkit-keyframes slide {
+    100% {
+      left: var(--left-position);
+      right: var(--left-position);
+      width: var(--width-position);
+      height: var(--height-position);
+      top: 172px;
+      border-radius: 24px;
+    }
+  }
+
+  @keyframes slide {
+    100% {
+      left: var(--left-position);
+      right: var(--left-position);
+      width: var(--width-position);
+      height: var(--height-position);
+      top: 172px;
+      border-radius: 24px;
+    }
+  }
+
+  @-webkit-keyframes slideBack {
+    100% {
+      left: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      top: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  @keyframes slideBack {
+    100% {
+      left: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      top: 0px;
+      border-radius: 0px;
+    }
+  }
+  @-webkit-keyframes opacity {
+    70% {
+      opacity: 100%;
+    }
+    80% {
+      opacity: 75%;
+    }
+    90% {
+      opacity: 60%;
+    }
+    95% {
+      opacity: 50%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+  @keyframes opacity {
+    70% {
+      opacity: 100%;
+    }
+    80% {
+      opacity: 75%;
+    }
+    90% {
+      opacity: 60%;
+    }
+    95% {
+      opacity: 50%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+  @-webkit-keyframes opacityBack {
+    0% {
+      opacity: 0%;
+    }
+    10% {
+      opacity: 100%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  @keyframes opacityBack {
+    0% {
+      opacity: 0%;
+    }
+    10% {
+      opacity: 100%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  @-webkit-keyframes radiusBack {
+    95% {
+      border-radius: 18px;
+    }
+    100% {
+      border-radius: 0px;
+    }
+  }
+  @keyframes radiusBack {
+    90% {
+      border-radius: 18px;
+    }
+    100% {
+      border-radius: 0px;
+    }
+  }
+
+  @-webkit-keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.5);
+    }
+  }
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.5);
+    }
+  }
+  @-webkit-keyframes scaleBack {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes scaleBack {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
 
 <script>
   let fullscreenDisabled = true;
   const backgroundContainer = document.getElementById('background-container');
-  const background = document.getElementById('background');
   const contentContainer = document.getElementById('content-container');
   const header = document.getElementById('header');
   const main = document.getElementById('main');
-  const title = document.getElementById('title');
   interface NewHTMLVideoElement extends HTMLVideoElement {
     webkitRequestFullscreen(): Promise<void>;
     webkitEnterFullScreen(): Promise<void>;
     mozRequestFullScreen(): Promise<void>;
     msRequestFullscreen(): Promise<void>;
   }
+
   const video = document.getElementById('video') as NewHTMLVideoElement & {
     webkitRequestFullscreen(): Promise<void>;
     webkitEnterFullScreen(): Promise<void>;
@@ -230,8 +449,7 @@ const futures = [
 
   video.addEventListener(
     'loadedmetadata',
-    function (e) {
-      console.log('loadedmetadata', e);
+    function () {
       fullscreenDisabled = false;
     },
     false,
@@ -239,34 +457,28 @@ const futures = [
 
   const play = document.getElementById('play');
   const videoPreview = document.getElementById('video-preview');
-  const setBGPositions = (forceMax = false) => {
-    const positionbackgroundContainer = background?.getBoundingClientRect();
-    const isContentHidden = contentContainer?.classList.contains('-z-10');
-    if (backgroundContainer) {
-      if (isContentHidden || forceMax) {
-        backgroundContainer.style.left = '0px';
-        backgroundContainer.style.height =
-          positionbackgroundContainer?.height + 'px';
-        backgroundContainer.style.width =
-          positionbackgroundContainer?.width + 'px';
-      } else {
-        const videoPreviewInfo = videoPreview?.getBoundingClientRect();
-        const videoInfo = video?.getBoundingClientRect();
+  const setBGPositions = () => {
+    const videoPreviewInfo = videoPreview?.getBoundingClientRect();
+    const videoInfo = video?.getBoundingClientRect();
 
-        const height = videoPreviewInfo?.height
-          ? videoPreviewInfo?.height
-          : videoInfo.height;
-        const width = videoPreviewInfo?.width
-          ? videoPreviewInfo?.width
-          : videoInfo.width;
-        const left = videoPreviewInfo?.left
-          ? videoPreviewInfo?.left
-          : videoInfo.left;
-        backgroundContainer.style.height = height + 'px';
-        backgroundContainer.style.width = width + 'px';
-        backgroundContainer.style.left = left + 'px';
-      }
-    }
+    const height = videoPreviewInfo?.height
+      ? videoPreviewInfo?.height
+      : videoInfo.height;
+    const width = videoPreviewInfo?.width
+      ? videoPreviewInfo?.width
+      : videoInfo.width;
+    const left = videoPreviewInfo?.left
+      ? videoPreviewInfo?.left
+      : videoInfo.left;
+    document.documentElement.style.setProperty('--left-position', `${left}px`);
+    document.documentElement.style.setProperty(
+      '--height-position',
+      `${height}px`,
+    );
+    document.documentElement.style.setProperty(
+      '--width-position',
+      `${width}px`,
+    );
   };
   const makeFullScreen = (
     element: NewHTMLVideoElement & {
@@ -292,8 +504,6 @@ const futures = [
   };
 
   play?.addEventListener('click', () => {
-    console.log('click play');
-    console.log('window.innerWidth', window.innerWidth, video);
     if (window.innerWidth < 600) {
       video.classList.remove('hidden');
       video.play();
@@ -311,47 +521,34 @@ const futures = [
       video.pause();
     }
   });
+  videoPreview?.addEventListener('load', () => {
+    setBGPositions();
+  });
 
   const hideBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
     if (isContentHidden) {
-      const videoPreviewInfo = videoPreview?.getBoundingClientRect();
-      const videoInfo = video?.getBoundingClientRect();
-
-      const height = videoPreviewInfo?.height
-        ? videoPreviewInfo?.height
-        : videoInfo.height;
-      const width = videoPreviewInfo?.width
-        ? videoPreviewInfo?.width
-        : videoInfo.width;
-      const left = videoPreviewInfo?.left
-        ? videoPreviewInfo?.left
-        : videoInfo.left;
-
-      background?.classList.remove('h-screen', 'w-screen');
-      background?.classList.add('rounded-3xl', 'w-full', 'h-full', 'absolute');
-      title?.classList.add('scale-50');
-      backgroundContainer?.classList.remove('opacity-100', 'translate-y-0');
-      backgroundContainer?.classList.add('fixed', 'translate-y-44');
-      if (backgroundContainer) {
-        backgroundContainer.style.height = height + 'px';
-        backgroundContainer.style.width = width + 'px';
-        backgroundContainer.style.left = left + 'px';
-      }
+      setBGPositions();
+      backgroundContainer?.classList.remove('background-container-show');
+      backgroundContainer?.classList.add('background-container-hide');
       contentContainer?.classList.remove('-z-10');
 
       setTimeout(() => {
-        backgroundContainer?.classList.add('opacity-0');
         header?.parentElement?.classList.remove('type-dark');
         header?.parentElement?.classList.add('type-default');
         header?.setAttribute('data-type', 'default');
-      }, 400);
+      }, 300);
 
-      setTimeout(() => {
-        main?.classList.remove('h-screen');
-        backgroundContainer?.classList.remove('z-200');
-        backgroundContainer?.classList.add('-z-1');
-      }, 1000);
+      backgroundContainer?.addEventListener('animationend', () => {
+        const backgroundContainerHide = document.querySelector(
+          '.background-container-hide',
+        );
+        if (backgroundContainerHide) {
+          main?.classList.remove('h-screen');
+          backgroundContainer?.classList.remove('z-200');
+          backgroundContainer?.classList.add('-z-1');
+        }
+      });
     }
   };
   const showBackgroundContainer = () => {
@@ -359,31 +556,25 @@ const futures = [
 
     if (!isContentHidden) {
       video.pause();
-      background?.classList.add('h-screen', 'w-screen');
-      background?.classList.remove('w-full', 'h-full', 'absolute');
-      title?.classList.remove('scale-50');
-      title?.classList.add('scale-100');
-      backgroundContainer?.classList.remove(
-        'translate-y-44',
-        'opacity-0',
-        '-z-1',
-      );
-
-      backgroundContainer?.classList.add(
-        'opacity-100',
-        'translate-y-0',
-        'z-200',
-      );
-      setBGPositions(true);
+      setBGPositions();
       contentContainer?.classList.add('-z-10');
+      backgroundContainer?.classList.remove('-z-1');
+      backgroundContainer?.classList.add('z-200');
+      backgroundContainer?.classList.remove('background-container-hide');
+      backgroundContainer?.classList.add('background-container-show');
+      main?.classList.add('h-screen');
+      header?.setAttribute('data-type', 'dark');
       header?.parentElement?.classList.add('type-dark');
       header?.parentElement?.classList.remove('type-default');
-      header?.setAttribute('data-type', 'dark');
-      main?.classList.add('h-screen');
 
-      setTimeout(() => {
-        background?.classList.remove('rounded-3xl');
-      }, 700);
+      backgroundContainer?.addEventListener('animationend', () => {
+        const backgroundContainerShow = document.querySelector(
+          '.background-container-show',
+        );
+        if (backgroundContainerShow) {
+          backgroundContainer?.classList.remove('background-container-show');
+        }
+      });
     }
   };
 
@@ -421,7 +612,6 @@ const futures = [
   const onDragEnd = (event: TouchEvent) => {
     if (!isHeaderTouch(event)) {
       const swap = startY > endY ? 1 : -1;
-      console.log(startY, endY);
       if (swap === 1) {
         hideBackgroundContainer();
       } else if (!window.scrollY && swap === -1) {
@@ -430,7 +620,6 @@ const futures = [
     }
   };
 
-  setBGPositions();
   document?.addEventListener('touchstart', onDragStart);
   document?.addEventListener('touchmove', onDragMove);
   document?.addEventListener('touchend', onDragEnd);

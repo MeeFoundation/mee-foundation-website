@@ -5,8 +5,8 @@ export interface Props {
 
 const {  } = Astro.props;
 ---
-<div class="body grid animate-fadeIn-long">
-  <div class="tunnel">
+<div class="body animate-fadeIn-long transform-gpu">
+  <div class="tunnel transform-gpu">
     {[...Array(5).keys()].map((item) => {
         return <div class="frame transform-gpu" style={`--i:${item + 1}`}></div>
       })
@@ -34,7 +34,7 @@ const {  } = Astro.props;
         return <div class="line lineR transform-gpu" style={`--i:${item}`}></div>
       })}
     </div>
-  </div>
+  </div> 
 </div>
 <style>
 
