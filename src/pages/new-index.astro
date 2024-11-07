@@ -474,14 +474,10 @@ const futures = [
   interface NewHTMLVideoElement extends HTMLVideoElement {
     webkitRequestFullscreen(): Promise<void>;
     webkitEnterFullScreen(): Promise<void>;
-    mozRequestFullScreen(): Promise<void>;
     msRequestFullscreen(): Promise<void>;
   }
 
-  const video = document.getElementById('video') as NewHTMLVideoElement & {
-    webkitRequestFullscreen(): Promise<void>;
-    webkitEnterFullScreen(): Promise<void>;
-  };
+  const video = document.getElementById('video') as NewHTMLVideoElement;
 
   video.addEventListener(
     'loadedmetadata',
@@ -516,18 +512,9 @@ const futures = [
       `${width}px`,
     );
   };
-  const makeFullScreen = (
-    element: NewHTMLVideoElement & {
-      webkitRequestFullscreen(): Promise<void>;
-      webkitEnterFullScreen(): Promise<void>;
-      mozRequestFullScreen(): Promise<void>;
-      msRequestFullscreen(): Promise<void>;
-    },
-  ) => {
+  const makeFullScreen = (element: NewHTMLVideoElement) => {
     if (!fullscreenDisabled) {
-      if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-      } else if (element.webkitRequestFullscreen) {
+      if (element.webkitRequestFullscreen) {
         element.webkitRequestFullscreen();
       } else if (element.webkitEnterFullScreen) {
         element.webkitEnterFullScreen();
@@ -563,7 +550,11 @@ const futures = [
 
   const hideBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
-    if (isContentHidden && !isHideBackgroundContainer) {
+    if (
+      isContentHidden &&
+      !isHideBackgroundContainer &&
+      !isShowBackgroundContainer
+    ) {
       isHideBackgroundContainer = true;
       setBGPositions();
       backgroundContainer?.classList.remove('background-container-show');
@@ -589,7 +580,11 @@ const futures = [
   const showBackgroundContainer = () => {
     const isContentHidden = contentContainer?.classList.contains('-z-10');
 
-    if (!isContentHidden && !isShowBackgroundContainer) {
+    if (
+      !isContentHidden &&
+      !isShowBackgroundContainer &&
+      !isHideBackgroundContainer
+    ) {
       isShowBackgroundContainer = true;
       video.pause();
       setBGPositions();
@@ -629,30 +624,31 @@ const futures = [
     }
   };
 
-  const isHeaderTouch = (event: TouchEvent) => {
+  const isDisablingScrollTouch = (event: TouchEvent) => {
     const element = event.target as HTMLElement;
     const header = element.closest('#header');
     const mobileHeader = element.closest('#mobile-header');
-    return !!header || !!mobileHeader;
+    const play = element.closest('#play');
+    return !!header || !!mobileHeader || !!play;
   };
 
   let startY = 0;
   let endY = 0;
 
   const onDragStart = (event: TouchEvent) => {
-    if (!isHeaderTouch(event)) {
+    if (!isDisablingScrollTouch(event)) {
       startY = event.touches[0]?.clientY ?? 0;
     }
   };
 
   const onDragMove = (event: TouchEvent) => {
-    if (!isHeaderTouch(event)) {
+    if (!isDisablingScrollTouch(event)) {
       endY = event.touches[0]?.clientY ?? 0;
     }
   };
 
   const onDragEnd = (event: TouchEvent) => {
-    if (!isHeaderTouch(event)) {
+    if (!isDisablingScrollTouch(event)) {
       const swap = startY > endY ? 1 : -1;
       if (swap === 1) {
         hideBackgroundContainer();
