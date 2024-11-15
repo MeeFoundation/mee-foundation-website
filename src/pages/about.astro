@@ -1,21 +1,43 @@
 ---
-import {Header, Footer} from 'mee-components';
+import {Header, Footer, ButtonLink} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
-import TrustIcon from '../components/TrustIcon.astro';
 import Layout from '../layouts/Layout.astro';
-import difIcon from '../../public/images/dif-logo.png';
+import appsAndExtention from '../../public/images/about/apps-and-extention.svg';
+import personalDataAgents from '../../public/images/about/personal-data-agents.svg';
+import legalAgreement from '../../public/images/about/legal-agreement.svg';
+import meeFoundation from '../../public/images/about/mee-foundation.svg';
 import githubLogo from '../../public/images/github-logo.svg';
 import linkedinLogo from '../../public/images/linkedin-logo.svg';
 import PatreonIcon from '@components/PatreonIcon.astro';
+import Carousel from '@components/Carousel.astro';
 
-const textArray = [
-  'We are a nonprofit with a mission to develop a human-centered user experience for the internet.',
+const abouts = [
+  {
+    image: personalDataAgents,
+    title: 'Personal Data Agents',
+    description:
+      'Manage and control your personal information on Mee-compatible websites and applications.',
+  },
+  {
+    image: appsAndExtention,
+    title: 'Apps and Browser Extensions',
+    description:
+      'Mobile apps and browser extensions that work with compatible wallets and personal data agents.',
+  },
+  {
+    image: legalAgreement,
+    title: 'Legal Agreement for Businesses',
+    description:
+      'The Mee human information license defines what businesses can and can’t do with your data.',
+  },
+  {
+    image: meeFoundation,
+    title: 'The Mee Foundation, Inc.',
+    description:
+      'Our mission is to provide the Mee experience – a human-centered user experience for the internet.',
+  },
 ];
 
-const joinUsText = [
-  'We’re looking for coders, app developers, usability experts, translators, and more. If you’d like to join us, email us at <a href="mailto:hello@mee.foundation" class="decoration-yellow-light underline">hello@mee.foundation</a>',
-  'We also invite businesses to join us in committing to fair and responsible data practices that will build trust with people who use their apps and sites.',
-];
 const principles = [
   {
     title: 'Human Centered Design',
@@ -152,471 +174,226 @@ const contributors = [
     icon: githubLogo,
   },
 ];
-
-const supportText = 'Please support us on Patreon.';
-
-// TODO Add link to HIL link and make this link flex instead of hidden
 ---
 
-<Layout title="Mee Foundation - About Us">
-  <Header header={header} activePage="about" location="About" />
-  <main class="w-screen overflow-hidden">
+<Layout title="Mee Foundation - About">
+  <main class="w-screen">
+    <Header header={header} activePage="about" location="About" />
     <section
-      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36"
     >
-      <article class="mb-28 flex flex-col gap-12 md:gap-y-20">
+      <article
+        class="mb-28 flex max-w-7xl flex-col items-center justify-center"
+      >
         <section
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white"
+          class="section top-0 z-100 mt-10 flex h-full w-screen flex-col items-center justify-center gap-10 md:mt-20 md:gap-20"
         >
-          <div class="mb-8 overflow-hidden">
-            <h1
-              class="marker mt-13 animate-riseIn text-6xl font-bold lg:mt-13 lg:text-7xl"
-            >
-              <mark>About</mark> us
-            </h1>
-          </div>
-          <section
-            class="relative flex w-full max-w-273.5 flex-col items-center gap-8 px-10 animation-delay-800 md:gap-12 lg:gap-16"
+          <div
+            class="flex max-w-5xl flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
           >
-            {
-              textArray.map((text, i) => (
-                <div class="overflow-hidden">
-                  <p
-                    class:list={[
-                      'aboutText text-center text-xl font-thin leading-tight md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
-                      {'animation-delay-800': i !== 1},
-                      {
-                        'animation-delay-800 lg:animation-delay-1000': i === 1,
-                      },
-                    ]}
-                    set:html={text}
-                  />
-                </div>
-              ))
-            }
-          </section>
-        </section>
-        <section
-          class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800"
-        >
-          <div class="overflow-hidden">
-            <h2
-              class="marker mt-13 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
+            <h1
+              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
             >
-              Contributors
-            </h2>
+              The Mee Foundation, Inc.
+            </h1>
+            <h3
+              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+            >
+              A nonprofit with a mission to offer the Mee human-centered user
+              experience for the internet.
+            </h3>
           </div>
           <div
-            class="flex w-full flex-col flex-wrap items-center justify-center overflow-hidden"
+            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white"
           >
-            <p
-              class="aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight"
-            >
-              Coders, admins, writers, legal experts, and more
-            </p>
-          </div>
-          <div class="flex w-full max-w-273.5 items-center overflow-hidden">
             <div
-              class="flex animate-riseIn flex-wrap items-center justify-center gap-4 overflow-hidden animation-delay-1000 xl:gap-6"
+              class="flex w-full flex-wrap items-stretch justify-center gap-8 p-8 pb-20 md:pb-36"
             >
               {
-                contributors.map((contributor) => {
-                  if (!contributor.link) {
-                    return (
-                      <div class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 xl:text-lg">
-                        <p>{contributor.name}</p>
+                abouts.map((aboutItem) => (
+                  <div class="w-full max-w-125 rounded-2xl border border-grey-300">
+                    <img src={aboutItem.image.src} class="w-full" />
+                    <div class="flex flex-col gap-2 p-8 pt-0">
+                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                        {aboutItem.title}
                       </div>
-                    );
-                  }
-                  return (
-                    <a
-                      class="leading flex h-10 w-44 flex-shrink-0 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 xl:text-lg"
-                      href={contributor.link}
-                      target="_blank"
-                    >
-                      <p>{contributor.name}</p>
-                      {contributor.icon && (
-                        <img
-                          src={contributor.icon.src}
-                          width="24"
-                          height="24"
-                          class="h-6 w-6 xl:h-7 xl:w-7"
-                          alt="Decentralized Identity Foundation logo"
-                        />
-                      )}
-                    </a>
-                  );
-                })
+                      <div class="text-balance text-sm text-grey-800 lg:text-base">
+                        {aboutItem.description}
+                      </div>
+                    </div>
+                  </div>
+                ))
               }
             </div>
           </div>
         </section>
+        <div id="mee-principles"></div>
         <section
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white"
+          class="md:pt-26 flex w-full flex-col items-center justify-center pb-40 pt-12"
         >
-          <div class="mb-8 max-w-273.5 overflow-hidden">
-            <h2
-              class="marker mt-13 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
-            >
-              Join us
-            </h2>
-          </div>
-          <section
-            class="relative flex w-full max-w-273.5 flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
+          <div
+            class="flex w-full flex-col items-center justify-center gap-4 p-16"
           >
-            <div class="flex flex-col items-center overflow-hidden">
-              <p
-                class:list={[
-                  'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
-                ]}
-                set:html={joinUsText[0]}
-              />
-            </div>
-            <div class="overflow-hidden">
-              <p
-                class:list={[
-                  'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
-                ]}
-                set:html={joinUsText[1]}
-              />
-            </div>
-          </section>
+            <h2
+              class="max-w-7xl text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+            >
+              Mee Principles
+            </h2>
+            <h3
+              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+            >
+              Here’s what we live by
+            </h3>
+          </div>
+          <div class="max-w-5xl md:max-w-7xl">
+            <Carousel items={principles} />
+          </div>
         </section>
         <section
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white"
+          class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800"
         >
-          <div class="mb-8 overflow-hidden">
-            <h2
-              class="marker mt-7 animate-riseIn text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
-            >
-              Support us
-            </h2>
-          </div>
-          <section
-            class="relative flex w-full max-w-273.5 flex-col items-center gap-14 px-10 animation-delay-800 md:gap-20 lg:gap-24"
+          <h2
+            class="marker mt-13 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
           >
-            <div class="flex flex-col items-center">
-              <div class="flex flex-col items-center overflow-hidden">
-                <p
-                  class:list={[
-                    'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
-                  ]}
-                  set:html={supportText}
-                />
-              </div>
-              <div class="mt-8">
-                <a
-                  href="https://www.patreon.com/TheMeeFoundation"
-                  class="flex flex-row items-center gap-2.5 rounded-[10px] bg-black px-8 py-3 text-white"
-                >
-                  <PatreonIcon />
-                  <span class="text-[22px] font-semibold leading-[26px]"
-                    >Support on Patreon</span
-                  >
-                </a>
-              </div>
-            </div>
-            <div class="-bottom-7.5 z-10 lg:bottom-45">
-              <TrustIcon fill="#447F88" />
-            </div>
-          </section>
-        </section>
-      </article>
-      <section
-        class="principles-section principles-section-collapse relative mb-28 flex flex-col items-center gap-16 bg-white"
-      >
-        <button
-          id="show-principles"
-          class="absolute bottom-4 z-10 flex flex-row items-center justify-center rounded-xl border border-solid border-grey-300 px-4 py-2.5 text-base font-semibold tracking-0.02 text-grey-700"
-        >
-          Show all principles
-        </button>
-        <h2
-          class="max-w-273.5 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
-        >
-          Our Principles
-        </h2>
-        <section
-          class="relative flex w-screen max-w-273.5 flex-col items-center gap-16 px-10 animation-delay-800"
-        >
-          <div class="flex flex-col items-center overflow-hidden">
-            <p
-              class:list={[
-                'aboutText leading text-center text-xl font-thin leading-tight animation-delay-800 md:text-3xl lg:text-4xl xl:text-5xl xl:leading-tight',
-              ]}
-            >
-              Here’s what we live by.
-            </p>
-          </div>
-          <div class="flex flex-col gap-6 lg:grid lg:grid-cols-12">
+            Contributors
+          </h2>
+          <h3
+            class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+          >
+            Coders, admins, writers, legal experts, and more
+          </h3>
+          <div
+            class="flex w-full max-w-7xl flex-wrap items-center justify-center gap-4 pb-25 md:pb-40 xl:gap-6"
+          >
             {
-              principles.map((principle) => (
-                <div class:list={['overflow-hidden', principle.class]}>
-                  <div
-                    class:list={[
-                      'principle flex h-full flex-col items-start gap-6 rounded-2xl border border-solid border-brand-200 p-8 animation-delay-800',
-                    ]}
-                  >
-                    <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
-                      {principle.title}
+              contributors.map((contributor) => {
+                if (!contributor.link) {
+                  return (
+                    <div class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60">
+                      <p>{contributor.name}</p>
                     </div>
-                    <div
-                      set:html={principle.text}
-                      class="text-base font-normal not-italic tracking-0.02 text-brand-700"
-                    />
-                  </div>
-                </div>
-              ))
+                  );
+                }
+                return (
+                  <a
+                    class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60"
+                    href={contributor.link}
+                    target="_blank"
+                  >
+                    <p class="whitespace-nowrap text-nowrap">
+                      {contributor.name}
+                    </p>
+                    {contributor.icon && (
+                      <img
+                        src={contributor.icon.src}
+                        width="24"
+                        height="24"
+                        class="h-6 w-6 xl:h-7 xl:w-7"
+                        alt="Decentralized Identity Foundation logo"
+                      />
+                    )}
+                  </a>
+                );
+              })
             }
           </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient"
+          >
+          </div>
         </section>
-      </section>
-      <section
-        class="platform relative flex w-screen-4 flex-col items-center px-5 py-30 text-black md:pb-45 md:pt-40 lg:w-screen-2"
-      >
-        <h2
-          class="mb-15 text-3xl font-bold leading-thick md:mb-25 md:text-4xl md:leading-normal lg:text-5xl"
+        <section
+          class="max-w-7x flex flex-col items-center pb-25 pt-25 md:pb-40 md:pt-40"
         >
-          Our platform
-        </h2>
-        <div
-          class="flex w-screen flex-col items-center justify-center gap-18.5 px-5 lg:flex-row lg:items-start"
+          <h2
+            class="mb-12 text-3xl font-bold leading-thick md:mb-16 md:text-4xl md:leading-normal lg:text-5xl"
+          >
+            Our trusted partners
+          </h2>
+          <div
+            class="max-w-7x flex w-screen flex-wrap items-center justify-center gap-6 px-6 lg:gap-16"
+          >
+            <img
+              src="/images/linux-foundation-logo.svg"
+              width="179"
+              height="60"
+              class="w-23.5 md:w-44.75"
+              alt="Linux foundation logo"
+            />
+            <img
+              src="/images/open-wallet-logo.svg"
+              width="262"
+              height="99"
+              class="w-34.5 md:w-65.5"
+              alt="OpenWallet foundation logo"
+            />
+            <img
+              src="/images/mydata-org-logo.png"
+              width="262"
+              height="99"
+              class="w-34.5 md:w-65.5"
+              alt="MyData.org logo"
+            />
+            <img
+              src="/images/dif-logo.png"
+              width="165"
+              height="56"
+              class="w-25 md:w-41.25"
+              alt="Decentralized Identity Foundation logo"
+            />
+          </div>
+        </section>
+        <section
+          class="section-bg relative -mb-60 mt-16 flex w-screen flex-col items-center gap-14 px-10 pb-60 text-white animation-delay-800 md:gap-20 lg:gap-24"
         >
-          <div
-            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
-          >
-            <span
-              class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
-              ><img src="/images/personal-data-agents.svg" /></span
-            >
-            <h6
-              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
-            >
-              Identity Agents
-            </h6>
-            <p class="text-base font-normal text-black md:text-xl">
-              Manage and control your personal information on Mee-compatible
-              websites and applications.
-            </p>
+          <div class="section-bg-image absolute h-full w-full max-w-7xl"></div>
+          <div class="z-70 flex flex-col items-center gap-16">
+            <div class="flex flex-col items-center gap-4 pt-40">
+              <h2
+                class="text-center text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+              >
+                Support the Mee project
+              </h2>
+              <h3
+                class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl"
+              >
+                Help us improve and launch more user-centric projects and change
+                the internet
+              </h3>
+            </div>
+            <div class="mt-8">
+              <ButtonLink
+                href="https://www.patreon.com/TheMeeFoundation"
+                style="filled"
+                buttonType="tertiary"
+                size="l"
+              >
+                <PatreonIcon fill="black" />
+                <span>Support on Patreon</span></ButtonLink
+              >
+            </div>
           </div>
-          <div
-            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
-          >
-            <span
-              class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
-              ><img src="/images/identity-agent-icon.svg" /></span
-            >
-            <h6
-              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
-            >
-              Browser Extensions
-            </h6>
-            <p class="text-base font-normal text-black md:text-xl">
-              Browser extensions that work with Mee-compatible identity agents.
-            </p>
-          </div>
-          <div
-            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
-          >
-            <span
-              class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
-              ><img src="/images/hil-icon.svg" /></span
-            >
-            <h6
-              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
-            >
-              Legal Agreement for Businesses
-            </h6>
-            <p class="text-base font-normal text-black md:text-xl">
-              The Mee Data Network License defines what businesses can and can’t
-              do with your data.
-            </p>
-            <a
-              class="link relative hidden items-center justify-between gap-2 text-base font-extrabold text-black after:-rotate-45 after:bg-black"
-              href="#"
-              rel="nofollow"
-              target="_blank"
-              >Human Information License (HIL)
-            </a>
-          </div>
-          <div
-            class="platform__item flex max-w-100 flex-col items-center justify-center gap-5 text-center"
-          >
-            <span
-              class="icon mb-3 flex items-center justify-center text-base uppercase text-white lg:mb-10"
-              ><img src="/images/mee-foundation-icon.svg" /></span
-            >
-            <h6
-              class="text-xl font-bold leading-thick text-black md:text-2xl lg:text-3xl"
-            >
-              The Mee Foundation, Inc.
-            </h6>
-            <p class="text-base font-normal text-black md:text-xl">
-              Our mission is to provide the Mee experience – a human-centered
-              user experience for the internet.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section
-        class="flex w-screen-4 -translate-y-25 flex-col items-center rounded-t-1/2 bg-white pb-12 pt-25 md:pt-40 lg:w-screen-2"
-      >
-        <h2
-          class="mb-12 text-3xl font-bold leading-thick md:mb-21 md:text-4xl md:leading-normal lg:text-5xl"
-        >
-          Partners
-        </h2>
-        <div
-          class="flex w-screen flex-col flex-wrap items-center justify-evenly gap-6 lg:flex-row"
-        >
-          <img
-            src="/images/linux-foundation-logo.svg"
-            width="179"
-            height="60"
-            class="w-23.5 md:w-44.75"
-            alt="Linux foundation logo"
-          />
-          <img
-            src="/images/openid-logo.svg"
-            width="249"
-            height="99"
-            class="w-32.5 md:w-62.25"
-            alt="OpenID logo"
-          />
-          <img
-            src="/images/open-wallet-logo.svg"
-            width="262"
-            height="99"
-            class="w-34.5 md:w-65.5"
-            alt="OpenWallet foundation logo"
-          />
-          <img
-            src="/images/mydata-org-logo.png"
-            width="262"
-            height="99"
-            class="w-34.5 md:w-65.5"
-            alt="MyData.org logo"
-          />
-          <img
-            src={difIcon.src}
-            width="165"
-            height="56"
-            class="w-25 md:w-41.25"
-            alt="Decentralized Identity Foundation logo"
-          />
-        </div>
-      </section>
+        </section>
+      </article>
       <Footer footer={footer} mode="dark" />
     </section>
   </main>
 </Layout>
 
 <style>
-  .aboutText {
-    background: linear-gradient(253.14deg, #559faa 0%, #335f66 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  .section-bg {
+    background: linear-gradient(180deg, #0f172a 0%, #334155 81.32%);
   }
-
-  .principles-section-collapse {
-    max-height: 1300px;
-    overflow: hidden;
-  }
-
-  .principles-section-collapse:after {
+  .section-bg-image::after {
     content: '';
+    max-width: 80rem;
+    width: 100%;
+    height: 100%;
+    background: url('/images/about/stars.svg') no-repeat;
     position: absolute;
-    z-index: 1;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 216px;
-    background: linear-gradient(
-      360deg,
-      #ffffff 45.5%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-  }
-  .principle {
-    background: linear-gradient(319.57deg, #ffffff 35.85%, #f3f8f8 72.21%);
-  }
-  .platform {
-    background: linear-gradient(
-      260.15deg,
-      rgba(197, 192, 92, 0.4) 25%,
-      rgba(79, 134, 142, 0.4) 75%
-    );
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-  }
-  .icon {
-    width: 80px;
-    height: 80px;
-  }
-  .platform__item:nth-child(2) {
-    animation-delay: 200ms;
-  }
-  .platform__item:nth-child(3) {
-    animation-delay: 400ms;
-  }
-  .platform__subtitle > mark::after {
-    animation-delay: 2s;
-  }
-  .link:after {
-    content: '';
-    mask: url('/images/arrow-right.svg') no-repeat center;
-    display: block;
-    width: 21px;
-    height: 21px;
+    display: inline-block;
+    left: 0;
+    top: 3.2rem;
+    background-size: 100% 100%;
   }
 </style>
-
-<script>
-  const aboutTexts = document.querySelectorAll('.aboutText');
-  const platform = document.querySelector('.platform');
-  const platformItems = document.querySelectorAll('.platform__item');
-  const platformSubtitle = document.querySelector('.platform__subtitle');
-  const principlesSection = document.querySelector(
-    '.principles-section',
-  ) as HTMLElement;
-  const showPrinciples = document.getElementById('show-principles');
-  showPrinciples?.addEventListener('click', () => {
-    showPrinciples.classList.add('hidden');
-    principlesSection?.classList.remove('principles-section-collapse');
-  });
-  const options: IntersectionObserverInit = {
-    // root: null,
-    threshold: 0,
-  };
-  const observerAboutText = new IntersectionObserver((entries, _) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-riseIn-long');
-      } else {
-        entry.target.classList.remove('animation-delay-800');
-      }
-    });
-  }, options);
-
-  const observerPlatform = new IntersectionObserver(
-    (entries, _) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          platformItems.forEach((item) =>
-            item.classList.add('animate-moveCard'),
-          );
-          platformSubtitle?.classList.add('animate-riseIn', 'marker');
-        }
-      });
-    },
-    {threshold: 0.1},
-  );
-
-  aboutTexts.forEach((text) => {
-    observerAboutText.observe(text);
-  });
-
-  if (platform) observerPlatform.observe(platform);
-</script>

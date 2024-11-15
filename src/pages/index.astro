@@ -7,33 +7,34 @@ import privacyAndSecurity from '../../public/images/index/privacy-and-security.s
 import privateSharing from '../../public/images/index/private-sharing.svg';
 import yourDigitalTwin from '../../public/images/index/your-digital-twin.svg';
 import playButton from '../../public/images/index/play-button.svg';
+import playButtonHover from '../../public/images/index/play-button-hover.svg';
 import Background from '@components/Background.astro';
 
 const futures = [
   {
-    image: remoteControl,
-    title: 'Seamless form-free experience',
-    description: 'You don’t have to fill in forms–passwords, names and more',
-    class: 'col-span-2',
-  },
-  {
     image: yourDigitalTwin,
     title: 'Your data, your terms',
     description: 'Your data is never shared or sold by anyone',
-    class: 'col-span-1',
-  },
-  {
-    image: privateSharing,
-    title: 'Empowered data control',
-    description: 'Your legal right to control your own data is',
-    class: 'col-span-1',
+    class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
     image: privacyAndSecurity,
     title: 'Complete privacy, zero tracking',
     description:
       'Your activities remain private–no more tracking or spying on you',
-    class: 'col-span-2',
+    class: 'col-span-2 md:order-1 lg:order-none',
+  },
+  {
+    image: privateSharing,
+    title: 'Let’s take back the internet, and make it work for us',
+    description: 'Your legal right to control your own data is enforced',
+    class: 'col-span-1 md:order-0 lg:order-none',
+  },
+  {
+    image: remoteControl,
+    title: 'Seamless form-free experience',
+    description: 'You don’t have to fill in forms–passwords, names and more',
+    class: 'col-span-2 md:order-1 lg:order-none',
   },
 ];
 ---
@@ -68,8 +69,7 @@ const futures = [
               <h3
                 class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
               >
-                Bringing the Mee experience to internet advertising, featuring a
-                front-end component and back-end services
+                Giving individuals more control. More privacy. More convenience.
               </h3>
             </div>
             <div class="h-10 md:h-11">
@@ -101,12 +101,18 @@ const futures = [
           <div
             class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
           >
-            <img
-              src={playButton.src}
-              alt="Play"
-              class="cursor-pointer"
-              id="play"
-            />
+            <div class="group cursor-pointer" id="play">
+              <img
+                src={playButton.src}
+                alt="Play"
+                class="block group-hover:hidden"
+              />
+              <img
+                src={playButtonHover.src}
+                alt="Play"
+                class="hidden cursor-pointer group-hover:block"
+              />
+            </div>
           </div>
         </div>
 
@@ -147,7 +153,7 @@ const futures = [
             <h1
               class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
             >
-              Mee experience values and principles
+              The Mee user experience, values and principles
             </h1>
           </div>
 
@@ -155,8 +161,7 @@ const futures = [
             <h3
               class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl"
             >
-              Bringing the Mee experience to internet, featuring a front-end
-              component and back-end services
+              Let’s take back the internet, and make it work for us
             </h3>
           </div>
         </div>
@@ -677,5 +682,16 @@ const futures = [
       ticking = true;
     }
   });
+
   addEventListener('resize', () => setBGPositions());
+
+  document.body.onkeydown = function (e) {
+    if (e.code === 'ArrowDown' || e.code === 'Space') {
+      hideBackgroundContainer();
+    }
+
+    if (e.code === 'ArrowUp' && window.scrollY <= 0) {
+      showBackgroundContainer();
+    }
+  };
 </script>

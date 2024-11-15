@@ -1,0 +1,232 @@
+---
+import {IconButton} from 'mee-components';
+export interface Props {
+  items: Item[];
+}
+
+interface Item {
+  title: string;
+  text: string;
+  class?: string;
+}
+const {items} = Astro.props;
+const length = items.length;
+---
+
+<div class="relative m-0 flex flex-col items-center justify-center gap-6">
+  <div
+    class="slider-container relative w-full overflow-x-hidden overflow-y-visible pb-10 pt-4"
+  >
+    <div
+      class="slider flex items-stretch transition-transform will-change-transform"
+    >
+      {
+        items.map((item, i) => (
+          <div class="slider-item-container flex flex-[0_0_33.33333333333%] px-4">
+            <div
+              class:list={[
+                'slider-item flex translate-y-4 flex-col items-center justify-between gap-6 rounded-2xl border border-solid border-transparent p-8 shadow-5 transition-all duration-500',
+                i === 0 && 'active',
+              ]}
+            >
+              <div class="flex flex-col gap-6">
+                <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
+                  {item.title}
+                </div>
+                <div
+                  set:html={item.text}
+                  class="text-base font-normal not-italic tracking-0.02 text-brand-700"
+                />
+              </div>
+              <div class="h-1 w-full rounded-full bg-brand-100">
+                <div
+                  class="h-1 rounded-full bg-brand-500"
+                  style={`width:${((i + 1) / length) * 100}%`}
+                />
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="absolute -bottom-3 flex w-full items-center justify-center gap-4">
+    <IconButton
+      icon="arrow-left"
+      id="prev"
+      style="filled"
+      buttonType="tertiary"
+      size="s"
+      className="!rounded-full text-xl"
+    />
+    <IconButton
+      icon="arrow-right"
+      id="next"
+      style="filled"
+      buttonType="tertiary"
+      size="s"
+      className="!rounded-full text-xl"
+    />
+  </div>
+</div>
+
+<style>
+  .slider-item {
+    background: linear-gradient(to right, #fff, #fff),
+      linear-gradient(
+        128deg,
+        rgba(226, 232, 240, 1) 0%,
+        rgba(79, 134, 142, 1) 54%,
+        rgba(203, 213, 225, 1) 100%
+      );
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+  }
+
+  .slider-item.active {
+    transform: translateY(0px);
+  }
+
+  .slider-container::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 33%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.9) 10%,
+      rgba(255, 255, 255, 0.8) 30%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+  .slider-container::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 33%;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.9) 10%,
+      rgba(255, 255, 255, 0.8) 30%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+</style>
+<script>
+  let itemWidth: number;
+  let currentIndex = 2;
+  let startX = 0;
+  let endX = 0;
+
+  const slider = document.querySelector('.slider') as HTMLElement;
+  const items = Array.from(
+    slider.querySelectorAll(
+      '.slider-item-container',
+    ) as NodeListOf<HTMLElement>,
+  );
+
+  const prevButton = document.getElementById('prev') as HTMLButtonElement;
+  const nextButton = document.getElementById('next') as HTMLButtonElement;
+
+  const clonesStart = items.slice(-2).map((item) => item.cloneNode(true));
+  const clonesEnd = items.slice(0, 2).map((item) => item.cloneNode(true));
+  const firstItem = items[0];
+  firstItem &&
+    clonesStart.forEach((clone) => slider.insertBefore(clone, firstItem));
+  clonesEnd.forEach((clone) => slider.appendChild(clone));
+  const allItems = Array.from(
+    document.querySelectorAll('.slider-item') as NodeListOf<HTMLElement>,
+  );
+
+  function initializeSlider() {
+    const activeItem = slider.querySelector('.active') as HTMLElement;
+    itemWidth =
+      activeItem && activeItem.parentElement
+        ? activeItem.parentElement.offsetWidth
+        : 0;
+    updateSlider(true);
+  }
+
+  function updateSlider(instant = false) {
+    allItems.forEach((item, index) => {
+      item.classList.remove('active');
+
+      if (
+        index === currentIndex ||
+        (currentIndex === 1 && index === allItems.length - 3) ||
+        (currentIndex === allItems.length - 2 && index === 2)
+      ) {
+        item.classList.add('active');
+      }
+    });
+    const offset = -((currentIndex - 1) * itemWidth);
+    slider.style.transition = instant ? 'none' : 'transform 0.5s ease-in-out';
+    slider.style.transform = `translateX(${offset}px)`;
+  }
+
+  function handleForward() {
+    currentIndex++;
+    updateSlider();
+    if (currentIndex === allItems.length - 2) {
+      setTimeout(() => {
+        currentIndex = 2;
+        updateSlider(true);
+      }, 500);
+    }
+  }
+
+  function handleBackward() {
+    currentIndex--;
+    updateSlider();
+    if (currentIndex === 1) {
+      setTimeout(() => {
+        currentIndex = allItems.length - 3;
+        updateSlider(true);
+      }, 500);
+    }
+  }
+
+  const onDragStart = (event: TouchEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    startX = event.touches[0]?.clientX ?? 0;
+  };
+
+  const onDragMove = (event: TouchEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    endX = event.touches[0]?.clientX ?? 0;
+  };
+
+  const onDragEnd = (event: TouchEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const swap = startX > endX ? 1 : -1;
+    if (swap === 1) {
+      handleForward();
+    } else if (swap === -1) {
+      handleBackward();
+    }
+  };
+
+  slider?.addEventListener('touchstart', onDragStart);
+  slider?.addEventListener('touchmove', onDragMove);
+  slider?.addEventListener('touchend', onDragEnd);
+  prevButton.addEventListener('click', () => {
+    handleBackward();
+  });
+
+  nextButton.addEventListener('click', () => {
+    handleForward();
+  });
+  addEventListener('resize', () => initializeSlider());
+  initializeSlider();
+</script>

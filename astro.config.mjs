@@ -13,9 +13,9 @@ export const header = {
       id: 'projects',
     },
     {
-      name: 'Business',
-      link: '/for-providers',
-      id: 'business',
+      name: 'Businesses',
+      link: '/businesses',
+      id: 'businesses',
     },
     {
       name: 'About us',
@@ -62,9 +62,9 @@ export const footer = {
       id: 'projects',
     },
     {
-      name: 'Business',
-      link: '/for-providers',
-      id: 'business',
+      name: 'Businesses',
+      link: '/businesses',
+      id: 'businesses',
     },
     {
       name: 'About us',
