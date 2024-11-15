@@ -3,8 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import node from '@astrojs/node';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-
-export const discord = 'https://discord.gg/V4vC5zsZ';
+export const discord = "https://discord.gg/PB8qxrQXup";
 export const header = {
   links: [
     {
