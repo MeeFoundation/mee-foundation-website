@@ -686,11 +686,11 @@ const futures = [
   addEventListener('resize', () => setBGPositions());
 
   document.body.onkeydown = function (e) {
-    if (e.code === 'ArrowDown' || e.code === 'Space') {
+    if (e.code === 'ArrowDown' || e.code === 'Space' || e.code === 'PageDown') {
       hideBackgroundContainer();
     }
-
-    if (e.code === 'ArrowUp' && window.scrollY <= 0) {
+    
+    if ((e.code === 'ArrowUp' || e.code === 'PageUp') && window.scrollY <= 0) {
       showBackgroundContainer();
     }
   };
