@@ -2,36 +2,44 @@
 import Layout from '@layouts/Layout.astro';
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
-import remoteControl from '../../public/images/index/remote-control.svg';
-import privacyAndSecurity from '../../public/images/index/privacy-and-security.svg';
-import privateSharing from '../../public/images/index/private-sharing.svg';
-import yourDigitalTwin from '../../public/images/index/your-digital-twin.svg';
+import remoteControl from '../../public/images/index/remote-control.png';
+import remoteControlDark from '../../public/images/index/remote-control-dark.png';
+import privacyAndSecurity from '../../public/images/index/privacy-and-security.png';
+import privacyAndSecurityDark from '../../public/images/index/privacy-and-security-dark.png';
+import privateSharing from '../../public/images/index/private-sharing.png';
+import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
+import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
+import yourDigitalTwinDark from '../../public/images/index/your-digital-twin-dark.png';
 import playButton from '../../public/images/index/play-button.svg';
 import playButtonHover from '../../public/images/index/play-button-hover.svg';
 import Background from '@components/Background.astro';
 
 const futures = [
   {
-    image: yourDigitalTwin,
+    imageLight: yourDigitalTwin,
+    imageDark: yourDigitalTwinDark,
     title: 'Your data, your terms',
     description: 'Your data is never shared or sold by anyone',
     class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
-    image: privacyAndSecurity,
+    imageLight: privacyAndSecurity,
+    imageDark: privacyAndSecurityDark,
     title: 'Complete privacy, zero tracking',
     description:
       'Your activities remain private–no more tracking or spying on you',
     class: 'col-span-2 md:order-1 lg:order-none',
   },
   {
-    image: privateSharing,
+    imageLight: privateSharing,
+    imageDark: privateSharingDark,
     title: 'Let’s take back the internet, and make it work for us',
     description: 'Your legal right to control your own data is enforced',
     class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
-    image: remoteControl,
+    imageLight: remoteControl,
+    imageDark: remoteControlDark,
     title: 'Seamless form-free experience',
     description: 'You don’t have to fill in forms–passwords, names and more',
     class: 'col-span-2 md:order-1 lg:order-none',
@@ -183,8 +191,13 @@ const futures = [
                     ]}
                   >
                     <img
-                      src={future.image.src}
-                      class="w-full"
+                      src={future.imageLight.src}
+                      class="w-full dark:hidden"
+                      alt={`${future.title}`}
+                    />
+                    <img
+                      src={future.imageDark.src}
+                      class="hidden w-full dark:block"
                       alt={`${future.title}`}
                     />
                     <div class="flex flex-col gap-2 p-8 pt-0">
@@ -689,7 +702,7 @@ const futures = [
     if (e.code === 'ArrowDown' || e.code === 'Space' || e.code === 'PageDown') {
       hideBackgroundContainer();
     }
-    
+
     if ((e.code === 'ArrowUp' || e.code === 'PageUp') && window.scrollY <= 0) {
       showBackgroundContainer();
     }
