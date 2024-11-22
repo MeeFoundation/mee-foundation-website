@@ -3071,10 +3071,10 @@ mdast-util-to-string@^4.0.0:
   dependencies:
     "@types/mdast" "^4.0.0"
 
-mee-components@^0.0.27:
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.27.tgz#cd544d1b5b6bafecb9a7ebe4c560a2868de97cb2"
-  integrity sha512-td2BwUiaDt0llFiFaUGWdNMVg7Jn+5TaqAO9ItXZSmQ/eN/3m177tROvBkrDnNy+1dUN7bKFd5i1qlF0aeQqBQ==
+mee-components@^0.0.28:
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.28.tgz#df38b29d5f46da1052f08cb4c62e1305dbab3188"
+  integrity sha512-s1Y7kCkWsCJB867IOQ4TzqckHApYgwYS2Epq/sOrHGAD5VSdzCe/DeZaTonurp2kKhfSrCiUX7tXCib+v8NJ6A==
   dependencies:
     "@astrojs/check" "^0.7.0"
     "@astrojs/node" "^8.3.2"
