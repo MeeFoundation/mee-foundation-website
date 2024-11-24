@@ -2,10 +2,14 @@
 import {Header, Footer, ButtonLink} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import appsAndExtention from '../../public/images/about/apps-and-extention.svg';
-import personalDataAgents from '../../public/images/about/personal-data-agents.svg';
-import legalAgreement from '../../public/images/about/legal-agreement.svg';
-import meeFoundation from '../../public/images/about/mee-foundation.svg';
+import appsAndExtention from '../../public/images/about/apps-and-extention.png';
+import appsAndExtentionDark from '../../public/images/about/apps-and-extention-dark.png';
+import personalDataAgents from '../../public/images/about/personal-data-agents.png';
+import personalDataAgentsDark from '../../public/images/about/personal-data-agents-dark.png';
+import legalAgreement from '../../public/images/about/legal-agreement.png';
+import legalAgreementDark from '../../public/images/about/legal-agreement-dark.png';
+import meeFoundation from '../../public/images/about/mee-foundation.png';
+import meeFoundationDark from '../../public/images/about/mee-foundation-dark.png';
 import githubLogo from '../../public/images/github-logo.svg';
 import linkedinLogo from '../../public/images/linkedin-logo.svg';
 import PatreonIcon from '@components/PatreonIcon.astro';
@@ -14,24 +18,28 @@ import Carousel from '@components/Carousel.astro';
 const abouts = [
   {
     image: personalDataAgents,
+    imageDark: personalDataAgentsDark,
     title: 'Personal Data Agents',
     description:
       'Manage and control your personal information on Mee-compatible websites and applications.',
   },
   {
     image: appsAndExtention,
+    imageDark: appsAndExtentionDark,
     title: 'Apps and Browser Extensions',
     description:
       'Mobile apps and browser extensions that work with compatible wallets and personal data agents.',
   },
   {
     image: legalAgreement,
+    imageDark: legalAgreementDark,
     title: 'Legal Agreement for Businesses',
     description:
       'The Mee human information license defines what businesses can and can’t do with your data.',
   },
   {
     image: meeFoundation,
+    imageDark: meeFoundationDark,
     title: 'The Mee Foundation, Inc.',
     description:
       'Our mission is to provide the Mee experience – a human-centered user experience for the internet.',
@@ -212,7 +220,11 @@ const contributors = [
               {
                 abouts.map((aboutItem) => (
                   <div class="w-full max-w-125 rounded-2xl border border-grey-300">
-                    <img src={aboutItem.image.src} class="w-full" />
+                    <img src={aboutItem.image.src} class="w-full dark:hidden" />
+                    <img
+                      src={aboutItem.imageDark.src}
+                      class="hidden w-full dark:block"
+                    />
                     <div class="flex flex-col gap-2 p-8 pt-0">
                       <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
                         {aboutItem.title}
