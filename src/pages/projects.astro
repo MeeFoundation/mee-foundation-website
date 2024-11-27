@@ -3,16 +3,23 @@
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import meeBrowserProduct from '../../public/images/projects/mee-browser.svg';
-import privateAdvertisingProduct from '../../public/images/projects/private-advertising.svg';
-import smartwalletProduct from '../../public/images/projects/smartwallet.svg';
-import virtualAgentProduct from '../../public/images/projects/virtual-agent.svg';
+import meeBrowserProduct from '../../public/images/projects/mee-browser.png';
+import meeBrowserProductDark from '../../public/images/projects/mee-browser-dark.png';
+import privateAdvertisingProduct from '../../public/images/projects/private-advertising.png';
+import privateAdvertisingProductDark from '../../public/images/projects/private-advertising-dark.png';
+import smartwalletProduct from '../../public/images/projects/smartwallet.png';
+import smartwalletProductDark from '../../public/images/projects/smartwallet-dark.png';
+import virtualAgentProduct from '../../public/images/projects/virtual-agent.png';
+import virtualAgentProductDark from '../../public/images/projects/virtual-agent-dark.png';
 import providerWalletProduct from '../../public/images/projects/provider-wallet.png';
+import providerWalletProductDark from '../../public/images/projects/provider-wallet-dark.png';
 import providerWalletMobiProduct from '../../public/images/projects/provider-wallet-mobi.svg';
+import providerWalletMobiProductDark from '../../public/images/projects/provider-wallet-mobi-dark.png';
 
 const projects = [
   {
     image: smartwalletProduct,
+    imageDark: smartwalletProductDark,
     title: 'Smartwallet',
     subtitle: 'Identity Agent',
     description:
@@ -23,6 +30,7 @@ const projects = [
   },
   {
     image: privateAdvertisingProduct,
+    imageDark: privateAdvertisingProductDark,
     title: 'Private Advertising',
     subtitle: 'Surveillance-free advertising',
     description:
@@ -33,6 +41,7 @@ const projects = [
   },
   {
     image: meeBrowserProduct,
+    imageDark: meeBrowserProductDark,
     title: 'Mee Browser',
     subtitle: 'A browser for the private web',
     description:
@@ -43,6 +52,7 @@ const projects = [
   },
   {
     image: virtualAgentProduct,
+    imageDark: virtualAgentProductDark,
     title: 'Mee Data Network',
     subtitle: 'Mee Data Network',
     description:
@@ -53,7 +63,9 @@ const projects = [
   },
   {
     image: providerWalletMobiProduct,
+    imageDark: providerWalletMobiProductDark,
     imageMobi: providerWalletMobiProduct,
+    imageModiDark: providerWalletMobiProductDark,
     title: 'Agent Service',
     subtitle: 'Mee Data Network',
     description:
@@ -66,6 +78,7 @@ const projects = [
 
 const providerWallet = {
   image: providerWalletProduct,
+  imageDark: providerWalletProductDark,
   title: 'Agent Service',
   subtitle: 'Mee Data Network',
   description:
@@ -80,17 +93,17 @@ const providerWallet = {
   <main class="w-screen">
     <Header header={header} activePage="projects" location="Projects" />
     <section
-      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
       <article
         class="mb-28 flex max-w-273.5 flex-col items-center justify-center gap-4"
       >
         <section
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white"
+          class="flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <div class="mb-8">
             <h1
-              class="marker mt-13 text-center text-4xl font-bold lg:mt-13 lg:text-7xl"
+              class="marker mt-13 text-center text-4xl font-bold lg:mt-13 lg:text-7xl dark:text-grey-50"
             >
               <mark>Human-centered</mark> projects
             </h1>
@@ -98,7 +111,9 @@ const providerWallet = {
           <section
             class="relative flex w-full flex-col items-center px-10 animation-delay-800"
           >
-            <p class="text-center text-xl text-grey-800 animation-delay-800">
+            <p
+              class="text-center text-xl text-grey-800 animation-delay-800 dark:text-grey-300"
+            >
               Projects we're working on to create a human-centered user
               experience for the internet.
             </p>
@@ -106,7 +121,7 @@ const providerWallet = {
         </section>
 
         <section
-          class="flex h-auto flex-col items-center justify-center bg-white"
+          class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <div>
             <div
@@ -115,41 +130,49 @@ const providerWallet = {
               {
                 projects.map((project) =>
                   project.comingSoon ? (
-                    <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden">
-                      <img src={project.image.src} class="w-full" />
+                    <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden dark:border-grey-600">
+                      <img src={project.image.src} class="w-full dark:hidden" />
+                      <img
+                        src={project.imageDark.src}
+                        class="hidden w-full dark:block"
+                      />
                       <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class="text-xs font-semibold uppercase text-grey-500">
+                        <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
                           {project.subtitle}
                         </div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                           {project.title}
-                          <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
+                          <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
                             Coming soon
                           </span>
                         </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base">
+                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300">
                           {project.description}
                         </div>
                       </div>
                     </div>
                   ) : (
                     <a
-                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden"
+                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden dark:border-grey-600"
                       href={project.link}
                     >
-                      <img src={project.image.src} class="w-full" />
+                      <img src={project.image.src} class="w-full dark:hidden" />
+                      <img
+                        src={project.imageDark.src}
+                        class="hidden w-full dark:block"
+                      />
                       <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class="text-xs font-semibold uppercase text-grey-500">
+                        <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
                           {project.subtitle}
                         </div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                           {project.title}
                         </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base">
+                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300">
                           {project.description}
                         </div>
                       </div>
-                      <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700">
+                      <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700 dark:text-brand-300">
                         <span class="underline">{project.linkTitle}</span>
                         <i class="bi bi-arrow-right" />
                       </div>
@@ -165,34 +188,40 @@ const providerWallet = {
               <div class="relative w-full">
                 <img
                   src={providerWallet.image.src}
-                  class="h-full w-full pt-2 lg:pt-0"
+                  class="h-full w-full pt-2 lg:pt-0 dark:hidden"
+                />
+                <img
+                  src={providerWallet.imageDark.src}
+                  class="hidden h-full w-full pt-2 lg:pt-0 dark:block"
                 />
                 <div
                   class="absolute left-4 top-4 flex w-120 flex-col gap-2 p-4"
                 >
                   <div
-                    class="w-full text-xs font-semibold uppercase text-grey-500"
+                    class="w-full text-xs font-semibold uppercase text-grey-500 dark:text-grey-200"
                   >
                     {providerWallet.subtitle}
                   </div>
                   <div
-                    class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl"
+                    class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50"
                   >
                     {providerWallet.title}
                     {
                       providerWallet.comingSoon && (
-                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base">
+                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
                           Coming soon
                         </span>
                       )
                     }
                   </div>
                   <div
-                    class="w-full text-balance text-sm text-grey-800 lg:text-base"
+                    class="w-full text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300"
                   >
                     {providerWallet.description}
                   </div>
-                  <div class="flex items-center gap-2.5 text-brand-700 lg:pt-4">
+                  <div
+                    class="flex items-center gap-2.5 text-brand-700 lg:pt-4 dark:text-brand-300"
+                  >
                     <span class="underline">{providerWallet.linkTitle}</span>
                     <i class="bi bi-arrow-right"></i>
                   </div>

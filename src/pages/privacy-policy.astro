@@ -6,15 +6,19 @@ import {header, footer} from '../../astro.config.mjs';
 
 <Layout title="Mee Foundation - Privacy Policy">
   <main class="w-screen overflow-hidden">
-    <Header header={header} activePage="privacy-policy" location='Privacy Policy'/>
+    <Header
+      header={header}
+      activePage="privacy-policy"
+      location="Privacy Policy"
+    />
     <section
-      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25"
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 dark:bg-black/90"
     >
       <div class="bg-primary-content">
         <div class="mx-auto min-w-80 max-w-7xl">
-          <div class="text-alt-color-8" data-theme="meeTheme">
+          <div class="text-alt-color-8 dark:bg-black" data-theme="meeTheme">
             <div
-              class="mx-auto max-w-7xl px-5 pb-20 pt-10 text-base text-gray-800"
+              class="mx-auto max-w-7xl px-5 pb-20 pt-10 text-base text-gray-800 dark:text-grey-300"
             >
               <h1 class="text-4xl font-medium text-primary">Privacy Policy</h1>
               <p class="pt-10">
