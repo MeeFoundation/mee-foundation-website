@@ -7,7 +7,7 @@ import Layout from '@layouts/Layout.astro';
 <script>
   type Theme = 'dark' | 'light';
   interface StorageMessage {
-    method: "getTheme" | "setTheme";
+    method: 'getTheme' | 'setTheme';
     theme?: Theme;
   }
   const storageKey = 'theme';
@@ -23,11 +23,17 @@ import Layout from '@layouts/Layout.astro';
       const origin = event.origin;
 
       if (message.method === 'getTheme') {
-        window.parent.postMessage({theme: theme}, origin);
+        window.parent.postMessage(
+          {theme: theme, method: message.method},
+          origin,
+        );
       }
       if (message.method === 'setTheme' && message.theme) {
         localStorage.setItem(storageKey, message.theme);
-        window.parent.postMessage({theme: message.theme}, origin);
+        window.parent.postMessage(
+          {theme: message.theme, method: message.method},
+          origin,
+        );
       }
     },
     false,
