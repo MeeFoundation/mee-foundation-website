@@ -3,6 +3,7 @@ const plugin = require('tailwindcss/plugin');
 import theme from 'mee-components/tailwind';
 
 module.exports = {
+  darkMode: 'selector',
   content: [
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
     './node_modules/mee-components/src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',

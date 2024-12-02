@@ -3,46 +3,58 @@ import {Header, Footer, ButtonLink} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
 
-import brandReputation from '../../public/images/providers/brand-reputation.svg';
-import compliance from '../../public/images/providers/compliance.svg';
-import consentManagement from '../../public/images/providers/consent-management.svg';
-import personalization from '../../public/images/providers/personalization.svg';
+import brandReputation from '../../public/images/providers/brand-reputation.png';
+import brandReputationDark from '../../public/images/providers/brand-reputation-dark.png';
+import compliance from '../../public/images/providers/compliance.png';
+import complianceDark from '../../public/images/providers/compliance-dark.png';
+import consentManagement from '../../public/images/providers/consent-management.png';
+import consentManagementDark from '../../public/images/providers/consent-management-dark.png';
+import personalization from '../../public/images/providers/personalization.png';
+import personalizationDark from '../../public/images/providers/personalization-dark.png';
 import rightsOfData from '../../public/images/providers/rights-of-data.svg';
-import superiorUx from '../../public/images/providers/superior-ux.svg';
+import rightsOfDataDark from '../../public/images/providers/rights-of-data-dark.png';
+import superiorUx from '../../public/images/providers/superior-ux.png';
+import superiorUxDark from '../../public/images/providers/superior-ux-dark.png';
 
 const offers = [
   {
     image: superiorUx,
+    imageDark: superiorUxDark,
     title: 'Superior UX',
     description:
       'No passwords, less form filling, less hassle. Getting data from Mee-friendly sources.',
   },
   {
     image: personalization,
+    imageDark: personalizationDark,
     title: 'Personalization',
     description:
       'Gain access to high-quality, up-to-date opt-in customer profile data.',
   },
   {
     image: brandReputation,
+    imageDark: brandReputationDark,
     title: 'Brand reputation',
     description:
       'Enhance your reputation for fair and responsible data practices.',
   },
   {
     image: compliance,
+    imageDark: complianceDark,
     title: 'Compliance',
     description:
       'Guaranteed compliance with privacy regulations (e.g. GDPR, CCPA).',
   },
   {
     image: rightsOfData,
+    imageDark: rightsOfDataDark,
     title: 'Rights of data',
     description:
       'Respects data subject rights (to access, rectification, erasure, and data portability).',
   },
   {
     image: consentManagement,
+    imageDark: consentManagementDark,
     title: 'Consent management',
     description: 'All data sharing events are logged to support audit.',
   },
@@ -53,7 +65,7 @@ const offers = [
   <main class="w-screen overflow-hidden">
     <Header header={header} activePage="businesses" location="Businesses" />
     <section
-      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36"
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
       <article
         class="mb-28 flex max-w-7xl flex-col items-center justify-center gap-25 md:gap-40"
@@ -66,12 +78,12 @@ const offers = [
               class="flex max-w-5xl flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
             >
               <h1
-                class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
+                class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl dark:text-grey-50"
               >
                 Offer the Mee experience
               </h1>
               <h3
-                class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+                class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-grey-300"
               >
                 Enhance your website or app with a superior user-centric
                 experience
@@ -80,19 +92,23 @@ const offers = [
           </section>
 
           <section
-            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white px-4"
+            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white px-4 dark:bg-black/90"
           >
             <div class="flex">
               <div class="flex flex-wrap items-stretch justify-center gap-8">
                 {
                   offers.map((offer) => (
-                    <div class="max-w-96 rounded-2xl border border-grey-300">
-                      <img src={offer.image.src} class="w-full" />
+                    <div class="max-w-96 rounded-2xl border border-grey-300 dark:border-grey-600">
+                      <img src={offer.image.src} class="w-full dark:hidden" />
+                      <img
+                        src={offer.imageDark.src}
+                        class="hidden w-full dark:block"
+                      />
                       <div class="flex flex-col gap-2 p-8 pt-0">
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                           {offer.title}
                         </div>
-                        <div class="text-balance text-sm tracking-0.02 text-grey-800 lg:text-base">
+                        <div class="text-balance text-sm tracking-0.02 text-grey-800 lg:text-base dark:text-gray-300">
                           {offer.description}
                         </div>
                       </div>
@@ -103,10 +119,10 @@ const offers = [
             </div>
           </section>
           <section
-            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white"
+            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white dark:bg-black/90"
           >
             <h3
-              class="text max-w-4xl text-pretty px-6 text-center text-xl md:text-2xl"
+              class="text max-w-4xl text-pretty px-6 text-center text-xl md:text-2xl dark:text-grey-300"
             >
               To incorporate the Mee experience into your websites and apps,
               integrate our Agent Software Development Kit (SDK) or Agent
@@ -122,12 +138,12 @@ const offers = [
           <div class="z-70 flex flex-col items-center gap-16">
             <div class="flex flex-col items-center gap-4 pt-40">
               <h2
-                class="text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+                class="text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-800"
               >
                 Mind your business
               </h2>
               <h3
-                class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl"
+                class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl dark:text-grey-800"
               >
                 We invite businesses to join us in committing to fair and
                 responsible data practices that will build trust with people who
@@ -150,7 +166,7 @@ const offers = [
   </main>
 </Layout>
 
-<style>
+<style is:global>
   .section-bg {
     background: linear-gradient(180deg, #314248 0%, #3b5b64 81.32%);
   }
@@ -164,6 +180,15 @@ const offers = [
     display: inline-block;
     left: 0;
     top: 0;
+    background-size: 100% 100%;
+  }
+
+  .dark .section-bg {
+    background: linear-gradient(180deg, #f8fafc 0%, #cbd5e1 81.32%);
+  }
+
+  .dark .section-bg-image::after {
+    background: url('/images/providers/stars-dark.svg') no-repeat;
     background-size: 100% 100%;
   }
 </style>

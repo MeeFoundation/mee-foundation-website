@@ -2,36 +2,44 @@
 import Layout from '@layouts/Layout.astro';
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
-import remoteControl from '../../public/images/index/remote-control.svg';
-import privacyAndSecurity from '../../public/images/index/privacy-and-security.svg';
-import privateSharing from '../../public/images/index/private-sharing.svg';
-import yourDigitalTwin from '../../public/images/index/your-digital-twin.svg';
+import remoteControl from '../../public/images/index/remote-control.png';
+import remoteControlDark from '../../public/images/index/remote-control-dark.png';
+import privacyAndSecurity from '../../public/images/index/privacy-and-security.png';
+import privacyAndSecurityDark from '../../public/images/index/privacy-and-security-dark.png';
+import privateSharing from '../../public/images/index/private-sharing.png';
+import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
+import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
+import yourDigitalTwinDark from '../../public/images/index/your-digital-twin-dark.png';
 import playButton from '../../public/images/index/play-button.svg';
 import playButtonHover from '../../public/images/index/play-button-hover.svg';
 import Background from '@components/Background.astro';
 
 const futures = [
   {
-    image: yourDigitalTwin,
+    imageLight: yourDigitalTwin,
+    imageDark: yourDigitalTwinDark,
     title: 'Your data, your terms',
     description: 'Your data is never shared or sold by anyone',
     class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
-    image: privacyAndSecurity,
+    imageLight: privacyAndSecurity,
+    imageDark: privacyAndSecurityDark,
     title: 'Complete privacy, zero tracking',
     description:
       'Your activities remain private–no more tracking or spying on you',
     class: 'col-span-2 md:order-1 lg:order-none',
   },
   {
-    image: privateSharing,
+    imageLight: privateSharing,
+    imageDark: privateSharingDark,
     title: 'Let’s take back the internet, and make it work for us',
     description: 'Your legal right to control your own data is enforced',
     class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
-    image: remoteControl,
+    imageLight: remoteControl,
+    imageDark: remoteControlDark,
     title: 'Seamless form-free experience',
     description: 'You don’t have to fill in forms–passwords, names and more',
     class: 'col-span-2 md:order-1 lg:order-none',
@@ -151,7 +159,7 @@ const futures = [
         >
           <div class="flex flex-col items-center gap-1 overflow-hidden">
             <h1
-              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
+              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl dark:text-grey-50"
             >
               The Mee user experience, values and principles
             </h1>
@@ -159,7 +167,7 @@ const futures = [
 
           <div class="overflow-hidden">
             <h3
-              class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl"
+              class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl dark:text-grey-200"
             >
               Let’s take back the internet, and make it work for us
             </h3>
@@ -178,20 +186,25 @@ const futures = [
                 futures.map((future) => (
                   <div
                     class:list={[
-                      'h-full rounded-2xl border border-grey-300',
+                      'h-full rounded-2xl border border-grey-300 dark:border-grey-600',
                       future.class,
                     ]}
                   >
                     <img
-                      src={future.image.src}
-                      class="w-full"
+                      src={future.imageLight.src}
+                      class="w-full dark:hidden"
+                      alt={`${future.title}`}
+                    />
+                    <img
+                      src={future.imageDark.src}
+                      class="hidden w-full dark:block"
                       alt={`${future.title}`}
                     />
                     <div class="flex flex-col gap-2 p-8 pt-0">
-                      <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                      <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                         {future.title}
                       </div>
-                      <div class="text-sm text-grey-800 lg:text-base">
+                      <div class="text-sm text-grey-800 lg:text-base dark:text-grey-200">
                         {future.description}
                       </div>
                     </div>
@@ -210,7 +223,7 @@ const futures = [
         >
           <div class="overflow-hidden">
             <a
-              class="block w-full px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl"
+              class="block w-full px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl dark:text-brand-300"
               href="/projects"
             >
               Check our human-centered projects <i class="bi bi-arrow-right"
@@ -689,7 +702,7 @@ const futures = [
     if (e.code === 'ArrowDown' || e.code === 'Space' || e.code === 'PageDown') {
       hideBackgroundContainer();
     }
-    
+
     if ((e.code === 'ArrowUp' || e.code === 'PageUp') && window.scrollY <= 0) {
       showBackgroundContainer();
     }

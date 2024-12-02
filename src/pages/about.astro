@@ -2,11 +2,16 @@
 import {Header, Footer, ButtonLink} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import appsAndExtention from '../../public/images/about/apps-and-extention.svg';
-import personalDataAgents from '../../public/images/about/personal-data-agents.svg';
-import legalAgreement from '../../public/images/about/legal-agreement.svg';
-import meeFoundation from '../../public/images/about/mee-foundation.svg';
+import appsAndExtention from '../../public/images/about/apps-and-extention.png';
+import appsAndExtentionDark from '../../public/images/about/apps-and-extention-dark.png';
+import personalDataAgents from '../../public/images/about/personal-data-agents.png';
+import personalDataAgentsDark from '../../public/images/about/personal-data-agents-dark.png';
+import legalAgreement from '../../public/images/about/legal-agreement.png';
+import legalAgreementDark from '../../public/images/about/legal-agreement-dark.png';
+import meeFoundation from '../../public/images/about/mee-foundation.png';
+import meeFoundationDark from '../../public/images/about/mee-foundation-dark.png';
 import githubLogo from '../../public/images/github-logo.svg';
+import githubLogoLight from '../../public/images/github-logo-light.svg';
 import linkedinLogo from '../../public/images/linkedin-logo.svg';
 import PatreonIcon from '@components/PatreonIcon.astro';
 import Carousel from '@components/Carousel.astro';
@@ -14,24 +19,28 @@ import Carousel from '@components/Carousel.astro';
 const abouts = [
   {
     image: personalDataAgents,
+    imageDark: personalDataAgentsDark,
     title: 'Personal Data Agents',
     description:
       'Manage and control your personal information on Mee-compatible websites and applications.',
   },
   {
     image: appsAndExtention,
+    imageDark: appsAndExtentionDark,
     title: 'Apps and Browser Extensions',
     description:
       'Mobile apps and browser extensions that work with compatible wallets and personal data agents.',
   },
   {
     image: legalAgreement,
+    imageDark: legalAgreementDark,
     title: 'Legal Agreement for Businesses',
     description:
       'The Mee human information license defines what businesses can and can’t do with your data.',
   },
   {
     image: meeFoundation,
+    imageDark: meeFoundationDark,
     title: 'The Mee Foundation, Inc.',
     description:
       'Our mission is to provide the Mee experience – a human-centered user experience for the internet.',
@@ -106,22 +115,26 @@ const contributors = [
     name: 'Alex Slobodeniuk',
     link: 'https://github.com/AlexSlo-Dev',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {
     name: 'Alex Yuhimenko',
     link: 'https://github.com/alex-swift',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {name: 'Alex Cavalli', link: null, icon: null},
   {
     name: 'Anthony Ivanov',
     link: 'https://github.com/Silenthunt0',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {
     name: 'Anton Matveev',
     link: 'https://github.com/Asfarus1',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {
     name: 'Bogdan Hutuleac',
@@ -137,18 +150,26 @@ const contributors = [
     name: 'Kirill Khalitov',
     link: 'https://github.com/Voronar',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {name: 'Maria Vasyutenko', link: null, icon: null},
   {
     name: 'Paul Trevithick',
     link: 'https://www.linkedin.com/in/paultrevithick',
     icon: linkedinLogo,
+    iconDark: githubLogoLight,
   },
-  {name: 'Pavel Gusev', link: 'https://github.com/GusevP', icon: githubLogo},
+  {
+    name: 'Pavel Gusev',
+    link: 'https://github.com/GusevP',
+    icon: githubLogo,
+    iconDark: githubLogoLight,
+  },
   {
     name: 'Raman Siliuk',
     link: 'https://github.com/siluk007',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {name: 'Rick Lerner', link: null, icon: null},
   {
@@ -160,6 +181,7 @@ const contributors = [
     name: 'Sergey Kucherenko',
     link: 'https://github.com/skchrnko',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
   {name: 'Susan Trevithick', link: null, icon: null},
   {name: 'Valeska O’Leary', link: null, icon: null},
@@ -172,6 +194,7 @@ const contributors = [
     name: 'Xenia Shatalova',
     link: 'https://github.com/ksurmel',
     icon: githubLogo,
+    iconDark: githubLogoLight,
   },
 ];
 ---
@@ -180,7 +203,7 @@ const contributors = [
   <main class="w-screen">
     <Header header={header} activePage="about" location="About" />
     <section
-      class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36"
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
       <article
         class="mb-28 flex max-w-7xl flex-col items-center justify-center"
@@ -192,32 +215,36 @@ const contributors = [
             class="flex max-w-5xl flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
           >
             <h1
-              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl"
+              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl dark:text-gray-50"
             >
               The Mee Foundation, Inc.
             </h1>
             <h3
-              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-gray-200"
             >
               A nonprofit with a mission to offer the Mee human-centered user
               experience for the internet.
             </h3>
           </div>
           <div
-            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white"
+            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white dark:bg-black/90"
           >
             <div
               class="flex w-full flex-wrap items-stretch justify-center gap-8 p-8 pb-20 md:pb-36"
             >
               {
                 abouts.map((aboutItem) => (
-                  <div class="w-full max-w-125 rounded-2xl border border-grey-300">
-                    <img src={aboutItem.image.src} class="w-full" />
+                  <div class="w-full max-w-125 rounded-2xl border border-grey-300 dark:border-grey-600">
+                    <img src={aboutItem.image.src} class="w-full dark:hidden" />
+                    <img
+                      src={aboutItem.imageDark.src}
+                      class="hidden w-full dark:block"
+                    />
                     <div class="flex flex-col gap-2 p-8 pt-0">
-                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-gray-50">
                         {aboutItem.title}
                       </div>
-                      <div class="text-balance text-sm text-grey-800 lg:text-base">
+                      <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-gray-200">
                         {aboutItem.description}
                       </div>
                     </div>
@@ -235,12 +262,12 @@ const contributors = [
             class="flex w-full flex-col items-center justify-center gap-4 p-16"
           >
             <h2
-              class="max-w-7xl text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+              class="max-w-7xl text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-gray-50"
             >
               Mee Principles
             </h2>
             <h3
-              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+              class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-gray-200"
             >
               Here’s what we live by
             </h3>
@@ -250,15 +277,15 @@ const contributors = [
           </div>
         </section>
         <section
-          class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800"
+          class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800 dark:bg-darky"
         >
           <h2
-            class="marker mt-13 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl"
+            class="marker mt-13 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl dark:text-gray-50"
           >
             Contributors
           </h2>
           <h3
-            class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl"
+            class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-grey-300"
           >
             Coders, admins, writers, legal experts, and more
           </h3>
@@ -269,14 +296,14 @@ const contributors = [
               contributors.map((contributor) => {
                 if (!contributor.link) {
                   return (
-                    <div class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60">
+                    <div class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 dark:border-grey-600 dark:text-grey-300">
                       <p>{contributor.name}</p>
                     </div>
                   );
                 }
                 return (
                   <a
-                    class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60"
+                    class="leading flex h-10 w-full max-w-60 items-center justify-between rounded-lg border border-grey-300 px-4 text-center text-base font-semibold leading-tight text-grey-800 sm:w-56 xl:h-12 xl:w-60 dark:border-grey-600 dark:text-grey-300"
                     href={contributor.link}
                     target="_blank"
                   >
@@ -288,7 +315,16 @@ const contributors = [
                         src={contributor.icon.src}
                         width="24"
                         height="24"
-                        class="h-6 w-6 xl:h-7 xl:w-7"
+                        class="h-6 w-6 xl:h-7 xl:w-7 dark:hidden"
+                        alt="Decentralized Identity Foundation logo"
+                      />
+                    )}
+                    {contributor.icon && (
+                      <img
+                        src={contributor.iconDark?.src ?? contributor.icon.src}
+                        width="24"
+                        height="24"
+                        class="hidden h-6 w-6 xl:h-7 xl:w-7 dark:block"
                         alt="Decentralized Identity Foundation logo"
                       />
                     )}
@@ -298,7 +334,7 @@ const contributors = [
             }
           </div>
           <div
-            class="absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient"
+            class="dark:bg-dark-line-gradient absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient"
           >
           </div>
         </section>
@@ -306,7 +342,7 @@ const contributors = [
           class="max-w-7x flex flex-col items-center pb-25 pt-25 md:pb-40 md:pt-40"
         >
           <h2
-            class="mb-12 text-3xl font-bold leading-thick md:mb-16 md:text-4xl md:leading-normal lg:text-5xl"
+            class="mb-12 text-3xl font-bold leading-thick md:mb-16 md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-50"
           >
             Our trusted partners
           </h2>
@@ -350,12 +386,12 @@ const contributors = [
           <div class="z-70 flex flex-col items-center gap-16">
             <div class="flex flex-col items-center gap-4 pt-40">
               <h2
-                class="text-center text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl"
+                class="text-center text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-800"
               >
                 Support the Mee project
               </h2>
               <h3
-                class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl"
+                class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl dark:text-grey-800"
               >
                 Help us improve and launch more user-centric projects and change
                 the internet
@@ -368,7 +404,7 @@ const contributors = [
                 buttonType="tertiary"
                 size="l"
               >
-                <PatreonIcon fill="black" />
+                <PatreonIcon class="dark:fill-gray-300" fill="black" />
                 <span>Support on Patreon</span></ButtonLink
               >
             </div>
@@ -380,7 +416,7 @@ const contributors = [
   </main>
 </Layout>
 
-<style>
+<style is:global>
   .section-bg {
     background: linear-gradient(180deg, #0f172a 0%, #334155 81.32%);
   }
@@ -394,6 +430,15 @@ const contributors = [
     display: inline-block;
     left: 0;
     top: 3.2rem;
+    background-size: 100% 100%;
+  }
+
+  .dark .section-bg {
+    background: linear-gradient(180deg, #f8fafc 0%, #cbd5e1 81.32%);
+  }
+
+  .dark .section-bg-image::after {
+    background: url('/images/about/stars-dark.svg') no-repeat;
     background-size: 100% 100%;
   }
 </style>

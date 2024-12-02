@@ -25,20 +25,20 @@ const length = items.length;
           <div class="slider-item-container flex flex-[0_0_33.33333333333%] px-4">
             <div
               class:list={[
-                'slider-item flex translate-y-4 flex-col items-center justify-between gap-6 rounded-2xl border border-solid border-transparent p-8 shadow-5 transition-all duration-500',
+                'slider-item flex translate-y-4 flex-col items-center justify-between gap-6 rounded-2xl border border-solid border-transparent p-8 shadow-5 transition-all duration-500 dark:border-grey-600',
                 i === 0 && 'active',
               ]}
             >
               <div class="flex flex-col gap-6">
-                <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900">
+                <div class="text-2xl font-semibold not-italic leading-8 tracking-0.02 text-brand-900 dark:text-gray-50">
                   {item.title}
                 </div>
                 <div
                   set:html={item.text}
-                  class="text-base font-normal not-italic tracking-0.02 text-brand-700"
+                  class="text-base font-normal not-italic tracking-0.02 text-brand-700 dark:text-gray-300"
                 />
               </div>
-              <div class="h-1 w-full rounded-full bg-brand-100">
+              <div class="h-1 w-full rounded-full bg-brand-100 dark:bg-brand-900">
                 <div
                   class="h-1 rounded-full bg-brand-500"
                   style={`width:${((i + 1) / length) * 100}%`}
@@ -70,7 +70,7 @@ const length = items.length;
   </div>
 </div>
 
-<style>
+<style is:global>
   .slider-item {
     background: linear-gradient(to right, #fff, #fff),
       linear-gradient(
@@ -81,6 +81,10 @@ const length = items.length;
       );
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
+  }
+
+  .dark .slider-item {
+    background: rgb(17 24 39 / var(--tw-bg-opacity));
   }
 
   .slider-item.active {
@@ -103,6 +107,7 @@ const length = items.length;
       rgba(255, 255, 255, 0.2) 100%
     );
   }
+
   .slider-container::after {
     content: '';
     position: absolute;
@@ -117,6 +122,27 @@ const length = items.length;
       rgba(255, 255, 255, 0.9) 10%,
       rgba(255, 255, 255, 0.8) 30%,
       rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+
+  .dark .slider-container::before {
+    background: linear-gradient(
+      90deg,
+      rgb(0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 10%,
+      rgba(0, 0, 0, 0.8) 30%,
+      rgba(0, 0, 0, 0.2) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .dark .slider-container::after {
+    background: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.9) 10%,
+      rgba(0, 0, 0, 0.8) 30%,
+      rgba(0, 0, 0, 0.2) 85%,
+      rgba(0, 0, 0, 0) 100%
     );
   }
 </style>
