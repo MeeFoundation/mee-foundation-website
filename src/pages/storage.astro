@@ -1,0 +1,35 @@
+---
+import Layout from '@layouts/Layout.astro';
+---
+
+<!doctype html>
+<Layout title="Storage" />
+<script>
+  type Theme = 'dark' | 'light';
+  interface StorageMessage {
+    method: "getTheme" | "setTheme";
+    theme?: Theme;
+  }
+  const storageKey = 'theme';
+  const systemValue = window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+  let theme: Theme = (localStorage.getItem(storageKey) as Theme) || systemValue;
+
+  window.addEventListener(
+    'message',
+    async (event) => {
+      const message: StorageMessage = event.data;
+      const origin = event.origin;
+
+      if (message.method === 'getTheme') {
+        window.parent.postMessage({theme: theme}, origin);
+      }
+      if (message.method === 'setTheme' && message.theme) {
+        localStorage.setItem(storageKey, message.theme);
+        window.parent.postMessage({theme: message.theme}, origin);
+      }
+    },
+    false,
+  );
+</script>
