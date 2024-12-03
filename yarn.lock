@@ -3083,10 +3083,10 @@ mdast-util-to-string@^4.0.0:
   dependencies:
     "@types/mdast" "^4.0.0"
 
-mee-components@^0.0.34:
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.34.tgz#2f60783b2112ff942952214fac29031524b8cac3"
-  integrity sha512-5uwaWW1wlYfGxD4rYycNobcai4esINdVz/6sd1w0gBk5e+Hn7KfguLgaFSxNn0pNLonkDITN1ihqYI3NuxYeoQ==
+mee-components@^0.0.35:
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.35.tgz#ccec6f0307c2a15b57d8133591013782d3b4b58c"
+  integrity sha512-KPpkW67borfVlXLv0ipOdFqhDMmYKeSw+OQQ8f1DKp679yyQkFU/cjJYCGVbrEsgjszGhKOkCFspgyRKcu8pNQ==
   dependencies:
     "@astrojs/check" "^0.7.0"
     "@astrojs/node" "^8.3.2"
@@ -4899,9 +4899,9 @@ volar-service-yaml@0.0.62:
     yaml-language-server "~1.15.0"
 
 vscode-css-languageservice@^6.3.0:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/vscode-css-languageservice/-/vscode-css-languageservice-6.3.1.tgz#56733c90686db56855ccc156a534a68b8c1f2187"
-  integrity sha512-1BzTBuJfwMc3A0uX4JBdJgoxp74cjj4q2mDJdp49yD/GuAq4X0k5WtK6fNcMYr+FfJ9nqgR6lpfCSZDkARJ5qQ==
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/vscode-css-languageservice/-/vscode-css-languageservice-6.3.2.tgz#dd54161776f1663fa514a1b5df0d3990bda604bb"
+  integrity sha512-GEpPxrUTAeXWdZWHev1OJU9lz2Q2/PPBxQ2TIRmLGvQiH3WZbqaNoute0n0ewxlgtjzTW3AKZT+NHySk5Rf4Eg==
   dependencies:
     "@vscode/l10n" "^0.0.18"
     vscode-languageserver-textdocument "^1.0.12"
