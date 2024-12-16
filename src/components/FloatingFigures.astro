@@ -1,95 +1,284 @@
 ---
-export interface Props {
-}
+export interface Props {}
 
-const {  } = Astro.props;
+const {} = Astro.props;
 ---
 
-<div class="flex w-full h-full figuresContainer transform-gpu">
-  <img src="/images/green-gradient-rtl-figure.svg" width="158" height="59" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 top-[31%] left-0 md:w-auto md:h-auto md:top-[40%]"/>    
-  <img src="/images/purple-gradient-rtl-figure.svg" width="198" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-25 -left-[2.5%] bottom-[18.5%] md:w-auto md:h-auto md:bottom-[12%] md:left-[3%]"/> 
-  <img src="/images/purple-gradient-rtl-2-figure.svg" width="356" height="98" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-44.5 -left-[1.5%] bottom-[28%] md:w-auto md:h-auto md:bottom-[31%] md:left-[5.5%]"/> 
-  <img src="/images/purple-gradient-ltr-figure.svg" width="277" height="134" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-34.5 top-[10.5%] left-[10.5%] md:w-auto md:h-auto md:top-[15%] md:left-[25%]"/> 
-  <img src="/images/green-gradient-rtl-2-figure.svg" width="158" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 left-[14.5%] bottom-[8%] md:w-auto md:h-auto md:bottom-[9.5%] md:left-[37%]"/> 
-  <img src="/images/purple-gradient-rtl-3-figure.svg" width="178" height="118" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-22.5 -bottom-[2%] right-[14%] md:w-auto md:h-auto md:bottom-0 md:right-[31%]"/> 
-  <img src="/images/purple-gradient-rtl-4-figure.svg" width="79" height="79" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-10 top-[24.5%] right-[44.5%] md:w-auto md:h-auto md:top-[27.7%] md:right-[23%]"/> 
-  <img src="/images/purple-gradient-ltr-2-figure.svg" width="257" height="40" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-32 bottom-[23%] right-[3%] md:w-auto md:h-auto md:bottom-[31%] md:right-[5.5%]"/> 
-  <img src="/images/green-gradient-ltr-figure.svg" width="158" height="59" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-20 top-[13%] right-[4%] md:w-auto md:h-auto md:top-[12%] md:right-[2.5%]"/> 
-  <img src="/images/purple-gradient-ltr-3-figure.svg" width="198" height="118" class="transform-gpu floatIcon floatGradient absolute animate-fadeIn-long w-24.5 top-[26%] right-0 md:w-auto md:h-auto md:top-[31%]"/> 
-
-  {/* <div class="floatingFigures moveM flex fixed top-0 md:left-0 w-screen h-screen delay-300 transform-gpu">
-    <div class="transform-gpu" style="--i:1"><img src="/images/watch-figure.svg" width="51" height="70" style="--i:11" class="floatIcon absolute animate-fadeIn-long w-7 left-[37.5%] top-[61%] md:w-auto md:h-auto md:top-[71%]"/></div>    
-    <div class="transform-gpu" style="--i:3"><img src="/images/fingerprint-figure.svg" width="51" height="64" style="--i:14" class="floatIcon absolute animate-fadeIn-long w-4 top-[33.5%] left-[60%] md:w-auto md:h-auto md:top-[25%] md:left-[42%]"/></div>    
-    <div class="transform-gpu" style="--i:2"><img src="/images/dollar-figure.png" width="79" height="80" style="--i:6" class="floatIcon absolute animate-fadeIn-long w-8 right-[21%] bottom-[34.5%] md:w-auto md:h-auto md:bottom-[24.5%] md:right-[20%]"/></div>    
-    <div class="transform-gpu" style="--i:2"><img src="/images/smiles-figure.svg" width="142" height="140" style="--i:10" class="floatIcon absolute animate-fadeIn-long w-17.5 left-[53.5%] -bottom-[3%] md:w-auto md:h-auto md:bottom-[5%] md:left-[47.5%]"/></div>    
-    <div class="transform-gpu" style="--i:5"><img src="/images/storage-download-figure.svg" width="168" height="160" style="--i:11" class="floatIcon absolute animate-fadeIn-long w-21 -top-[2%] left-[45%] md:w-auto md:h-auto md:-top-[4.5%] md:left-[38%]"/></div>    
-    <div class="transform-gpu" style="--i:2"><img src="/images/screen-eye-figure.svg" width="112" height="104" style="--i:11" class="floatIcon absolute animate-fadeIn-long w-15.5 bottom-[9%] left-[40%] md:w-auto md:h-auto md:bottom-[6.5%] md:left-[27%]"/></div>    
-    <div class="transform-gpu" style="--i:1"><img src="/images/what-apps-bubble.svg" width="114" height="74" class="floatIcon absolute animate-fadeIn-long w-15.5 top-[22%] right-[22.5%] md:w-auto md:h-auto md:top-[3.4%] md:right-[35%]"/></div>
-    <div class="transform-gpu" style="--i:2"><img src="/images/agreeing-bubble.svg" width="175" height="60" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[7%] md:right-[10.5%]"/></div>    
-    <div class="transform-gpu" style="--i:3"><img src="/images/passwords-bubble.svg" width="173" height="74" style="--i:5" class="floatIcon absolute animate-fadeIn-long w-24.5 top-[84.5%] right-[10.5%] md:w-auto md:h-auto md:top-[24%] md:right-[9.5%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/what-data-bubble.svg" width="139" height="74" style="--i:5" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bot-[14%] md:left-[47%]"/></div> 
-    <div class="transform-gpu" style="--i:5"><img src="/images/whos-tracking-bubble.svg" width="151" height="88" style="--i:6" class="floatIcon absolute animate-fadeIn-long w-21 bottom-[24.5%] left-[16%] md:w-auto md:h-auto md:bottom-[18%] md:left-[3%]"/></div>    
-    <div class="transform-gpu" style="--i:1"><img src="/images/how-many-times-bubble.svg" width="154" height="88" style="--i:6" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[25%] md:left-[12%]"/></div>
-    <div class="transform-gpu" style="--i:3"><img src="/images/diagramm-figure.svg" width="98" height="144" style="--i:7" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[21%] md:-right-[2.5%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/screens-figure.svg" width="195" height="176" style="--i:7" class="floatIcon absolute animate-fadeIn-long w-23.5 bottom-[22.5%] -right-[7%] md:w-auto md:h-auto md:bottom-[10.5%] md:-right-[3%]"/></div>    
-    <div class="transform-gpu" style="--i:5"><img src="/images/stop-on-screen-figure.svg" width="74" height="104" style="--i:7" class="floatIcon absolute animate-fadeIn-long w-10 top-[8%] left-[27%] md:w-auto md:h-auto md:top-[2.5%] md:left-[24.5%]"/></div>    
-    <div class="transform-gpu" style="--i:1"><img src="/images/bubbles-figure.svg" width="121" height="120" style="--i:8" class="floatIcon absolute animate-fadeIn-long w-10 top-[17.5%] right-[3%] md:w-auto md:h-auto md:top-[47%] md:right-[8%]"/></div>    
-    <div class="transform-gpu" style="--i:2"><img src="/images/asterisks-figure.svg" width="105" height="52" style="--i:8" class="floatIcon absolute animate-fadeIn-long w-12.5 top-[79%] right-[28%] md:w-auto md:h-auto md:top-[38%] md:right-[17%]"/></div>    
-    <div class="transform-gpu" style="--i:3"><img src="/images/keyboard-figure.svg" width="113" height="112" style="--i:8" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[4%] md:right-[27%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/notebook-figure.svg" width="78" height="84" style="--i:9" class="floatIcon absolute animate-fadeIn-long w-10 right-[39%] bottom-[24%] md:w-auto md:h-auto md:bottom-[21%] md:right-[34%]"/></div>    
-    <div class="transform-gpu" style="--i:5"><img src="/images/tickets-figure.svg" width="87" height="74" style="--i:9" class="floatIcon absolute animate-fadeIn-long w-10.5 right-[3%] top-[36.5%] md:w-auto md:h-auto md:top-[20%] md:right-[12%]"/></div>    
-    <div class="transform-gpu" style="--i:1"><img src="/images/blank-shield-figure.svg" width="134" height="140" style="--i:9" class="floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:-top-[5%] md:right-[18.5%]"/></div>    
-    <div class="transform-gpu" style="--i:3"><img src="/images/data-cloud-figure.svg" width="105" height="112" style="--i:10" class="floatIcon absolute animate-fadeIn-long w-12 top-[12%] left-[53%] md:w-auto md:h-auto md:top-[14%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/diglett-figure.svg" width="73" height="84" style="--i:10" class="floatIcon absolute animate-fadeIn-long w-7.5 top-[21.5%] left-[26.5%] md:w-auto md:h-auto md:top-[9.5%] md:left-[13%]"/></div>    
-    <div class="transform-gpu" style="--i:3"><img src="/images/loudspeaker-figure.svg" width="113" height="117" style="--i:12" class="floatIcon absolute animate-fadeIn-long w-14.5 left-[17%] bottom-[13.5%] md:w-auto md:h-auto md:bottom-[19%] md:left-[19.5%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/data-secure.svg" width="93" height="88" style="--i:12" class="floatIcon absolute animate-fadeIn-long w-6.5 left-[32.5%] top-[32%] md:w-auto md:h-auto md:top-[40%] md:left-[16%]"/></div>    
-    <div class="transform-gpu" style="--i:5"><img src="/images/hand-figure.svg" width="114" height="124" style="--i:12" class="floatIcon absolute animate-fadeIn-long w-13.5 -left-[2.5%] top-[59%] md:w-auto md:h-auto md:top-[50%] md:left-[5.5%]"/></div>    
-    <div class="transform-gpu" style="--i:1"><img src="/images/ball-web-figure.svg" width="152" height="152" style="--i:13" class="floatIcon absolute animate-fadeIn-long w-21 left-[7%] -bottom-[2%] md:w-auto md:h-auto md:-bottom-[3%] md:left-[7.5%]"/></div>    
-    <div class="transform-gpu" style="--i:2"><img src="/images/profiles-figure.svg" width="126" height="136" style="--i:13" class="floatIcon absolute animate-fadeIn-long w-16.5 -left-[4%] top-[20%] md:w-auto md:h-auto md:top-[21%] md:-left-[2%]"/></div>    
-    <div class="transform-gpu" style="--i:4"><img src="/images/lock-figure.svg" width="49" height="68" style="--i:14" class="floatIcon absolute animate-fadeIn-long w-7 top-[36.5%] left-[4%] md:w-auto md:h-auto md:top-[33%] md:left-[26.5%]"/></div>    
-  </div> */}
-
-  <div class="floatingFigures moveM flex fixed top-0 md:left-0 w-screen h-screen delay-300 transform-gpu">
+<div class="figuresContainer flex h-full w-full transform-gpu">
+  <img
+    src="/images/green-gradient-rtl-figure.svg"
+    width="158"
+    height="59"
+    class="floatIcon floatGradient absolute left-0 top-[31%] w-20 transform-gpu animate-fadeIn-long md:top-[40%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-rtl-figure.svg"
+    width="198"
+    height="40"
+    class="floatIcon floatGradient absolute -left-[2.5%] bottom-[18.5%] w-25 transform-gpu animate-fadeIn-long md:bottom-[12%] md:left-[3%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-rtl-2-figure.svg"
+    width="356"
+    height="98"
+    class="floatIcon floatGradient absolute -left-[1.5%] bottom-[28%] w-44.5 transform-gpu animate-fadeIn-long md:bottom-[31%] md:left-[5.5%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-ltr-figure.svg"
+    width="277"
+    height="134"
+    class="floatIcon floatGradient absolute left-[10.5%] top-[10.5%] w-34.5 transform-gpu animate-fadeIn-long md:left-[25%] md:top-[15%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/green-gradient-rtl-2-figure.svg"
+    width="158"
+    height="40"
+    class="floatIcon floatGradient absolute bottom-[8%] left-[14.5%] w-20 transform-gpu animate-fadeIn-long md:bottom-[9.5%] md:left-[37%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-rtl-3-figure.svg"
+    width="178"
+    height="118"
+    class="floatIcon floatGradient absolute -bottom-[2%] right-[14%] w-22.5 transform-gpu animate-fadeIn-long md:bottom-0 md:right-[31%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-rtl-4-figure.svg"
+    width="79"
+    height="79"
+    class="floatIcon floatGradient absolute right-[44.5%] top-[24.5%] w-10 transform-gpu animate-fadeIn-long md:right-[23%] md:top-[27.7%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-ltr-2-figure.svg"
+    width="257"
+    height="40"
+    class="floatIcon floatGradient absolute bottom-[23%] right-[3%] w-32 transform-gpu animate-fadeIn-long md:bottom-[31%] md:right-[5.5%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/green-gradient-ltr-figure.svg"
+    width="158"
+    height="59"
+    class="floatIcon floatGradient absolute right-[4%] top-[13%] w-20 transform-gpu animate-fadeIn-long md:right-[2.5%] md:top-[12%] md:h-auto md:w-auto"
+  />
+  <img
+    src="/images/purple-gradient-ltr-3-figure.svg"
+    width="198"
+    height="118"
+    class="floatIcon floatGradient absolute right-0 top-[26%] w-24.5 transform-gpu animate-fadeIn-long md:top-[31%] md:h-auto md:w-auto"
+  />
+  <div
+    class="floatingFigures moveM fixed top-0 flex h-screen w-screen transform-gpu delay-300 md:left-0"
+  >
     <div class="transform-gpu" style="--i:1">
-      <img src="/images/watch-figure.svg" width="51" height="70" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7 left-[37.5%] top-[61%] md:w-auto md:h-auto md:top-[71%]"/>
-      <img src="/images/fingerprint-figure.svg" width="51" height="64" style="--i:14" class="transform-gpu floatIcon absolute animate-fadeIn-long w-4 top-[33.5%] left-[60%] md:w-auto md:h-auto md:top-[25%] md:left-[42%]"/>
-      <img src="/images/dollar-figure.png" width="79" height="80" style="--i:6" class="transform-gpu floatIcon absolute animate-fadeIn-long w-8 right-[21%] bottom-[34.5%] md:w-auto md:h-auto md:bottom-[24.5%] md:right-[20%]"/>
-      <img src="/images/bubbles-figure.svg" width="121" height="120" style="--i:8" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 top-[17.5%] right-[3%] md:w-auto md:h-auto md:top-[47%] md:right-[8%]"/>
-      <img src="/images/hand-figure.svg" width="114" height="124" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-13.5 -left-[2.5%] top-[59%] md:w-auto md:h-auto md:top-[50%] md:left-[5.5%]"/>    
-    </div>    
+      <img
+        src="/images/watch-figure.svg"
+        width="51"
+        height="70"
+        style="--i:11"
+        class="floatIcon absolute left-[37.5%] top-[61%] w-7 transform-gpu animate-fadeIn-long md:top-[71%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/fingerprint-figure.svg"
+        width="51"
+        height="64"
+        style="--i:14"
+        class="floatIcon absolute left-[60%] top-[33.5%] w-4 transform-gpu animate-fadeIn-long md:left-[42%] md:top-[25%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/dollar-figure.png"
+        width="79"
+        height="80"
+        style="--i:6"
+        class="floatIcon absolute bottom-[34.5%] right-[21%] w-8 transform-gpu animate-fadeIn-long md:bottom-[24.5%] md:right-[20%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/bubbles-figure.svg"
+        width="121"
+        height="120"
+        style="--i:8"
+        class="floatIcon absolute right-[3%] top-[17.5%] w-10 transform-gpu animate-fadeIn-long md:right-[8%] md:top-[47%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/hand-figure.svg"
+        width="114"
+        height="124"
+        style="--i:12"
+        class="floatIcon absolute -left-[2.5%] top-[59%] w-13.5 transform-gpu animate-fadeIn-long md:left-[5.5%] md:top-[50%] md:h-auto md:w-auto"
+      />
+    </div>
     <div class="transform-gpu" style="--i:2">
-      <img src="/images/smiles-figure.svg" width="142" height="140" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-17.5 left-[53.5%] -bottom-[3%] md:w-auto md:h-auto md:bottom-[5%] md:left-[47.5%]"/>
-      <img src="/images/storage-download-figure.svg" width="168" height="160" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 -top-[2%] left-[45%] md:w-auto md:h-auto md:-top-[4.5%] md:left-[38%]"/>
-      <img src="/images/screen-eye-figure.svg" width="112" height="104" style="--i:11" class="transform-gpu floatIcon absolute animate-fadeIn-long w-15.5 bottom-[9%] left-[40%] md:w-auto md:h-auto md:bottom-[6.5%] md:left-[27%]"/>
-      <img src="/images/asterisks-figure.svg" width="105" height="52" style="--i:8" class="transform-gpu floatIcon absolute animate-fadeIn-long w-12.5 top-[79%] right-[28%] md:w-auto md:h-auto md:top-[38%] md:right-[17%]"/>    
-      <img src="/images/data-cloud-figure.svg" width="105" height="112" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-12 top-[12%] left-[53%] md:w-auto md:h-auto md:top-[14%]"/>    
-      <img src="/images/ball-web-figure.svg" width="152" height="152" style="--i:13" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 left-[7%] -bottom-[2%] md:w-auto md:h-auto md:-bottom-[3%] md:left-[7.5%]"/>    
+      <img
+        src="/images/smiles-figure.svg"
+        width="142"
+        height="140"
+        style="--i:10"
+        class="floatIcon absolute -bottom-[3%] left-[53.5%] w-17.5 transform-gpu animate-fadeIn-long md:bottom-[5%] md:left-[47.5%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/storage-download-figure.svg"
+        width="168"
+        height="160"
+        style="--i:11"
+        class="floatIcon absolute -top-[2%] left-[45%] w-21 transform-gpu animate-fadeIn-long md:-top-[4.5%] md:left-[38%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/screen-eye-figure.svg"
+        width="112"
+        height="104"
+        style="--i:11"
+        class="floatIcon w-15.5 absolute bottom-[9%] left-[40%] transform-gpu animate-fadeIn-long md:bottom-[6.5%] md:left-[27%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/asterisks-figure.svg"
+        width="105"
+        height="52"
+        style="--i:8"
+        class="floatIcon absolute right-[28%] top-[79%] w-12.5 transform-gpu animate-fadeIn-long md:right-[17%] md:top-[38%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/data-cloud-figure.svg"
+        width="105"
+        height="112"
+        style="--i:10"
+        class="floatIcon absolute left-[53%] top-[12%] w-12 transform-gpu animate-fadeIn-long md:top-[14%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/ball-web-figure.svg"
+        width="152"
+        height="152"
+        style="--i:13"
+        class="floatIcon absolute -bottom-[2%] left-[7%] w-21 transform-gpu animate-fadeIn-long md:-bottom-[3%] md:left-[7.5%] md:h-auto md:w-auto"
+      />
     </div>
     <div class="transform-gpu" style="--i:3">
-      <img src="/images/what-apps-bubble.svg" width="114" height="74" class="transform-gpu floatIcon absolute animate-fadeIn-long w-15.5 top-[22%] right-[22.5%] md:w-auto md:h-auto md:top-[3.4%] md:right-[35%]"/>
-      <img src="/images/passwords-bubble.svg" width="173" height="74" style="--i:5" class="transform-gpu floatIcon absolute animate-fadeIn-long w-24.5 top-[84.5%] right-[10.5%] md:w-auto md:h-auto md:top-[24%] md:right-[9.5%]"/>
-      <img src="/images/diglett-figure.svg" width="73" height="84" style="--i:10" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7.5 top-[21.5%] left-[26.5%] md:w-auto md:h-auto md:top-[9.5%] md:left-[13%]"/>    
-      <img src="/images/profiles-figure.svg" width="126" height="136" style="--i:13" class="transform-gpu floatIcon absolute animate-fadeIn-long w-16.5 -left-[4%] top-[20%] md:w-auto md:h-auto md:top-[21%] md:-left-[2%]"/>    
-      <img src="/images/data-secure.svg" width="93" height="88" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-6.5 left-[32.5%] top-[32%] md:w-auto md:h-auto md:top-[40%] md:left-[16%]"/>    
-      <img src="/images/lock-figure.svg" width="49" height="68" style="--i:14" class="transform-gpu floatIcon absolute animate-fadeIn-long w-7 top-[36.5%] left-[4%] md:w-auto md:h-auto md:top-[33%] md:left-[26.5%]"/>    
+      <img
+        src="/images/what-apps-bubble.svg"
+        width="114"
+        height="74"
+        class="floatIcon w-15.5 absolute right-[22.5%] top-[22%] transform-gpu animate-fadeIn-long md:right-[35%] md:top-[3.4%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/passwords-bubble.svg"
+        width="173"
+        height="74"
+        style="--i:5"
+        class="floatIcon absolute right-[10.5%] top-[84.5%] w-24.5 transform-gpu animate-fadeIn-long md:right-[9.5%] md:top-[24%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/diglett-figure.svg"
+        width="73"
+        height="84"
+        style="--i:10"
+        class="floatIcon absolute left-[26.5%] top-[21.5%] w-7.5 transform-gpu animate-fadeIn-long md:left-[13%] md:top-[9.5%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/profiles-figure.svg"
+        width="126"
+        height="136"
+        style="--i:13"
+        class="floatIcon absolute -left-[4%] top-[20%] w-16.5 transform-gpu animate-fadeIn-long md:-left-[2%] md:top-[21%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/data-secure.svg"
+        width="93"
+        height="88"
+        style="--i:12"
+        class="floatIcon absolute left-[32.5%] top-[32%] w-6.5 transform-gpu animate-fadeIn-long md:left-[16%] md:top-[40%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/lock-figure.svg"
+        width="49"
+        height="68"
+        style="--i:14"
+        class="floatIcon absolute left-[4%] top-[36.5%] w-7 transform-gpu animate-fadeIn-long md:left-[26.5%] md:top-[33%] md:h-auto md:w-auto"
+      />
     </div>
     <div class="transform-gpu" style="--i:4">
-      <img src="/images/whos-tracking-bubble.svg" width="151" height="88" style="--i:6" class="transform-gpu floatIcon absolute animate-fadeIn-long w-21 bottom-[24.5%] left-[16%] md:w-auto md:h-auto md:bottom-[18%] md:left-[3%]"/>
-      <img src="/images/notebook-figure.svg" width="78" height="84" style="--i:9" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 right-[39%] bottom-[24%] md:w-auto md:h-auto md:bottom-[21%] md:right-[34%]"/>    
-      <img src="/images/loudspeaker-figure.svg" width="113" height="117" style="--i:12" class="transform-gpu floatIcon absolute animate-fadeIn-long w-14.5 left-[17%] bottom-[13.5%] md:w-auto md:h-auto md:bottom-[19%] md:left-[19.5%]"/>    
-      <img src="/images/screens-figure.svg" width="195" height="176" style="--i:7" class="transform-gpu floatIcon absolute animate-fadeIn-long w-23.5 bottom-[22.5%] -right-[7%] md:w-auto md:h-auto md:bottom-[10.5%] md:-right-[3%]"/>  
-      <img src="/images/stop-on-screen-figure.svg" width="74" height="104" style="--i:7" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10 top-[8%] left-[27%] md:w-auto md:h-auto md:top-[2.5%] md:left-[24.5%]"/>
-      <img src="/images/tickets-figure.svg" width="87" height="74" style="--i:9" class="transform-gpu floatIcon absolute animate-fadeIn-long w-10.5 right-[3%] top-[36.5%] md:w-auto md:h-auto md:top-[20%] md:right-[12%]"/>    
+      <img
+        src="/images/whos-tracking-bubble.svg"
+        width="151"
+        height="88"
+        style="--i:6"
+        class="floatIcon absolute bottom-[24.5%] left-[16%] w-21 transform-gpu animate-fadeIn-long md:bottom-[18%] md:left-[3%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/notebook-figure.svg"
+        width="78"
+        height="84"
+        style="--i:9"
+        class="floatIcon absolute bottom-[24%] right-[39%] w-10 transform-gpu animate-fadeIn-long md:bottom-[21%] md:right-[34%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/loudspeaker-figure.svg"
+        width="113"
+        height="117"
+        style="--i:12"
+        class="floatIcon absolute bottom-[13.5%] left-[17%] w-14.5 transform-gpu animate-fadeIn-long md:bottom-[19%] md:left-[19.5%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/screens-figure.svg"
+        width="195"
+        height="176"
+        style="--i:7"
+        class="floatIcon absolute -right-[7%] bottom-[22.5%] w-23.5 transform-gpu animate-fadeIn-long md:-right-[3%] md:bottom-[10.5%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/stop-on-screen-figure.svg"
+        width="74"
+        height="104"
+        style="--i:7"
+        class="floatIcon absolute left-[27%] top-[8%] w-10 transform-gpu animate-fadeIn-long md:left-[24.5%] md:top-[2.5%] md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/tickets-figure.svg"
+        width="87"
+        height="74"
+        style="--i:9"
+        class="floatIcon absolute right-[3%] top-[36.5%] w-10.5 transform-gpu animate-fadeIn-long md:right-[12%] md:top-[20%] md:h-auto md:w-auto"
+      />
     </div>
-    <div class="transform-gpu hidden md:block" style="--i:5">
-      <img src="/images/blank-shield-figure.svg" width="134" height="140" style="--i:9" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:-top-[5%] md:right-[18.5%]"/>    
-      <img src="/images/agreeing-bubble.svg" width="175" height="60" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[7%] md:right-[10.5%]"/>
-      <img src="/images/keyboard-figure.svg" width="113" height="112" style="--i:8" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bottom-[4%] md:right-[27%]"/>    
-      <img src="/images/what-data-bubble.svg" width="139" height="74" style="--i:5" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:bot-[14%] md:left-[47%]"/>
-      <img src="/images/how-many-times-bubble.svg" width="154" height="88" style="--i:6" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[25%] md:left-[12%]"/>
-      <img src="/images/diagramm-figure.svg" width="98" height="144" style="--i:7" class="transform-gpu floatIcon hidden absolute animate-fadeIn-long md:inline md:w-auto md:h-auto md:top-[21%] md:-right-[2.5%]"/>   
+    <div class="hidden transform-gpu md:block" style="--i:5">
+      <img
+        src="/images/blank-shield-figure.svg"
+        width="134"
+        height="140"
+        style="--i:9"
+        class="floatIcon absolute hidden transform-gpu animate-fadeIn-long md:-top-[5%] md:right-[18.5%] md:inline md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/agreeing-bubble.svg"
+        width="175"
+        height="60"
+        class="floatIcon absolute hidden transform-gpu animate-fadeIn-long md:bottom-[7%] md:right-[10.5%] md:inline md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/keyboard-figure.svg"
+        width="113"
+        height="112"
+        style="--i:8"
+        class="floatIcon absolute hidden transform-gpu animate-fadeIn-long md:bottom-[4%] md:right-[27%] md:inline md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/what-data-bubble.svg"
+        width="139"
+        height="74"
+        style="--i:5"
+        class="floatIcon md:bot-[14%] absolute hidden transform-gpu animate-fadeIn-long md:left-[47%] md:inline md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/how-many-times-bubble.svg"
+        width="154"
+        height="88"
+        style="--i:6"
+        class="floatIcon absolute hidden transform-gpu animate-fadeIn-long md:left-[12%] md:top-[25%] md:inline md:h-auto md:w-auto"
+      />
+      <img
+        src="/images/diagramm-figure.svg"
+        width="98"
+        height="144"
+        style="--i:7"
+        class="floatIcon absolute hidden transform-gpu animate-fadeIn-long md:-right-[2.5%] md:top-[21%] md:inline md:h-auto md:w-auto"
+      />
     </div>
-      
   </div>
 </div>
 
@@ -98,14 +287,14 @@ const {  } = Astro.props;
     position: absolute;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d; 
-    animation-name: moveToCenter; 
+    transform-style: preserve-3d;
+    animation-name: moveToCenter;
     animation-duration: 120s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-delay: calc(((var(--scroll) * 5) + var(--i) / 2) * -100s);
     animation-fill-mode: both;
-    backface-visibility: hidden; 
+    backface-visibility: hidden;
   }
 
   /* Try position icons on multiple container with different --from translate value */
@@ -118,34 +307,28 @@ const {  } = Astro.props;
   .moveL {
     --from: 400px;
   }
-  
-  .figuresBleach {
-		animation-delay: calc(var(--bleachProgress) * 2 * -1.5s);
-		animation-play-state: paused;
-		animation-fill-mode: both;
-    backface-visibility: hidden; 
-	}
 
   @keyframes moveToCenter {
-  0% {
-    transform: perspective(300px) translateZ(var(--from));
-    /* transform: scale(1); */
-  }
+    0% {
+      transform: perspective(300px) translateZ(var(--from));
+      /* transform: scale(1); */
+    }
 
-  100% {
-    transform: perspective(300px) translateZ(-700px);
-    /* transform: scale(-1); */
+    100% {
+      transform: perspective(300px) translateZ(-700px);
+      /* transform: scale(-1); */
+    }
   }
-}
 </style>
 
-
 <script>
-  const icons = document.querySelectorAll(".floatIcon") as NodeListOf<HTMLElement>;
+  const icons = document.querySelectorAll(
+    '.floatIcon',
+  ) as NodeListOf<HTMLElement>;
   const startDelay = 1200; // initial delay for first figure
-    
-  icons.forEach(icon => {
-    icon.style.animationDelay = startDelay + Math.floor(Math.random() * 4200) + "ms";
-  })
 
+  icons.forEach((icon) => {
+    icon.style.animationDelay =
+      startDelay + Math.floor(Math.random() * 4200) + 'ms';
+  });
 </script>

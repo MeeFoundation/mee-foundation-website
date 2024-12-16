@@ -1,7 +1,7 @@
 ---
 import BlogLayout from '@layouts/blog/BlogLayout.astro';
-import Header from '@components/Header.astro';
-// import Footer from "@components/Footer.astro";
+import {Header} from 'mee-components';
+import {header} from '../../../astro.config.mjs';
 import Tag from '@components/blog/Tag.astro';
 import Datetime from '@components/blog/Datetime';
 import type {CollectionEntry} from 'astro:content';
@@ -13,16 +13,17 @@ export interface Props {
 
 const {post} = Astro.props;
 
-const {title, author, description, ogImage, published, tags} = post.data;
+const {title, published, tags} = post.data;
+// const {title, author, description, ogImage, published, tags} = post.data;
 
 const {Content} = await post.render();
 
-const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin)
-  .href;
+// const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin)
+//   .href;
 ---
 
 <BlogLayout title={title}>
-  <Header logoColor="blue" backgroundColor="backdrop-blur-md" />
+  <Header header={header} activePage="blog" location="Blog" />
   <div class="mt-21">
     <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
       <button
@@ -38,10 +39,14 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.png`, Astro.url.origin)
         </svg><span>Go back</span>
       </button>
     </div>
-    <main id="main-content">
+    <main id="main-content" class="text-grey-900 dark:text-gray-200">
       <h1 class="post-title">{title}</h1>
       <Datetime datetime={published} size="lg" className="my-2" />
-      <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+      <article
+        id="article"
+        role="article"
+        class="prose mx-auto mt-8 max-w-3xl text-grey-900 dark:text-gray-200"
+      >
         <Content />
       </article>
 
