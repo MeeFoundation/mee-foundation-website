@@ -1,5 +1,5 @@
 ---
-import {Header, Footer, ButtonLink} from 'mee-components';
+import {Header, Footer, ButtonLink, Input, Button} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '@layouts/Layout.astro';
 import appsAndExtention from '../../public/images/about/apps-and-extention.png';
@@ -334,7 +334,7 @@ const contributors = [
             }
           </div>
           <div
-            class="dark:bg-dark-line-gradient absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient"
+            class="absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient dark:bg-dark-line-gradient"
           >
           </div>
         </section>
@@ -380,7 +380,40 @@ const contributors = [
           </div>
         </section>
         <section
-          class="section-bg relative -mb-60 mt-16 flex w-screen flex-col items-center gap-14 px-10 pb-60 text-white animation-delay-800 md:gap-20 lg:gap-24"
+          class="flex w-screen flex-col gap-16 bg-grey-100 py-20 dark:bg-grey-800"
+        >
+          <div class="max-w-7x flex w-full flex-col items-center gap-4">
+            <h2
+              class="text-center text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-50"
+            >
+              Subscribe to our newsletter
+            </h2>
+            <h3
+              class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl dark:text-grey-50"
+            >
+              Never miss an update with the Mee projects
+            </h3>
+          </div>
+          <div
+            class="max-w flex w-auto flex-wrap items-start justify-center gap-4 px-6"
+          >
+            <Input
+              id="email"
+              label="Your email"
+              leftIcon="envelope"
+              size="lg"
+              className="max-w-100"
+              type="email"
+              labelPosition="inside"
+            />
+
+            <Button id="subscribe" className="h-14 w-42 text-xl"
+              >Subscribe</Button
+            >
+          </div>
+        </section>
+        <section
+          class="section-bg relative -mb-60 flex w-screen flex-col items-center gap-14 px-10 pb-60 text-white animation-delay-800 md:gap-20 lg:gap-24"
         >
           <div class="section-bg-image absolute h-full w-full max-w-7xl"></div>
           <div class="z-70 flex flex-col items-center gap-16">
@@ -403,6 +436,7 @@ const contributors = [
                 style="filled"
                 buttonType="tertiary"
                 size="l"
+                className="h-14 text-xl"
               >
                 <PatreonIcon class="dark:fill-gray-300" fill="black" />
                 <span>Support on Patreon</span></ButtonLink
@@ -442,3 +476,19 @@ const contributors = [
     background-size: 100% 100%;
   }
 </style>
+
+<script>
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const subscribeButton = document.getElementById('subscribe');
+  const subscribeAction = () => {
+    const email = emailInput.value;
+    emailInput.value = '';
+    console.log(email);
+  };
+  emailInput.onkeydown = function (e) {
+    if (e.code === 'Enter') {
+      subscribeAction();
+    }
+  };
+  subscribeButton?.addEventListener('click', subscribeAction);
+</script>
