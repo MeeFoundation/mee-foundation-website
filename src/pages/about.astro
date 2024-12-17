@@ -384,7 +384,7 @@ const contributors = [
         >
           <div class="max-w-7x flex w-full flex-col items-center gap-4">
             <h2
-              class="text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-50"
+              class="text-center text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-50"
             >
               Subscribe to our newsletter
             </h2>
@@ -404,9 +404,12 @@ const contributors = [
               size="lg"
               className="max-w-100"
               type="email"
+              labelPosition="inside"
             />
 
-            <Button id="subscribe">Subscribe</Button>
+            <Button id="subscribe" className="h-14 w-42 text-xl"
+              >Subscribe</Button
+            >
           </div>
         </section>
         <section
@@ -433,6 +436,7 @@ const contributors = [
                 style="filled"
                 buttonType="tertiary"
                 size="l"
+                className="h-14 text-xl"
               >
                 <PatreonIcon class="dark:fill-gray-300" fill="black" />
                 <span>Support on Patreon</span></ButtonLink
