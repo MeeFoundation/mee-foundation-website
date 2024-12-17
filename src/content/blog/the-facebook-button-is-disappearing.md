@@ -1,13 +1,11 @@
 ---
-title: The Facebook button is disappearing
+title: The Facebook button is disappearing from websites as privacy demands grow
 published: 2022-09-10
 author: Paul Trevithick
 tags: 
     - Privacy
     - Identity
 ---
-
-# The Facebook button is disappearing from websites as privacy demands grow
 
 ![facebook-disappearing](../../assets/blog/facebook-disappearing.webp)
 

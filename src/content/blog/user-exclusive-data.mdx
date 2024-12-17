@@ -20,7 +20,7 @@ The resulting loss of privacy and lack of a sense of ownership of our personal d
 
 import {Accordion} from 'mee-components';
 
-<Accordion title="Where is human data stored">
+<Accordion title="Where is human data stored" headerClassName="not-prose">
   
 Human/user/personal⁷ data is collected and stored by organizations as users interact with their “apps” (e.g., mobile apps, websites, etc.). We call this _app-held_ data. It’s also held by third parties (e.g. data brokers) with whom users have no interactions at all. The resulting data economy with its dominance of app-held and 3rd-party-held data is shown at the left below.
 
@@ -32,7 +32,7 @@ Although still rare in practice, theoretically there is another place where huma
 
 </Accordion>
 
-<Accordion title="Data sharing" className="not-prose">
+<Accordion title="Data sharing" headerClassName="not-prose">
 
 The right-hand dotted line in the diagram above shows data sharing between an organization (the app) and a 3rd-party. An example of this would be data brokers buying datasets from apps and selling them to other apps/organizations or government agencies. Another example is when an organization shares personal data with its affiliates, payment processors, etc.
 
@@ -42,7 +42,7 @@ Data sharing also happens between user-held data (in a PDS) and app-held data (i
 
 </Accordion>
 
-<Accordion title="Replication" className="not-prose">
+<Accordion title="Replication" headerClassName="not-prose">
 
 Data sharing can also happen in both directions between the user (the user’s PDS) and an app in what would be called data replication. We show this more nuanced, bi-directional kind of sharing in Figure 4 below.
 
@@ -50,7 +50,7 @@ Data sharing can also happen in both directions between the user (the user’s P
 
 </Accordion>
 
-<Accordion title="Exclusivity" className="not-prose">
+<Accordion title="Exclusivity" headerClassName="not-prose">
 
 In this article, we call data _exclusive_ if there are no permanent copies of it held by any other party. Note that this doesn’t mean that another party (app or user) doesn’t have access; it means that having accessed the data, it doesn’t make copies, except for transient, in-memory caches. From the point of view of these other parties, exclusive data is ephemeral.
 
@@ -62,7 +62,7 @@ The second kind of exclusive data, called _user-exclusive,_ is user-held data th
 
 </Accordion>
 
-<Accordion title="User-exclusive personal data" className="not-prose">
+<Accordion title="User-exclusive personal data" headerClassName="not-prose">
 
 With user-held data, there are typically other copies. By eliminating these copies*¹⁰ ¹¹* user-exclusive data affords a stronger sense of ownership, since you hold the only copy.
 
@@ -94,7 +94,7 @@ _A summary of user-exclusive data:_
 
 </Accordion>
 
-<Accordion title="Conclusion" className="not-prose">
+<Accordion title="Conclusion" headerClassName="not-prose">
   We have proposed _user-exclusive_ data as a new kind of user-held data that
   provides the user with increased control and a sense of ownership. We
   discussed how its ephemeral nature can be implemented through a combination of
@@ -104,7 +104,7 @@ _A summary of user-exclusive data:_
   data sovereignty.
 </Accordion>
 
-<Accordion title="References" className="not-prose">
+<Accordion title="References" headerClassName="not-prose">
 
 Doctorow, C. (2021). Competitive compatibility: let’s fix the internet, not the tech giants. _Communications of the ACM_, _64_(10), 26–29. https://dl.acm.org/doi/fullHtml/10.1145/3446789
 
@@ -130,7 +130,7 @@ Zuboff, S. (2019). _The Age of Surveillance Capitalism_. Profile Books.
 
 </Accordion>
 
-<Accordion title="Notes" className="not-prose">
+<Accordion title="Notes" headerClassName="not-prose">
 
 [1] John Locke published his Second Treatise on Government in 1690. (Locke, 2014). “John Locke was an English philosopher who thought a lot about power: who had it, how it was used, and how it impacted the structure of society. Locke’s theory of mind forms the foundation for our modern ideas about identity and independence. Locke argued that “sovereign and independent” was man’s natural state and that we gave up freedom, our sovereignty, in exchange for something else, protection, sociality, and commerce, among others. This grand bargain forms the basis for any society.” — from Phil Windley’s [Technometria](https://www.windley.com/archives/2020/09/the_architecture_of_identity_systems.shtml).
 

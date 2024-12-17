@@ -2,11 +2,9 @@
 title: The Gropper Principle
 published: 2022-08-13
 author: Paul Trevithick
-tags: 
-    - Privacy
+tags:
+  - Privacy
 ---
-
-
 
 ![Bundle of Model Mats](../../assets/blog/bundle-of-model-mats.webp)
 
@@ -18,7 +16,7 @@ He starts by explaining that there are “three universal components of the pers
 2. **Request** for information (e.g. forms, searches, conversations)
 3. **Storage** (e.g. labs, prescriptions, social contracts, transactions [, other human information])
 
-What we could call the *Gropper Principle* is this (my words, his ideas):
+What we could call the _Gropper Principle_ is this (my words, his ideas):
 
 > Any system that respects the human right to privacy must not bundle authentication, request, and storage.
 
