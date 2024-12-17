@@ -1,5 +1,4 @@
 ---
-// import Footer from '../components/Footer.astro';
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
@@ -7,26 +6,22 @@ import meeBrowserProduct from '../../public/images/projects/mee-browser.png';
 import meeBrowserProductDark from '../../public/images/projects/mee-browser-dark.png';
 import privateAdvertisingProduct from '../../public/images/projects/private-advertising.png';
 import privateAdvertisingProductDark from '../../public/images/projects/private-advertising-dark.png';
-import smartwalletProduct from '../../public/images/projects/smartwallet.png';
-import smartwalletProductDark from '../../public/images/projects/smartwallet-dark.png';
-import virtualAgentProduct from '../../public/images/projects/virtual-agent.png';
-import virtualAgentProductDark from '../../public/images/projects/virtual-agent-dark.png';
-import providerWalletProduct from '../../public/images/projects/provider-wallet.png';
-import providerWalletProductDark from '../../public/images/projects/provider-wallet-dark.png';
-import providerWalletMobiProduct from '../../public/images/projects/provider-wallet-mobi.svg';
-import providerWalletMobiProductDark from '../../public/images/projects/provider-wallet-mobi-dark.png';
+import MdnProduct from '../../public/images/projects/mdn.png';
+import MdnProductDark from '../../public/images/projects/mdn-dark.png';
+import MdnWebProduct from '../../public/images/projects/mdn-web.png';
+import MdnWebProductDark from '../../public/images/projects/mdn-web-dark.png';
 
 const projects = [
   {
-    image: smartwalletProduct,
-    imageDark: smartwalletProductDark,
-    title: 'Smartwallet',
-    subtitle: 'Identity Agent',
+    image: MdnProduct,
+    imageDark: MdnProductDark,
+    title: 'Mee Data Network',
+    subtitle: 'Mee Data Network',
     description:
-      'Local identity agent app that combines a digital wallet with a “remote control” for your personal data.',
+      'A data network of compatible apps/sites where the information held by them is controlled by your identity agent. This agent can be either local (Mee Smartwallet app) or virtual (web-based identity agent [soon at itsmee.org]) hosted by the Foundation.',
     comingSoon: false,
-    linkTitle: 'Discover the smartwallet',
-    link: 'https://smartwallet.mee.foundation',
+    linkTitle: 'Learn more',
+    link: 'https://mdn.mee.foundation',
   },
   {
     image: privateAdvertisingProduct,
@@ -50,42 +45,18 @@ const projects = [
     linkTitle: 'Learn more',
     link: 'https://browser.mee.foundation',
   },
-  {
-    image: virtualAgentProduct,
-    imageDark: virtualAgentProductDark,
-    title: 'Mee Data Network',
-    subtitle: 'Mee Data Network',
-    description:
-      'A data network of compatible apps/sites where the information held by them is controlled by your identity agent. This agent can be either local (Mee Smartwallet app) or virtual (web-based identity agent [soon at itsmee.org]) hosted by the Foundation.',
-    comingSoon: false,
-    linkTitle: 'Learn more',
-    link: 'https://mdn.mee.foundation',
-  },
-  {
-    image: providerWalletMobiProduct,
-    imageDark: providerWalletMobiProductDark,
-    imageMobi: providerWalletMobiProduct,
-    imageModiDark: providerWalletMobiProductDark,
-    title: 'Agent Service',
-    subtitle: 'Mee Data Network',
-    description:
-      'A web service that websites can integrate to interoperate over the Mee Data Network with Mee-compatible sites and identity agents',
-    comingSoon: false,
-    linkTitle: 'View docs',
-    link: 'https://mdn.mee.foundation/docs/',
-  },
 ];
 
-const providerWallet = {
-  image: providerWalletProduct,
-  imageDark: providerWalletProductDark,
-  title: 'Agent Service',
+const mdnProject = {
+  image: MdnWebProduct,
+  imageDark: MdnWebProductDark,
+  title: 'Mee Data Network',
   subtitle: 'Mee Data Network',
   description:
-    'A web service that websites can integrate to interoperate over the Mee Data Network of Mee-compatible sites and identity agents',
+    'A data network of compatible apps/sites where the information held by them is controlled by your identity agent. This agent can be either local (Mee Smartwallet app) or virtual (web-based identity agent [soon at itsmee.org]) hosted by the Foundation.',
   comingSoon: false,
-  linkTitle: 'View docs',
-  link: 'https://mdn.mee.foundation/docs/',
+  linkTitle: 'Learn more',
+  link: 'https://mdn.mee.foundation',
 };
 ---
 
@@ -124,17 +95,67 @@ const providerWallet = {
           class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <div>
+            <a
+              class="mx-8 hidden rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong lg:flex dark:border-grey-600 dark:hover:bg-dark-hover-gradient"
+              href={mdnProject.link}
+            >
+              <div class="relative w-full">
+                <img
+                  src={mdnProject.image.src}
+                  class="h-full w-full rounded-2xl pt-2 lg:pt-0 dark:hidden"
+                />
+                <img
+                  src={mdnProject.imageDark.src}
+                  class="hidden h-full w-full rounded-2xl pt-2 lg:pt-0 dark:block"
+                />
+                <div
+                  class="absolute left-4 top-4 flex w-120 flex-col gap-2 p-4"
+                >
+                  <div
+                    class="w-full text-xs font-semibold uppercase text-grey-500 dark:text-grey-200"
+                  >
+                    {mdnProject.subtitle}
+                  </div>
+                  <div
+                    class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50"
+                  >
+                    {mdnProject.title}
+                    {
+                      mdnProject.comingSoon && (
+                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
+                          Coming soon
+                        </span>
+                      )
+                    }
+                  </div>
+                  <div
+                    class="w-full text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300"
+                  >
+                    {mdnProject.description}
+                  </div>
+                  <div
+                    class="flex items-center gap-2.5 text-brand-700 lg:pt-4 dark:text-brand-300"
+                  >
+                    <span class="underline">{mdnProject.linkTitle}</span>
+                    <i class="bi bi-arrow-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
             <div
               class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2"
             >
               {
                 projects.map((project) =>
                   project.comingSoon ? (
-                    <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden dark:border-grey-600">
-                      <img src={project.image.src} class="w-full dark:hidden" />
+                    <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 first:lg:hidden dark:border-grey-600">
+                      <img
+                        src={project.image.src}
+                        class="w-full rounded-t-2xl dark:hidden"
+                      />
                       <img
                         src={project.imageDark.src}
-                        class="hidden w-full dark:block"
+                        class="hidden w-full rounded-t-2xl dark:block"
                       />
                       <div class="flex flex-col gap-2 p-8 pb-4">
                         <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
@@ -142,7 +163,7 @@ const providerWallet = {
                         </div>
                         <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                           {project.title}
-                          <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
+                          <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:border-grey-800 dark:bg-grey-900 dark:text-gray-300">
                             Coming soon
                           </span>
                         </div>
@@ -153,13 +174,16 @@ const providerWallet = {
                     </div>
                   ) : (
                     <a
-                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 last:lg:hidden dark:border-grey-600"
+                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong first:lg:hidden dark:border-grey-600 dark:hover:bg-dark-hover-gradient"
                       href={project.link}
                     >
-                      <img src={project.image.src} class="w-full dark:hidden" />
+                      <img
+                        src={project.image.src}
+                        class="w-full rounded-t-2xl dark:hidden"
+                      />
                       <img
                         src={project.imageDark.src}
-                        class="hidden w-full dark:block"
+                        class="hidden w-full rounded-t-2xl dark:block"
                       />
                       <div class="flex flex-col gap-2 p-8 pb-4">
                         <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
@@ -181,53 +205,6 @@ const providerWallet = {
                 )
               }
             </div>
-            <a
-              class="mx-8 hidden rounded-2xl border border-grey-300 lg:flex"
-              href={providerWallet.link}
-            >
-              <div class="relative w-full">
-                <img
-                  src={providerWallet.image.src}
-                  class="h-full w-full pt-2 lg:pt-0 dark:hidden"
-                />
-                <img
-                  src={providerWallet.imageDark.src}
-                  class="hidden h-full w-full pt-2 lg:pt-0 dark:block"
-                />
-                <div
-                  class="absolute left-4 top-4 flex w-120 flex-col gap-2 p-4"
-                >
-                  <div
-                    class="w-full text-xs font-semibold uppercase text-grey-500 dark:text-grey-200"
-                  >
-                    {providerWallet.subtitle}
-                  </div>
-                  <div
-                    class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50"
-                  >
-                    {providerWallet.title}
-                    {
-                      providerWallet.comingSoon && (
-                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
-                          Coming soon
-                        </span>
-                      )
-                    }
-                  </div>
-                  <div
-                    class="w-full text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300"
-                  >
-                    {providerWallet.description}
-                  </div>
-                  <div
-                    class="flex items-center gap-2.5 text-brand-700 lg:pt-4 dark:text-brand-300"
-                  >
-                    <span class="underline">{providerWallet.linkTitle}</span>
-                    <i class="bi bi-arrow-right"></i>
-                  </div>
-                </div>
-              </div>
-            </a>
           </div>
         </section>
       </article>
