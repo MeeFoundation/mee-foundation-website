@@ -44,7 +44,7 @@ const posts = (await getCollection('blog')).sort(
               const {Content} = await post.render();
               return (
                 <li class="relative mx-6 mb-10 flex w-full items-center justify-center border-t border-grey-200 pt-10">
-                  <span class="absolute left-0 top-10 hidden lg:block">
+                  <span class="absolute left-0 top-12 hidden lg:block">
                     <FormattedDate date={post.data.published} />
                   </span>
                   <div class="max-w-3xl">

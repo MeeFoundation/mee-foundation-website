@@ -37,6 +37,11 @@ export const header = {
       name: 'Privacy',
       id: 'privacy-policy',
     },
+    {
+      link: '/blog',
+      name: 'Blog',
+      id: 'blog',
+    },
   ],
 };
 export const footer = {
@@ -74,6 +79,11 @@ export const footer = {
       link: '/privacy-policy',
       name: 'Privacy',
       id: 'privacy-policy',
+    },
+    {
+      link: '/blog',
+      name: 'Blog',
+      id: 'blog',
     },
   ],
 };
