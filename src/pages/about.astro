@@ -396,8 +396,10 @@ const contributors = [
           </div>
           <div
             class="max-w flex w-auto flex-wrap items-start justify-center gap-4 px-6"
+            id="email-container"
           >
             <Input
+              dataType="email"
               id="email"
               label="Your email"
               leftIcon="envelope"
@@ -478,12 +480,42 @@ const contributors = [
 </style>
 
 <script>
+  import {Validation} from 'mee-components';
+  import {SUBSCRIBE_URL} from '@config';
+
   const emailInput = document.getElementById('email') as HTMLInputElement;
-  const subscribeButton = document.getElementById('subscribe');
-  const subscribeAction = () => {
-    const email = emailInput.value;
-    emailInput.value = '';
-    console.log(email);
+  const inputs = document
+    .getElementById('email-container')
+    ?.querySelectorAll('input');
+  if (inputs) {
+    Validation.addFormListeners(inputs);
+  }
+
+  const subscribeButton = document.getElementById(
+    'subscribe',
+  ) as HTMLButtonElement;
+  const subscribeAction = async () => {
+    if (inputs) {
+      const formValid = Validation.validateForm(inputs);
+      if (formValid) {
+        const email = emailInput.value;
+
+        const response = await fetch(SUBSCRIBE_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }).then((r) => r.json());
+        if (response) {
+          emailInput.disabled = true;
+          emailInput.classList.add('opacity-60');
+          subscribeButton.disabled = true;
+        }
+      }
+    }
   };
   emailInput.onkeydown = function (e) {
     if (e.code === 'Enter') {
