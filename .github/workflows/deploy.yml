@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Build with Astro
-        run: yarn run build
+        run: pnpm build
 
       - name: configure gcp credentials
         if: ${{ github.ref == 'refs/heads/develop' }}
