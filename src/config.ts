@@ -16,7 +16,7 @@ export const SITE: Site = {
 export const LOCALE = ['en-EN']; // set to [] to use the environment default
 
 export const SUBSCRIBE_URL =
-  'https://us-east1-crf-experiment.cloudfunctions.net/add_email';
+  'https://public-endpoint-api-gateway-54zs78uu.ue.gateway.dev/addEmail';
 
 export const LOGO_IMAGE = {
   enable: false,

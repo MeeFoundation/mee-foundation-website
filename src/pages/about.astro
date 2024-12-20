@@ -508,8 +508,9 @@ const contributors = [
           body: JSON.stringify({
             email: email,
           }),
-        }).then((r) => r.json());
-        if (response) {
+        });
+
+        if (response && response.status === 200) {
           emailInput.disabled = true;
           emailInput.classList.add('opacity-60');
           subscribeButton.disabled = true;
