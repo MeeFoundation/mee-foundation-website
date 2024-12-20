@@ -93,23 +93,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
     font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
       DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
   }
-  .marker > mark {
-    position: relative;
-    background: none;
-    color: inherit;
-  }
-  .marker > mark::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 10%;
-    height: 0.15em;
-    border-radius: 2px;
-    background-color: #f9df89;
-    z-index: -1;
-    animation: drawUnderline 200ms both;
-    animation-delay: 800ms;
-  }
 
   .pause {
     animation-play-state: paused;

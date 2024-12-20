@@ -1,5 +1,5 @@
 ---
-import {Header, Footer, ButtonLink, Input, Button} from 'mee-components';
+import {Header, Footer, ButtonLink, Input, Button, Alert} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '@layouts/Layout.astro';
 import appsAndExtention from '../../public/images/about/apps-and-extention.png';
@@ -215,7 +215,7 @@ const contributors = [
             class="flex max-w-5xl flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
           >
             <h1
-              class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl dark:text-gray-50"
+              class="text-center text-4xl font-semibold text-grey-900 lg:text-7xl dark:text-gray-50"
             >
               The Mee Foundation, Inc.
             </h1>
@@ -280,7 +280,7 @@ const contributors = [
           class="relative flex h-auto w-screen flex-col items-center justify-center gap-8 bg-white px-10 animation-delay-800 dark:bg-darky"
         >
           <h2
-            class="marker mt-13 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl dark:text-gray-50"
+            class="mt-13 text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:mt-13 lg:text-5xl dark:text-gray-50"
           >
             Contributors
           </h2>
@@ -396,8 +396,10 @@ const contributors = [
           </div>
           <div
             class="max-w flex w-auto flex-wrap items-start justify-center gap-4 px-6"
+            id="email-container"
           >
             <Input
+              dataType="email"
               id="email"
               label="Your email"
               leftIcon="envelope"
@@ -410,6 +412,13 @@ const contributors = [
             <Button id="subscribe" className="h-14 w-42 text-xl"
               >Subscribe</Button
             >
+            <Alert
+              id="success-alert"
+              title="Congrats!"
+              icon="check-circle"
+              type="success"
+              description="You have subscribed successfully."
+            />
           </div>
         </section>
         <section
@@ -478,12 +487,43 @@ const contributors = [
 </style>
 
 <script>
+  import {Validation} from 'mee-components';
+  const successAlert = document.getElementById('success-alert');
+  import {SUBSCRIBE_URL} from '@config';
+  const emailContainer = document.getElementById('email-container');
   const emailInput = document.getElementById('email') as HTMLInputElement;
-  const subscribeButton = document.getElementById('subscribe');
-  const subscribeAction = () => {
-    const email = emailInput.value;
-    emailInput.value = '';
-    console.log(email);
+
+  const inputs = emailContainer?.querySelectorAll('input');
+  if (inputs) {
+    Validation.addFormListeners(inputs);
+  }
+
+  const subscribeButton = document.getElementById(
+    'subscribe',
+  ) as HTMLButtonElement;
+  const subscribeAction = async () => {
+    if (inputs) {
+      const formValid = Validation.validateForm(inputs);
+      if (formValid) {
+        const email = emailInput.value;
+
+        const response = await fetch(SUBSCRIBE_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        });
+
+        if (response && response.status === 200) {
+          emailInput.parentElement?.parentElement?.classList.add('hidden');
+          subscribeButton.classList.add('hidden');
+          successAlert?.classList.remove('hidden');
+        }
+      }
+    }
   };
   emailInput.onkeydown = function (e) {
     if (e.code === 'Enter') {
