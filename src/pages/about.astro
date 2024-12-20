@@ -504,6 +504,11 @@ const contributors = [
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers':
+              'x-requested-with, Content-Type, origin, authorization, accept, client-security-token',
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
           },
           body: JSON.stringify({
             email: email,
