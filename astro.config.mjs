@@ -86,15 +86,5 @@ export default defineConfig({
     assets: 'assets',
   },
   output: 'static',
-  vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          assetFileNames: 'assets/[name][extname]',
-        },
-        external: ['fsevents'],
-      },
-    },
-  },
   scopedStyleStrategy: 'class',
 });
