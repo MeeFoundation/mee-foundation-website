@@ -15,11 +15,11 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20 
+          node-version: 22
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install
       - name: Build with Astro
-        run: pnpm build
+        run: yarn run build
 
       - name: configure gcp credentials
         if: ${{ github.ref == 'refs/heads/develop' }}
