@@ -1,5 +1,5 @@
 ---
-import {Header, Footer, ButtonLink, Input, Button} from 'mee-components';
+import {Header, Footer, ButtonLink, Input, Button, Alert} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
 import appsAndExtention from '../../public/images/about/apps-and-extention.png';
@@ -412,6 +412,13 @@ const contributors = [
             <Button id="subscribe" className="h-14 w-42 text-xl"
               >Subscribe</Button
             >
+            <Alert
+              id="success-alert"
+              title="Congrats!"
+              icon="check-circle"
+              type="success"
+              description="You have subscribed successfully."
+            />
           </div>
         </section>
         <section
@@ -481,12 +488,12 @@ const contributors = [
 
 <script>
   import {Validation} from 'mee-components';
+  const successAlert = document.getElementById('success-alert');
   import {SUBSCRIBE_URL} from '@config';
-
+  const emailContainer = document.getElementById('email-container');
   const emailInput = document.getElementById('email') as HTMLInputElement;
-  const inputs = document
-    .getElementById('email-container')
-    ?.querySelectorAll('input');
+
+  const inputs = emailContainer?.querySelectorAll('input');
   if (inputs) {
     Validation.addFormListeners(inputs);
   }
@@ -511,9 +518,9 @@ const contributors = [
         });
 
         if (response && response.status === 200) {
-          emailInput.disabled = true;
-          emailInput.classList.add('opacity-60');
-          subscribeButton.disabled = true;
+          emailInput.parentElement?.parentElement?.classList.add('hidden');
+          subscribeButton.classList.add('hidden');
+          successAlert?.classList.remove('hidden');
         }
       }
     }
