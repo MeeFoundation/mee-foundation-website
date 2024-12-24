@@ -412,13 +412,20 @@ const contributors = [
             <Button id="subscribe" className="h-14 w-42 text-xl"
               >Subscribe</Button
             >
-            <Alert
-              id="success-alert"
-              title="Congrats!"
-              icon="check-circle"
-              type="success"
-              description="You have subscribed successfully."
-            />
+          </div>
+          <div
+            class="relative mx-6 -mt-2 flex items-center justify-center md:-mt-5"
+          >
+            <div class="absolute">
+              <Alert
+                id="success-alert"
+                title="Congrats!"
+                icon="check-circle"
+                type="success"
+                description="You’ve been subscribed to Mee Foundation newsletter."
+                view="row"
+              />
+            </div>
           </div>
         </section>
         <section
@@ -518,8 +525,11 @@ const contributors = [
         });
 
         if (response && response.status === 200) {
-          emailInput.parentElement?.parentElement?.classList.add('hidden');
-          subscribeButton.classList.add('hidden');
+          // emailInput.parentElement?.parentElement?.classList.add('hidden');
+          emailInput.disabled = true;
+          emailInput.classList.add('opacity-60');
+          subscribeButton.disabled = true;
+          // subscribeButton.classList.add('hidden');
           successAlert?.classList.remove('hidden');
         }
       }
