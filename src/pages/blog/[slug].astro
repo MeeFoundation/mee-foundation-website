@@ -4,7 +4,6 @@ import {Header, Breadcrumbs, ButtonLink, ShareButton} from 'mee-components';
 import {header} from '../../../astro.config.mjs';
 import FormattedDate from '../../components/blog/FormattedDate.astro';
 import getSortedPosts from '@utils/getSortedPosts';
-import getPageNumbers from '@utils/getPageNumbers';
 import slugify from '@utils/slugify';
 import BlogLayout from '@layouts/blog/BlogLayout.astro';
 
@@ -20,11 +19,7 @@ export async function getStaticPaths() {
     props: {post},
   }));
 
-  const pagePaths = getPageNumbers(posts.length).map((pageNum) => ({
-    params: {slug: String(pageNum)},
-  }));
-
-  return [...postResult, ...pagePaths];
+  return [...postResult];
 }
 
 // const {slug} = Astro.params;
