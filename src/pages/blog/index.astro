@@ -47,7 +47,7 @@ const posts = (await getCollection('blog', ({data}) => !data.draft)).sort(
                 <li class="relative mb-10 flex w-full items-center justify-center border-t border-grey-200 pt-10">
                   <ShareButton
                     url={url}
-                    className="!absolute left-4 top-12 hidden lg:block"
+                    className="!absolute left-0 top-12 hidden xl:block"
                   >
                     Share article
                   </ShareButton>
@@ -89,7 +89,7 @@ const posts = (await getCollection('blog', ({data}) => !data.draft)).sort(
                         Read more
                       </a>
                     )}
-                    <ShareButton url={url} className="block lg:hidden">
+                    <ShareButton url={url} className="block xl:hidden">
                       Share article
                     </ShareButton>
                   </div>
