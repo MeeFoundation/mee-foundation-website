@@ -1,19 +1,16 @@
 ---
-title: The Facebook button is disappearing
+title: The Facebook button is disappearing from websites as privacy demands grow
 published: 2022-09-10
 author: Paul Trevithick
-tags: 
-    - Privacy
-    - Identity
+previewImage: /images/blog/facebook-disappearing.webp
+description:
+  - The disappearing login is the latest sign of Facebook’s diminishing influence on the internet after more than a decade of spectacular growth.” <a href="https://www.nbcnews.com/tech/social-media/facebook-button-disappearing-websites-privacy-demands-grow-rcna46869">writes Jonathan Vanian from CNBC</a>
+  - The Mee Project nonprofit is working on a surveillance-free alternative that involves the installation of a the Mee smartwallet (formerly _identity agent_) on the user’s device. We’ll be <a href="https://www.eventbrite.com/e/internet-identity-workshop-iiwxxxv-35-2022b-tickets-368643531727">demoing it at IIW 35</a>
 ---
-
-# The Facebook button is disappearing from websites as privacy demands grow
-
-![facebook-disappearing](../../assets/blog/facebook-disappearing.webp)
 
 The disappearing login is the latest sign of Facebook’s diminishing influence on the internet after more than a decade of spectacular growth.” [writes Jonathan Vanian from CNBC](https://www.nbcnews.com/tech/social-media/facebook-button-disappearing-websites-privacy-demands-grow-rcna46869).
 
-The Mee Project nonprofit is working on a surveillance-free alternative that involves the installation of a the Mee smartwallet (formerly *identity agent*) on the user’s device. We’ll be [demoing it at IIW 35](https://www.eventbrite.com/e/internet-identity-workshop-iiwxxxv-35-2022b-tickets-368643531727).
+The Mee Project nonprofit is working on a surveillance-free alternative that involves the installation of a the Mee smartwallet (formerly _identity agent_) on the user’s device. We’ll be [demoing it at IIW 35](https://www.eventbrite.com/e/internet-identity-workshop-iiwxxxv-35-2022b-tickets-368643531727).
 
 Instead of “Sign in with Facebook” (or Google), the user clicks “Connect with Mee”:
 

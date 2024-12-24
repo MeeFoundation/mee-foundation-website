@@ -2,12 +2,9 @@
 title: User-exclusive Data
 published: 2021-10-10
 author: Paul Trevithick
-featured: false
-tags: 
-    - Privacy
-    - Personal Data
-    - Open Source
-    - Identity
+description:
+  - A few hundred years later, this truth that Locke argued was “self-evident” does not hold in the digital realm. This is partly because data can’t really be “owned” like other kinds of property. But the main reason we don’t have a sense of “owning” our online selves is that it seems like “<a href="https://reb00ted.org/personaldata/20210620-who-has-my-personal-data/">everybody has our data … except us</a>!“
+  - Much of our human information (e.g., preferences, interests, affiliations, friends, medical records, location data) is collected by corporations through online surveillance² or simply expropriation. It is held, bought, sold, and leveraged for the corporation’s economic advantage, not ours. We are disempowered; “essential but worthless.”³ ⁴
 ---
 
 > “Every man has a property in his own person: this nobody has any right to but himself.” — John Locke.¹
@@ -16,15 +13,15 @@ A few hundred years later, this truth that Locke argued was “self-evident” d
 
 Much of our human information (e.g., preferences, interests, affiliations, friends, medical records, location data) is collected by corporations through online surveillance² or simply expropriation. It is held, bought, sold, and leveraged for the corporation’s economic advantage, not ours. We are disempowered; “essential but worthless.”³ ⁴
 
-The resulting loss of privacy and lack of a sense of ownership of our personal data is well-known. There are many projects working to “fix the internet”⁵ that are focused on personal data management. In some of these efforts, decentralized, user-centered architectures based on *user-held⁶* personal data are getting renewed attention. A variation of user-held data that we call *user-exclusive* data is the subject of this article.
+The resulting loss of privacy and lack of a sense of ownership of our personal data is well-known. There are many projects working to “fix the internet”⁵ that are focused on personal data management. In some of these efforts, decentralized, user-centered architectures based on _user-held⁶_ personal data are getting renewed attention. A variation of user-held data that we call _user-exclusive_ data is the subject of this article.
 
 ## Where is human data stored?
 
-Human/user/personal⁷ data is collected and stored by organizations as users interact with their “apps” (e.g., mobile apps, websites, etc.). We call this *app-held* data. It’s also held by third parties (e.g. data brokers) with whom users have no interactions at all. The resulting data economy with its dominance of app-held and 3rd-party-held data is shown at the left below.
+Human/user/personal⁷ data is collected and stored by organizations as users interact with their “apps” (e.g., mobile apps, websites, etc.). We call this _app-held_ data. It’s also held by third parties (e.g. data brokers) with whom users have no interactions at all. The resulting data economy with its dominance of app-held and 3rd-party-held data is shown at the left below.
 
 ![where-is-personal-data-stored](../../assets/blog/F1_location.png)
 
-Although still rare in practice, theoretically there is another place where human data can live. It can be held by the user in a *personal data store* (PDS).⁸ ⁹ We call this *user-held* data. A PDS stores the user’s data in the cloud or on an edge device (phone, tablet, laptopc, etc.) or a combination of the two.
+Although still rare in practice, theoretically there is another place where human data can live. It can be held by the user in a _personal data store_ (PDS).⁸ ⁹ We call this _user-held_ data. A PDS stores the user’s data in the cloud or on an edge device (phone, tablet, laptopc, etc.) or a combination of the two.
 
 ![personal-data-locations](../../assets/blog/F2_app-held_user-held_3rd.png)
 
@@ -32,7 +29,7 @@ Although still rare in practice, theoretically there is another place where huma
 
 The right-hand dotted line in the diagram above shows data sharing between an organization (the app) and a 3rd-party. An example of this would be data brokers buying datasets from apps and selling them to other apps/organizations or government agencies. Another example is when an organization shares personal data with its affiliates, payment processors, etc.
 
-Data sharing also happens between user-held data (in a PDS) and app-held data (in an app) shown in the left-hand dotted line. Data sharing of this kind can happen in both directions. In the first, the user (via their PDS) shares data with an app; we call this data *user-shared.* After sharing, the app typically retains a copy. As an example, the PDS user could decide to share a copy of their fitness data with a fitness-analytics app. Going the other direction, when the app shares data with the user’s PDS we call this *app-shared* data. After sharing, the user’s PDS would typically retain a copy. As an example of this direction, a medical lab might share test results with the user. We have added these two types of shared data on the bottom row below:
+Data sharing also happens between user-held data (in a PDS) and app-held data (in an app) shown in the left-hand dotted line. Data sharing of this kind can happen in both directions. In the first, the user (via their PDS) shares data with an app; we call this data _user-shared._ After sharing, the app typically retains a copy. As an example, the PDS user could decide to share a copy of their fitness data with a fitness-analytics app. Going the other direction, when the app shares data with the user’s PDS we call this _app-shared_ data. After sharing, the user’s PDS would typically retain a copy. As an example of this direction, a medical lab might share test results with the user. We have added these two types of shared data on the bottom row below:
 
 ![data-sharing-flows](../../assets/blog/F3_data_sharing_flows.png)
 
@@ -44,11 +41,11 @@ Data sharing can also happen in both directions between the user (the user’s P
 
 ## Exclusivity
 
-In this article, we call data *exclusive* if there are no permanent copies of it held by any other party. Note that this doesn’t mean that another party (app or user) doesn’t have access; it means that having accessed the data, it doesn’t make copies, except for transient, in-memory caches. From the point of view of these other parties, exclusive data is ephemeral.
+In this article, we call data _exclusive_ if there are no permanent copies of it held by any other party. Note that this doesn’t mean that another party (app or user) doesn’t have access; it means that having accessed the data, it doesn’t make copies, except for transient, in-memory caches. From the point of view of these other parties, exclusive data is ephemeral.
 
-There are two kinds of exclusive data. When app-held data is exclusive we call it *app-exclusive.* Except for data requests under GDPR/CCPA/etc., apps rarely share machine-processable user data with the user, although admittedly this is partly because users lack the necessary software tools (e.g., a PDS) on their side to take advantage of it. Thus, almost all app-held data is app-exclusive.
+There are two kinds of exclusive data. When app-held data is exclusive we call it _app-exclusive._ Except for data requests under GDPR/CCPA/etc., apps rarely share machine-processable user data with the user, although admittedly this is partly because users lack the necessary software tools (e.g., a PDS) on their side to take advantage of it. Thus, almost all app-held data is app-exclusive.
 
-The second kind of exclusive data, called *user-exclusive,* is user-held data that is exclusive. Before we dive more deeply into the details of user-exclusive data, here’s a visual summary of all of the terms we’ve introduced so far:
+The second kind of exclusive data, called _user-exclusive,_ is user-held data that is exclusive. Before we dive more deeply into the details of user-exclusive data, here’s a visual summary of all of the terms we’ve introduced so far:
 
 ![F5_locations_exclusive_and_replicated](../../assets/blog/F5_locations_exclusive_and_replicated.png)
 
@@ -70,11 +67,11 @@ As we’ve mentioned, today most human data is app-held (by organizations), with
 
 **Economic:** It would be damaging to a firm’s ability to compete if its manager’s private evaluations of employees were fully disclosed to the employees as they would be if this data was user-exclusive.
 
-*A summary of user-exclusive data:*
+_A summary of user-exclusive data:_
 
 **1.** At rest, user-exclusive personal data is stored on the user’s devices and/or PDS, and exists nowhere else.
 
-**2.** An organization’s app (e.g. website or mobile app, etc.) requests, via the PDS’ API, access to user-exclusive data from either (i) an app-specific *context* (i.e., an app-specific data container in the PDS) or (ii) the contexts of other apps. Through legal agreement, the organization is prohibited from storing copies of user-exclusive data in their own permanent storage (e.g., filesystems, databases, secure storage areas, etc.). The organization is prohibited from sharing user-exclusive data with any party (other than the user!).
+**2.** An organization’s app (e.g. website or mobile app, etc.) requests, via the PDS’ API, access to user-exclusive data from either (i) an app-specific _context_ (i.e., an app-specific data container in the PDS) or (ii) the contexts of other apps. Through legal agreement, the organization is prohibited from storing copies of user-exclusive data in their own permanent storage (e.g., filesystems, databases, secure storage areas, etc.). The organization is prohibited from sharing user-exclusive data with any party (other than the user!).
 
 **3.** The app stores user-exclusive data in its app-specific context in the user’s PDS.
 
@@ -84,31 +81,31 @@ As we’ve mentioned, today most human data is app-held (by organizations), with
 
 ## Conclusion
 
-We have proposed *user-exclusive* data as a new kind of user-held data that provides the user with increased control and a sense of ownership. We discussed how its ephemeral nature can be implemented through a combination of PDS technology and governance. The result is an internet where people have more ownership of their digital lives. Where users interact with apps that offer unprecedented new services and experiences while respecting the user’s data sovereignty.
+We have proposed _user-exclusive_ data as a new kind of user-held data that provides the user with increased control and a sense of ownership. We discussed how its ephemeral nature can be implemented through a combination of PDS technology and governance. The result is an internet where people have more ownership of their digital lives. Where users interact with apps that offer unprecedented new services and experiences while respecting the user’s data sovereignty.
 
 # References
 
-Doctorow, C. (2021). Competitive compatibility: let’s fix the internet, not the tech giants. *Communications of the ACM*, *64*(10), 26–29. https://dl.acm.org/doi/fullHtml/10.1145/3446789
+Doctorow, C. (2021). Competitive compatibility: let’s fix the internet, not the tech giants. _Communications of the ACM_, _64_(10), 26–29. https://dl.acm.org/doi/fullHtml/10.1145/3446789
 
-Hartzog, W. (2011). Chain-link confidentiality. *Ga. L. Rev.*, *46*, 657. [https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/geolr46&section=26](https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals%2Fgeolr46&section=26)
+Hartzog, W. (2011). Chain-link confidentiality. _Ga. L. Rev._, _46_, 657. [https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/geolr46&section=26](https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals%2Fgeolr46&section=26)
 
-I.AM, W. (2019, January 21). We need to own our data as a human right — and be compensated for it. *The Economist*. [economist.com/open-future/2019/01/21/we-need-to-own-our-data-as-a-human-right-and-be-compensated-for-it](https://www.economist.com/open-future/2019/01/21/we-need-to-own-our-data-as-a-human-right-and-be-compensated-for-it)
+I.AM, W. (2019, January 21). We need to own our data as a human right — and be compensated for it. _The Economist_. [economist.com/open-future/2019/01/21/we-need-to-own-our-data-as-a-human-right-and-be-compensated-for-it](https://www.economist.com/open-future/2019/01/21/we-need-to-own-our-data-as-a-human-right-and-be-compensated-for-it)
 
-Jurcys, P., Donewald, C., Fenwick, M., Lampinen, M., Nekrošius, V., & Smaliukas, A. (2021). Ownership of User-Held Data: Why Property Law is the Right Approach. *JOLT*. [jolt.law.harvard.edu/digest/ownership-of-user-held-data-why-property-law-is-the-right-approach](https://jolt.law.harvard.edu/digest/ownership-of-user-held-data-why-property-law-is-the-right-approach)
+Jurcys, P., Donewald, C., Fenwick, M., Lampinen, M., Nekrošius, V., & Smaliukas, A. (2021). Ownership of User-Held Data: Why Property Law is the Right Approach. _JOLT_. [jolt.law.harvard.edu/digest/ownership-of-user-held-data-why-property-law-is-the-right-approach](https://jolt.law.harvard.edu/digest/ownership-of-user-held-data-why-property-law-is-the-right-approach)
 
-Lanier, J. (2014). *Who owns the future?* Simon and Schuster.
+Lanier, J. (2014). _Who owns the future?_ Simon and Schuster.
 
-Liddell, K., Simon, D. A., & Lucassen, A. (2021). Patient data ownership: who owns your health? *Journal of Law and the Biosciences*, *8*(2), lsab023. https://doi.org/10.1093/jlb/lsab023
+Liddell, K., Simon, D. A., & Lucassen, A. (2021). Patient data ownership: who owns your health? _Journal of Law and the Biosciences_, _8_(2), lsab023. https://doi.org/10.1093/jlb/lsab023
 
-Locke, J. (2014). *Second treatise of government: An essay concerning the true original, extent and end of civil government*. John Wiley & Sons.
+Locke, J. (2014). _Second treatise of government: An essay concerning the true original, extent and end of civil government_. John Wiley & Sons.
 
-Preukschat, A., & Reed, D. (2021). *Self-sovereign identity: decentralized digital identity and verifiable credentials*. Simon and Schuster.
+Preukschat, A., & Reed, D. (2021). _Self-sovereign identity: decentralized digital identity and verifiable credentials_. Simon and Schuster.
 
-Prewitt, M. (2021, February 23). *A View Of The Future Of Our Data: Welcome to the era of data coalitions.* Noema Magazine. [noemamag.com/a-view-of-the-future-of-our-data/](https://www.noemamag.com/a-view-of-the-future-of-our-data/)
+Prewitt, M. (2021, February 23). _A View Of The Future Of Our Data: Welcome to the era of data coalitions._ Noema Magazine. [noemamag.com/a-view-of-the-future-of-our-data/](https://www.noemamag.com/a-view-of-the-future-of-our-data/)
 
-Whitt, R. S. (2021). Hacking the SEAMs: Elevating Digital Autonomy and Agency for Humans. *Colo. Tech. LJ*, *19*, 137. https://ctlj.colorado.edu/?p=720
+Whitt, R. S. (2021). Hacking the SEAMs: Elevating Digital Autonomy and Agency for Humans. _Colo. Tech. LJ_, _19_, 137. https://ctlj.colorado.edu/?p=720
 
-Zuboff, S. (2019). *The Age of Surveillance Capitalism*. Profile Books.
+Zuboff, S. (2019). _The Age of Surveillance Capitalism_. Profile Books.
 
 # Notes
 
@@ -132,7 +129,7 @@ Zuboff, S. (2019). *The Age of Surveillance Capitalism*. Profile Books.
 
 [10] The copy problem is out of scope for identity management technologies, including [self-sovereign identity](https://en.wikipedia.org/wiki/Self-sovereign_identity) (SSI). In SSI, for example, users own digitally signed copies of source data “verifiable credentials” (VCs), store them in “wallets” and share them with recipient apps (websites, service providers, mobile apps, etc.) (“verifiers”). The source copy remains with the issuer, with the user holding a derivative, digitally signed copy of it. Similarly, the verifier makes a copy of the data payload of the VC after verifying its authenticity. For more see (Preukschat & Reed, 2021).
 
-[11] Copies undermine the sense of ownership. Ownership is sometimes defined as the ability to *possess*, *sell*, *share* and *delete* something. You can’t really be said to *possess* something if others have it too; at best you merely possess your own a copy. You can’t really *sell* your personal data because you’re just providing another copy in return for compensation. Your copy remains, as do all the other copies. This isn’t the typcial meaning of *selling* something. In most cases (e.g., consider the digital art world), each copy devalues the others. It’s hard to effectively *share* your personal data. At best you can distribute static copies that have lost their connection to the original and thus become out-of-date and of unknown provenance. You can’t easily *delete* your personal data. It's easy to delete your own copy (if you have one!), but without some form of automation, it's too time-consuming to manually delete all of the remaining copies held by hundreds of websites.
+[11] Copies undermine the sense of ownership. Ownership is sometimes defined as the ability to _possess_, _sell_, _share_ and _delete_ something. You can’t really be said to _possess_ something if others have it too; at best you merely possess your own a copy. You can’t really _sell_ your personal data because you’re just providing another copy in return for compensation. Your copy remains, as do all the other copies. This isn’t the typcial meaning of _selling_ something. In most cases (e.g., consider the digital art world), each copy devalues the others. It’s hard to effectively _share_ your personal data. At best you can distribute static copies that have lost their connection to the original and thus become out-of-date and of unknown provenance. You can’t easily _delete_ your personal data. It's easy to delete your own copy (if you have one!), but without some form of automation, it's too time-consuming to manually delete all of the remaining copies held by hundreds of websites.
 
 [12] See (Hartzog, 2011) for a discussion of chain-link confidentiality.
 
@@ -140,13 +137,13 @@ Zuboff, S. (2019). *The Age of Surveillance Capitalism*. Profile Books.
 
 [14] Even though individual data ownership rights are not recognized in any jurisdiction, by eliminating the copy problem and giving exclusive possession to the user, user-exclusive data seems to provide an intuitive notion of ownership. (Jurcys et al., (2021)).
 
-[15] Recent calls for ownership include, *We need to own our data as a human right — and be compensated for it* (I.AM, 2019), and [Everybody has our data … except us](https://reb00ted.org/personaldata/20210620-who-has-my-personal-data/).
+[15] Recent calls for ownership include, _We need to own our data as a human right — and be compensated for it_ (I.AM, 2019), and [Everybody has our data … except us](https://reb00ted.org/personaldata/20210620-who-has-my-personal-data/).
 
 [16] [MyData.org](https://mydata.org/) seeks “to empower individuals with their personal data…”
 
 [17] See Personal Data Ownership (Jurcyc et al., 2021) for support for leveraging the concept of ownership.
 
-[18] It is argued that *ownership* is the wrong framing for personal data. E.g., Prewitt (2021) argues that due to data’s inherent copy-ability “data cannot be owned, but must be governed.” This is of course true. User-exclusive data relies on governance in the form of confidentiality agreements to be implemented. Nevertheless, the sense of a “lack of ownership” resonates broadly with people.
+[18] It is argued that _ownership_ is the wrong framing for personal data. E.g., Prewitt (2021) argues that due to data’s inherent copy-ability “data cannot be owned, but must be governed.” This is of course true. User-exclusive data relies on governance in the form of confidentiality agreements to be implemented. Nevertheless, the sense of a “lack of ownership” resonates broadly with people.
 
 [19] For other arguments against using the concept of ownership and propertization of personal data (and data in general) see [RadicalxChange.org](https://radicalxchange.org/)’s [Data Freedom Act](https://www.radicalxchange.org/media/papers/data-freedom-act.pdf), which is “…informed by a model of social, overlapping claims to data. This view of data, which challenges more familiar notions of individual data ownership, is echoed by top researchers in the fields of data privacy, security, and network economics.” See also the Technium [Data Manifesto](https://kk.org/thetechnium/data-manifesto/) whose first tenet reads, “Data cannot be owned. By anybody.” Concerning health data, see “Patient data ownership: who owns your health?” (Liddell et al., 2021).
 
