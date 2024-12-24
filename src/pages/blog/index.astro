@@ -1,12 +1,12 @@
 ---
-import {Header} from 'mee-components';
+import {Header, ShareButton} from 'mee-components';
 import {header} from '../../../astro.config.mjs';
 import {getCollection} from 'astro:content';
 import FormattedDate from '../../components/blog/FormattedDate.astro';
 import BlogLayout from '@layouts/blog/BlogLayout.astro';
 import slugify from '../../utils/slugify';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog', ({data}) => !data.draft)).sort(
   (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
 );
 ---
@@ -42,30 +42,56 @@ const posts = (await getCollection('blog')).sort(
           {
             posts.map(async (post) => {
               const {Content} = await post.render();
+              const url = `/blog/${slugify(post.data)}`;
               return (
-                <li class="relative mx-6 mb-10 flex w-full items-center justify-center border-t border-grey-200 pt-10">
-                  <span class="absolute left-0 top-12 hidden lg:block">
-                    <FormattedDate date={post.data.published} />
-                  </span>
-                  <div class="max-w-3xl">
-                    <a
-                      href={`/blog/posts/${slugify(post.data)}`}
-                      class="inline-block text-lg font-medium text-skin-blog-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
-                    >
-                      <h3 class="text-4xl font-semibold text-grey-900 hover:underline dark:text-gray-200">
-                        {post.data.title}
-                      </h3>
-                    </a>
-                    <div class="lg:hidden">
-                      <FormattedDate date={post.data.published} />
+                <li class="relative mb-10 flex w-full items-center justify-center border-t border-grey-200 pt-10">
+                  <ShareButton
+                    url={url}
+                    className="!absolute left-4 top-12 hidden lg:block"
+                  >
+                    Share article
+                  </ShareButton>
+                  <div class="flex max-w-3xl flex-col gap-8 px-6">
+                    <div>
+                      <a
+                        href={url}
+                        class="inline-block text-lg font-medium text-skin-blog-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+                      >
+                        <h3 class="text-4xl font-semibold text-brand-500 dark:text-brand-300">
+                          {post.data.title}
+                        </h3>
+                      </a>
+                      <div>
+                        <FormattedDate date={post.data.published} />
+                      </div>
                     </div>
+                    {post.data.previewImage && (
+                      <img src={post.data.previewImage} class="rounded-2xl" />
+                    )}
                     <article
                       id="article"
                       role="article"
-                      class="prose mx-auto mt-8 max-w-3xl text-grey-900 dark:text-gray-200"
+                      class="prose mx-auto max-w-fit text-grey-900 dark:text-gray-200"
                     >
-                      <Content />
+                      {post.data.description ? (
+                        post.data.description.map((descriptionItem) => (
+                          <p set:html={descriptionItem} />
+                        ))
+                      ) : (
+                        <Content />
+                      )}
                     </article>
+                    {post.data.description && (
+                      <a
+                        href={url}
+                        class="text-brand-500 underline underline-offset-4 dark:text-brand-300"
+                      >
+                        Read more
+                      </a>
+                    )}
+                    <ShareButton url={url} className="block lg:hidden">
+                      Share article
+                    </ShareButton>
                   </div>
                 </li>
               );

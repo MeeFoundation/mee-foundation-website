@@ -1,0 +1,132 @@
+---
+import {type CollectionEntry, getCollection} from 'astro:content';
+import {Header, Breadcrumbs, ButtonLink, ShareButton} from 'mee-components';
+import {header} from '../../../astro.config.mjs';
+import FormattedDate from '../../components/blog/FormattedDate.astro';
+import getSortedPosts from '@utils/getSortedPosts';
+import getPageNumbers from '@utils/getPageNumbers';
+import slugify from '@utils/slugify';
+import BlogLayout from '@layouts/blog/BlogLayout.astro';
+
+export interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({data}) => !data.draft);
+
+  const postResult = posts.map((post) => ({
+    params: {slug: slugify(post.data)},
+    props: {post},
+  }));
+
+  const pagePaths = getPageNumbers(posts.length).map((pageNum) => ({
+    params: {slug: String(pageNum)},
+  }));
+
+  return [...postResult, ...pagePaths];
+}
+
+// const {slug} = Astro.params;
+const {post} = Astro.props;
+const {Content} = await post.render();
+const posts = await getCollection('blog');
+
+const sortedPosts = getSortedPosts(posts);
+let currentPostIndex: number = 0;
+sortedPosts.forEach((sortedPost, index) => {
+  if (sortedPost.id == post.id) {
+    currentPostIndex = index;
+  }
+});
+const previousPost =
+  currentPostIndex == 0
+    ? sortedPosts[sortedPosts.length - 1]
+    : sortedPosts[currentPostIndex - 1];
+const nextPost =
+  currentPostIndex == sortedPosts.length - 1
+    ? sortedPosts[0]
+    : sortedPosts[currentPostIndex + 1];
+
+const url = `/blog/${slugify(post.data)}`;
+
+const title = post.data.title;
+const breadcrumbs = [{title: 'Blog', link: `/blog`}, {title: title}];
+---
+
+<BlogLayout title={title}>
+  <main class="w-screen">
+    <Header header={header} activePage="blog" location="Blog" />
+    <section
+      class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden pt-25 md:pt-36"
+    >
+      <Breadcrumbs className="hidden md:flex" breadcrumbs={breadcrumbs} />
+      <section class="mt-4 w-screen max-w-7xl">
+        <div
+          class="relative mb-10 flex w-full items-center justify-center border-grey-200"
+        >
+          <div class="flex max-w-3xl flex-col gap-16 px-6">
+            <div class="flex w-full flex-col gap-4">
+              <h3
+                class="text-center text-5xl font-semibold text-grey-900 dark:text-gray-200"
+              >
+                {post.data.title}
+              </h3>
+              <div class="flex w-full items-center justify-center">
+                <FormattedDate date={post.data.published} />
+              </div>
+            </div>
+            <div class="flex flex-col">
+              {
+                post.data.previewImage && (
+                  <img src={post.data.previewImage} class="mb-8 rounded-2xl" />
+                )
+              }
+              <div class="flex flex-col gap-8 pb-8">
+                <article
+                  id="article"
+                  role="article"
+                  class="prose w-full max-w-fit text-grey-900 dark:text-gray-200"
+                >
+                  <Content />
+                </article>
+                <ShareButton url={url}> Share article </ShareButton>
+              </div>
+              <div
+                class="flex flex-row flex-wrap gap-2 border-t border-grey-200 pt-8 md:flex-nowrap md:gap-0"
+              >
+                {
+                  previousPost && (
+                    <ButtonLink
+                      className="w-full md:w-1/2 md:rounded-r-none "
+                      buttonType="tertiary"
+                      leftIcon="arrow-left text-xl"
+                      style="outlined"
+                      href={`/blog/${slugify(previousPost.data)}`}
+                    >
+                      <span class="truncate">{previousPost.data.title}</span>
+                    </ButtonLink>
+                  )
+                }
+                {
+                  nextPost && (
+                    <ButtonLink
+                      href={`/blog/${slugify(nextPost.data)}`}
+                      className="w-full md:w-1/2 md:rounded-l-none"
+                      leftIcon=""
+                      buttonType="tertiary"
+                      style="outlined"
+                      rightIcon="arrow-right text-xl"
+                    >
+                      <span class="truncate">{nextPost.data.title}</span>
+                    </ButtonLink>
+                  )
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</BlogLayout>

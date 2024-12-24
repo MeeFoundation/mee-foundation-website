@@ -1,11 +1,7 @@
 ---
 title: Provider Discovery
 published: 2023-08-28
-featured: true
 author: Paul Trevithick
-ogImage: /images/blog/disney-dns.webp
-tags:
-  - Identity
 ---
 
 While working on Mee digital wallet use cases (e.g. log in with wallet using SIOPv2, issuance of VC credentials, etc.) we encountered a familiar challenge: the RP needs to know about the person’s providers (e.g. OpenIDConnect provider, wallet provider, SIOPv2 provider, age verification provider, etc.) so it can display appropriate buttons/choices.

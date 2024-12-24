@@ -2,12 +2,9 @@
 title: Smartwallets, digital wallets, and authenticators
 published: 2022-09-21
 author: Paul Trevithick
-tags: 
-    - Privacy
-    - Identity
+description:
+  - Inspired by the Linux Foundation’s <a href="https://www.linuxfoundation.org/press/linux-foundation-announces-an-intent-to-form-the-openwallet-foundation">announcement</a> about the <a href="https://openwallet.foundation/">OpenWallet Foundation</a>, I drew a picture of how smartwallet relates to a digital wallet and an authenticator from a functionality perspective.
 ---
-
-
 
 Inspired by the Linux Foundation’s [announcement](https://www.linuxfoundation.org/press/linux-foundation-announces-an-intent-to-form-the-openwallet-foundation) about the [OpenWallet Foundation](https://openwallet.foundation/), I drew a picture of how smartwallet relates to a digital wallet and an authenticator from a functionality perspective.
 

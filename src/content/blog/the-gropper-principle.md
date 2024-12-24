@@ -2,11 +2,10 @@
 title: The Gropper Principle
 published: 2022-08-13
 author: Paul Trevithick
-tags:
-  - Privacy
+previewImage: /images/blog/bundle-of-model-mats.webp
+description:
+    - In <a href="https://blog.petrieflom.law.harvard.edu/2022/04/12/a-human-rights-approach-to-personal-information-technology/">A Human Rights Approach to Personal Information Technology</a> Adrian Gropper makes two interrelated points. The first is that we should build personal information infrastructure based on the human right to privacy. No argument there. But it’s his second point, about an architectural principle that must be adhered to in order to respect human rights, that I’d like to highlight.
 ---
-
-![Bundle of Model Mats](../../assets/blog/bundle-of-model-mats.webp)
 
 In [A Human Rights Approach to Personal Information Technology](https://blog.petrieflom.law.harvard.edu/2022/04/12/a-human-rights-approach-to-personal-information-technology/) Adrian Gropper makes two interrelated points. The first is that we should build personal information infrastructure based on the human right to privacy. No argument there. But it’s his second point, about an architectural principle that must be adhered to in order to respect human rights, that I’d like to highlight.
 

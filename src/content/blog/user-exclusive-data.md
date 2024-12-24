@@ -2,12 +2,9 @@
 title: User-exclusive Data
 published: 2021-10-10
 author: Paul Trevithick
-featured: false
-tags:
-  - Privacy
-  - Personal Data
-  - Open Source
-  - Identity
+description:
+  - A few hundred years later, this truth that Locke argued was “self-evident” does not hold in the digital realm. This is partly because data can’t really be “owned” like other kinds of property. But the main reason we don’t have a sense of “owning” our online selves is that it seems like “<a href="https://reb00ted.org/personaldata/20210620-who-has-my-personal-data/">everybody has our data … except us</a>!“
+  - Much of our human information (e.g., preferences, interests, affiliations, friends, medical records, location data) is collected by corporations through online surveillance² or simply expropriation. It is held, bought, sold, and leveraged for the corporation’s economic advantage, not ours. We are disempowered; “essential but worthless.”³ ⁴
 ---
 
 > “Every man has a property in his own person: this nobody has any right to but himself.” — John Locke.¹
@@ -18,10 +15,8 @@ Much of our human information (e.g., preferences, interests, affiliations, frien
 
 The resulting loss of privacy and lack of a sense of ownership of our personal data is well-known. There are many projects working to “fix the internet”⁵ that are focused on personal data management. In some of these efforts, decentralized, user-centered architectures based on _user-held⁶_ personal data are getting renewed attention. A variation of user-held data that we call _user-exclusive_ data is the subject of this article.
 
-import {Accordion} from 'mee-components';
+## Where is human data stored?
 
-<Accordion title="Where is human data stored" headerClassName="not-prose">
-  
 Human/user/personal⁷ data is collected and stored by organizations as users interact with their “apps” (e.g., mobile apps, websites, etc.). We call this _app-held_ data. It’s also held by third parties (e.g. data brokers) with whom users have no interactions at all. The resulting data economy with its dominance of app-held and 3rd-party-held data is shown at the left below.
 
 ![where-is-personal-data-stored](../../assets/blog/F1_location.png)
@@ -30,9 +25,7 @@ Although still rare in practice, theoretically there is another place where huma
 
 ![personal-data-locations](../../assets/blog/F2_app-held_user-held_3rd.png)
 
-</Accordion>
-
-<Accordion title="Data sharing" headerClassName="not-prose">
+## **Data sharing**
 
 The right-hand dotted line in the diagram above shows data sharing between an organization (the app) and a 3rd-party. An example of this would be data brokers buying datasets from apps and selling them to other apps/organizations or government agencies. Another example is when an organization shares personal data with its affiliates, payment processors, etc.
 
@@ -40,17 +33,13 @@ Data sharing also happens between user-held data (in a PDS) and app-held data (i
 
 ![data-sharing-flows](../../assets/blog/F3_data_sharing_flows.png)
 
-</Accordion>
-
-<Accordion title="Replication" headerClassName="not-prose">
+## **Replication**
 
 Data sharing can also happen in both directions between the user (the user’s PDS) and an app in what would be called data replication. We show this more nuanced, bi-directional kind of sharing in Figure 4 below.
 
 ![img](../../assets/blog/F4_data_replication_flows.png)
 
-</Accordion>
-
-<Accordion title="Exclusivity" headerClassName="not-prose">
+## Exclusivity
 
 In this article, we call data _exclusive_ if there are no permanent copies of it held by any other party. Note that this doesn’t mean that another party (app or user) doesn’t have access; it means that having accessed the data, it doesn’t make copies, except for transient, in-memory caches. From the point of view of these other parties, exclusive data is ephemeral.
 
@@ -60,9 +49,7 @@ The second kind of exclusive data, called _user-exclusive,_ is user-held data th
 
 ![F5_locations_exclusive_and_replicated](../../assets/blog/F5_locations_exclusive_and_replicated.png)
 
-</Accordion>
-
-<Accordion title="User-exclusive personal data" headerClassName="not-prose">
+## User-exclusive personal data
 
 With user-held data, there are typically other copies. By eliminating these copies*¹⁰ ¹¹* user-exclusive data affords a stronger sense of ownership, since you hold the only copy.
 
@@ -92,19 +79,11 @@ _A summary of user-exclusive data:_
 
 **5.** User-exclusive data may be deleted by the user at any time.
 
-</Accordion>
+## Conclusion
 
-<Accordion title="Conclusion" headerClassName="not-prose">
-  We have proposed _user-exclusive_ data as a new kind of user-held data that
-  provides the user with increased control and a sense of ownership. We
-  discussed how its ephemeral nature can be implemented through a combination of
-  PDS technology and governance. The result is an internet where people have
-  more ownership of their digital lives. Where users interact with apps that
-  offer unprecedented new services and experiences while respecting the user’s
-  data sovereignty.
-</Accordion>
+We have proposed _user-exclusive_ data as a new kind of user-held data that provides the user with increased control and a sense of ownership. We discussed how its ephemeral nature can be implemented through a combination of PDS technology and governance. The result is an internet where people have more ownership of their digital lives. Where users interact with apps that offer unprecedented new services and experiences while respecting the user’s data sovereignty.
 
-<Accordion title="References" headerClassName="not-prose">
+# References
 
 Doctorow, C. (2021). Competitive compatibility: let’s fix the internet, not the tech giants. _Communications of the ACM_, _64_(10), 26–29. https://dl.acm.org/doi/fullHtml/10.1145/3446789
 
@@ -128,9 +107,7 @@ Whitt, R. S. (2021). Hacking the SEAMs: Elevating Digital Autonomy and Agency fo
 
 Zuboff, S. (2019). _The Age of Surveillance Capitalism_. Profile Books.
 
-</Accordion>
-
-<Accordion title="Notes" headerClassName="not-prose">
+# Notes
 
 [1] John Locke published his Second Treatise on Government in 1690. (Locke, 2014). “John Locke was an English philosopher who thought a lot about power: who had it, how it was used, and how it impacted the structure of society. Locke’s theory of mind forms the foundation for our modern ideas about identity and independence. Locke argued that “sovereign and independent” was man’s natural state and that we gave up freedom, our sovereignty, in exchange for something else, protection, sociality, and commerce, among others. This grand bargain forms the basis for any society.” — from Phil Windley’s [Technometria](https://www.windley.com/archives/2020/09/the_architecture_of_identity_systems.shtml).
 
@@ -173,5 +150,3 @@ Zuboff, S. (2019). _The Age of Surveillance Capitalism_. Profile Books.
 [20] See [It’s time for individuals — not doctors or companies — to own their health data.](https://www.statnews.com/2021/11/15/its-time-for-individuals-not-doctors-or-companies-to-own-their-health-data/)
 
 [21] See page 102 of (U.S. Dept. of Health and Human Services, 2013) and [Individual’s Right under HIPAA to Access their Health Information 45CFR part 164.524](https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/access/index.html) since the assumption is that the provider owns the patient’s health records.
-
-</Accordion>
