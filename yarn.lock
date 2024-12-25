@@ -3223,10 +3223,10 @@ mdast-util-to-string@^4.0.0:
   dependencies:
     "@types/mdast" "^4.0.0"
 
-mee-components@^0.0.46:
-  version "0.0.46"
-  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.46.tgz#4fb6d86aefd46db153a73a3423865d6c5e9700a0"
-  integrity sha512-qCnpgNqLZHyiAyDfbbymn4E3R181I8ojukr5IauVhfmGM2WK+3ehi7gLsgkygoGLQIJXfziGWZpOHz0j6otxYQ==
+mee-components@^0.0.47:
+  version "0.0.47"
+  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.47.tgz#b9c1afa1d513de2572a2e638bd7094b680f23127"
+  integrity sha512-fV9E/PGtyHOE5uBXRC24YbSXejd2HBnTacZ/pr7h7qf7vc6DsKTJy+D/nhpYi9q3SNi+34SWJVgHd6Uv+22pDQ==
   dependencies:
     "@astrojs/check" "^0.9.4"
     "@astrojs/node" "^9.0.0"
