@@ -420,9 +420,19 @@ const contributors = [
               <Alert
                 id="success-alert"
                 title="Congrats!"
-                icon="check-circle"
+                icon="envelope-check"
                 type="success"
                 description="You’ve been subscribed to Mee Foundation newsletter."
+                view="row"
+              />
+            </div>
+            <div class="absolute">
+              <Alert
+                id="already-alert"
+                title="You are already subscribed."
+                icon="envelope-check"
+                type="secondary"
+                description="The email you used is already subscribed."
                 view="row"
               />
             </div>
@@ -496,6 +506,7 @@ const contributors = [
 <script>
   import {Validation} from 'mee-components';
   const successAlert = document.getElementById('success-alert');
+  const alreadyAlert = document.getElementById('already-alert');
   import {SUBSCRIBE_URL} from '@config';
   const emailContainer = document.getElementById('email-container');
   const emailInput = document.getElementById('email') as HTMLInputElement;
@@ -524,13 +535,12 @@ const contributors = [
           }),
         });
 
-        if (response && response.status === 200) {
-          // emailInput.parentElement?.parentElement?.classList.add('hidden');
+        if (response && response.status === 200 || response.status === 409) {
           emailInput.disabled = true;
           emailInput.classList.add('opacity-60');
           subscribeButton.disabled = true;
-          // subscribeButton.classList.add('hidden');
-          successAlert?.classList.remove('hidden');
+          response.status === 200 && successAlert?.classList.remove('hidden');
+          response.status === 409 && alreadyAlert?.classList.remove('hidden');
         }
       }
     }
