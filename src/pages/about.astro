@@ -461,11 +461,13 @@ const contributors = [
                 href="https://www.patreon.com/TheMeeFoundation"
                 style="filled"
                 buttonType="tertiary"
-                size="l"
-                className="h-14 text-xl"
+                size="xxl"
+                className="w-full"
               >
-                <PatreonIcon class="dark:fill-gray-300" fill="black" />
-                <span>Support on Patreon</span></ButtonLink
+                <span class="flex items-center gap-2"
+                  ><PatreonIcon fill="#334155" />
+                  <span>Support on Patreon</span>
+                </span></ButtonLink
               >
             </div>
           </div>
@@ -535,7 +537,7 @@ const contributors = [
           }),
         });
 
-        if (response && response.status === 200 || response.status === 409) {
+        if ((response && response.status === 200) || response.status === 409) {
           emailInput.disabled = true;
           emailInput.classList.add('opacity-60');
           subscribeButton.disabled = true;
