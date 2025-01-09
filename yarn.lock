@@ -3390,10 +3390,10 @@ mdast-util-to-string@^4.0.0:
   dependencies:
     "@types/mdast" "^4.0.0"
 
-mee-components@^0.0.50:
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.50.tgz#2ee65df985cf6a4e5d96927e8da759a97c203448"
-  integrity sha512-9MJaQhygLQzJ6wmBzkSftnqVoNaBpvuz1m8LEJOdlI+pf6aKUr+qZJFhWv6XxOvZOxMBrQ/AOZPKQZgsLQ3tvQ==
+mee-components@^0.0.52:
+  version "0.0.52"
+  resolved "https://registry.yarnpkg.com/mee-components/-/mee-components-0.0.52.tgz#37865206761a8a98345c08fe8e936bc86bc82c9e"
+  integrity sha512-nHqpp6evYm/iVB8mN8LPG2FzDeWhhaTF3/LUkLxUDMnaZK6YcSthZ/ZpYunu1O92Q9CDs68qubXeV06al7icKg==
   dependencies:
     "@astrojs/check" "^0.9.4"
     "@astrojs/node" "^9.0.0"
