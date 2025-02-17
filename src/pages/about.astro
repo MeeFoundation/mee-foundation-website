@@ -2,50 +2,11 @@
 import {Header, Footer, ButtonLink, Input, Button, Alert} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '@layouts/Layout.astro';
-import appsAndExtention from '../../public/images/about/apps-and-extention.png';
-import appsAndExtentionDark from '../../public/images/about/apps-and-extention-dark.png';
-import personalDataAgents from '../../public/images/about/personal-data-agents.png';
-import personalDataAgentsDark from '../../public/images/about/personal-data-agents-dark.png';
-import legalAgreement from '../../public/images/about/legal-agreement.png';
-import legalAgreementDark from '../../public/images/about/legal-agreement-dark.png';
-import meeFoundation from '../../public/images/about/mee-foundation.png';
-import meeFoundationDark from '../../public/images/about/mee-foundation-dark.png';
 import githubLogo from '../../public/images/github-logo.svg';
 import githubLogoLight from '../../public/images/github-logo-light.svg';
 import linkedinLogo from '../../public/images/linkedin-logo.svg';
 import PatreonIcon from '@components/PatreonIcon.astro';
 import Carousel from '@components/Carousel.astro';
-
-const abouts = [
-  {
-    image: personalDataAgents,
-    imageDark: personalDataAgentsDark,
-    title: 'Personal Data Agents',
-    description:
-      'Manage and control your personal information on Mee-compatible websites and applications.',
-  },
-  {
-    image: appsAndExtention,
-    imageDark: appsAndExtentionDark,
-    title: 'Apps and Browser Extensions',
-    description:
-      'Mobile apps and browser extensions that work with compatible wallets and personal data agents.',
-  },
-  {
-    image: legalAgreement,
-    imageDark: legalAgreementDark,
-    title: 'Legal Agreement for Businesses',
-    description:
-      'The Mee human information license defines what businesses can and can’t do with your data.',
-  },
-  {
-    image: meeFoundation,
-    imageDark: meeFoundationDark,
-    title: 'The Mee Foundation, Inc.',
-    description:
-      'Our mission is to provide the Mee experience – a human-centered user experience for the internet.',
-  },
-];
 
 const principles = [
   {
@@ -226,45 +187,16 @@ const contributors = [
               experience for the internet.
             </h3>
           </div>
-          <div
-            class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white dark:bg-black/90"
-          >
-            <div
-              class="flex w-full flex-wrap items-stretch justify-center gap-8 p-8 pb-20 md:pb-36"
-            >
-              {
-                abouts.map((aboutItem) => (
-                  <div class="w-full max-w-125 rounded-2xl border border-grey-300 dark:border-grey-600">
-                    <img src={aboutItem.image.src} class="w-full dark:hidden" />
-                    <img
-                      src={aboutItem.imageDark.src}
-                      class="hidden w-full dark:block"
-                    />
-                    <div class="flex flex-col gap-2 p-8 pt-0">
-                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-gray-50">
-                        {aboutItem.title}
-                      </div>
-                      <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-gray-200">
-                        {aboutItem.description}
-                      </div>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
         </section>
         <div id="mee-principles"></div>
-        <section
-          class="md:pt-26 flex w-full flex-col items-center justify-center pb-40 pt-12"
-        >
+        <section class="flex w-full flex-col items-center justify-center pb-40">
           <div
             class="flex w-full flex-col items-center justify-center gap-4 p-16"
           >
             <h2
-              class="max-w-7xl text-3xl font-bold leading-thick md:text-4xl md:leading-normal lg:text-5xl dark:text-gray-50"
+              class="max-w-7xl text-3xl font-bold leading-thick text-grey-900 md:text-4xl md:leading-normal lg:text-5xl dark:text-gray-50"
             >
-              Mee Principles
+              Our Principles
             </h2>
             <h3
               class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-gray-200"
