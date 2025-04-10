@@ -3,58 +3,60 @@ import {Header, Footer, ButtonLink} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
 
-import brandReputation from '../../public/images/providers/brand-reputation.png';
-import brandReputationDark from '../../public/images/providers/brand-reputation-dark.png';
-import compliance from '../../public/images/providers/compliance.png';
-import complianceDark from '../../public/images/providers/compliance-dark.png';
-import consentManagement from '../../public/images/providers/consent-management.png';
-import consentManagementDark from '../../public/images/providers/consent-management-dark.png';
-import personalization from '../../public/images/providers/personalization.png';
-import personalizationDark from '../../public/images/providers/personalization-dark.png';
-import rightsOfData from '../../public/images/providers/rights-of-data.svg';
-import rightsOfDataDark from '../../public/images/providers/rights-of-data-dark.png';
-import superiorUx from '../../public/images/providers/superior-ux.png';
-import superiorUxDark from '../../public/images/providers/superior-ux-dark.png';
-
 const offers = [
   {
-    image: superiorUx,
-    imageDark: superiorUxDark,
+    image: '/images/providers/superior-ux.png',
+    imageDark: '/images/providers/superior-ux-dark.png',
     title: 'Superior UX',
+    class: 'col-span-3 dark:bg-grey-950',
     description:
       'Less form filling and administrative hassle for your customers because forms will be pre-filled from your CRM system with their latest data values.',
   },
+
   {
-    image: personalization,
-    imageDark: personalizationDark,
+    image: '/images/providers/customer-acquisition.png',
+    imageDark: '/images/providers/customer-acquisition-dark.png',
+    title: 'Customer acquisition',
+    class: 'col-span-3 dark:bg-grey-950',
+    description:
+      'Mee’s connection recommendation engine brings you qualified customer prospects.',
+  },
+  {
+    image: '/images/providers/data-quality.png',
+    imageDark: '/images/providers/data-quality-dark.png',
     title: 'Data quality',
+    class: 'col-span-2',
     description:
       'Gain access to opt-in, accurate, up-to-date “zero party” data directly from your customers.',
   },
   {
-    image: brandReputation,
-    imageDark: brandReputationDark,
+    image: '/images/providers/brand-reputation.png',
+    imageDark: '/images/providers/brand-reputation-dark.png',
     title: 'Brand reputation',
+    class: 'col-span-4 dark:bg-grey-950',
     description:
       'Enhance your reputation for fair and responsible data practices.',
   },
   {
-    image: compliance,
-    imageDark: complianceDark,
+    image: '/images/providers/compliance.png',
+    imageDark: '/images/providers/compliance-dark.png',
     title: 'Compliance',
+    class: 'col-span-2',
     description:
       'Guaranteed compliance with privacy regulations (e.g. GDPR, CCPA).',
   },
   {
-    image: rightsOfData,
-    imageDark: rightsOfDataDark,
+    image: '/images/providers/privacy.png',
+    imageDark: '/images/providers/privacy-dark.png',
     title: 'Privacy',
+    class: 'col-span-2',
     description:
       'Respect your customers (data subjects) rights to access, rectification, erasure, and data portability.',
   },
   {
-    image: consentManagement,
-    imageDark: consentManagementDark,
+    image: '/images/providers/consent-management.png',
+    imageDark: '/images/providers/consent-management-dark.png',
+    class: 'col-span-2',
     title: 'Consent management',
     description: 'All data sharing events are logged to support audit.',
   },
@@ -82,11 +84,11 @@ const offers = [
               >
                 Benefits for service providers
               </h1>
-              <h3
+              <h2
                 class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-grey-300"
               >
                 Invite your customers to connect with you
-              </h3>
+              </h2>
             </div>
           </section>
 
@@ -94,16 +96,28 @@ const offers = [
             class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white px-4 dark:bg-black/90"
           >
             <div class="flex">
-              <div class="flex flex-wrap items-stretch justify-center gap-8">
+              <div
+                class="flex flex-wrap items-stretch justify-center gap-8 md:grid md:max-w-max md:grid-cols-6"
+              >
                 {
                   offers.map((offer) => (
-                    <div class="max-w-96 rounded-2xl border border-grey-300 dark:border-grey-600">
-                      <img src={offer.image.src} class="w-full dark:hidden" />
+                    <div
+                      class:list={[
+                        'relative min-h-80 rounded-2xl border border-grey-300 dark:border-grey-600',
+                        offer.class,
+                      ]}
+                    >
                       <img
-                        src={offer.imageDark.src}
-                        class="hidden w-full dark:block"
+                        src={offer.image}
+                        class="w-full rounded-2xl dark:hidden"
+                        alt={offer.title.split(' ').join('_')}
                       />
-                      <div class="flex flex-col gap-2 p-8 pt-0">
+                      <img
+                        src={offer.imageDark}
+                        class="hidden w-full rounded-2xl dark:block"
+                        alt={offer.title.split(' ').join('_')}
+                      />
+                      <div class="absolute bottom-0 flex flex-col gap-2 p-8 pt-0">
                         <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                           {offer.title}
                         </div>

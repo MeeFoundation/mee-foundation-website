@@ -28,6 +28,7 @@ export const header = {
       icon: 'discord',
       target: '_blank',
       id: 'discord',
+      ariaLabel: "Discord"
     },
   ],
   footerLinks: [
@@ -50,12 +51,14 @@ export const footer = {
       icon: 'twitter-x',
       target: '_blank',
       id: 'twitter',
+      ariaLabel: 'X',
     },
     {
       link: discord,
       icon: 'discord',
       target: '_blank',
       id: 'discord',
+      ariaLabel: 'Discord',
     },
   ],
   rightLinks: [

@@ -37,7 +37,6 @@ const futures = [
     description: 'Your legal right to control your own data is enforced',
     // class: 'col-span-1 md:order-0 lg:order-none',
   },
- 
 ];
 ---
 
@@ -68,11 +67,11 @@ const futures = [
               </h1>
             </div>
             <div class="max-w-3xl overflow-hidden">
-              <h3
+              <h2
                 class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
               >
                 Giving you more control. More privacy. More convenience.
-              </h3>
+              </h2>
             </div>
             <div class="h-10 md:h-11">
               <div
@@ -160,11 +159,11 @@ const futures = [
           </div>
 
           <div class="overflow-hidden">
-            <h3
+            <h2
               class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl dark:text-grey-200"
             >
               Let’s take back the internet, and make it work for us
-            </h3>
+            </h2>
           </div>
         </div>
       </section>
@@ -173,9 +172,7 @@ const futures = [
       >
         <div class="overflow-hidden">
           <div class="">
-            <div
-              class="flex flex-wrap items-stretch justify-center gap-8 p-8"
-            >
+            <div class="flex flex-wrap items-stretch justify-center gap-8 p-8">
               {
                 futures.map((future) => (
                   <div
@@ -186,12 +183,12 @@ const futures = [
                   >
                     <img
                       src={future.imageLight.src}
-                      class="w-full dark:hidden rounded-t-2xl"
+                      class="w-full rounded-t-2xl dark:hidden"
                       alt={`${future.title}`}
                     />
                     <img
                       src={future.imageDark.src}
-                      class="hidden w-full dark:block rounded-t-2xl"
+                      class="hidden w-full rounded-t-2xl dark:block"
                       alt={`${future.title}`}
                     />
                     <div class="flex flex-col gap-2 p-8 pt-0">

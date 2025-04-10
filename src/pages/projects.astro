@@ -106,10 +106,12 @@ const mdnProject = {
                 <img
                   src={mdnProject.image.src}
                   class="h-full w-full rounded-2xl pt-2 lg:pt-0 dark:hidden"
+                  alt={mdnProject.title.split(' ').join('_')}
                 />
                 <img
                   src={mdnProject.imageDark.src}
                   class="hidden h-full w-full rounded-2xl pt-2 lg:pt-0 dark:block"
+                  alt={mdnProject.title.split(' ').join('_')}
                 />
                 <div
                   class="absolute left-4 top-4 flex w-120 flex-col gap-2 p-4"
@@ -155,10 +157,12 @@ const mdnProject = {
                       <img
                         src={project.image.src}
                         class="w-full rounded-t-2xl dark:hidden"
+                        alt={project.title.split(' ').join('_')}
                       />
                       <img
                         src={project.imageDark.src}
                         class="hidden w-full rounded-t-2xl dark:block"
+                        alt={project.title.split(' ').join('_')}
                       />
                       <div class="flex flex-col gap-2 p-8 pb-4">
                         <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
@@ -183,10 +187,12 @@ const mdnProject = {
                       <img
                         src={project.image.src}
                         class="w-full rounded-t-2xl dark:hidden"
+                        alt={project.title.split(' ').join('_')}
                       />
                       <img
                         src={project.imageDark.src}
                         class="hidden w-full rounded-t-2xl dark:block"
+                        alt={project.title.split(' ').join('_')}
                       />
                       <div class="flex flex-col gap-2 p-8 pb-4">
                         <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
