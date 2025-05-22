@@ -2,65 +2,50 @@
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import meeBrowserProduct from '../../public/images/projects/mee-browser.png';
-import meeBrowserProductDark from '../../public/images/projects/mee-browser-dark.png';
-import privateAdvertisingProduct from '../../public/images/projects/private-advertising.png';
-import privateAdvertisingProductDark from '../../public/images/projects/private-advertising-dark.png';
-import MdnProduct from '../../public/images/projects/mdn.png';
-import MdnProductDark from '../../public/images/projects/mdn-dark.png';
-import MdnWebProduct from '../../public/images/projects/mdn-web.png';
-import MdnWebProductDark from '../../public/images/projects/mdn-web-dark.png';
-
-const mdnProjectTitle = 'Profile sharing';
-const mdnProjectSubtile = 'MEE DATA NETWORK';
-const mdnProjectDescription =
-  'Control the personal information you share with other people and companies';
+import meeBrowserProduct from '../assets/projects/browser.png';
+import meeBrowserProductDark from '../assets/projects/browser-dark.png';
+import smartwalletImage from '../assets/projects/smartwallet.png';
+import smartwalletDarkImage from '../assets/projects/smartwallet-dark.png';
+import extensionImage from '../assets/projects/extension.png';
+import extensionImageDark from '../assets/projects/extension-dark.png';
+import webAppImage from '../assets/projects/web-app.png';
+import webAppDarkImage from '../assets/projects/web-app-dark.png';
 
 const projects = [
-  {
-    image: MdnProduct,
-    imageDark: MdnProductDark,
-    title: mdnProjectTitle,
-    subtitle: mdnProjectSubtile,
-    description: mdnProjectDescription,
-    comingSoon: false,
-    linkTitle: 'Learn more',
-    link: 'https://mdn.mee.foundation',
+    {
+    image: extensionImage,
+    imageDark: extensionImageDark,
+    title: "Browser Extension",
+    label: "v1.2 released",
+    description: "Working in conjunction with a Mee-compatible advertising network implements private advertising.",
+    link: "https://private-advertising.mee.foundation",
   },
   {
-    image: privateAdvertisingProduct,
-    imageDark: privateAdvertisingProductDark,
-    title: 'Private Advertising',
-    subtitle: 'Surveillance-free advertising',
-    description:
-      'Enabling internet advertising that is tailored to your interests without relying on cookies, tracking and surveillance.',
-    comingSoon: false,
-    linkTitle: 'Learn more',
-    link: 'https://private-advertising.mee.foundation',
+    image: webAppImage,
+    imageDark: webAppDarkImage,
+    title: "Web App",
+    label: "Under development",
+    description: "Mee puts you in control of your profile sharing connections to companies and other people. At any time, you can stop them from getting further updates, prevent them from sharing your information, and even automatically delete the data they have about you. Your information is never stored or monetized by The Mee Foundation.",
+    link: "https://mdn.mee.foundation/"
+  },
+  {
+    image: smartwalletImage,
+    imageDark: smartwalletDarkImage,
+    title: "Smartwallet",
+    label: "Under development",
+    description: "Bring the convenience of profile sharing to your phone. Mee integrates with Apple Contacts, and automatically updates them if your friend or colleague is a Mee user. The Mee smartwallet stores a copy of all of your information on your phone. Nothing is ever shared without your explicit consent.",
+    link: "https://smartwallet.mee.foundation/",
   },
   {
     image: meeBrowserProduct,
     imageDark: meeBrowserProductDark,
-    title: 'Mee Browser',
-    subtitle: 'A browser for the private web',
-    description:
-      "A browser for both traditional websites as well as meesites where you don't have to create accounts, login, or provide any personally identifying information.",
+    title: "Mee Browser",
+    label: "Coming Soon",
+    description: "Our roadmap includes web browser that combines the functionality of a traditional web browser with a smartwallet. Still just an idea we’re thinking about.",
     comingSoon: true,
-    linkTitle: 'Learn more',
-    link: 'https://browser.mee.foundation',
+    link: "https://browser.mee.foundation",
   },
 ];
-
-const mdnProject = {
-  image: MdnWebProduct,
-  imageDark: MdnWebProductDark,
-  title: mdnProjectTitle,
-  subtitle: mdnProjectSubtile,
-  description: mdnProjectDescription,
-  comingSoon: false,
-  linkTitle: 'Learn more',
-  link: 'https://mdn.mee.foundation',
-};
 ---
 
 <Layout title="Mee Foundation - Projects">
@@ -79,7 +64,7 @@ const mdnProject = {
             <h1
               class="mt-13 text-center text-4xl font-bold lg:mt-13 lg:text-7xl dark:text-grey-50"
             >
-              Human-centered projects
+              Human-centered products
             </h1>
           </div>
           <section
@@ -88,8 +73,7 @@ const mdnProject = {
             <p
               class="text-center text-xl text-grey-800 animation-delay-800 dark:text-grey-300"
             >
-              Projects we're working on to create a human-centered user
-              experience for the internet.
+              We’re working on a human-centered user experience for the internet.
             </p>
           </section>
         </section>
@@ -98,116 +82,68 @@ const mdnProject = {
           class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <div>
-            <a
-              class="mx-8 hidden rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong lg:flex dark:border-grey-600 dark:hover:bg-dark-hover-gradient"
-              href={mdnProject.link}
-            >
-              <div class="relative w-full">
-                <img
-                  src={mdnProject.image.src}
-                  class="h-full w-full rounded-2xl pt-2 lg:pt-0 dark:hidden"
-                  alt={mdnProject.title.split(' ').join('_')}
-                />
-                <img
-                  src={mdnProject.imageDark.src}
-                  class="hidden h-full w-full rounded-2xl pt-2 lg:pt-0 dark:block"
-                  alt={mdnProject.title.split(' ').join('_')}
-                />
-                <div
-                  class="absolute left-4 top-4 flex w-120 flex-col gap-2 p-4"
-                >
-                  <div
-                    class="w-full text-xs font-semibold uppercase text-grey-500 dark:text-grey-200"
-                  >
-                    {mdnProject.subtitle}
-                  </div>
-                  <div
-                    class="flex w-full items-center gap-2 text-center text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50"
-                  >
-                    {mdnProject.title}
-                    {
-                      mdnProject.comingSoon && (
-                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:text-gray-950">
-                          Coming soon
-                        </span>
-                      )
-                    }
-                  </div>
-                  <div
-                    class="w-full text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300"
-                  >
-                    {mdnProject.description}
-                  </div>
-                  <div
-                    class="flex items-center gap-2.5 text-brand-700 lg:pt-4 dark:text-brand-300"
-                  >
-                    <span class="underline">{mdnProject.linkTitle}</span>
-                    <i class="bi bi-arrow-right"></i>
-                  </div>
-                </div>
-              </div>
-            </a>
             <div
-              class="flex flex-col items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-2"
+              class="grid grid-cols-1 grid-rows-[repeat(16,minmax(100px,1fr))] xs:grid-rows-[repeat(16,minmax(112px,1fr))] sm:grid-rows-[repeat(16,minmax(125px,1fr))] items-center justify-center gap-8 p-8 lg:grid-cols-2 lg:grid-rows-[repeat(8,minmax(125px,1fr))]"
             >
               {
-                projects.map((project) =>
+                projects.map((project, index) =>
                   project.comingSoon ? (
-                    <div class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 first:lg:hidden dark:border-grey-600">
+                    <div class:list={["flex items-end relative h-full max-w-125 row-span-3 rounded-2xl border border-grey-300 pb-8 dark:border-grey-600", 
+                      // index % 4 === 0 && 'row-span-3'
+                      index === 1 && 'row-span-5',
+                      index === 2 && 'row-span-5',]
+                    }>
                       <img
                         src={project.image.src}
-                        class="w-full rounded-t-2xl dark:hidden"
+                        class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
                         alt={project.title.split(' ').join('_')}
                       />
                       <img
                         src={project.imageDark.src}
-                        class="hidden w-full rounded-t-2xl dark:block"
+                        class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
                         alt={project.title.split(' ').join('_')}
                       />
-                      <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
-                          {project.subtitle}
-                        </div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
+                      <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
+                        <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
                           {project.title}
-                          <span class="whitespace-normal rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-sm lg:text-base dark:border-grey-800 dark:bg-grey-900 dark:text-gray-300">
-                            Coming soon
-                          </span>
                         </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300">
+                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
                           {project.description}
                         </div>
                       </div>
                     </div>
                   ) : (
                     <a
-                      class="h-full max-w-125 rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong first:lg:hidden dark:border-grey-600 dark:hover:bg-dark-hover-gradient"
+                      class:list={["flex items-end row-span-3 relative h-full max-w-125 rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient",
+                      // index % 4 === 0 && 'row-span-3'
+                        index === 1 && 'row-span-5',
+                        index === 2 && 'row-span-5',]
+                      }
                       href={project.link}
                     >
                       <img
                         src={project.image.src}
-                        class="w-full rounded-t-2xl dark:hidden"
+                        class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
                         alt={project.title.split(' ').join('_')}
                       />
                       <img
                         src={project.imageDark.src}
-                        class="hidden w-full rounded-t-2xl dark:block"
+                        class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
                         alt={project.title.split(' ').join('_')}
                       />
-                      <div class="flex flex-col gap-2 p-8 pb-4">
-                        <div class="text-xs font-semibold uppercase text-grey-500 dark:text-grey-200">
-                          {project.subtitle}
-                        </div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
+                      <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
+                        <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
+                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
                           {project.title}
                         </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-300">
+                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
                           {project.description}
                         </div>
-                      </div>
-                      <div class="flex items-center gap-2.5 px-8 py-0.5 text-brand-700 dark:text-brand-300">
-                        <span class="underline">{project.linkTitle}</span>
-                        <i class="bi bi-arrow-right" />
+                         <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
+                          <span class="underline">Learn more</span>
+                          <i class="bi bi-arrow-right" />
+                        </div>
                       </div>
                     </a>
                   ),

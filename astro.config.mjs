@@ -6,7 +6,7 @@ export const discord = "https://discord.gg/PB8qxrQXup";
 export const header = {
   links: [
     {
-      name: 'Projects',
+      name: 'Products',
       link: '/projects',
       id: 'projects',
     },
@@ -63,7 +63,7 @@ export const footer = {
   ],
   rightLinks: [
     {
-      name: 'Projects',
+      name: 'Products',
       link: '/projects',
       id: 'projects',
     },
