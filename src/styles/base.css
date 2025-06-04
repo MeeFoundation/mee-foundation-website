@@ -1,1 +1,9 @@
 @import "mee-components/base-theme";
+
+.products__card_gradient {
+    background: linear-gradient(320deg, var(--surface-default-main, #FFF) 35.85%, var(--surface-gray-soft, #F8FAFC) 72.21%);
+}
+
+.products__card_gradient:where(.dark *) {
+    background: linear-gradient(320deg, var(--surface-default-main, #020617) 35.85%, var(--surface-gray-soft, #0F172A) 72.21%);
+}

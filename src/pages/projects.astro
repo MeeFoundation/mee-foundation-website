@@ -8,18 +8,32 @@ import smartwalletImage from '../assets/projects/smartwallet.png';
 import smartwalletDarkImage from '../assets/projects/smartwallet-dark.png';
 import extensionImage from '../assets/projects/extension.png';
 import extensionImageDark from '../assets/projects/extension-dark.png';
+import extensionDesktopImage from '../assets/projects/extension-desktop.png';
+import extensionDesktopImageDark from '../assets/projects/extension-desktop-dark.png';
 import webAppImage from '../assets/projects/web-app.png';
 import webAppDarkImage from '../assets/projects/web-app-dark.png';
+import {twMerge} from 'tailwind-merge'
 
-const projects = [
-    {
+const extensionProduct = {
     image: extensionImage,
     imageDark: extensionImageDark,
+    imageDesktop: extensionDesktopImage,
+    imageDesktopDark: extensionDesktopImageDark,
     title: "Browser Extension",
     label: "v1.2 released",
     description: "Working in conjunction with a Mee-compatible advertising network implements private advertising.",
     link: "https://private-advertising.mee.foundation",
-  },
+  };
+  const browserComingSoonProduct = {
+    image: meeBrowserProduct,
+    imageDark: meeBrowserProductDark,
+    title: "Mee Browser",
+    label: "Coming Soon",
+    description: "Our roadmap includes web browser that combines the functionality of a traditional web browser with a smartwallet. Still just an idea we’re thinking about.",
+    comingSoon: true,
+    link: "https://browser.mee.foundation",
+  };
+const projects = [
   {
     image: webAppImage,
     imageDark: webAppDarkImage,
@@ -36,15 +50,6 @@ const projects = [
     description: "Bring the convenience of profile sharing to your phone. Mee integrates with Apple Contacts, and automatically updates them if your friend or colleague is a Mee user. The Mee smartwallet stores a copy of all of your information on your phone. Nothing is ever shared without your explicit consent.",
     link: "https://smartwallet.mee.foundation/",
   },
-  {
-    image: meeBrowserProduct,
-    imageDark: meeBrowserProductDark,
-    title: "Mee Browser",
-    label: "Coming Soon",
-    description: "Our roadmap includes web browser that combines the functionality of a traditional web browser with a smartwallet. Still just an idea we’re thinking about.",
-    comingSoon: true,
-    link: "https://browser.mee.foundation",
-  },
 ];
 ---
 
@@ -55,103 +60,170 @@ const projects = [
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
       <article
-        class="mb-28 flex max-w-273.5 flex-col items-center justify-center gap-4"
+        class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4"
       >
-        <section
+        <div
           class="flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
         >
-          <div class="mb-8">
+          <div class="mb-16">
             <h1
-              class="mt-13 text-center text-4xl font-bold lg:mt-13 lg:text-7xl dark:text-grey-50"
+              class="mt-13 text-center text-3xl font-bold lg:mt-13 lg:text-7xl text-gray-900 dark:text-grey-50"
             >
-              Human-centered products
+              Our products
             </h1>
           </div>
-          <section
+        </div>
+
+        <section
+          class="flex h-auto max-w-[930px] px-4 flex-col items-center justify-center bg-white dark:bg-black/90"
+        >
+            <div
+              class="grid grid-cols-1 w-full"
+            >
+              <a
+                class:list={["flex items-end lg:items-center lg:flex-row-reverse relative h-[400px] sm:h-[520px] lg:h-[300px] w-full gap-6 relative rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
+                href={extensionProduct.link}
+              >
+              <picture class="lg:w-1/2 hidden dark:block">
+                <source
+                  type='image/png' media='(max-width:1023.99px)'
+                  srcset={extensionProduct.imageDark.src}
+                />
+                <source
+                  type='image/png' media='(min-width:1024px)'
+                  srcset={extensionProduct.imageDesktopDark.src}
+                />
+                <img
+                  src={extensionProduct.imageDark.src}
+                  class="absolute top-0 left-0 rounded-t-2xl lg:relative lg:left-[auto] lg:right-0 lg:w-full"
+                  alt={extensionProduct.title}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </picture>
+              <picture class="lg:w-1/2 dark:hidden">
+                <source
+                  type='image/png' media='(max-width:1023.99px)'
+                  srcset={extensionProduct.image.src}
+                />
+                <source
+                  type='image/png' media='(min-width:1024px)'
+                  srcset={extensionProduct.imageDesktop.src}
+                />
+                <img
+                  src={extensionProduct.image.src}
+                  class="absolute top-0 left-0 rounded-t-2xl lg:relative lg:left-[auto] lg:right-0 lg:w-full"
+                  alt={extensionProduct.title}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </picture>
+                <div class="flex flex-col lg:w-1/2 gap-2 p-8 relative z-1">
+                  <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{extensionProduct.label}</div>
+                  <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                    {extensionProduct.title}
+                  </div>
+                  <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                    {extensionProduct.description}
+                  </div>
+                    <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
+                    <span class="underline">Learn more</span>
+                    <i class="bi bi-arrow-right" />
+                  </div>
+                </div>
+              </a>
+            </div>
+        </section>
+      </article>
+      <article
+        class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4"
+      >
+        <div
+          class="flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90 mb-16"
+        >
+          <h1
+            class="mt-13 mb-4 text-center text-3xl font-bold lg:text-5xl text-gray-900 dark:text-grey-50"
+          >
+            The future of awesomeness!
+          </h1>
+          <div
             class="relative flex w-full flex-col items-center px-10 animation-delay-800"
           >
             <p
-              class="text-center text-xl text-grey-800 animation-delay-800 dark:text-grey-300"
+              class="text-center text-xl lg:text-2xl text-grey-800 animation-delay-800 dark:text-grey-200"
             >
-              We’re working on a human-centered user experience for the internet.
+              Under development and coming soon products
             </p>
-          </section>
-        </section>
+          </div>
+        </div>
 
-        <section
+        <div
           class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
         >
-          <div>
-            <div
-              class="grid grid-cols-1 grid-rows-[repeat(16,minmax(100px,1fr))] xs:grid-rows-[repeat(16,minmax(112px,1fr))] sm:grid-rows-[repeat(16,minmax(125px,1fr))] items-center justify-center gap-8 p-8 lg:grid-cols-2 lg:grid-rows-[repeat(8,minmax(125px,1fr))]"
-            >
-              {
-                projects.map((project, index) =>
-                  project.comingSoon ? (
-                    <div class:list={["flex items-end relative h-full max-w-125 row-span-3 rounded-2xl border border-grey-300 pb-8 dark:border-grey-600", 
-                      // index % 4 === 0 && 'row-span-3'
-                      index === 1 && 'row-span-5',
-                      index === 2 && 'row-span-5',]
-                    }>
-                      <img
-                        src={project.image.src}
-                        class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
-                        alt={project.title.split(' ').join('_')}
-                      />
-                      <img
-                        src={project.imageDark.src}
-                        class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
-                        alt={project.title.split(' ').join('_')}
-                      />
-                      <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
-                        <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
-                          {project.title}
-                        </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
-                          {project.description}
-                        </div>
+          <div
+            class="flex items-center flex-wrap gap-8 px-4 md:px-8"
+          >
+            {
+              projects.map((project) => (
+                  <a
+                    class:list={["flex items-end relative md:w-[calc(50%-16px)] h-[620px] xs:h-[740px] md:h-[620px] lg:h-[740px] rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
+                    href={project.link}
+                  >
+                    <img
+                      src={project.image.src}
+                      class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
+                      alt={project.title.split(' ').join('_')}
+                    />
+                    <img
+                      src={project.imageDark.src}
+                      class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
+                      alt={project.title.split(' ').join('_')}
+                    />
+                    <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
+                      <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
+                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                        {project.title}
+                      </div>
+                      <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                        {project.description}
+                      </div>
+                      <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
+                        <span class="underline">Learn more</span>
+                        <i class="bi bi-arrow-right" />
                       </div>
                     </div>
-                  ) : (
-                    <a
-                      class:list={["flex items-end row-span-3 relative h-full max-w-125 rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient",
-                      // index % 4 === 0 && 'row-span-3'
-                        index === 1 && 'row-span-5',
-                        index === 2 && 'row-span-5',]
-                      }
-                      href={project.link}
-                    >
-                      <img
-                        src={project.image.src}
-                        class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
-                        alt={project.title.split(' ').join('_')}
-                      />
-                      <img
-                        src={project.imageDark.src}
-                        class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
-                        alt={project.title.split(' ').join('_')}
-                      />
-                      <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
-                        <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
-                        <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
-                          {project.title}
-                        </div>
-                        <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
-                          {project.description}
-                        </div>
-                         <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
-                          <span class="underline">Learn more</span>
-                          <i class="bi bi-arrow-right" />
-                        </div>
-                      </div>
-                    </a>
-                  ),
+                  </a>
                 )
-              }
+              )
+            }
+             <div 
+              class={twMerge(
+                "flex flex-col rounded-2xl border border-grey-300 products__card_gradient",
+                "md:w-full md:!h-[auto] md:items-center md:flex-row-reverse md:pb-0"
+              )}
+              >
+              <img
+                src={browserComingSoonProduct.image.src}
+                class="w-full relative top-0 left-0 rounded-t-2xl dark:hidden md:w-1/2 md:pr-10"
+                alt={browserComingSoonProduct.title.split(' ').join('_')}
+              />
+              <img
+                src={browserComingSoonProduct.imageDark.src}
+                class="hidden w-full relative top-0 left-0 rounded-t-2xl dark:block md:w-1/2 md:pr-10"
+                alt={browserComingSoonProduct.title.split(' ').join('_')}
+              />
+              <div class="flex flex-col gap-2 p-8 relative z-1">
+                <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{browserComingSoonProduct.label}</div>
+                <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                  {browserComingSoonProduct.title}
+                </div>
+                <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                  {browserComingSoonProduct.description}
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       </article>
       <Footer footer={footer} mode="dark" />
     </section>
