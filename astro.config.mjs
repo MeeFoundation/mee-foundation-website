@@ -7,8 +7,8 @@ export const header = {
   links: [
     {
       name: 'Products',
-      link: '/projects',
-      id: 'projects',
+      link: '/products',
+      id: 'products',
     },
     {
       name: 'Businesses',
@@ -64,8 +64,8 @@ export const footer = {
   rightLinks: [
     {
       name: 'Products',
-      link: '/projects',
-      id: 'projects',
+      link: '/products',
+      id: 'products',
     },
     {
       name: 'Businesses',
@@ -93,7 +93,7 @@ export const footer = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mee.foundation',
-  redirects: {'/products': '/projects'},
+  redirects: {'/projects': '/products'},
   integrations: [tailwind(), react(), mdx()],
   build: {
     assets: 'assets',

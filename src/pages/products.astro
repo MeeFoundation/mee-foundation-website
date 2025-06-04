@@ -2,16 +2,16 @@
 import {Header, Footer} from 'mee-components';
 import {header, footer} from '../../astro.config.mjs';
 import Layout from '../layouts/Layout.astro';
-import meeBrowserProduct from '../assets/projects/browser.png';
-import meeBrowserProductDark from '../assets/projects/browser-dark.png';
-import smartwalletImage from '../assets/projects/smartwallet.png';
-import smartwalletDarkImage from '../assets/projects/smartwallet-dark.png';
-import extensionImage from '../assets/projects/extension.png';
-import extensionImageDark from '../assets/projects/extension-dark.png';
-import extensionDesktopImage from '../assets/projects/extension-desktop.png';
-import extensionDesktopImageDark from '../assets/projects/extension-desktop-dark.png';
-import webAppImage from '../assets/projects/web-app.png';
-import webAppDarkImage from '../assets/projects/web-app-dark.png';
+import meeBrowserProduct from '../assets/products/browser.png';
+import meeBrowserProductDark from '../assets/products/browser-dark.png';
+import smartwalletImage from '../assets/products/smartwallet.png';
+import smartwalletDarkImage from '../assets/products/smartwallet-dark.png';
+import extensionImage from '../assets/products/extension.png';
+import extensionImageDark from '../assets/products/extension-dark.png';
+import extensionDesktopImage from '../assets/products/extension-desktop.png';
+import extensionDesktopImageDark from '../assets/products/extension-desktop-dark.png';
+import webAppImage from '../assets/products/web-app.png';
+import webAppDarkImage from '../assets/products/web-app-dark.png';
 import {twMerge} from 'tailwind-merge'
 
 const extensionProduct = {
@@ -33,7 +33,7 @@ const extensionProduct = {
     comingSoon: true,
     link: "https://browser.mee.foundation",
   };
-const projects = [
+const products = [
   {
     image: webAppImage,
     imageDark: webAppDarkImage,
@@ -55,7 +55,7 @@ const projects = [
 
 <Layout title="Mee Foundation - Products">
   <main class="w-screen">
-    <Header header={header} activePage="projects" location="Products" />
+    <Header header={header} activePage="products" location="Products" />
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
@@ -164,7 +164,7 @@ const projects = [
             class="flex items-center flex-wrap gap-8 px-4 md:px-8"
           >
             {
-              projects.map((project) => (
+              products.map((project) => (
                   <a
                     class:list={["flex items-end relative md:w-[calc(50%-16px)] h-[620px] xs:h-[740px] md:h-[620px] lg:h-[740px] rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
                     href={project.link}
