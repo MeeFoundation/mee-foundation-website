@@ -75,55 +75,55 @@ const products = [
         </div>
 
         <section
-          class="flex h-auto max-w-[930px] px-4 flex-col items-center justify-center bg-white dark:bg-black/90"
+          class="flex h-auto max-w-[930px] w-full px-4 flex-col items-center justify-center bg-white dark:bg-black/90"
         >
             <div
               class="grid grid-cols-1 w-full"
             >
               <a
-                class:list={["flex items-end lg:items-center lg:flex-row-reverse relative h-[400px] sm:h-[520px] lg:h-[300px] w-full gap-6 relative rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
+                class:list={["flex items-end md:items-center md:flex-row-reverse relative h-[340px] xs:h-[400px] sm:h-[520px] md:h-[300px] w-full gap-6 relative rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
                 href={extensionProduct.link}
               >
-              <picture class="lg:w-1/2 hidden dark:block">
+              <picture class="md:w-1/2 hidden dark:block">
                 <source
-                  type='image/png' media='(max-width:1023.99px)'
+                  type='image/png' media='(max-width:767px)'
                   srcset={extensionProduct.imageDark.src}
                 />
                 <source
-                  type='image/png' media='(min-width:1024px)'
+                  type='image/png' media='(min-width:768px)'
                   srcset={extensionProduct.imageDesktopDark.src}
                 />
                 <img
                   src={extensionProduct.imageDark.src}
-                  class="absolute top-0 left-0 rounded-t-2xl lg:relative lg:left-[auto] lg:right-0 lg:w-full"
+                  class="absolute top-0 left-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
                   alt={extensionProduct.title}
                   loading="eager"
                   fetchpriority="high"
                 />
               </picture>
-              <picture class="lg:w-1/2 dark:hidden">
+              <picture class="md:w-1/2 dark:hidden">
                 <source
-                  type='image/png' media='(max-width:1023.99px)'
+                  type='image/png' media='(max-width:767px)'
                   srcset={extensionProduct.image.src}
                 />
                 <source
-                  type='image/png' media='(min-width:1024px)'
+                  type='image/png' media='(min-width:768px)'
                   srcset={extensionProduct.imageDesktop.src}
                 />
                 <img
                   src={extensionProduct.image.src}
-                  class="absolute top-0 left-0 rounded-t-2xl lg:relative lg:left-[auto] lg:right-0 lg:w-full"
+                  class="absolute top-0 left-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
                   alt={extensionProduct.title}
                   loading="eager"
                   fetchpriority="high"
                 />
               </picture>
-                <div class="flex flex-col lg:w-1/2 gap-2 p-8 relative z-1">
+                <div class="flex flex-col md:w-1/2 gap-2 p-8 relative z-1">
                   <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{extensionProduct.label}</div>
-                  <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                  <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 md:text-2xl dark:text-grey-100">
                     {extensionProduct.title}
                   </div>
-                  <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                  <div class="text-balance text-sm text-grey-800 md:text-base dark:text-grey-200">
                     {extensionProduct.description}
                   </div>
                     <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
