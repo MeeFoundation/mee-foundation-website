@@ -11,11 +11,6 @@ export const header = {
       id: 'products',
     },
     {
-      name: 'Businesses',
-      link: '/businesses',
-      id: 'businesses',
-    },
-    {
       name: 'About us',
       link: '/about',
       id: 'about',
@@ -66,11 +61,6 @@ export const footer = {
       name: 'Products',
       link: '/products',
       id: 'products',
-    },
-    {
-      name: 'Businesses',
-      link: '/businesses',
-      id: 'businesses',
     },
     {
       name: 'About us',
