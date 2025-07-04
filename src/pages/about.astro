@@ -21,7 +21,7 @@ const principles = [
   },
   {
     title: 'Data Rights and Portability',
-    text: "Where personal data must be collected by entities, we promote your ability to access, edit, and delete you data regardless of what entity collects it. These rights enable your Mee software agent to move it freely from one entity to another within the Mee Data Network, as well as to download a copy of it.",
+    text: 'Where personal data must be collected by entities, we promote your ability to access, edit, and delete you data regardless of what entity collects it. These rights enable your Mee software agent to move it freely from one entity to another within the Mee Data Network, as well as to download a copy of it.',
     class: 'col-span-12',
   },
   {
@@ -51,7 +51,7 @@ const principles = [
   },
   {
     title: 'Private Advertising',
-    text: "Enable apps/sites that earn revenues from advertizing, to continue to do so. However, in contrast to prevailing adtech that relies on tracking you across the web, develop private advertising technology which allows ad personalization based on your membership in cohorts with similar interests.",
+    text: 'Enable apps/sites that earn revenues from advertizing, to continue to do so. However, in contrast to prevailing adtech that relies on tracking you across the web, develop private advertising technology which allows ad personalization based on your membership in cohorts with similar interests.',
     class: 'col-span-12',
   },
   {
@@ -102,7 +102,7 @@ const contributors = [
     link: 'https://www.linkedin.com/in/bogdanhutuleac',
     icon: linkedinLogo,
   },
-    {
+  {
     name: 'Ainur Saiapov',
     link: 'https://www.linkedin.com/in/asayapow',
     icon: linkedinLogo,
@@ -188,7 +188,8 @@ const contributors = [
             <h2
               class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-grey-200"
             >
-              A nonprofit whose mission is to give people more control over their personal data.
+              A nonprofit whose mission is to give people more control over
+              their personal data.
             </h2>
           </div>
         </section>
@@ -328,7 +329,7 @@ const contributors = [
             <h3
               class="text max-w-3xl text-pretty px-6 text-center text-xl md:text-2xl dark:text-grey-50"
             >
-              Never miss an update with the Mee products
+              Never miss an update about our products
             </h3>
           </div>
           <div
@@ -443,10 +444,10 @@ const contributors = [
 </style>
 
 <script>
+  import {SUBSCRIBE_URL} from '@config';
   import {Validation} from 'mee-components';
   const successAlert = document.getElementById('success-alert');
   const alreadyAlert = document.getElementById('already-alert');
-  import {SUBSCRIBE_URL} from '@config';
   const emailContainer = document.getElementById('email-container');
   const emailInput = document.getElementById('email') as HTMLInputElement;
 
