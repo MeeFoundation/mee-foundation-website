@@ -1,54 +1,44 @@
 ---
-import {Header, Footer} from 'mee-components';
-import {header, footer} from '../../astro.config.mjs';
-import Layout from '../layouts/Layout.astro';
-import meeBrowserProduct from '../assets/products/browser.png';
-import meeBrowserProductDark from '../assets/products/browser-dark.png';
-import smartwalletImage from '../assets/products/smartwallet.png';
-import smartwalletDarkImage from '../assets/products/smartwallet-dark.png';
-import extensionImage from '../assets/products/extension.png';
+import {Footer, Header} from 'mee-components';
+import {footer, header} from '../../astro.config.mjs';
 import extensionImageDark from '../assets/products/extension-dark.png';
-import extensionDesktopImage from '../assets/products/extension-desktop.png';
 import extensionDesktopImageDark from '../assets/products/extension-desktop-dark.png';
-import webAppImage from '../assets/products/web-app.png';
+import extensionDesktopImage from '../assets/products/extension-desktop.png';
+import extensionImage from '../assets/products/extension.png';
+import smartwalletDarkImage from '../assets/products/smartwallet-dark.png';
+import smartwalletImage from '../assets/products/smartwallet.png';
 import webAppDarkImage from '../assets/products/web-app-dark.png';
-import {twMerge} from 'tailwind-merge'
+import webAppImage from '../assets/products/web-app.png';
+import Layout from '../layouts/Layout.astro';
 
 const extensionProduct = {
-    image: extensionImage,
-    imageDark: extensionImageDark,
-    imageDesktop: extensionDesktopImage,
-    imageDesktopDark: extensionDesktopImageDark,
-    title: "Mee Browser Extension",
-    label: "v1.2 released",
-    description: "Gain some privacy and ease of mind.",
-    link: "https://meextension.org/",
-  };
-  const browserComingSoonProduct = {
-    image: meeBrowserProduct,
-    imageDark: meeBrowserProductDark,
-    title: "Mee Browser",
-    label: "Coming Soon",
-    description: "Our roadmap includes web browser that combines the functionality of a traditional web browser with a smartwallet. Still just something we’re thinking about.",
-    comingSoon: true,
-    link: "https://browser.mee.foundation",
-  };
+  image: extensionImage,
+  imageDark: extensionImageDark,
+  imageDesktop: extensionDesktopImage,
+  imageDesktopDark: extensionDesktopImageDark,
+  title: 'Mee Browser Extension',
+  label: 'v1.2 released',
+  description: 'Gain some privacy and ease of mind.',
+  link: 'https://meextension.org/',
+};
 const products = [
   {
     image: webAppImage,
     imageDark: webAppDarkImage,
-    title: "Web App",
-    label: "Under development",
-    description: "A web app that puts you in control of your data sharing connections with companies and other people.",
-    link: "https://itsmee.org/"
+    title: 'Web App',
+    label: 'Under development',
+    description:
+      'A web app that puts you in control of your data sharing connections with companies and other people.',
+    link: 'https://itsmee.org/',
   },
   {
     image: smartwalletImage,
     imageDark: smartwalletDarkImage,
-    title: "Smartwallet",
-    label: "Under development",
-    description: "Bring the convenience of data sharing to your phone. The Mee smartwallet stores a copy of all of your information on your device(s).",
-    link: "https://smartwallet.mee.foundation/",
+    title: 'Smartwallet',
+    label: 'Under development',
+    description:
+      'Bring the convenience of data sharing to your phone. The Mee smartwallet stores a copy of all of your information on your device(s).',
+    link: 'https://smartwallet.mee.foundation/',
   },
 ];
 ---
@@ -62,40 +52,30 @@ const products = [
       <article
         class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4"
       >
-        <div
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
-        >
-          <div class="mb-16">
-            <h1
-              class="mt-13 text-center text-3xl font-bold lg:mt-13 lg:text-7xl text-gray-900 dark:text-grey-50"
-            >
-              Available now
-            </h1>
-          </div>
-        </div>
-
         <section
-          class="flex h-auto max-w-[930px] w-full px-4 flex-col items-center justify-center bg-white dark:bg-black/90"
+          class="flex h-auto w-full max-w-[930px] flex-col items-center justify-center bg-white px-4 dark:bg-black/90"
         >
-            <div
-              class="grid grid-cols-1 w-full"
+          <div class="grid w-full grid-cols-1">
+            <a
+              class:list={[
+                'products__card_gradient relative flex h-[340px] w-full items-end gap-6 rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong xs:h-[400px] sm:h-[520px] md:h-[300px] md:flex-row-reverse md:items-center dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+              ]}
+              href={extensionProduct.link}
             >
-              <a
-                class:list={["flex items-end md:items-center md:flex-row-reverse relative h-[340px] xs:h-[400px] sm:h-[520px] md:h-[300px] w-full gap-6 relative rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
-                href={extensionProduct.link}
-              >
-              <picture class="md:w-1/2 hidden dark:block">
+              <picture class="hidden md:w-1/2 dark:block">
                 <source
-                  type='image/png' media='(max-width:767px)'
+                  type="image/png"
+                  media="(max-width:767px)"
                   srcset={extensionProduct.imageDark.src}
                 />
                 <source
-                  type='image/png' media='(min-width:768px)'
+                  type="image/png"
+                  media="(min-width:768px)"
                   srcset={extensionProduct.imageDesktopDark.src}
                 />
                 <img
                   src={extensionProduct.imageDark.src}
-                  class="absolute top-0 left-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
+                  class="absolute left-0 top-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
                   alt={extensionProduct.title}
                   loading="eager"
                   fetchpriority="high"
@@ -103,46 +83,58 @@ const products = [
               </picture>
               <picture class="md:w-1/2 dark:hidden">
                 <source
-                  type='image/png' media='(max-width:767px)'
+                  type="image/png"
+                  media="(max-width:767px)"
                   srcset={extensionProduct.image.src}
                 />
                 <source
-                  type='image/png' media='(min-width:768px)'
+                  type="image/png"
+                  media="(min-width:768px)"
                   srcset={extensionProduct.imageDesktop.src}
                 />
                 <img
                   src={extensionProduct.image.src}
-                  class="absolute top-0 left-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
+                  class="absolute left-0 top-0 rounded-t-2xl md:relative md:left-[auto] md:right-0 md:w-full"
                   alt={extensionProduct.title}
                   loading="eager"
                   fetchpriority="high"
                 />
               </picture>
-                <div class="flex flex-col md:w-1/2 gap-2 p-8 relative z-1">
-                  <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{extensionProduct.label}</div>
-                  <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 md:text-2xl dark:text-grey-100">
-                    {extensionProduct.title}
-                  </div>
-                  <div class="text-balance text-sm text-grey-800 md:text-base dark:text-grey-200">
-                    {extensionProduct.description}
-                  </div>
-                    <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
-                    <span class="underline">Get it now</span>
-                    <i class="bi bi-arrow-right" />
-                  </div>
+              <div class="relative z-1 flex flex-col gap-2 p-8 md:w-1/2">
+                <div
+                  class="-mb-2 text-xs font-semibold uppercase text-success-700 dark:text-success-300"
+                >
+                  {extensionProduct.label}
                 </div>
-              </a>
-            </div>
+                <div
+                  class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 md:text-2xl dark:text-grey-100"
+                >
+                  {extensionProduct.title}
+                </div>
+                <div
+                  class="text-balance text-sm text-grey-800 md:text-base dark:text-grey-200"
+                >
+                  {extensionProduct.description}
+                </div>
+                <div
+                  class="flex items-center gap-2.5 pb-0.5 pt-4 text-brand-700 dark:text-brand-300"
+                >
+                  <span class="underline">Get it now</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+            </a>
+          </div>
         </section>
       </article>
       <article
         class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4"
       >
         <div
-          class="flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90 mb-16"
+          class="mb-16 flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <h1
-            class="mt-13 mb-4 text-center text-3xl font-bold lg:text-5xl text-gray-900 dark:text-grey-50"
+            class="mb-4 mt-13 text-center text-3xl font-bold text-gray-900 lg:text-5xl dark:text-grey-50"
           >
             Under development
           </h1>
@@ -150,9 +142,10 @@ const products = [
             class="relative flex w-full flex-col items-center px-10 animation-delay-800"
           >
             <p
-              class="text-center text-xl lg:text-2xl text-grey-800 animation-delay-800 dark:text-grey-200"
+              class="text-center text-xl text-grey-800 animation-delay-800 lg:text-2xl dark:text-grey-200"
             >
-              These two private personal data sharing apps are the main focus of our development efforts
+              These two private personal data sharing apps are the main focus of
+              our development efforts
             </p>
           </div>
         </div>
@@ -160,68 +153,43 @@ const products = [
         <div
           class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
         >
-          <div
-            class="flex items-center flex-wrap gap-8 px-4 md:px-8"
-          >
+          <div class="flex flex-wrap items-center gap-8 px-4 md:px-8">
             {
               products.map((project) => (
-                  <a
-                    class:list={["flex items-end relative md:w-[calc(50%-16px)] h-[620px] xs:h-[740px] md:h-[620px] lg:h-[740px] rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient products__card_gradient"]}
-                    href={project.link}
-                  >
-                    <img
-                      src={project.image.src}
-                      class="w-full absolute top-0 left-0 rounded-t-2xl dark:hidden"
-                      alt={project.title.split(' ').join('_')}
-                    />
-                    <img
-                      src={project.imageDark.src}
-                      class="hidden w-full absolute top-0 left-0 rounded-t-2xl dark:block"
-                      alt={project.title.split(' ').join('_')}
-                    />
-                    <div class="flex flex-col gap-2 p-8 pb-0 relative z-1">
-                      <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{project.label}</div>
-                      <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
-                        {project.title}
-                      </div>
-                      <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
-                        {project.description}
-                      </div>
-                      <div class="flex items-center gap-2.5 pt-4 pb-0.5 text-brand-700 dark:text-brand-300">
-                        <span class="underline">Learn more</span>
-                        <i class="bi bi-arrow-right" />
-                      </div>
+                <a
+                  class:list={[
+                    'products__card_gradient relative flex h-[620px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong xs:h-[740px] md:h-[620px] md:w-[calc(50%-16px)] lg:h-[740px] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+                  ]}
+                  href={project.link}
+                >
+                  <img
+                    src={project.image.src}
+                    class="absolute left-0 top-0 w-full rounded-t-2xl dark:hidden"
+                    alt={project.title.split(' ').join('_')}
+                  />
+                  <img
+                    src={project.imageDark.src}
+                    class="absolute left-0 top-0 hidden w-full rounded-t-2xl dark:block"
+                    alt={project.title.split(' ').join('_')}
+                  />
+                  <div class="relative z-1 flex flex-col gap-2 p-8 pb-0">
+                    <div class="-mb-2 text-xs font-semibold uppercase text-success-700 dark:text-success-300">
+                      {project.label}
                     </div>
-                  </a>
-                )
-              )
+                    <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                      {project.title}
+                    </div>
+                    <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                      {project.description}
+                    </div>
+                    <div class="flex items-center gap-2.5 pb-0.5 pt-4 text-brand-700 dark:text-brand-300">
+                      <span class="underline">Learn more</span>
+                      <i class="bi bi-arrow-right" />
+                    </div>
+                  </div>
+                </a>
+              ))
             }
-             <div 
-              class={twMerge(
-                "flex flex-col rounded-2xl border border-grey-300 products__card_gradient",
-                "md:w-full md:!h-[auto] md:items-center md:flex-row-reverse md:pb-0"
-              )}
-              >
-              <img
-                src={browserComingSoonProduct.image.src}
-                class="w-full relative top-0 left-0 rounded-t-2xl dark:hidden md:w-1/2 md:pr-10"
-                alt={browserComingSoonProduct.title.split(' ').join('_')}
-              />
-              <img
-                src={browserComingSoonProduct.imageDark.src}
-                class="hidden w-full relative top-0 left-0 rounded-t-2xl dark:block md:w-1/2 md:pr-10"
-                alt={browserComingSoonProduct.title.split(' ').join('_')}
-              />
-              <div class="flex flex-col gap-2 p-8 relative z-1">
-                <div class="text-success-700 dark:text-success-300 text-xs font-semibold -mb-2 uppercase">{browserComingSoonProduct.label}</div>
-                <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
-                  {browserComingSoonProduct.title}
-                </div>
-                <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
-                  {browserComingSoonProduct.description}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </article>
