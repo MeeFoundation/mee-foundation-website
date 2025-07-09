@@ -1,12 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {Header} from 'mee-components';
-import {header} from '../../astro.config.mjs';
 import TodaySection from '../components/TodaySection.astro';
 ---
 
 <Layout title="Mee Foundation">
-  <Header header={header} type="dark" />
   <main class="w-full overflow-x-visible">
     <TodaySection />
   </main>
@@ -44,3 +41,18 @@ import TodaySection from '../components/TodaySection.astro';
     background-position: 0%;
   }
 </style>
+
+<script>
+  function autoScroll() {
+    window.scrollBy(0, 1);
+
+    setTimeout(() => {
+      if (window.scrollY + window.innerHeight < document.body.scrollHeight) {
+        autoScroll();
+      }
+    }, 10);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    autoScroll();
+  });
+</script>
