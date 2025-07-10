@@ -10,9 +10,8 @@ import privateSharing from '../../public/images/index/private-sharing.png';
 import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
 import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
 import yourDigitalTwinDark from '../../public/images/index/your-digital-twin-dark.png';
-import playButton from '../../public/images/index/play-button.svg';
-import playButtonHover from '../../public/images/index/play-button-hover.svg';
 import Background from '@components/Background.astro';
+import playButton from '../../public/images/play.svg';
 
 const futures = [
   {
@@ -26,8 +25,7 @@ const futures = [
     imageLight: privacyAndSecurity,
     imageDark: privacyAndSecurityDark,
     title: 'More privacy, less tracking',
-    description:
-      'Your activities remain private',
+    description: 'Your activities remain private',
     // class: 'col-span-2 md:order-1 lg:order-none',
   },
   {
@@ -102,18 +100,25 @@ const futures = [
           <div
             class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
           >
-            <div class="group cursor-pointer" id="play">
+            <button
+              class="play-btn group flex cursor-pointer flex-row items-center justify-center gap-3"
+              id="play"
+            >
               <img
                 src={playButton.src}
-                alt="Play"
-                class="block group-hover:hidden"
+                alt="Play video"
+                width="32"
+                height="32"
+                alt="Play icon"
+                class="-ml-11 h-8 w-8"
               />
-              <img
-                src={playButtonHover.src}
-                alt="Play"
-                class="hidden cursor-pointer group-hover:block"
-              />
-            </div>
+              <p
+                class="flex flex-col justify-start text-start text-base font-semibold"
+              >
+                <span class="text-white">Why Mee</span>
+                <span class="text-xs text-white/75">In 46 seconds</span>
+              </p>
+            </button>
           </div>
         </div>
 
@@ -126,21 +131,16 @@ const futures = [
           preload="metadata"
         >
           <source
-            src="/videos/Mee-Foundation.webm"
-            type="video/webm"
+            src="/videos/Mee-Foundation.mp4"
+            type="video/mp4"
             media="(min-width: 768px)"
-          />
-          <source
-            src="/videos/Mee-Foundation-mobi.webm"
-            type="video/webm"
-            media="(max-width: 767px)"
           />
           <source
             src="/videos/Mee-Foundation-mobi.mp4"
             type="video/mp4"
             media="(max-width: 767px)"
           />
-          <source src="/videos/Mee-Foundation.webm" type="video/webm" />
+          <source src="/videos/Mee-Foundation.mp4" type="video/mp4" />
           Video not supported.
         </video>
       </section>
@@ -162,7 +162,8 @@ const futures = [
             <h2
               class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl dark:text-grey-200"
             >
-              We build solutions that put you at the center of personal data flows
+              We build solutions that put you at the center of personal data
+              flows
             </h2>
           </div>
         </div>
@@ -217,8 +218,7 @@ const futures = [
               class="block w-full px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl dark:text-brand-300"
               href="/products"
             >
-              Check out our products <i class="bi bi-arrow-right"
-              ></i>
+              Check out our products <i class="bi bi-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -304,6 +304,18 @@ const futures = [
   .background-container-hide .scrollIconContainer,
   .background-container-hide .scrollIconContainer {
     display: none;
+  }
+
+  .play-btn {
+    width: 267px;
+    height: 128px;
+    background-image: url('/images/index/play-button.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease-in-out;
+  }
+  .play-btn:hover {
+    background-image: url('/images/index/play-button-hover.svg');
   }
 
   @-webkit-keyframes slide {
