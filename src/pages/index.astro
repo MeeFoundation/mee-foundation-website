@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import TodaySection from '../components/TodaySection.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Mee Foundation">
@@ -41,18 +41,3 @@ import TodaySection from '../components/TodaySection.astro';
     background-position: 0%;
   }
 </style>
-
-<script>
-  function autoScroll() {
-    window.scrollBy(0, 1);
-
-    setTimeout(() => {
-      if (window.scrollY + window.innerHeight < document.body.scrollHeight) {
-        autoScroll();
-      }
-    }, 10);
-  }
-  document.addEventListener('DOMContentLoaded', () => {
-    autoScroll();
-  });
-</script>
