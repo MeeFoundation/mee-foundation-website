@@ -36,7 +36,7 @@ const apps = [
           <h2
             class="text text-base font-bold uppercase leading-5 tracking-wider text-black/[.6] opacity-0 animation-delay-300"
           >
-            In the Mee experience…
+            With Mee…
           </h2>
         </div>
       </div>
@@ -58,7 +58,7 @@ const apps = [
                   <p
                     class="text animate-riseIn text-center text-xl leading-normal text-blue md:text-[1.75rem]"
                   >
-                    A human-centered user experience for the internet
+                    A human-centered approach to personal data
                   </p>
                 </div>
               </div>
@@ -94,9 +94,9 @@ const apps = [
                 class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl"
               >
                 <h2
-                  class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-3xl font-bold transition-opacity duration-500 md:w-160 md:p-0 lg:text-7xl"
+                  class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-[28px] font-bold uppercase transition-opacity duration-500 md:p-0 lg:text-[54px]"
                 >
-                  Apps offering the Mee experience
+                  Mee-compatible apps
                 </h2>
                 <div class="flex flex-col items-center justify-center gap-16">
                   <div class="mb-10 flex flex-col">
@@ -437,6 +437,8 @@ const apps = [
     }, 5000);
   }
   document.addEventListener('DOMContentLoaded', () => {
-    autoScroll();
+    setTimeout(() => {
+      autoScroll();
+    }, 5000);
   });
 </script>
