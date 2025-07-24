@@ -1,16 +1,16 @@
 ---
+import Background from '@components/Background.astro';
 import Layout from '@layouts/Layout.astro';
-import {Header, Footer} from 'mee-components';
-import {header, footer} from '../../astro.config.mjs';
+import {Footer, Header} from 'mee-components';
+import {footer, header} from '../../astro.config.mjs';
+import privacyAndSecurityDark from '../../public/images/index/privacy-and-security-dark.png';
 // import remoteControl from '../../public/images/index/remote-control.png';
 // import remoteControlDark from '../../public/images/index/remote-control-dark.png';
 import privacyAndSecurity from '../../public/images/index/privacy-and-security.png';
-import privacyAndSecurityDark from '../../public/images/index/privacy-and-security-dark.png';
-import privateSharing from '../../public/images/index/private-sharing.png';
 import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
-import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
+import privateSharing from '../../public/images/index/private-sharing.png';
 import yourDigitalTwinDark from '../../public/images/index/your-digital-twin-dark.png';
-import Background from '@components/Background.astro';
+import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
 import playButton from '../../public/images/play.svg';
 
 const futures = [
@@ -204,22 +204,6 @@ const futures = [
                 ))
               }
             </div>
-          </div>
-        </div>
-      </section>
-      <section
-        class="z-70 mb-20 flex h-full w-screen max-w-7xl flex-col items-center justify-center gap-10 md:gap-20"
-      >
-        <div
-          class="flex flex-col items-center justify-center gap-4 px-6 transition-opacity duration-500"
-        >
-          <div class="overflow-hidden">
-            <a
-              class="block w-full px-6 text-center text-xl leading-relaxed text-brand-600 underline animation-delay-800 md:text-2xl dark:text-brand-300"
-              href="/products"
-            >
-              Check out our products <i class="bi bi-arrow-right"></i>
-            </a>
           </div>
         </div>
       </section>
