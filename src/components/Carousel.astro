@@ -10,7 +10,7 @@ interface Item {
   class?: string;
 }
 const {items} = Astro.props;
-const length = items.length;
+// const length = items.length;
 ---
 
 <div class="relative m-0 flex flex-col items-center justify-center gap-6">
@@ -38,12 +38,12 @@ const length = items.length;
                   class="text-base font-normal not-italic tracking-0.02 text-brand-700 dark:text-grey-300"
                 />
               </div>
-              <div class="h-1 w-full rounded-full bg-brand-100 dark:bg-brand-900">
+              {/* <div class="h-1 w-full rounded-full bg-brand-100 dark:bg-brand-900">
                 <div
                   class="h-1 rounded-full bg-brand-500"
                   style={`width:${((i + 1) / length) * 100}%`}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         ))
