@@ -196,7 +196,7 @@ const contributors = [
             <h2
               class="max-w-7xl text-3xl font-bold leading-thick text-grey-900 md:text-4xl md:leading-normal lg:text-5xl dark:text-grey-50"
             >
-              Our Principles
+              Mee Principles
             </h2>
             <h3
               class="text max-w-3xl text-pretty px-6 text-center text-xl text-grey-900 md:text-2xl dark:text-grey-200"
@@ -204,8 +204,52 @@ const contributors = [
               Here’s what we live by
             </h3>
           </div>
-          <div class="max-w-5xl md:max-w-7xl">
+          <div class="max-w-5xl md:max-w-7xl lg:hidden">
             <Carousel items={principles} />
+          </div>
+
+          <div class="hidden w-full max-w-5xl px-5 md:max-w-7xl lg:flex">
+            <div class="flex w-[430px] shrink-0 flex-col gap-3 py-8">
+              {
+                principles.map((x, idx) => (
+                  <button class="principle-title relative flex justify-start">
+                    <div class="relative z-[2] bg-white pr-2.5 dark:bg-black">
+                      <h3
+                        data-index={idx}
+                        class="d cursor-pointer select-none text-2xl font-bold leading-8 tracking-[0.12px] text-brand-900 opacity-35 transition-all duration-150 dark:text-brand-50"
+                      >
+                        {x.title}
+                      </h3>
+                    </div>
+
+                    <div class="principle-arrow absolute right-0 top-1/2 z-1 -translate-y-1/2 opacity-0 transition-all duration-150">
+                      <img
+                        class="w-full dark:hidden"
+                        src="/images/line-right-light.svg"
+                      />
+                      <img
+                        class="hidden w-full dark:block"
+                        src="/images/line-right-dark.svg"
+                      />
+                    </div>
+                  </button>
+                ))
+              }
+            </div>
+            <div
+              class="relative w-full grow rounded-2xl border border-solid p-20 shadow-5 dark:border-grey-600 dark:bg-grey-900"
+            >
+              {
+                principles.map((x, idx) => (
+                  <p
+                    class="principle-content absolute left-20 top-1/2 w-[calc(100%-160px)] translate-y-10 text-lg leading-8 text-grey-900 opacity-0 transition-all duration-150 dark:text-grey-200"
+                    data-index={idx}
+                  >
+                    {x.text}
+                  </p>
+                ))
+              }
+            </div>
           </div>
         </section>
         <section
@@ -486,4 +530,58 @@ const contributors = [
     }
   };
   subscribeButton?.addEventListener('click', subscribeAction);
+
+  // Desctop principle slider
+  const initDestopSlider = () => {
+    const activeContentClasses = ['opacity-100', '!-translate-y-1/2'];
+    const activeTitleClasses = '!opacity-100';
+    const titles = Array.from(document.querySelectorAll('.principle-title'));
+    const contents = Array.from(
+      document.querySelectorAll('.principle-content'),
+    );
+    let currentActiveIndex = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+
+    const updateInterval = () => {
+      if (interval) clearInterval(interval);
+      interval = setInterval(setNextSlide, 15_000); // 15 seconds
+    };
+
+    const setActive = (idx: number) => {
+      for (const [i, title] of titles.entries()) {
+        const h3 = title.querySelector('h3');
+        const arrow = title.querySelector('.principle-arrow');
+        if (i === idx) {
+          h3?.classList.add(activeTitleClasses);
+          arrow?.classList.add('!opacity-100');
+        } else {
+          h3?.classList.remove(activeTitleClasses);
+          arrow?.classList.remove('!opacity-100');
+        }
+      }
+
+      for (const [i, content] of contents.entries()) {
+        if (i === idx) {
+          content.classList.add(...activeContentClasses);
+        } else {
+          content.classList.remove(...activeContentClasses);
+        }
+      }
+      currentActiveIndex = idx;
+      updateInterval();
+    };
+
+    for (const [idx, title] of titles.entries()) {
+      title.addEventListener('click', () => setActive(idx));
+    }
+
+    const setNextSlide = () => {
+      const nextIndex = (currentActiveIndex + 1) % titles.length;
+      setActive(nextIndex);
+    };
+
+    setActive(0);
+    updateInterval();
+  };
+  initDestopSlider();
 </script>
