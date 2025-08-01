@@ -2,7 +2,7 @@ import {defineConfig} from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-export const discord = "https://discord.gg/PB8qxrQXup";
+export const discord = 'https://discord.gg/PB8qxrQXup';
 export const header = {
   links: [
     {
@@ -23,7 +23,7 @@ export const header = {
       icon: 'discord',
       target: '_blank',
       id: 'discord',
-      ariaLabel: "Discord"
+      ariaLabel: 'Discord',
     },
   ],
   footerLinks: [
@@ -54,6 +54,13 @@ export const footer = {
       target: '_blank',
       id: 'discord',
       ariaLabel: 'Discord',
+    },
+    {
+      link: 'https://github.com/meefoundation',
+      icon: 'github',
+      target: '_blank',
+      id: 'github',
+      ariaLabel: 'GitHub',
     },
   ],
   rightLinks: [
