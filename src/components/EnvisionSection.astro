@@ -7,14 +7,17 @@ import Logo from './Logo.astro';
 export interface Props {}
 
 const {} = Astro.props;
-const subtitles = [
-  'you can share data privately with people and businesses you trust',
-  'your data is never shared or sold by others',
-  'your activities remain private',
+const subtitle = [
+  'is a digital version of you that you own ',
+  'gives you an identity independent of big tech',
+  'stores your data on your device(s)',
+  'you decide what to share and with whom',
+  'you’re in control',
 ];
+
 const apps = [
   'Never share your information with other companies',
-  'Request information from your Mee app instead of asking you to type it in all over again',
+  'Request information from your Mee app instead of asking you to type it all over again',
   'Respect your privacy',
 ];
 ---
@@ -36,7 +39,7 @@ const apps = [
           <h2
             class="text text-base font-bold uppercase leading-5 tracking-wider text-black/[.6] opacity-0 animation-delay-300"
           >
-            With Mee…
+            Mee...
           </h2>
         </div>
       </div>
@@ -68,7 +71,7 @@ const apps = [
       </div>
 
       {
-        subtitles.map((subtitle) => (
+        subtitle.map((subtitle) => (
           <div class="slide">
             <div class="slide-part">
               <div class="absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden">
@@ -82,6 +85,7 @@ const apps = [
           </div>
         ))
       }
+
       <div class="slide">
         <div class="slide-part">
           <div
@@ -374,18 +378,25 @@ const apps = [
     onDragEndAnimation(swap, activeSlideIndex);
     activeSlideIndex = potentialNextSlide;
 
+    const titleTextNode = title?.querySelector('.text');
+    const titleText = [4, 5].includes(activeSlideIndex)
+      ? 'With Mee...'
+      : 'Mee...';
+
+    titleTextNode && (titleTextNode.innerHTML = titleText);
+
     if (
       (activeSlideIndex > 0 || activeSlideIndex < slides.length - 1) &&
-      title?.querySelector('.text')?.classList.contains('opacity-0')
+      titleTextNode?.classList.contains('opacity-0')
     ) {
-      title?.querySelector('.text')?.classList.remove('opacity-0');
-      title?.querySelector('.text')?.classList.add('animate-riseIn');
+      titleTextNode?.classList.remove('opacity-0');
+      titleTextNode?.classList.add('animate-riseIn');
     } else if (
       (activeSlideIndex === 0 || activeSlideIndex === slides.length - 1) &&
       !title?.classList.contains('opacity-0')
     ) {
-      title?.querySelector('.text')?.classList.add('opacity-0');
-      title?.querySelector('.text')?.classList.remove('animate-riseIn');
+      titleTextNode?.classList.add('opacity-0');
+      titleTextNode?.classList.remove('animate-riseIn');
     }
 
     setActiveSlide();
