@@ -7,8 +7,8 @@ import privacyAndSecurityDark from '../../public/images/index/privacy-and-securi
 // import remoteControl from '../../public/images/index/remote-control.png';
 // import remoteControlDark from '../../public/images/index/remote-control-dark.png';
 import privacyAndSecurity from '../../public/images/index/privacy-and-security.png';
-import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
-import privateSharing from '../../public/images/index/private-sharing.png';
+// import privateSharingDark from '../../public/images/index/private-sharing-dark.png';
+// import privateSharing from '../../public/images/index/private-sharing.png';
 import yourDigitalTwinDark from '../../public/images/index/your-digital-twin-dark.png';
 import yourDigitalTwin from '../../public/images/index/your-digital-twin.png';
 import playButton from '../../public/images/play.svg';
@@ -18,20 +18,22 @@ const futures = [
     imageLight: yourDigitalTwin,
     imageDark: yourDigitalTwinDark,
     title: 'Peer-to-peer communications',
-    description: 'Securely and privately share sensitive personal data directly with people and organizations you trust. Data moves directly to-and-from your smartwallet and your recipient, not our servers. No honey pots for hackers.',
+    description:
+      'Securely and privately share sensitive personal data directly with people and organizations you trust. Data moves directly to-and-from your smartwallet and your recipient, not our servers. No honey pots for hackers.',
     // class: 'col-span-1 md:order-0 lg:order-none',
   },
   {
     imageLight: privacyAndSecurity,
     imageDark: privacyAndSecurityDark,
     title: 'Privacy and security',
-    description: 'Our open source mobile smartwallets are secure. They encrypt your data both in transit and at rest. No data is stored on our servers so we can\u2019t monetize or share it with anyone (even the government), because, well, we don’t have it!',
+    description:
+      'Our open source mobile smartwallets are secure. They encrypt your data both in transit and at rest. No data is stored on our servers so we can\u2019t monetize or share it with anyone (even the government), because, well, we don’t have it!',
     // class: 'col-span-2 md:order-1 lg:order-none',
   },
 ];
 ---
 
-<Layout title="Mee Foundati’on">
+<Layout title="Mee Foundation">
   <Header header={header} type="dark" />
 
   <main class="h-screen overflow-hidden" id="main">
@@ -54,15 +56,8 @@ const futures = [
               <h1
                 class="animate-riseIn text-center text-3xl font-semibold text-white animation-delay-400 md:text-5xl lg:text-7xl"
               >
-                A human-centered approach to personal data
+                Independence, control and privacy
               </h1>
-            </div>
-            <div class="max-w-3xl overflow-hidden">
-              <h2
-                class="animate-riseIn text-center text-xl text-white animation-delay-400 lg:text-2xl"
-              >
-                Giving you more control. More privacy. More convenience.
-              </h2>
             </div>
             <div class="h-10 md:h-11">
               <div
@@ -155,7 +150,11 @@ const futures = [
             <h2
               class="text text-pretty px-6 text-center text-xl text-grey-900 animation-delay-800 md:text-2xl dark:text-grey-200"
             >
-              A mobile app that gives you an independent digital identity. It manages the storage of your personal data, and allows you to privately share it with people and organizations you trust, using encrypted, peer-to-peer connections based on a local-first, human-centric architecture.
+              A mobile app that gives you an independent digital identity. It
+              manages the storage of your personal data, and allows you to
+              privately share it with people and organizations you trust, using
+              encrypted, peer-to-peer connections based on a local-first,
+              human-centric architecture.
             </h2>
           </div>
         </div>
