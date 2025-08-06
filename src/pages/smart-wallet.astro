@@ -1,0 +1,52 @@
+---
+import {AppButtons, Footer, Header} from 'mee-components';
+import Layout from '@layouts/Layout.astro';
+import {header, footer} from '../../astro.config.mjs';
+---
+
+<Layout title="Mee Foundation - Smart Wallet">
+  <main class="w-screen">
+    <Header header={header} activePage="smart-wallet" location="Smart Wallet" />
+    <section
+      class="flex h-full min-h-dvh w-screen transform-gpu flex-col items-center justify-between overflow-hidden bg-white pt-28 md:pt-[188px] dark:bg-black/90"
+    >
+      <div
+        class="flex w-full max-w-7xl flex-col items-center gap-4 px-5 pb-28 md:flex-row md:gap-15 md:pb-40 xl:gap-40 xl:px-0"
+      >
+        <div class="w-full max-w-80 lg:shrink-0">
+          <img
+            class="w-full"
+            alt="Smartwallet"
+            src="/images/smartwallet/smartwallet.png"
+          />
+        </div>
+        <div class="flex w-full flex-col gap-10">
+          <div class="flex w-full flex-col gap-4 lg:max-w-[760px]">
+            <h1
+              class="text-3xl font-bold text-grey-950 lg:text-7xl dark:text-white"
+            >
+              The Smartwallet
+            </h1>
+            <p class="text-lg lg:text-2xl dark:text-gray-200">
+              A mobile app that gives you an independent digital identity. It
+              manages the storage of your personal data, and allows you to
+              privately share it with people and organizations you trust, using
+              encrypted, peer-to-peer connections based on a local-first,
+              human-centric architecture.
+            </p>
+            <a
+              class="w-full text-xl leading-relaxed text-brand-600 underline md:text-2xl"
+              href="https://itsmee.org"
+            >
+              Learn more about Mee Smartwallet <i class="bi bi-arrow-right ml-2"
+              ></i>
+            </a>
+          </div>
+
+          <!-- <AppButtons class="!items-start justify-start px-0" noDescription /> -->
+        </div>
+      </div>
+      <Footer footer={footer} mode="dark" />
+    </section>
+  </main>
+</Layout>

@@ -9,9 +9,9 @@ export const githubLink = 'https://github.com/meefoundation';
 export const header = {
   links: [
     {
-      name: 'Products',
-      link: '/products',
-      id: 'products',
+      name: 'Smartwallet',
+      link: '/smart-wallet',
+      id: 'smartwallet',
     },
     {
       name: 'About us',
