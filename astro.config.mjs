@@ -11,7 +11,7 @@ export const header = {
     {
       name: 'Smartwallet',
       link: '/smart-wallet',
-      id: 'smartwallet',
+      id: 'smart-wallet',
     },
     {
       name: 'About us',
