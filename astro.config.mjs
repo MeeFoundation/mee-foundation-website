@@ -10,8 +10,8 @@ export const header = {
   links: [
     {
       name: 'Smartwallet',
-      link: '/smart-wallet',
-      id: 'smart-wallet',
+      link: '/smartwallet',
+      id: 'smartwallet',
     },
     {
       name: 'About us',
@@ -76,9 +76,9 @@ export const footer = {
   ],
   rightLinks: [
     {
-      name: 'Products',
-      link: '/products',
-      id: 'products',
+      name: 'Smartwallet',
+      link: '/smartwallet',
+      id: 'smartwallet',
     },
     {
       name: 'About us',
