@@ -9,9 +9,9 @@ export const githubLink = 'https://github.com/meefoundation';
 export const header = {
   links: [
     {
-      name: 'Smartwallet',
-      link: '/smartwallet',
-      id: 'smartwallet',
+      name: 'Mee for you',
+      link: '/mee-for-you',
+      id: 'mee-for-you',
     },
     {
       name: 'About us',
@@ -76,9 +76,9 @@ export const footer = {
   ],
   rightLinks: [
     {
-      name: 'Smartwallet',
-      link: '/smartwallet',
-      id: 'smartwallet',
+      name: 'Mee for you',
+      link: '/mee-for-you',
+      id: 'mee-for-you',
     },
     {
       name: 'About us',
