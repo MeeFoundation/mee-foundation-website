@@ -9,9 +9,9 @@ export const githubLink = 'https://github.com/meefoundation';
 export const header = {
   links: [
     {
-      name: 'Mee for you',
-      link: '/mee-for-you',
-      id: 'mee-for-you',
+      name: 'Projects',
+      link: '/projects',
+      id: 'projects',
     },
     {
       name: 'About us',
@@ -76,9 +76,9 @@ export const footer = {
   ],
   rightLinks: [
     {
-      name: 'Mee for you',
-      link: '/mee-for-you',
-      id: 'mee-for-you',
+      name: 'Projects',
+      link: '/projects',
+      id: 'projects',
     },
     {
       name: 'About us',
@@ -101,7 +101,6 @@ export const footer = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mee.foundation',
-  redirects: {'/projects': '/products'},
   integrations: [tailwind(), react(), mdx()],
   build: {
     assets: 'assets',

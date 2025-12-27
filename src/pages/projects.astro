@@ -4,9 +4,9 @@ import Layout from '@layouts/Layout.astro';
 import {header, footer} from '../../astro.config.mjs';
 ---
 
-<Layout title="Mee for you">
+<Layout title="Projects">
   <main class="w-screen">
-    <Header header={header} activePage="mee-for-you" location="Mee for you" />
+    <Header header={header} activePage="projects" location="Projects" />
     <section
       class="flex h-full min-h-dvh w-screen transform-gpu flex-col items-center justify-between overflow-hidden bg-white pt-28 md:pt-[188px] dark:bg-black/90"
     >
@@ -16,7 +16,7 @@ import {header, footer} from '../../astro.config.mjs';
         <div class="w-full max-w-80 lg:shrink-0">
           <img
             class="w-full"
-            alt="Mee for you"
+            alt="Projects"
             src="/images/smartwallet/smartwallet.png"
           />
         </div>
@@ -25,17 +25,21 @@ import {header, footer} from '../../astro.config.mjs';
             <h2
               class="text-3xl font-bold text-grey-950 lg:text-7xl dark:text-white"
             >
-              Get an independent identity. You decide what to share with whom. 
+              Get an independent identity. You decide what to share with whom.
             </h2>
             <p class="text-lg lg:text-2xl dark:text-gray-200">
-Mee is a mobile app that gives you a digital identity independent of big tech and the government. It manages the storage of your personal data, and allows you to privately share it with people and organizations you trust. It’s based on a local-first, human-centric architecture and secure, encrypted peer-to-peer communications.
+              Mee is a mobile app that gives you a digital identity independent
+              of big tech and the government. It manages the storage of your
+              personal data, and allows you to privately share it with people
+              and organizations you trust. It’s based on a local-first,
+              human-centric architecture and secure, encrypted peer-to-peer
+              communications.
             </p>
             <a
               class="w-full text-xl leading-relaxed text-brand-600 underline md:text-2xl"
-              href="https://itsmee.org"
+              href="https://smartwallet.mee.foundation/"
             >
-              More about our vision <i class="bi bi-arrow-right ml-2"
-              ></i>
+              Learn more <i class="bi bi-arrow-right ml-2"></i>
             </a>
           </div>
 
