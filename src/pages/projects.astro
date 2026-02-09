@@ -7,9 +7,26 @@ import extensionDesktopImage from '../assets/products/extension-desktop.png';
 import extensionImage from '../assets/products/extension.png';
 import smartwalletDarkImage from '../assets/products/smartwallet-dark.png';
 import smartwalletImage from '../assets/products/smartwallet.png';
-import webAppDarkImage from '../assets/products/web-app-dark.png';
-import webAppImage from '../assets/products/web-app.png';
+import ageProtectDarkImage from '../assets/products/age-protect-dark.png';
+import ageProtect from '../assets/products/age-protect.png';
+import mySignalImage from '../assets/products/handshake.png';
+import mySignalDarkImage from '../assets/products/handshake-dark.png';
+import sediConsortiumImage from '../assets/colobrations/sedi-consortium.png';
+import sediConsortiumDarkImage from '../assets/colobrations/sedi-consortium-dark.png';
+import firstPersonProjectImage from '../assets/colobrations/first-person-project.png';
+import firstPersonProjectDarkImage from '../assets/colobrations/first-person-project-dark.png';
 import Layout from '../layouts/Layout.astro';
+
+const mySignalProduct = {
+  image: mySignalImage,
+  imageDark: mySignalDarkImage,
+  title: 'MySignals',
+  label: 'Under development',
+  description:
+    'A handshake process between your agent and a service provider website/app. It lets people signal their intent, just by browsing or using apps.',
+  link: 'https://mysignals.org/',
+  linkText: 'Get involved',
+};
 
 const extensionProduct = {
   image: extensionImage,
@@ -18,27 +35,46 @@ const extensionProduct = {
   imageDesktopDark: extensionDesktopImageDark,
   title: 'Mee Extension',
   label: 'v1.2 released',
-  description: 'Gain some privacy and ease of mind. This extension automatically tells websites you visit not to sell/share your personal information',
+  description: ' Gain some privacy and ease of mind.',
   link: 'https://meextension.org/',
 };
 const products = [
-  {
-    image: webAppImage,
-    imageDark: webAppDarkImage,
-    title: 'AgeProtect',
-    label: 'Under development',
-    description:
-      'AgeProtect is a new age verification approach that is opt-in, respects the privacy of all parties, and leaves the existing internet experience unchanged for those that do not opt in.',
-    link: 'https://ageprotect.org/',
-  },
   {
     image: smartwalletImage,
     imageDark: smartwalletDarkImage,
     title: 'Smartwallet',
     label: 'Under development',
     description:
-      'We believe that people have an inalienable right to a digital identity. We secure this right by freely giving everyone their own independent identity–an identity that can never be taken from you by big tech or the government. This identity lives on your phone and/or laptop and is created by a software app called the Mee Smartwallet. The smartwallet manages the storage of your personal data, and allows you to privately share it with people and organizations you trust.',
+      'We believe that people have an inalienable right to a digital identity.  The Mee Smartwallet app keeps your personal data safe and lets you share it privately.',
     link: 'https://smartwallet.mee.foundation',
+  },
+  {
+    image: ageProtect,
+    imageDark: ageProtectDarkImage,
+    title: 'AgeProtect',
+    label: 'Under development',
+    description:
+      'A new age verification approach to protecting minors on the internet. It’s opt-in, respects the privacy of all parties, and leaves the existing internet experience unchanged for those that do not opt in.',
+    link: 'https://ageprotect.org/',
+  },
+];
+
+const collaborations = [
+  {
+    image: sediConsortiumImage,
+    imageDark: sediConsortiumDarkImage,
+    title: 'SEDI Consortium',
+    description:
+      'The Mee Foundation is an active contributor to the SEDI consortium. We’ve been focusing on protection of children (and control of personal AI agents) in the digital world. We contributed to “The Five Pillars” of Guardianship project with Timothy Ruff, PRIVO, Swift Invention and others.',
+    link: '/SEDI_ProtectingLiberty.pdf',
+  },
+  {
+    image: firstPersonProjectImage,
+    imageDark: firstPersonProjectDarkImage,
+    title: 'First Person Project',
+    description:
+      'A global infrastructure for social verification. The First Person Network is a global digital utility that enables trusted connections between individuals, communities, and organizations.',
+    link: 'https://www.firstperson.network/',
   },
 ];
 ---
@@ -50,19 +86,24 @@ const products = [
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
       <article
-        class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4 pt-8"
+        class="mb-40 flex max-w-[1280px] flex-col items-center justify-center gap-4 pt-8"
       >
         <section
           class="flex h-auto w-full max-w-[930px] flex-col items-center justify-center bg-white px-4 dark:bg-black/90"
         >
-          <div class="grid w-full grid-cols-1">
+          <div class="flex w-full flex-col gap-12">
+            <h1
+              class="text-center text-3xl font-bold text-gray-900 lg:text-5xl dark:text-grey-50"
+            >
+              For people
+            </h1>
             <a
               class:list={[
-                'products__card_gradient relative flex h-[340px] w-full items-end gap-6 rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong xs:h-[400px] sm:h-[520px] md:h-[300px] md:flex-row-reverse md:items-center dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+                'products__card_gradient relative flex h-[340px] w-full items-end rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong xs:h-[400px] sm:h-[520px] md:h-[300px] md:flex-row-reverse md:items-center dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
               ]}
               href={extensionProduct.link}
             >
-              <picture class="hidden md:w-1/2 dark:block">
+              <picture class="hidden md:w-full dark:block">
                 <source
                   type="image/png"
                   media="(max-width:767px)"
@@ -81,7 +122,7 @@ const products = [
                   fetchpriority="high"
                 />
               </picture>
-              <picture class="md:w-1/2 dark:hidden">
+              <picture class="md:w-w-full dark:hidden">
                 <source
                   type="image/png"
                   media="(max-width:767px)"
@@ -100,7 +141,9 @@ const products = [
                   fetchpriority="high"
                 />
               </picture>
-              <div class="relative z-1 flex flex-col gap-2 p-8 md:w-1/2">
+              <div
+                class="relative z-1 flex shrink-0 flex-col gap-2 p-8 md:w-[342px]"
+              >
                 <div
                   class="-mb-2 text-xs font-semibold uppercase text-success-700 dark:text-success-300"
                 >
@@ -128,15 +171,15 @@ const products = [
         </section>
       </article>
       <article
-        class="mb-28 flex max-w-[1280px] flex-col items-center justify-center gap-4"
+        class="mb-40 flex max-w-[calc(1280px+32px)] flex-col items-center justify-center gap-4 md:max-w-[calc(1280px+64px)]"
       >
         <div
           class="mb-16 flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
         >
           <h1
-            class="mb-4 mt-13 text-center text-3xl font-bold text-gray-900 lg:text-5xl dark:text-grey-50"
+            class="mb-4 mt-20 text-center text-3xl font-bold text-gray-900 lg:text-5xl dark:text-grey-50"
           >
-            Under development
+            For Developers
           </h1>
           <div
             class="relative flex w-full flex-col items-center px-10 animation-delay-800"
@@ -144,7 +187,7 @@ const products = [
             <p
               class="text-center text-xl text-grey-800 animation-delay-800 lg:text-2xl dark:text-grey-200"
             >
-              Projects we're working on
+              Projects under development
             </p>
           </div>
         </div>
@@ -157,7 +200,7 @@ const products = [
               products.map((project) => (
                 <a
                   class:list={[
-                    'products__card_gradient relative flex h-[620px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong xs:h-[740px] md:h-[620px] md:w-[calc(50%-16px)] lg:h-[740px] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+                    'products__card_gradient relative flex h-[640px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong md:w-[calc(50%-16px)] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
                   ]}
                   href={project.link}
                 >
@@ -172,9 +215,117 @@ const products = [
                     alt={project.title.split(' ').join('_')}
                   />
                   <div class="relative z-1 flex flex-col gap-2 p-8 pb-0">
-                    <div class="-mb-2 text-xs font-semibold uppercase text-success-700 dark:text-success-300">
+                    <div class="-mb-2 text-xs font-semibold uppercase text-[#943785] dark:text-[#EDBAE7]">
                       {project.label}
                     </div>
+                    <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
+                      {project.title}
+                    </div>
+                    <div class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200">
+                      {project.description}
+                    </div>
+                    <div class="flex items-center gap-2.5 pb-0.5 pt-4 text-brand-700 dark:text-brand-300">
+                      <span class="underline">Learn more</span>
+                      <i class="bi bi-arrow-right" />
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
+
+            <a
+              class:list={[
+                'products__card_gradient relative flex h-[640px] w-full flex-col items-center gap-12 rounded-2xl border border-grey-300 hover:border-brand-300 hover:shadow-3-strong md:h-auto md:flex-row dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+              ]}
+              href={mySignalProduct.link}
+            >
+              <div class="flex flex-col gap-6 p-8 pr-0 md:w-1/2">
+                <div class="flex flex-col gap-1">
+                  <h5
+                    class="text-xs font-semibold uppercase text-[#943785] dark:text-[#EDBAE7]"
+                  >
+                    {mySignalProduct.label}
+                  </h5>
+                  <h3
+                    class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100"
+                  >
+                    {mySignalProduct.title}
+                  </h3>
+                  <p
+                    class="text-balance text-sm text-grey-800 lg:text-base dark:text-grey-200"
+                  >
+                    {mySignalProduct.description}
+                  </p>
+                </div>
+                <div
+                  class="flex items-center gap-2.5 pb-0.5 pt-4 text-brand-700 dark:text-brand-300"
+                >
+                  <span class="underline">{mySignalProduct.linkText}</span>
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </div>
+              <div class="order-[-1] flex pr-1 md:order-1 md:w-1/2">
+                <img
+                  class="min-h-[300px] w-full object-cover dark:hidden"
+                  src={mySignalProduct.image.src}
+                  alt={mySignalProduct.title}
+                />
+                <img
+                  class="hidden min-h-[300px] w-full object-cover dark:block"
+                  src={mySignalProduct.imageDark.src}
+                  alt={mySignalProduct.title}
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article
+        class="mb-40 flex max-w-[calc(1280px+32px)] flex-col items-center justify-center gap-4 md:max-w-[calc(1280px+64px)]"
+      >
+        <div
+          class="mb-16 flex h-auto w-screen flex-col items-center justify-center bg-white dark:bg-black/90"
+        >
+          <h1
+            class="mb-4 mt-20 text-center text-3xl font-bold text-gray-900 lg:text-5xl dark:text-grey-50"
+          >
+            Collaborations
+          </h1>
+          <div
+            class="relative flex w-full flex-col items-center px-10 animation-delay-800"
+          >
+            <p
+              class="text-center text-xl text-grey-800 animation-delay-800 lg:text-2xl dark:text-grey-200"
+            >
+              Industry initiatives we contribute to
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="flex h-auto flex-col items-center justify-center bg-white dark:bg-black/90"
+        >
+          <div class="flex flex-wrap items-center gap-8 px-4 md:px-8">
+            {
+              collaborations.map((project) => (
+                <a
+                  class:list={[
+                    'products__card_gradient relative flex h-[500px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong xs:h-[680px] md:w-[calc(50%-16px)] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+                  ]}
+                  href={project.link}
+                >
+                  <img
+                    src={project.image.src}
+                    class="absolute left-0 top-0 w-full rounded-t-2xl dark:hidden"
+                    alt={project.title.split(' ').join('_')}
+                  />
+                  <img
+                    src={project.imageDark.src}
+                    class="absolute left-0 top-0 hidden w-full rounded-t-2xl dark:block"
+                    alt={project.title.split(' ').join('_')}
+                  />
+                  <div class="relative z-1 flex flex-col gap-2 p-8 pb-0">
                     <div class="flex items-center gap-2 whitespace-nowrap text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-100">
                       {project.title}
                     </div>
