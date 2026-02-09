@@ -81,7 +81,7 @@ const collaborations = [
 
 <Layout title="Mee Foundation - Projects">
   <main class="w-screen">
-    <Header header={header} activePage="projects" location="Products" />
+    <Header header={header} activePage="projects" location="Projects" />
     <section
       class="flex h-full w-screen transform-gpu flex-col items-center justify-start overflow-hidden bg-white pt-25 md:pt-36 dark:bg-black/90"
     >
@@ -200,7 +200,7 @@ const collaborations = [
               products.map((project) => (
                 <a
                   class:list={[
-                    'products__card_gradient relative flex h-[640px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong md:w-[calc(50%-16px)] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
+                    'products__card_gradient relative flex h-[500px] items-end rounded-2xl border border-grey-300 pb-8 hover:border-brand-300 hover:shadow-3-strong xs:h-[500px] md:w-[calc(50%-16px)] lg:h-[640px] dark:border-grey-600 dark:hover:bg-dark-hover-gradient',
                   ]}
                   href={project.link}
                 >
