@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 
-export const discord = 'https://discord.gg/PB8qxrQXup';
+export const discord = 'https://discord.gg/VyPtN22vsP';
 export const githubLink = 'https://github.com/meefoundation';
 
 export const header = {
