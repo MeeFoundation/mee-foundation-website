@@ -120,17 +120,28 @@ const subtitles = [
   const bleachSpeedMS = 70;
   const bleachStep = 0.02;
   const bleachStepDouble = 0.04;
-  const START_AUTOSCROLL_AFTER_MS = 3000;
-  const AUTOSCROLL_SPEED_MS = 5000;
+  const START_AUTOSCROLL_AFTER_MS = 0;
+  const AUTOSCROLL_SPEED_MS = 3000;
   let timer: number | undefined = undefined;
   let autoscrollId: number;
   let autoScrollOn = false;
 
+  let startTime = Date.now();
+  let timeElapsed = 0;
+  setInterval(() => {
+    timeElapsed = Date.now() - startTime;
+  }, 60);
+
   const autoScroll = () => {
+    console.log('--------------------------------');
+    console.log('AUTO SCROLL SPEED', AUTOSCROLL_SPEED_MS);
+    console.log('TIME ELAPSED', timeElapsed);
+    console.log('--------------------------------');
     if (autoScrollOn) {
       moveToSlide(1);
     }
   };
+
   const stopAutoScroll = () => {
     if (autoScrollOn) {
       autoScrollOn = false;
@@ -204,6 +215,7 @@ const subtitles = [
       }
     }, bleachSpeedMS);
   };
+
   const startBleachFromEndAnimation = () => {
     flashInProgress = true;
 

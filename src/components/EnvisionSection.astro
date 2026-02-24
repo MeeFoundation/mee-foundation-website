@@ -1,18 +1,15 @@
 ---
 import {Footer} from 'mee-components';
 import {footer} from '../../astro.config.mjs';
-import done from '@assets/done.svg';
-import Logo from './Logo.astro';
 
 export interface Props {}
 
 const {} = Astro.props;
 const subtitle = [
-  'is a digital version of you that you own ',
-  'gives you an identity independent of big tech',
-  'stores your data on your device(s)',
-  'you decide what to share and with whom',
-  'you’re in control',
+  'Instead of all that, we’re working on identity agents ',
+  'a digital identity that’s yours - it can’t be taken from you by big tech or government',
+  'a way to privately share personal messages and data with others you trust',
+  'a peer-to-peer data network that keeps your data out of the cloud and away from hackers',
 ];
 
 const apps = [
@@ -39,34 +36,8 @@ const apps = [
           <h2
             class="text text-base font-bold uppercase leading-5 tracking-wider text-black/[.6] opacity-0 animation-delay-300"
           >
-            Mee...
+            Identity agents give you
           </h2>
-        </div>
-      </div>
-      <div class="slide">
-        <div class="slide-part overflow-hidden">
-          <div class="flex min-h-screen w-screen items-center justify-center">
-            <div
-              class="flex h-full w-full flex-col items-center bg-cover text-center"
-            >
-              <div
-                class="slide-subtitle z-100 flex flex-col items-center justify-center gap-6 overflow-hidden px-5 text-black opacity-0"
-              >
-                <div
-                  class="logo logo--contrast h-10 w-34.5 animate-fadeIn opacity-0 md:h-12 md:w-41.25"
-                >
-                  <Logo />
-                </div>
-                <div class="overflow-hidden">
-                  <p
-                    class="text animate-riseIn text-center text-xl leading-normal text-blue md:text-[1.75rem]"
-                  >
-                    A human-centered approach to personal data
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -85,56 +56,6 @@ const apps = [
           </div>
         ))
       }
-
-      <div class="slide">
-        <div class="slide-part">
-          <div
-            class="absolute left-0 flex h-screen w-screen items-center justify-center overflow-hidden"
-          >
-            <div
-              class="flex h-full w-full flex-col items-center justify-center bg-cover text-center"
-            >
-              <div
-                class="slide-subtitle z-100 px-5 text-xl text-black opacity-0 md:w-173 md:text-3xl"
-              >
-                <h2
-                  class="title text marker mb-10 flex w-full animate-riseIn items-center justify-center overflow-hidden px-6 text-center text-[28px] font-bold uppercase transition-opacity duration-500 md:p-0 lg:text-[54px]"
-                >
-                  Mee-compatible apps
-                </h2>
-                <div class="flex flex-col items-center justify-center gap-16">
-                  <div class="mb-10 flex flex-col">
-                    {
-                      apps.map((app, index) => (
-                        <div
-                          id={`en-section-${index + 1}`}
-                          class="section z-100 mb-2 flex w-full flex-col overflow-hidden px-6 md:mb-4 md:w-160 md:p-0"
-                        >
-                          <div class="subtitle flex w-full items-center rounded-lg bg-orange-lighter px-2 pb-4 pt-2 opacity-0 animation-delay-300">
-                            <div class="mr-4">
-                              <div class="relative m-2 h-6 w-6 rounded border-1.5 border-white md:h-8 md:w-8">
-                                <img
-                                  src={done.src}
-                                  alt=""
-                                  class="absolute bottom-1.75 left-1.25 md:bottom-2.5 md:left-1.75"
-                                />
-                              </div>
-                            </div>
-
-                            <h2 class="text ms:text-xl mt-2 pr-2 text-left text-base text-black">
-                              <span>{app}</span>
-                            </h2>
-                          </div>
-                        </div>
-                      ))
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
   <Footer footer={footer} mode="dark" />
@@ -145,7 +66,7 @@ const apps = [
     position: absolute;
     top: 0;
     height: 100vh;
-    transition: transform 1s;
+    transition: transform 0.5s;
     transform: translateY(100%);
   }
   .slide-part .active {
@@ -226,6 +147,8 @@ const apps = [
   let isSlidesSectionShow = true;
   let startRedirect = false;
   let activeSlideIndex = 0;
+
+  const startTimestamp = Date.now();
 
   const redirectToMain = () => {
     if (!startRedirect) {
@@ -379,24 +302,14 @@ const apps = [
     activeSlideIndex = potentialNextSlide;
 
     const titleTextNode = title?.querySelector('.text');
-    const titleText = [4, 5].includes(activeSlideIndex)
-      ? 'With Mee...'
-      : 'Mee...';
-
-    titleTextNode && (titleTextNode.innerHTML = titleText);
 
     if (
-      (activeSlideIndex > 0 || activeSlideIndex < slides.length - 1) &&
-      titleTextNode?.classList.contains('opacity-0')
+      activeSlideIndex !== 0 &&
+      titleTextNode &&
+      titleTextNode.classList.contains('opacity-0')
     ) {
-      titleTextNode?.classList.remove('opacity-0');
-      titleTextNode?.classList.add('animate-riseIn');
-    } else if (
-      (activeSlideIndex === 0 || activeSlideIndex === slides.length - 1) &&
-      !title?.classList.contains('opacity-0')
-    ) {
-      titleTextNode?.classList.add('opacity-0');
-      titleTextNode?.classList.remove('animate-riseIn');
+      titleTextNode.classList.remove('opacity-0');
+      titleTextNode.classList.add('animate-riseIn');
     }
 
     setActiveSlide();
@@ -439,17 +352,24 @@ const apps = [
   document?.addEventListener('touchend', onDragEnd);
   slidesSection?.addEventListener('transitionend', onTransitionEnd);
 
+  const AUTOSCROLL_DELAY_MS = 2500;
+  const START_ANIMATION_DELAY_MS = 2000;
+
   function autoScroll() {
     const event = new WheelEvent('wheel', {deltaY: 501});
     document.dispatchEvent(event);
 
+    console.log('--------------------------------');
+    console.log('TIME ELAPSED', Date.now() - startTimestamp);
+    console.log('--------------------------------');
+
     setTimeout(() => {
       autoScroll();
-    }, 5000);
+    }, AUTOSCROLL_DELAY_MS);
   }
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       autoScroll();
-    }, 5000);
+    }, START_ANIMATION_DELAY_MS);
   });
 </script>
