@@ -3,6 +3,10 @@ name: dev-ci
 on:
   workflow_dispatch:
 
+env:
+  GCP_PROJECT_ID: "the-mee-foundation"
+  GCP_BUCKET: "mee-foundation-bucket"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,28 +14,39 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'yarn'
       - name: Install dependencies
         run: yarn install
       - name: Build with Astro
         run: yarn run build
 
-      - name: configure gcp credentials
+      - name: Configure GCP credentials
         if: ${{ github.ref == 'refs/heads/develop' }}
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: "projects/1043231896197/locations/global/workloadIdentityPools/github-actions-pool/providers/github"
           service_account: "github-actions@the-mee-foundation.iam.gserviceaccount.com"
 
-      - name: deploy to bucket
+      - name: Set up Cloud SDK
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Deploy to bucket
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |
-          gcloud storage rsync --recursive ./dist gs://mee-foundation-bucket
-          gcloud storage objects update --content-type="text/html" --cache-control="public, max-age=60" --content-disposition="" gs://mee-foundation-bucket/*.html
-          gcloud compute url-maps invalidate-cdn-cache production-url-map --project the-mee-foundation --path "/*" --host "mee.foundation" --async 
-          gcloud compute url-maps invalidate-cdn-cache production-url-map --project the-mee-foundation --path "/*" --host "auth.mee.foundation" --async 
+          gcloud storage rsync --recursive ./dist gs://${{ env.GCP_BUCKET }}
+          gcloud storage objects update --content-type="text/html" --cache-control="public, max-age=60" --content-disposition="" gs://${{ env.GCP_BUCKET }}/*.html
+          
+      - name: Invalidate CDN cache
+        if: ${{ github.ref == 'refs/heads/develop' }}
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache production-url-map --project ${{ env.GCP_PROJECT_ID }} --path "/*" --host "mee.foundation" --async 
+          gcloud compute url-maps invalidate-cdn-cache production-url-map --project ${{ env.GCP_PROJECT_ID }} --path "/*" --host "auth.mee.foundation" --async
